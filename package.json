@@ -1,0 +1,21 @@
+{
+  "name": "@mineral/core",
+  "version": "1.0.0",
+  "main": "build/index.js",
+  "repository": "git@github.com:Mineral-ts/core.git",
+  "author": "leadcodedev <baptiste.parmantier.pro@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development ts-node-dev --respawn --transpile-only --clear --rs -- src/index.ts",
+    "start": "cross-env NODE_ENV=production node ./build/src/index.js",
+    "build": "tsc",
+    "lint": "eslint \"{src,test}/**/*.ts\"",
+    "lint:fix": "npm run lint -- --fix"
+  },
+  "dependencies": {
+    "@types/node": "^16.7.1",
+    "cross-env": "^7.0.3",
+    "ts-node-dev": "^1.1.8",
+    "typescript": "^4.3.5"
+  }
+}
