@@ -13,9 +13,14 @@
     "lint:fix": "npm run lint -- --fix"
   },
   "dependencies": {
+    "@leadcodedev/logger": "^1.0.0",
     "@types/node": "^16.7.1",
+    "@types/ws": "^7.4.7",
+    "axios": "^0.21.1",
     "cross-env": "^7.0.3",
     "ts-node-dev": "^1.1.8",
-    "typescript": "^4.3.5"
+    "typescript": "^4.3.5",
+    "ws": "^8.2.0",
+    "zlib-sync": "^0.1.7"
   }
 }
