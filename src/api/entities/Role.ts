@@ -1,0 +1,16 @@
+import { Snowflake } from '../../types'
+import RoleTag from './RoleTag'
+
+export default class Role {
+  constructor (
+    public id: Snowflake,
+    public name: string,
+    public color: number,
+    public hoist: boolean,
+    public position: number,
+    public permissions: string,
+    public managed: boolean,
+    public isMentionable: boolean,
+  ) {
+  }
+}

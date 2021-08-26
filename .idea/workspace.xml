@@ -2,15 +2,65 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f56e3984-6480-48ce-85e1-aff0ae5ec9a1" name="Default Changelist" comment=":tada: Initial commit">
-      <change afterPath="$PROJECT_DIR$/src/client/BaseClient.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/client/Client.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/managers/RESTManager.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/managers/WebSocketManager.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/types/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/websockets/Request.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/api/entities/Application.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/api/entities/BaseEntity.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/api/entities/CachedRoles.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/api/entities/Channel.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/api/entities/EmbedAuthor.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/api/entities/EmbedFooter.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/api/entities/EmbedImage.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/api/entities/EmbedThumbnail.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/api/entities/EmbedVideo.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/api/entities/Guild.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/api/entities/Member.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/api/entities/Message.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/api/entities/MessageEmbed.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/api/entities/MessageMentions.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/api/entities/Role.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/api/entities/RoleTag.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/api/entities/User.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/api/entities/VoiceState.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/api/entities/channels/CategoryChannel.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/api/entities/channels/NewsChannel.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/api/entities/channels/StageChannel.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/api/entities/channels/TextChannel.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/api/entities/channels/ThreadChannel.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/api/entities/channels/VoiceChannel.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/api/interfaces/Application.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/api/interfaces/Channel.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/api/interfaces/Client.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/api/interfaces/Embed.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/api/interfaces/EmbedField.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/api/interfaces/Guild.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/api/interfaces/Message.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/api/interfaces/MessageOption.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/api/interfaces/User.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/api/interfaces/channels/TextChannel.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/client/ClientOptions.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/client/Heartbeat.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/managers/CacheManager.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/managers/ChannelManager.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/managers/PacketManager.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/packets/BasePacket.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/packets/GuildCreatePacket.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/packets/MessageCreatePacket.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/packets/ReadyPacket.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/rest/Cdn.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/rest/Request.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/rest/User.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/types/Packet.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/Global.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/BaseClient.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/BaseClient.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/Client.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/Client.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/managers/RESTManager.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/managers/RESTManager.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/managers/WebSocketManager.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/managers/WebSocketManager.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/types/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/websockets/Request.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/websockets/Request.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -23,6 +73,17 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedIndex" value="3" />
   </component>
   <component name="ProjectId" id="1x69uoArn7lwbSn7MO4aojOcC7Z" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -37,15 +98,22 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="dart.analysis.tool.window.visible" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/api/entities" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.completion" />
     <property name="ts.external.directory.path" value="$PROJECT_DIR$/node_modules/typescript/lib" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/api/entities" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/api/interfaces" />
+      <recent name="$PROJECT_DIR$/src/client" />
+      <recent name="$PROJECT_DIR$/src" />
+      <recent name="$PROJECT_DIR$/src/api/interfaces/channels" />
       <recent name="$PROJECT_DIR$/src/websockets" />
-      <recent name="$PROJECT_DIR$/src/managers" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -57,7 +125,9 @@
       <option name="presentableId" value="Default" />
       <updated>1629664898731</updated>
       <workItem from="1629664905208" duration="44000" />
-      <workItem from="1629664959315" duration="13537000" />
+      <workItem from="1629664959315" duration="57813000" />
+      <workItem from="1629822912691" duration="24604000" />
+      <workItem from="1629892277924" duration="26355000" />
     </task>
     <task id="LOCAL-00001" summary=":tada: Initial commit">
       <created>1629665430259</created>
@@ -66,7 +136,14 @@
       <option name="project" value="LOCAL" />
       <updated>1629665430260</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary=":tada: Initial commit">
+      <created>1629681810785</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1629681810785</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -82,6 +159,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value=":tada: Initial commit" />

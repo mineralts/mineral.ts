@@ -13,6 +13,7 @@
     "lint:fix": "npm run lint -- --fix"
   },
   "dependencies": {
+    "@discordjs/collection": "^0.2.1",
     "@leadcodedev/logger": "^1.0.0",
     "@types/node": "^16.7.1",
     "@types/ws": "^7.4.7",
