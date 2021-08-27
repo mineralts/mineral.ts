@@ -6,7 +6,7 @@ export default class SelectMenu {
   public min_values?: number = 1
   public max_values?: number = 1
   public placeholder?: string
-  public disabled = false
+  public disabled?: boolean = false
   public options: MenuSelectOption[] = []
 
   constructor (options: MenuSelect) {
@@ -14,6 +14,7 @@ export default class SelectMenu {
     this.min_values = options.minValues
     this.max_values = options.maxValues
     this.placeholder = options.placeholder
+    this.disabled = options.disabled
   }
 
   public addOption (option: { label: string, value: unknown, description?: string, emoji?: any, default?: boolean }) {

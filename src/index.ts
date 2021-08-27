@@ -61,9 +61,13 @@ async function test() {
       .addComponent(button2)
       .addComponent(button3)
 
-    const menu = new SelectMenu({ customId: 'menu' })
+    const menu = new SelectMenu({ customId: 'menu', disabled: true })
       .addOption({ label: 'Choice 1', value: 2  })
       .addOption({ label: 'Choice 2', value: 3 })
+      .addOption({ label: 'Choice 3', value: 4 })
+      .addOption({ label: 'Choice 4', value: 5 })
+      .addOption({ label: 'Choice 5', value: 6 })
+
 
     const menuRow = new ComponentRow()
       .addComponent(menu)
