@@ -3,16 +3,13 @@ import Client from '../client/Client'
 import { Opcode, Status } from '../types'
 import axios from 'axios'
 import WebSocket from 'ws'
-import { Buffer } from 'buffer'
 import Request from '../websockets/Request'
 import Logger from '@leadcodedev/logger'
 import Heartbeat from '../client/Heartbeat'
 
 export default class WebSocketManager extends EventEmitter {
   public websocket: WebSocket | undefined
-  public gateway = null
   public status: Status = Status.IDLE
-  public inflate: any = []
   private heartbeat: Heartbeat
 
   constructor (public client: Client) {

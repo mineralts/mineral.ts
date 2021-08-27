@@ -1,63 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f56e3984-6480-48ce-85e1-aff0ae5ec9a1" name="Default Changelist" comment=":tada: Initial commit">
-      <change afterPath="$PROJECT_DIR$/src/api/entities/Application.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/api/entities/BaseEntity.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/api/entities/CachedRoles.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/api/entities/Channel.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/api/entities/EmbedAuthor.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/api/entities/EmbedFooter.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/api/entities/EmbedImage.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/api/entities/EmbedThumbnail.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/api/entities/EmbedVideo.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/api/entities/Guild.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/api/entities/Member.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/api/entities/Message.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/api/entities/MessageEmbed.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/api/entities/MessageMentions.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/api/entities/Role.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/api/entities/RoleTag.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/api/entities/User.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/api/entities/VoiceState.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/api/entities/channels/CategoryChannel.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/api/entities/channels/NewsChannel.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/api/entities/channels/StageChannel.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/api/entities/channels/TextChannel.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/api/entities/channels/ThreadChannel.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/api/entities/channels/VoiceChannel.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/api/interfaces/Application.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/api/interfaces/Channel.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/api/interfaces/Client.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/api/interfaces/Embed.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/api/interfaces/EmbedField.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/api/interfaces/Guild.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/api/interfaces/Message.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/api/interfaces/MessageOption.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/api/interfaces/User.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/api/interfaces/channels/TextChannel.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/client/ClientOptions.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/client/Heartbeat.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/managers/CacheManager.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/managers/ChannelManager.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/managers/PacketManager.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/packets/BasePacket.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/packets/GuildCreatePacket.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/packets/MessageCreatePacket.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/packets/ReadyPacket.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/rest/Cdn.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/rest/Request.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/rest/User.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/types/Packet.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/utils/Global.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/utils/index.ts" afterDir="false" />
+    <list default="true" id="f56e3984-6480-48ce-85e1-aff0ae5ec9a1" name="Default Changelist" comment=":construction: Create link components">
+      <change afterPath="$PROJECT_DIR$/src/api/entities/components/SelectMenu.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/client/BaseClient.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/BaseClient.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/client/Client.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/Client.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/managers/RESTManager.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/managers/RESTManager.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/managers/WebSocketManager.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/managers/WebSocketManager.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/types/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/websockets/Request.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/websockets/Request.ts" afterDir="false" />
@@ -101,11 +50,12 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src/api/entities" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="editor.preferences.completion" />
-    <property name="ts.external.directory.path" value="$PROJECT_DIR$/node_modules/typescript/lib" />
+    <property name="ts.external.directory.path" value="E:\WindowsData\Bureau\Mineral\core\node_modules\typescript\lib" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\WindowsData\Bureau\Mineral\core\src\api\entities" />
       <recent name="$PROJECT_DIR$/src/api/entities" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -128,6 +78,7 @@
       <workItem from="1629664959315" duration="57813000" />
       <workItem from="1629822912691" duration="24604000" />
       <workItem from="1629892277924" duration="26355000" />
+      <workItem from="1630003832568" duration="8193000" />
     </task>
     <task id="LOCAL-00001" summary=":tada: Initial commit">
       <created>1629665430259</created>
@@ -143,7 +94,21 @@
       <option name="project" value="LOCAL" />
       <updated>1629681810785</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary=":construction: Create row and buttons components">
+      <created>1630072579857</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1630072579857</updated>
+    </task>
+    <task id="LOCAL-00004" summary=":construction: Create link components">
+      <created>1630072592568</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1630072592568</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -163,6 +128,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value=":tada: Initial commit" />
-    <option name="LAST_COMMIT_MESSAGE" value=":tada: Initial commit" />
+    <MESSAGE value=":construction: Create row and buttons components" />
+    <MESSAGE value=":construction: Create link components" />
+    <option name="LAST_COMMIT_MESSAGE" value=":construction: Create link components" />
   </component>
 </project>
