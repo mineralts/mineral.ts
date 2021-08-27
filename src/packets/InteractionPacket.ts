@@ -7,8 +7,6 @@ export default class InteractionPacket extends BasePacket {
   public packetType: string = 'INTERACTION_CREATE'
 
   public async handle (client: Client, payload): Promise<void> {
-    // console.log(payload)
-
     const message = client.messageManager.create(payload.message)
 
     const data = {
@@ -16,9 +14,11 @@ export default class InteractionPacket extends BasePacket {
       token: payload.token,
       message: message,
       member: client.cacheManager.members.get(payload.member.user.id),
-      guild: client.cacheManager.guilds.get(payload.guild_id)
+      guild: client.cacheManager.guilds.get(payload.guild_id),
+      customId: payload.data.custom_id,
+      interactionType: payload.data.component_type,
     }
-    // console.log(data)
+    console.log(data)
     client.emit('interactionCreate', data)
   }
 }
