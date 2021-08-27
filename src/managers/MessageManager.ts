@@ -33,10 +33,18 @@ export default class MessageManager {
       mentionChannel.set(channel!.id, channel)
     })
 
+    const memberCollection: Collection<Snowflake, Member> = new Collection()
+    payload.mentions.forEach((member: any) => {
+      const instance = this.client.cacheManager.members.get(member.id)
+      if (instance) {
+        memberCollection.set(instance.user.id, instance)
+      }
+    })
+
     const messageMention = new MessageMentions(
       mentionChannel,
       mentionRoles,
-      payload.mentions.map((member: any) => this.client.cacheManager.members.get(member.id)),
+      memberCollection,
       payload.mention_everyone,
     )
 
