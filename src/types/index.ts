@@ -1,5 +1,8 @@
 export enum Status {
-  IDLE = 'IDLE'
+  IDLE,
+  ONLINE,
+  NDN,
+  DISCONNECTED,
 }
 
 export type Snowflake = string
@@ -87,4 +90,33 @@ export enum Pattern {
   USERS_PATTERN = '/<@!?(\d{17,19})>/g',
   ROLES_PATTERN = '/<@&(\d{17,19})>/g,',
   CHANNELS_PATTERN = '/<#(\d{17,19})>/g'
+}
+
+export enum ComponentType {
+  ACTION_ROW = 1,
+  BUTTON = 2,
+  SELECT_MENU = 3,
+}
+
+export enum ButtonStyle {
+  Primary =	1,
+  Secondary = 2,
+  Success	= 3,
+  Danger = 4,
+}
+
+export type MenuSelect = {
+  customId:	string
+  placeholder?: string
+  minValues?: number
+  maxValues?: number
+  disabled?:	boolean
+}
+
+export type MenuSelectOption = {
+  label: string
+  value: unknown
+  description?: string
+  emoji?: any
+  default?: boolean
 }
