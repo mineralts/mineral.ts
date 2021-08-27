@@ -51,6 +51,9 @@ export default class MessageCreatePacket extends BasePacket {
       !!payload.referenced_message,
       client.cacheManager.members.get(payload.author.id)!
     )
+    
+    client.cacheManager.messages.set(message.id, message)
+
     client.emit('messageCreate', message)
   }
 }

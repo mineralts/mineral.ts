@@ -6,6 +6,7 @@ export default class CategoryChannel extends Channel {
     id: Snowflake,
     type: NumericChannelInstance,
     name: string,
+    public guildId: Snowflake,
     public position: number | null = null,
     public permissionOverwrites: any = []
   ) {

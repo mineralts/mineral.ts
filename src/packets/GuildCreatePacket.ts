@@ -20,7 +20,7 @@ export default class GuildCreatePacket implements BasePacket {
   public packetType: string = 'GUILD_CREATE'
 
   public async handle (client: Client, payload: any): Promise<void> {
-    client.channelManager.insertIntoCache(payload.channels)
+    client.channelManager.insertIntoCache(payload)
 
     const roles: Collection<Snowflake, Role> = new Collection()
     payload.roles.forEach((role: any) => {

@@ -15,6 +15,7 @@ export default class ReadyPacket implements BasePacket {
       payload.user.id,
       payload.user.username,
       payload.user.avatar,
+      null,
       payload.user.email,
       payload.user.flags,
       payload.user.verified,

@@ -6,6 +6,7 @@ export default class VoiceChannel extends Channel {
     id: Snowflake,
     type: NumericChannelInstance,
     name: string,
+    public guildId: Snowflake,
     public position: number,
     public permissionOverwrites: any[] = [],
     public parentId: Snowflake | null = null,

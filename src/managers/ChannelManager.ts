@@ -14,9 +14,11 @@ export default class ChannelManager {
   constructor (private client: Client) {
   }
 
-  public insertIntoCache (channels: any[]) {
-    channels.map((channel: Channel) => {
-      const instance = this.channelInstance(channel.type as NumericChannelInstance, channel) as unknown as Channel
+  public insertIntoCache (guild: any) {
+    guild.channels.map((channel: Channel) => {
+      const instance = this.channelInstance(
+        channel.type as NumericChannelInstance,
+        { ...channel, guild_id: guild.id }) as unknown as Channel
       this.channelCollection.set(channel.id, instance)
     })
 
@@ -28,6 +30,7 @@ export default class ChannelManager {
       payload.id,
       payload.type,
       payload.name,
+      payload.guild_id,
       payload.topic,
       payload.rate_limit_per_user,
       payload.position,
@@ -40,6 +43,7 @@ export default class ChannelManager {
       payload.id,
       payload.type,
       payload.name,
+      payload.guild_id,
       payload.position,
       payload.permission_overwrites,
       payload.parent_id,
@@ -51,6 +55,7 @@ export default class ChannelManager {
       payload.id,
       payload.type,
       payload.name,
+      payload.guild_id,
       payload.position,
       payload.permission_overwrites
     )
@@ -59,12 +64,14 @@ export default class ChannelManager {
       payload.id,
       payload.type,
       payload.name,
+      payload.guild_id,
     )
 
     if (type === 13) return new StageChannel(
       payload.id,
       payload.type,
       payload.name,
+      payload.guild_id,
     )
   }
 }

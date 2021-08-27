@@ -6,6 +6,7 @@ export default class StageChannel extends Channel {
     id: Snowflake,
     type: NumericChannelInstance,
     name: string,
+    public guildId: Snowflake,
   ) {
     super(id, type, name)
   }

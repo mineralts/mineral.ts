@@ -8,6 +8,7 @@ export default class TextChannel extends Channel {
     id: Snowflake,
     type: NumericChannelInstance,
     name: string,
+    public guildId: Snowflake,
     public topic: string = '',
     public rateLimitPerUser: number,
     public position: number,
