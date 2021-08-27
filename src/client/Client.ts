@@ -8,14 +8,17 @@ import ChannelManager from '../managers/ChannelManager'
 import CacheManager from '../managers/CacheManager'
 import ClientOptions from './ClientOptions'
 import axios from 'axios'
-import Global from '../utils/Global'
 import RESTManager from '../managers/RESTManager'
+import MemberManager from '../managers/MemberManager'
+import RoleManager from '../managers/RoleManager'
 
 export default class Client extends BaseClient {
   public webSocketManager: WebSocketManager = new WebSocketManager(this)
   public packetManager: PacketManager = new PacketManager()
   public cacheManager: CacheManager = new CacheManager()
   public channelManager: ChannelManager = new ChannelManager(this)
+  public memberManager: MemberManager = new MemberManager(this)
+  public roleManager: RoleManager = new RoleManager(this)
   public restManager: RESTManager = new RESTManager(this)
   public sessionId: string | null = null
   public cdnUrl: string = 'https://cdn.discordapp.com'

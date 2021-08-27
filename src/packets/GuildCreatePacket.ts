@@ -1,83 +1,21 @@
 import BasePacket from './BasePacket'
 import Client from '../client/Client'
-import Channel from '../api/entities/Channel'
-import { NumericChannelInstance, Snowflake } from '../types'
-import TextChannel from '../api/entities/channels/TextChannel'
-import CategoryChannel from '../api/entities/channels/CategoryChannel'
 import ThreadChannel from '../api/entities/channels/ThreadChannel'
 import Guild from '../api/entities/Guild'
-import Collection from '@discordjs/collection'
-import VoiceChannel from '../api/entities/channels/VoiceChannel'
-import Member from '../api/entities/Member'
-import CachedRoles from '../api/entities/CachedRoles'
-import axios from 'axios'
-import NewsChannel from '../api/entities/channels/NewsChannel'
-import StageChannel from '../api/entities/channels/StageChannel'
-import Role from '../api/entities/Role'
-import User from '../api/entities/User'
 
 export default class GuildCreatePacket implements BasePacket {
   public packetType: string = 'GUILD_CREATE'
 
   public async handle (client: Client, payload: any): Promise<void> {
     client.channelManager.insertIntoCache(payload)
+    client.roleManager.insertIntoCache(payload.roles)
 
-    const roles: Collection<Snowflake, Role> = new Collection()
-    payload.roles.forEach((role: any) => {
-      roles.set(role.id, new Role(
-        role.id,
-        role.name,
-        role.color,
-        role.hoist,
-        role.position,
-        role.permissions,
-        role.managed,
-        role.mentionable,
-      ))
-    })
-
-    client.cacheManager.roles = client.cacheManager.roles.concat(roles)
-
-    const members: Collection<Snowflake, Member> = new Collection()
     payload.members.forEach((member) => {
-      const memberRoles: Collection<Snowflake, any> = new Collection()
-      member.roles.forEach((roleId: any) => {
-        const role = client.cacheManager.roles.get(roleId)
-        if (!role) {
-          return
-        }
-        memberRoles.set(role.id, new Role(
-          role.id,
-          role.name,
-          role.color,
-          role.hoist,
-          role.position,
-          role.permissions,
-          role.managed,
-          role.isMentionable,
-        ))
-      })
-
-      members.set(member.user.id, new Member(
-        new User(
-          member.user.id,
-          member.user.username,
-          client.restManager.user.getAvatar(member.user.id, member.user.avatar, 'webp', 256),
-          client.restManager.user.getDefaultAvatar(member.user.discriminator % 5),
-          member.user.email,
-          member.flags,
-          member.user.verified,
-          member.user.discriminator,
-          member.user.mfa_enabled,
-          member.user.bot,
-        ),
-        new CachedRoles(memberRoles)
-      ))
+      client.memberManager.insertIntoCache(member)
     })
 
-    client.cacheManager.members = client.cacheManager.members.concat(members)
-    payload.threads.forEach((channel: Channel) => {
-      const instance = new ThreadChannel(
+    payload.threads.forEach((channel: any) => {
+      client.cacheManager.channels.set(channel.id, new ThreadChannel(
         payload.id,
         payload.type,
         payload.name,
@@ -88,8 +26,7 @@ export default class GuildCreatePacket implements BasePacket {
         payload.member_count,
         payload.last_message_id,
         payload.guild_id,
-      )
-      client.cacheManager.channels.set(channel.id, instance)
+      ))
     })
 
     const guild = new Guild(
@@ -100,8 +37,8 @@ export default class GuildCreatePacket implements BasePacket {
       payload.banner,
       payload.member_count,
       client.cacheManager.members.get(payload.owner_id)!,
-      members,
-      client.channelManager.channelCollection,
+      client.cacheManager.members,
+      client.cacheManager.channels,
       payload.verification_level,
       payload.premium_tier,
       payload.premium_subscription_count,
