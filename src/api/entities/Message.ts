@@ -1,15 +1,10 @@
 import { NumericChannelInstance, Snowflake } from '../../types'
 import MessageMentions from './MessageMentions'
 import Member from './Member'
-import TextChannel from './channels/TextChannel'
-import VoiceChannel from './channels/VoiceChannel'
-import StageChannel from './channels/StageChannel'
-import NewsChannel from './channels/NewsChannel'
-import CategoryChannel from './channels/CategoryChannel'
-import axios from 'axios'
 import Global from '../../utils/Global'
 import Logger from '@leadcodedev/logger'
 import Request from '../../rest/Request'
+import { ChannelResolvable } from '../interfaces/ChannelResolvable'
 
 export default class Message {
   constructor (
@@ -18,7 +13,7 @@ export default class Message {
     public content: string,
     public isTTS: boolean,
     public mentions: MessageMentions,
-    public channel: TextChannel | VoiceChannel | StageChannel | NewsChannel | CategoryChannel | undefined,
+    public channel: ChannelResolvable | undefined,
     public replied: Message | undefined,
     public isReply: boolean,
     public author: Member,

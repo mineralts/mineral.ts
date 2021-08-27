@@ -11,6 +11,7 @@ import axios from 'axios'
 import RESTManager from '../managers/RESTManager'
 import MemberManager from '../managers/MemberManager'
 import RoleManager from '../managers/RoleManager'
+import MessageManager from '../managers/MessageManager'
 
 export default class Client extends BaseClient {
   public webSocketManager: WebSocketManager = new WebSocketManager(this)
@@ -19,6 +20,7 @@ export default class Client extends BaseClient {
   public channelManager: ChannelManager = new ChannelManager(this)
   public memberManager: MemberManager = new MemberManager(this)
   public roleManager: RoleManager = new RoleManager(this)
+  public messageManager: MessageManager = new MessageManager(this)
   public restManager: RESTManager = new RESTManager(this)
   public sessionId: string | null = null
   public cdnUrl: string = 'https://cdn.discordapp.com'
