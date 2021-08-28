@@ -1,7 +1,6 @@
 import BasePacket from './BasePacket'
 import Client from '../client/Client'
-import Message from '../api/entities/Message'
-import MessageMentions from '../api/entities/MessageMentions'
+import Interaction from '../api/entities/Interaction'
 
 export default class InteractionPacket extends BasePacket {
   public packetType: string = 'INTERACTION_CREATE'
@@ -9,16 +8,18 @@ export default class InteractionPacket extends BasePacket {
   public async handle (client: Client, payload): Promise<void> {
     const message = client.messageManager.create(payload.message)
 
-    const data = {
-      version: payload.version,
-      token: payload.token,
-      message: message,
-      member: client.cacheManager.members.get(payload.member.user.id),
-      guild: client.cacheManager.guilds.get(payload.guild_id),
-      customId: payload.data.custom_id,
-      interactionType: payload.data.component_type,
-    }
-    console.log(data)
-    client.emit('interactionCreate', data)
+    console.log(payload)
+
+    client.emit('interactionCreate', new Interaction(
+      payload.id,
+      payload.version,
+      payload.token,
+      message as any,
+      client.cacheManager.members.get(payload.member.user.id)!,
+      client.cacheManager.guilds.get(payload.guild_id)!,
+      payload.data.custom_id,
+      payload.application_id,
+      payload.data.component_type,
+    ))
   }
 }
