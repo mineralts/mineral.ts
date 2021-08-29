@@ -8,8 +8,6 @@ export default class InteractionPacket extends BasePacket {
   public async handle (client: Client, payload): Promise<void> {
     const message = client.messageManager.create(payload.message)
 
-    console.log(payload)
-
     client.emit('interactionCreate', new Interaction(
       payload.id,
       payload.version,

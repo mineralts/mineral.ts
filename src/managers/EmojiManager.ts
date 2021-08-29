@@ -43,5 +43,4 @@ export default class EmojiManager {
     this.client.cacheManager.emojis = this.client.cacheManager.emojis.concat(this.emojiCollection)
     return this.client.cacheManager.emojis
   }
-
 }
