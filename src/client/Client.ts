@@ -12,6 +12,7 @@ import RESTManager from '../managers/RESTManager'
 import MemberManager from '../managers/MemberManager'
 import RoleManager from '../managers/RoleManager'
 import MessageManager from '../managers/MessageManager'
+import EmojiManager from '../managers/EmojiManager'
 
 export default class Client extends BaseClient {
   public webSocketManager: WebSocketManager = new WebSocketManager(this)
@@ -22,6 +23,8 @@ export default class Client extends BaseClient {
   public roleManager: RoleManager = new RoleManager(this)
   public messageManager: MessageManager = new MessageManager(this)
   public restManager: RESTManager = new RESTManager(this)
+  public emojiManager: EmojiManager = new EmojiManager(this)
+
   public sessionId: string | null = null
   public cdnUrl: string = 'https://cdn.discordapp.com'
   public inviteUrl: string = 'https://discord.gg'

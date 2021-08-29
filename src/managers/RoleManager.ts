@@ -24,5 +24,6 @@ export default class RoleManager {
     })
 
     this.client.cacheManager.roles = this.client.cacheManager.roles.concat(this.roleCollection)
+    return this.client.cacheManager.roles
   }
 }

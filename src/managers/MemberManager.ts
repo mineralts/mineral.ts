@@ -14,30 +14,32 @@ export default class MemberManager {
   }
 
   public insertIntoCache (payload: any) {
-    payload.roles.forEach((roleId: any) => {
-      const role = this.client.cacheManager.roles.get(roleId)
-      if (!role) {
-        return
-      }
-      this.roleCollection.set(role.id, role)
+    payload.forEach((member: any) => {
+      const roles = member.roles.map((roleId: any) => {
+        const role = this.client.cacheManager.roles.get(roleId)
+        if (role) {
+          this.roleCollection.set(role.id, role)
+        }
+      })
+
+      this.memberCollection.set(member.user.id, new Member(
+        new User(
+          member.user.id,
+          member.user.username,
+          this.client.restManager.user.getAvatar(member.user.id, member.user.avatar, 'webp', 256),
+          this.client.restManager.user.getDefaultAvatar(member.user.discriminator % 5),
+          member.user.email,
+          member.public_flags,
+          member.user.verified,
+          member.user.discriminator,
+          member.user.mfa_enabled,
+          member.user.bot,
+        ),
+        new CachedRoles(this.roleCollection)
+      ))
     })
 
-    this.memberCollection.set(payload.user.id, new Member(
-      new User(
-        payload.user.id,
-        payload.user.username,
-        this.client.restManager.user.getAvatar(payload.user.id, payload.user.avatar, 'webp', 256),
-        this.client.restManager.user.getDefaultAvatar(payload.user.discriminator % 5),
-        payload.user.email,
-        payload.public_flags,
-        payload.user.verified,
-        payload.user.discriminator,
-        payload.user.mfa_enabled,
-        payload.user.bot,
-      ),
-      new CachedRoles(this.memberCollection)
-    ))
-
     this.client.cacheManager.members = this.client.cacheManager.members.concat(this.memberCollection)
+    return this.client.cacheManager.members
   }
 }

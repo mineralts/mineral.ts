@@ -7,12 +7,10 @@ export default class GuildCreatePacket implements BasePacket {
   public packetType: string = 'GUILD_CREATE'
 
   public async handle (client: Client, payload: any): Promise<void> {
-    client.channelManager.insertIntoCache(payload)
-    client.roleManager.insertIntoCache(payload.roles)
-
-    payload.members.forEach((member) => {
-      client.memberManager.insertIntoCache(member)
-    })
+    const channels = client.channelManager.insertIntoCache(payload)
+    const roles = client.roleManager.insertIntoCache(payload.roles)
+    const emojis = client.emojiManager.insertIntoCache(payload.emojis)
+    const members = client.memberManager.insertIntoCache(payload.members)
 
     payload.threads.forEach((channel: any) => {
       client.cacheManager.channels.set(channel.id, new ThreadChannel(
@@ -36,9 +34,11 @@ export default class GuildCreatePacket implements BasePacket {
       payload.description,
       payload.banner,
       payload.member_count,
-      client.cacheManager.members.get(payload.owner_id)!,
+      members.get(payload.owner_id)!,
       client.cacheManager.members,
-      client.cacheManager.channels,
+      channels,
+      emojis,
+      roles,
       payload.verification_level,
       payload.premium_tier,
       payload.premium_subscription_count,
@@ -51,6 +51,7 @@ export default class GuildCreatePacket implements BasePacket {
       payload.region,
       client.cacheManager.channels.get(payload.rule_channel_id),
     )
+    console.log(members, payload.owner_id, members.get(payload.owner_id))
 
     client.cacheManager.guilds.set(payload.id, guild)
 

@@ -3,6 +3,8 @@ import Collection from '@discordjs/collection'
 import Channel from './Channel'
 import VoiceState from './VoiceState'
 import Member from './Member'
+import Emoji from './Emoji'
+import Role from './Role'
 
 export default class Guild {
   constructor (
@@ -15,6 +17,8 @@ export default class Guild {
     public owner: Member,
     public members: Collection<Snowflake, any>,
     public channels: Collection<Snowflake, Channel>,
+    public emojis: Collection<Snowflake, Emoji>,
+    public role: Collection<Snowflake, Role>,
     public verificationLevel: number,
     public premiumTier: number,
     public premiumSubscriptionCount: number,

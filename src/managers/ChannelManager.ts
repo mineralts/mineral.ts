@@ -23,6 +23,7 @@ export default class ChannelManager {
     })
 
     this.client.cacheManager.channels = this.client.cacheManager.channels.concat(this.channelCollection)
+    return this.client.cacheManager.channels
   }
 
   protected channelInstance (type: NumericChannelInstance, payload: any): TextChannel | CategoryChannel | NewsChannel | undefined {
