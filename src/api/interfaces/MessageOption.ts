@@ -1,5 +1,5 @@
 export default interface MessageOption {
-  content?: string,
+  content?: unknown,
   embeds?: any[],
   tts?: boolean,
   components?: any[]

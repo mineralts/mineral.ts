@@ -1,5 +1,5 @@
 import Message from '../interfaces/Message'
-import { Snowflake } from '../../types'
+import { InteractionComponentType, InteractionTypes, Snowflake } from '../../types'
 import Member from './Member'
 import Guild from '../interfaces/Guild'
 import InteractionMessageOptions from '../interfaces/InteractionMessageOptions'
@@ -15,7 +15,8 @@ export default class Interaction {
     public guild: Guild,
     public customId: string,
     public applicationId: Snowflake,
-    public interactionType: number,
+    public interactionType: InteractionTypes,
+    public componentType: InteractionComponentType
   ) {
   }
 
@@ -30,12 +31,24 @@ export default class Interaction {
       guild_id: this.guild.id,
       channel_id: this.message.channel.id,
       data: {
-        content: options.content,
+        content: (options.content as string).toString(),
         embeds: options.embeds || [],
         components: options.components || [],
         tts: options.tts || false,
         flags: options.ephemeral ? 1 << 6 : undefined
       }
     })
+  }
+
+  public isMessageComponent () {
+    return this.interactionType === InteractionTypes.MESSAGE_COMPONENT
+  }
+
+  public isButton (): boolean {
+    return this.isMessageComponent() && this.componentType === InteractionComponentType.BUTTON
+  }
+
+  public isSelectMenu (): boolean {
+    return this.isMessageComponent() && this.componentType === InteractionComponentType.SELECT_MENU
   }
 }

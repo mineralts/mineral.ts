@@ -5,7 +5,7 @@ import Member from '../entities/Member'
 export default interface Message {
   id: Snowflake
   type: MessageType
-  content: string
+  content: unknown
   isTTS: boolean
   mentions: any
   channel: TextChannel,

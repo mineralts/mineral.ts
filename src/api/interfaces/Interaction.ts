@@ -13,4 +13,7 @@ export default interface Interaction {
   interactionType: number
 
   reply (options: InteractionMessageOptions): Promise<void>
+  isMessageComponent(): boolean
+  isButton (): boolean
+  isSelectMenu(): boolean
 }
