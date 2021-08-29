@@ -21,6 +21,7 @@ export default class ReadyPacket implements BasePacket {
       payload.user.verified,
       payload.user.discriminator,
       payload.user.mfa_enabled,
+      payload.user.premium_since,
       payload.user.bot,
     )
 

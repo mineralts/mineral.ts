@@ -11,7 +11,12 @@ export default class User {
     public isVerified: boolean,
     public discriminator: string,
     public hasMfaEnabled: boolean,
-    public isBot: boolean,
+    public premiumSince: Date,
+    public isBot: boolean = false,
   ) {
+  }
+
+  public _patch (test: any) {
+    this.premiumSince = new Date(test)
   }
 }

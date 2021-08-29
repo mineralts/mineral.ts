@@ -51,7 +51,6 @@ export default class GuildCreatePacket implements BasePacket {
       payload.region,
       client.cacheManager.channels.get(payload.rule_channel_id),
     )
-    console.log(members, payload.owner_id, members.get(payload.owner_id))
 
     client.cacheManager.guilds.set(payload.id, guild)
 

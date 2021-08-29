@@ -20,6 +20,7 @@ export default class RoleManager {
         role.permissions,
         role.managed,
         role.mentionable,
+        role.tags && Object.keys(role.tags)[0]
       ))
     })
 

@@ -11,6 +11,7 @@ export default class Role {
     public permissions: string,
     public managed: boolean,
     public isMentionable: boolean,
+    public tags?: string
   ) {
   }
 }

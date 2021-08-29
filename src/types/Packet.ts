@@ -9,6 +9,7 @@ export type User = {
   verified: boolean
   discriminator: string
   mfa_enabled: boolean
+  premium_since: Date,
   bot: boolean
 }
 

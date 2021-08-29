@@ -33,6 +33,7 @@ export default class MemberManager {
           member.user.verified,
           member.user.discriminator,
           member.user.mfa_enabled,
+          member.premium_since,
           member.user.bot,
         ),
         new CachedRoles(this.roleCollection)

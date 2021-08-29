@@ -15,7 +15,7 @@ export default class Guild {
     public banner: any,
     public memberCount: number,
     public owner: Member,
-    public members: Collection<Snowflake, any>,
+    public members: Collection<Snowflake, Member>,
     public channels: Collection<Snowflake, Channel>,
     public emojis: Collection<Snowflake, Emoji>,
     public role: Collection<Snowflake, Role>,
