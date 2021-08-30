@@ -2,6 +2,7 @@ import BasePacket from './BasePacket'
 import Client from '../client/Client'
 import ThreadChannel from '../api/entities/channels/ThreadChannel'
 import Guild from '../api/entities/Guild'
+import GuildMember from '../api/entities/GuildMember'
 
 export default class GuildCreatePacket implements BasePacket {
   public packetType: string = 'GUILD_CREATE'
@@ -52,6 +53,7 @@ export default class GuildCreatePacket implements BasePacket {
       client.cacheManager.channels.get(payload.rule_channel_id),
     )
 
+    guild.members.forEach((member: GuildMember) => member._patch({ guild }))
     client.cacheManager.guilds.set(payload.id, guild)
 
     client.emit('guildCreate', guild)

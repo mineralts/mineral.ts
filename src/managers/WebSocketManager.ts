@@ -1,15 +1,15 @@
 import EventEmitter from 'events'
 import Client from '../client/Client'
-import { Opcode, Status } from '../types'
+import { Status } from '../types'
 import axios from 'axios'
 import WebSocket from 'ws'
 import Request from '../websockets/Request'
 import Logger from '@leadcodedev/logger'
 import Heartbeat from '../client/Heartbeat'
+import BasePacket from '../packets/BasePacket'
 
 export default class WebSocketManager extends EventEmitter {
   public websocket: WebSocket | undefined
-  public status: Status = Status.IDLE
   private heartbeat: Heartbeat
 
   constructor (public client: Client) {
@@ -46,8 +46,16 @@ export default class WebSocketManager extends EventEmitter {
         this.heartbeat.beat(payload.d.heartbeat_interval)
       }
 
-      const packet = this.client.packetManager.packets.get(payload.t)
-      await packet?.handle(this.client, payload.d)
+      const packetEvents = this.client.packetManager.packets.get(payload.t)
+      if (!packetEvents) {
+        return
+      }
+
+      await Promise.all(
+        packetEvents!.map((packet: BasePacket) => (
+          packet?.handle(this.client, payload.d)
+        ))
+      )
     })
   }
 

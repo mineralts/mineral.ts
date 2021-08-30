@@ -7,9 +7,10 @@ import InteractionPacket from '../packets/InteractionPacket'
 import GuildSubscriptionUpPacket from '../packets/GuildSubscriptionUpPacket'
 import GuildMemberUnBoostPacket from '../packets/GuildMemberUnBoostPacket'
 import GuildMemberBoostPacket from '../packets/GuildMemberBoostPacket'
+import GuildBoostAddPacket from '../packets/GuildBoostAddPacket'
 
 export default class PacketManager {
-  public packets: Collection<string, BasePacket> = new Collection()
+  public packets: Collection<string, BasePacket[]> = new Collection()
 
   constructor () {
     this.register(
@@ -20,10 +21,18 @@ export default class PacketManager {
       new GuildMemberBoostPacket(),
       new GuildMemberUnBoostPacket(),
       new GuildSubscriptionUpPacket(),
+      new GuildBoostAddPacket(),
     )
   }
 
   public register (...packets: BasePacket[]) {
-    packets.forEach((packet: BasePacket) => this.packets.set(packet.packetType, packet))
+    packets.forEach((packet: BasePacket) => {
+      const packetEvent = this.packets.get(packet.packetType)
+      if (!packetEvent) {
+        this.packets.set(packet.packetType, [packet])
+      } else {
+        packetEvent.push(packet)
+      }
+    })
   }
 }

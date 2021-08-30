@@ -11,7 +11,6 @@ export default class MessageManager {
   }
 
   public create (payload) {
-    console.log(payload)
     const mentionRoles: Collection<Snowflake, any> = new Collection()
     payload.mention_roles.forEach((id: Snowflake) => {
       const role = this.client.cacheManager.roles.get(id)

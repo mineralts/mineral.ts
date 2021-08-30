@@ -1,6 +1,5 @@
 import Client from '../client/Client'
 import BasePacket from './BasePacket'
-import { MessageType } from '../types'
 
 export default class GuildMemberBoostPacket extends BasePacket {
   public packetType: string = 'GUILD_MEMBER_UPDATE'

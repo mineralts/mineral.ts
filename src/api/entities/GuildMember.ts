@@ -7,7 +7,11 @@ export default class GuildMember {
   constructor (
     public user: User,
     public roles: CachedRoles,
-    public guild: Guild
+    public guild: Guild | null
   ) {
+  }
+
+  public _patch (data: any) {
+    this.guild = data.guild
   }
 }
