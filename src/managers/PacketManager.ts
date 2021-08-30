@@ -4,8 +4,9 @@ import ReadyPacket from '../packets/ReadyPacket'
 import MessageCreatePacket from '../packets/MessageCreatePacket'
 import GuildCreatePacket from '../packets/GuildCreatePacket'
 import InteractionPacket from '../packets/InteractionPacket'
-import GuildBoostAddPacket from '../packets/GuildBoostAddPacket'
 import GuildSubscriptionUpPacket from '../packets/GuildSubscriptionUpPacket'
+import GuildMemberUnBoostPacket from '../packets/GuildMemberUnBoostPacket'
+import GuildMemberBoostPacket from '../packets/GuildMemberBoostPacket'
 
 export default class PacketManager {
   public packets: Collection<string, BasePacket> = new Collection()
@@ -16,7 +17,8 @@ export default class PacketManager {
       new MessageCreatePacket(),
       new GuildCreatePacket(),
       new InteractionPacket(),
-      new GuildBoostAddPacket(),
+      new GuildMemberBoostPacket(),
+      new GuildMemberUnBoostPacket(),
       new GuildSubscriptionUpPacket(),
     )
   }
