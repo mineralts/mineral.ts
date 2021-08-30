@@ -8,6 +8,9 @@ import GuildSubscriptionUpPacket from '../packets/GuildSubscriptionUpPacket'
 import GuildMemberUnBoostPacket from '../packets/GuildMemberUnBoostPacket'
 import GuildMemberBoostPacket from '../packets/GuildMemberBoostPacket'
 import GuildBoostAddPacket from '../packets/GuildBoostAddPacket'
+import VoiceStateUpdatePacket from '../packets/VoiceStateUpdatePacket'
+import VoiceJoinPacket from '../packets/VoiceJoinPacket'
+import VoiceLeavePacket from '../packets/VoiceLeavePacket'
 
 export default class PacketManager {
   public packets: Collection<string, BasePacket[]> = new Collection()
@@ -22,6 +25,9 @@ export default class PacketManager {
       new GuildMemberUnBoostPacket(),
       new GuildSubscriptionUpPacket(),
       new GuildBoostAddPacket(),
+      new VoiceStateUpdatePacket(),
+      new VoiceLeavePacket(),
+      new VoiceJoinPacket(),
     )
   }
 

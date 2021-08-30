@@ -132,3 +132,9 @@ export enum InteractionComponentType {
   BUTTON = 2,
   SELECT_MENU = 3,
 }
+
+export enum CommandType {
+  CHAT_INPUT = 1,
+  USER = 2,
+  MESSAGE = 3,
+}

@@ -37,7 +37,10 @@ export default class MemberManager {
           member.user.bot,
         ),
         new CachedRoles(this.roleCollection),
-        null
+        null,
+        null,
+        member.deaf,
+        member.mute,
       ))
     })
 

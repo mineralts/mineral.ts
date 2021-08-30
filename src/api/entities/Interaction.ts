@@ -4,6 +4,7 @@ import GuildMember from './GuildMember'
 import Guild from '../interfaces/Guild'
 import InteractionMessageOptions from '../interfaces/InteractionMessageOptions'
 import Request from '../../rest/Request'
+import TextChannel from './channels/TextChannel'
 
 export default class Interaction {
   constructor (
@@ -12,6 +13,7 @@ export default class Interaction {
     public token: string,
     public message: Message,
     public member: GuildMember,
+    public channel: TextChannel,
     public guild: Guild,
     public customId: string,
     public applicationId: Snowflake,
@@ -29,7 +31,7 @@ export default class Interaction {
       application_id: this.applicationId,
       type: 4,
       guild_id: this.guild.id,
-      channel_id: this.message.channel.id,
+      channel_id: this.channel.id,
       data: {
         content: (options.content as string).toString(),
         embeds: options.embeds || [],

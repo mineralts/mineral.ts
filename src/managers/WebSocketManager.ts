@@ -1,6 +1,5 @@
 import EventEmitter from 'events'
 import Client from '../client/Client'
-import { Status } from '../types'
 import axios from 'axios'
 import WebSocket from 'ws'
 import Request from '../websockets/Request'
@@ -31,7 +30,7 @@ export default class WebSocketManager extends EventEmitter {
       this.heartbeat.shutdown()
     })
 
-    this.websocket.on('close', (message) => {
+    this.websocket.on('close', () => {
       Logger.send('info', 'Closed')
       this.heartbeat.shutdown()
     })
@@ -56,10 +55,11 @@ export default class WebSocketManager extends EventEmitter {
           packet?.handle(this.client, payload.d)
         ))
       )
+
     })
   }
 
-  private convert (binary: Uint8Array) {
+  protected convert (binary: Uint8Array) {
     let str = ''
     for (let i = 0; i < binary.length; i++) {
       str += String.fromCharCode(parseInt(String(binary[i])));

@@ -1,7 +1,6 @@
 import { Snowflake } from '../../types'
 import Collection from '@discordjs/collection'
 import Channel from './Channel'
-import VoiceState from './VoiceState'
 import GuildMember from './GuildMember'
 import Emoji from './Emoji'
 import Role from './Role'
@@ -27,7 +26,7 @@ export default class Guild {
     public splash: any,
     public stickers: any[],
     public unavailable: boolean,
-    public voiceState: VoiceState[],
+    public voiceState: any[],
     public region: string,
     public ruleChannel: Channel | undefined
   ) {}
