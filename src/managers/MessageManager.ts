@@ -4,7 +4,7 @@ import MessageMentions from '../api/entities/MessageMentions'
 import Message from '../api/entities/Message'
 import { ChannelResolvable } from '../api/interfaces/ChannelResolvable'
 import Client from '../client/Client'
-import Member from '../api/entities/Member'
+import GuildMember from '../api/entities/GuildMember'
 
 export default class MessageManager {
   constructor (private client: Client) {
@@ -34,7 +34,7 @@ export default class MessageManager {
       mentionChannel.set(channel!.id, channel)
     })
 
-    const memberCollection: Collection<Snowflake, Member> = new Collection()
+    const memberCollection: Collection<Snowflake, GuildMember> = new Collection()
     payload.mentions.forEach((member: any) => {
       const instance = this.client.cacheManager.members.get(member.id)
       if (instance) {

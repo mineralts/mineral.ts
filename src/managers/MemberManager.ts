@@ -1,28 +1,28 @@
 import Client from '../client/Client'
 import Collection from '@discordjs/collection'
 import { Snowflake } from '../types'
-import Member from '../api/entities/Member'
+import GuildMember from '../api/entities/GuildMember'
 import Role from '../api/entities/Role'
 import User from '../api/entities/User'
 import CachedRoles from '../api/entities/CachedRoles'
 
 export default class MemberManager {
-  public memberCollection: Collection<Snowflake, Member> = new Collection()
+  public memberCollection: Collection<Snowflake, GuildMember> = new Collection()
   public roleCollection: Collection<Snowflake, Role> = new Collection()
 
   constructor (private client: Client) {
   }
 
-  public insertIntoCache (payload: any) {
+  public insertIntoCache (guildId: Snowflake, payload: any) {
     payload.forEach((member: any) => {
-      const roles = member.roles.map((roleId: any) => {
+      member.roles.forEach((roleId: any) => {
         const role = this.client.cacheManager.roles.get(roleId)
         if (role) {
           this.roleCollection.set(role.id, role)
         }
       })
 
-      this.memberCollection.set(member.user.id, new Member(
+      this.memberCollection.set(member.user.id, new GuildMember(
         new User(
           member.user.id,
           member.user.username,
@@ -36,7 +36,7 @@ export default class MemberManager {
           member.premium_since,
           member.user.bot,
         ),
-        new CachedRoles(this.roleCollection)
+        new CachedRoles(this.roleCollection),
       ))
     })
 

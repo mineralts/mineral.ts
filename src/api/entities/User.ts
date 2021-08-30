@@ -16,7 +16,7 @@ export default class User {
   ) {
   }
 
-  public _patch (test: any) {
-    this.premiumSince = new Date(test)
+  public _patch (data: any) {
+    this.premiumSince = data.premiumSince
   }
 }

@@ -10,7 +10,7 @@ export default class GuildCreatePacket implements BasePacket {
     const channels = client.channelManager.insertIntoCache(payload)
     const roles = client.roleManager.insertIntoCache(payload.roles)
     const emojis = client.emojiManager.insertIntoCache(payload.emojis)
-    const members = client.memberManager.insertIntoCache(payload.members)
+    const members = client.memberManager.insertIntoCache(payload.id, payload.members)
 
     payload.threads.forEach((channel: any) => {
       client.cacheManager.channels.set(channel.id, new ThreadChannel(

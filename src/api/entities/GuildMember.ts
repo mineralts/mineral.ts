@@ -1,11 +1,13 @@
 import { Snowflake } from '../../types'
 import CachedRoles from './CachedRoles'
 import User from './User'
+import Guild from './Guild'
 
-export default class Member {
+export default class GuildMember {
   constructor (
     public user: User,
-    public roles: CachedRoles
+    public roles: CachedRoles,
+    public guild: Guild
   ) {
   }
 }

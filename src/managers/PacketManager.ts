@@ -5,6 +5,7 @@ import MessageCreatePacket from '../packets/MessageCreatePacket'
 import GuildCreatePacket from '../packets/GuildCreatePacket'
 import InteractionPacket from '../packets/InteractionPacket'
 import GuildBoostAddPacket from '../packets/GuildBoostAddPacket'
+import GuildSubscriptionUpPacket from '../packets/GuildSubscriptionUpPacket'
 
 export default class PacketManager {
   public packets: Collection<string, BasePacket> = new Collection()
@@ -16,6 +17,7 @@ export default class PacketManager {
       new GuildCreatePacket(),
       new InteractionPacket(),
       new GuildBoostAddPacket(),
+      new GuildSubscriptionUpPacket(),
     )
   }
 

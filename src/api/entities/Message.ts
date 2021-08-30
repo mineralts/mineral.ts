@@ -1,6 +1,6 @@
 import { NumericChannelInstance, Snowflake } from '../../types'
 import MessageMentions from './MessageMentions'
-import Member from './Member'
+import GuildMember from './GuildMember'
 import Global from '../../utils/Global'
 import Logger from '@leadcodedev/logger'
 import Request from '../../rest/Request'
@@ -16,7 +16,7 @@ export default class Message {
     public channel: ChannelResolvable | undefined,
     public replied: Message | undefined,
     public isReply: boolean,
-    public author: Member,
+    public author: GuildMember,
   ) {}
 
   public async delete (options: { timeout: number }) {

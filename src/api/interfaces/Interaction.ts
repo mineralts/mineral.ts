@@ -1,5 +1,5 @@
 import Message from './Message'
-import Member from '../entities/Member'
+import GuildMember from '../entities/GuildMember'
 import Guild from './Guild'
 import InteractionMessageOptions from './InteractionMessageOptions'
 
@@ -7,7 +7,7 @@ export default interface Interaction {
   version: number
   token: string
   message: Message
-  member: Member
+  member: GuildMember
   guild: Guild
   customId: string
   interactionType: number

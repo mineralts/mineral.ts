@@ -1,6 +1,6 @@
 import Message from '../interfaces/Message'
 import { InteractionComponentType, InteractionTypes, Snowflake } from '../../types'
-import Member from './Member'
+import GuildMember from './GuildMember'
 import Guild from '../interfaces/Guild'
 import InteractionMessageOptions from '../interfaces/InteractionMessageOptions'
 import Request from '../../rest/Request'
@@ -11,7 +11,7 @@ export default class Interaction {
     public version: number,
     public token: string,
     public message: Message,
-    public member: Member,
+    public member: GuildMember,
     public guild: Guild,
     public customId: string,
     public applicationId: Snowflake,
