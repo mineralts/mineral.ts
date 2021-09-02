@@ -10,6 +10,7 @@ export default class ReadyPacket implements BasePacket {
 
   public async handle (client: Client, payload: Ready): Promise<void> {
     Global.getSharedItem().set('botId', payload.user.id)
+
     const user: User = new User(
       payload.user.id,
       payload.user.username,

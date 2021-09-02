@@ -7,6 +7,7 @@ export default class InteractionPacket extends BasePacket {
   public packetType: string = 'INTERACTION_CREATE'
 
   public async handle (client: Client, payload): Promise<void> {
+    console.log(payload.data.options[0])
     const message = payload.mention_roles
       ? client.messageManager.create(payload.message)
       : null
