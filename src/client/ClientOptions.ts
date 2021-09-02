@@ -1,39 +1,19 @@
 import Collection from '@discordjs/collection'
-import { Snowflake } from '../types'
+import { Intent, Snowflake } from '../types'
 
-export default class ClientOptions {
-  public shardCount = 1
-  public messageCacheLifetime = 0
-  public messageSweepInterval = 0
-  public invalidRequestWarningInterval = 0
-  public partials = ['MESSAGE', 'CHANNEL', 'REACTION']
-  public restWsBridgeTimeout = 5000
-  public restRequestTimeout = 15000
-  public restGlobalRateLimit = 0
-  public retryLimit = 1
-  public restTimeOffset = 500
-  public restSweepInterval = 60
-  public failIfNotExists = true
-  public userAgentSuffix = []
-  public presence = {}
-
-  public ws = {
-    large_threshold: 50,
-    compress: false,
-    properties: {
-      $os: process.platform,
-      $browser: 'discord.js',
-      $device: 'discord.js',
-    },
-    version: 9,
-  }
-
-  public http = {
-    agent: {},
-    version: 9,
-    api: 'https://discord.com/api',
-    cdn: 'https://cdn.discordapp.com',
-    invite: 'https://discord.gg',
-    template: 'https://discord.new',
-  }
+export default interface ClientOptions {
+  shardCount?: 1
+  messageCacheLifetime?: 0
+  messageSweepInterval?: 0
+  invalidRequestWarningInterval?: 0
+  partials: ['MESSAGE', 'CHANNEL', 'REACTION']
+  intents: Intent[],
+  restWsBridgeTimeout?: 5000
+  restRequestTimeout?: 15000
+  restGlobalRateLimit?: 0
+  retryLimit?: 1
+  restTimeOffset?: 500
+  restSweepInterval?: 60
+  failIfNotExists?: true
+  userAgentSuffix?: []
 }

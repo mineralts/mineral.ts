@@ -31,8 +31,8 @@ export default class Client extends BaseClient {
 
   public sessionId: string | null = null
   public cdnUrl: string = 'https://cdn.discordapp.com'
-  public inviteUrl: string = 'https://discord.gg'
-  public templateUrl = 'https://discord.new'
+  // public inviteUrl: string = 'https://discord.gg'
+  // public templateUrl = 'https://discord.new'
 
   constructor (public token: string, public options: ClientOptions) {
     super(options)
@@ -45,17 +45,19 @@ export default class Client extends BaseClient {
       throw new Error('TOKEN_INVALID')
     }
 
-    const identify = new Request(Opcode.IDENTIFY, {
-      token: this.token,
-      properties: {
-        $os: process.arch,
-      },
-      compress: false,
-      large_threshold: 250,
-      intents: 32767
-    })
+    await this.webSocketManager.connect(
+      new Request(Opcode.IDENTIFY, {
+        ...this.options,
+        token: this.token,
+        properties: {
+          $os: process.arch,
+        },
+        compress: false,
+        large_threshold: 250,
+        intents: this.options.intents.reduce((acc, current) => acc + current) || 0
+      })
+    )
 
-    await this.webSocketManager.connect(identify)
     Logger.send('info', 'The discord client is connected')
   }
 }

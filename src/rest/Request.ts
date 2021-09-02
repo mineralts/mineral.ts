@@ -8,7 +8,7 @@ export default class Request {
     try {
       return await axios.post(this.endpoint, payload)
     } catch (err) {
-      console.error(err)
+      console.error(err.response.data.components[0])
     }
   }
 

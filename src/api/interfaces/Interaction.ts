@@ -12,9 +12,11 @@ export default interface Interaction {
   guild: Guild
   customId: string
   interactionType: InteractionComponentType
+  data: any
 
   reply (options: InteractionMessageOptions): Promise<void>
-  isMessageComponent(): boolean
+  isMessage(): boolean
+  isCommand(): boolean
   isButton (): boolean
   isSelectMenu(): boolean
 }

@@ -1,5 +1,4 @@
-import Message from '../interfaces/Message'
-import { InteractionComponentType, InteractionTypes, Snowflake } from '../../types'
+import { ComponentType, InteractionComponentType, InteractionTypes, Snowflake } from '../../types'
 import GuildMember from './GuildMember'
 import Guild from '../interfaces/Guild'
 import InteractionMessageOptions from '../interfaces/InteractionMessageOptions'
@@ -11,14 +10,11 @@ export default class Interaction {
     public id: Snowflake,
     public version: number,
     public token: string,
-    public message: Message,
     public member: GuildMember,
-    public channel: TextChannel,
+    public channel: TextChannel | null,
     public guild: Guild,
-    public customId: string,
     public applicationId: Snowflake,
     public interactionType: InteractionTypes,
-    public componentType: InteractionComponentType
   ) {
   }
 
@@ -31,7 +27,7 @@ export default class Interaction {
       application_id: this.applicationId,
       type: 4,
       guild_id: this.guild.id,
-      channel_id: this.channel.id,
+      channel_id: this.channel?.id,
       data: {
         content: (options.content as string).toString(),
         embeds: options.embeds || [],
@@ -42,15 +38,19 @@ export default class Interaction {
     })
   }
 
-  public isMessageComponent () {
+  public isMessage () {
     return this.interactionType === InteractionTypes.MESSAGE_COMPONENT
   }
 
-  public isButton (): boolean {
-    return this.isMessageComponent() && this.componentType === InteractionComponentType.BUTTON
+  public isCommand () {
+    return this.interactionType === InteractionTypes.APPLICATION_COMMAND
   }
 
-  public isSelectMenu (): boolean {
-    return this.isMessageComponent() && this.componentType === InteractionComponentType.SELECT_MENU
-  }
+  // public isButton (): boolean {
+  //   return this.isMessage() && this.componentType === InteractionComponentType.BUTTON
+  // }
+  //
+  // public isSelectMenu (): boolean {
+  //   return this.isMessage() && this.componentType === InteractionComponentType.SELECT_MENU
+  // }
 }
