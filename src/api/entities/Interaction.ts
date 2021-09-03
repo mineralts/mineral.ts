@@ -38,6 +38,17 @@ export default class Interaction {
     })
   }
 
+  // public async edit (options: InteractionMessageOptions) {
+  //   const request = new Request(`/webhooks/${this.id}/${this.token}/messages/@original`)
+  //
+  //   await request.update({
+  //     content: (options.content as string).toString(),
+  //     embeds: options.embeds || [],
+  //     components: options.components || [],
+  //     tts: options.tts || false,
+  //   })
+  // }
+
   public isMessage () {
     return this.interactionType === InteractionTypes.MESSAGE_COMPONENT
   }

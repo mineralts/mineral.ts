@@ -15,6 +15,7 @@ export default interface Interaction {
   data: any
 
   reply (options: InteractionMessageOptions): Promise<void>
+  // edit (options: InteractionMessageOptions): Promise<void>
   isMessage(): boolean
   isCommand(): boolean
   isButton (): boolean
