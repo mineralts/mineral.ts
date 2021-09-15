@@ -2,22 +2,64 @@ import MineralClient from './client/Client'
 import Logger from '@leadcodedev/logger'
 import Client from './api/interfaces/Client'
 import Message from './api/interfaces/Message'
-import ComponentRow from './api/entities/ComponentRow'
-import { ButtonStyle } from './types'
+import { Intent } from './types'
 import MessageEmbed from './api/entities/MessageEmbed'
-import Link from './api/entities/components/Link'
-import Button from './api/entities/components/Button'
+import Interaction from './api/interfaces/Interaction'
+import GuildMember from './api/interfaces/GuildMember'
+import VoiceChannel from './api/entities/channels/VoiceChannel'
+import SlashCommand from './api/entities/SlashCommand'
+import SubCommand from './api/entities/arguments/SubCommand'
+import UserArgument from './api/entities/arguments/UserArgument'
+import ChannelArgument from './api/entities/arguments/ChannelArgument'
+import ChoiceArgument from './api/entities/arguments/ChoiceArgument'
 import SelectMenu from './api/entities/components/SelectMenu'
 
-const token = 'Nzg1ODgxOTk1NDc2ODYwOTc5.X8-TpA.cYGqnporjwOBgpalYIs7vQ7sCOo'
+const token = 'Nzg1ODgxOTk1NDc2ODYwOTc5.X8-TpA.hRS4J8VhrEV3bWy5xgpOvcVbTt8'
 
 async function test() {
-  const client = new MineralClient(token)
+
+  const client = new MineralClient(token, {
+    intents: [
+      Intent.GUILDS,
+      Intent.GUILD_MEMBERS,
+      Intent.GUILD_BANS,
+      Intent.GUILD_EMOJIS_AND_STICKERS,
+      Intent.GUILD_INTEGRATIONS,
+      Intent.GUILD_WEBHOOKS,
+      Intent.GUILD_INVITES,
+      Intent.GUILD_VOICE_STATES,
+      Intent.GUILD_PRESENCES,
+      Intent.GUILD_MESSAGES,
+      Intent.GUILD_MESSAGE_REACTIONS,
+      Intent.GUILD_MESSAGE_TYPING,
+      Intent.DIRECT_MESSAGES,
+      Intent.DIRECT_MESSAGE_REACTIONS,
+      Intent.DIRECT_MESSAGE_TYPING,
+    ],
+    partials: ['MESSAGE', 'CHANNEL', 'REACTION'],
+  })
+
+  const command = new SlashCommand({ name: 'server', scope: ['583050048766476353'], description: 'Commands for minecraft server.', options: [
+    new SubCommand({ name: 'get-profil', description: 'Get user game profil from database', options: [
+      new UserArgument({ name: 'member', description: 'target user', required: true }),
+      new ChannelArgument({ name: 'channel', description: 'target channel', required: true }),
+      new ChoiceArgument({ name: 'estttt', description: 'efefef', required: true })
+        .addOption({ name: 'test 1', value: 1 })
+        .addOption({ name: 'test 2', value: 32 })
+    ]})
+  ]})
+
 
   await client.login()
+  client.commandManager.registerSlashCommands(command)
 
-  client.on('ready', (client: Client) => {
-    Logger.send('info', `${client.user.username} was started`)
+  client.on('ready', async (a: Client) => {
+    Logger.send('info', `${a.user.username} was started`)
+  })
+
+  client.on('debug', (payload: any) => {
+    Logger.send('info', 'Debug mode')
+    console.log(payload)
   })
 
   client.on('messageCreate', async (message: Message) => {
@@ -39,44 +81,37 @@ async function test() {
       .setFooter({ text: message.author.user.username, iconUrl: message.author.user.avatar })
       .setTimestamp()
 
-    const button = new Button({
-      style: ButtonStyle.Primary,
-      customId: 'test',
-      label: 'Test button',
+    const menu = new SelectMenu({ customId: 'tsdede' })
+      .addOption({ label: 'Test 1', description: 'testtt', value: 1 })
+      .addOption({ label: 'Test 3', description: 'tesddttt', value: 2 })
+
+  })
+
+  client.on('interactionCreate', async (interaction: Interaction) => {
+    await interaction.reply({
+      content: interaction.version,
+      ephemeral: true,
     })
 
-    const button2 = new Button({
-      style: ButtonStyle.Success,
-      customId: 'test2',
-      label: 'Test button',
-    })
+    // await interaction.edit({
+    //   content: 'New content'
+    // })
+  })
 
-    const button3 = new Link({
-      url: 'https://discord.com/developers/docs/interactions/message-components#component-object-component-types',
-      label: 'Test button',
-    })
+  client.on('guildBoostAdd', async (member: GuildMember) => {
+    console.log(member.user.username)
+  })
 
-    const action_row = new ComponentRow()
-      .addComponent(button)
-      .addComponent(button2)
-      .addComponent(button3)
+  // client.on('voiceStateUpdate', async (before: GuildMember, after: GuildMember) => {
+    // console.log(before.sessionId, after.sessionId)
+  // })
 
-    const menu = new SelectMenu({ customId: 'menu', disabled: true })
-      .addOption({ label: 'Choice 1', value: 2  })
-      .addOption({ label: 'Choice 2', value: 3 })
-      .addOption({ label: 'Choice 3', value: 4 })
-      .addOption({ label: 'Choice 4', value: 5 })
-      .addOption({ label: 'Choice 5', value: 6 })
+  client.on('voiceJoin', async (member: GuildMember) => {
+    console.log(`${member.user.username} has join the channel ${member.voiceChannel.name}`)
+  })
 
-
-    const menuRow = new ComponentRow()
-      .addComponent(menu)
-
-    await message.channel.send({
-      content: 'ef',
-      components: [action_row, menuRow],
-      embeds: [embed]
-    })
+  client.on('voiceLeave', async (member: GuildMember, voiceChannel: VoiceChannel) => {
+    console.log(`${member.user.username} has left the ${voiceChannel.name} channel`)
   })
 }
 

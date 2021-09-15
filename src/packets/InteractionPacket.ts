@@ -44,7 +44,8 @@ export default class InteractionPacket extends BasePacket {
         client.cacheManager.guilds.get(payload.guild_id)!,
         payload.data.custom_id,
         payload.application_id,
-        payload.data
+        payload.type,
+        payload.data,
       )
     }
 

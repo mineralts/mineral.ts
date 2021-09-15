@@ -5,7 +5,6 @@ import { InteractionComponentType, InteractionTypes, Snowflake } from '../../../
 import TextChannel from '../channels/TextChannel'
 
 export default class CommandInteraction extends Interaction {
-
   constructor (
     public id: Snowflake,
     version: number,

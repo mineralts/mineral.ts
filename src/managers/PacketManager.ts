@@ -11,6 +11,7 @@ import GuildBoostAddPacket from '../packets/GuildBoostAddPacket'
 import VoiceStateUpdatePacket from '../packets/VoiceStateUpdatePacket'
 import VoiceJoinPacket from '../packets/VoiceJoinPacket'
 import VoiceLeavePacket from '../packets/VoiceLeavePacket'
+import DebugPacket from '../packets/debugPacket'
 
 export default class PacketManager {
   public packets: Collection<string, BasePacket[]> = new Collection()
@@ -28,6 +29,7 @@ export default class PacketManager {
       new VoiceStateUpdatePacket(),
       new VoiceLeavePacket(),
       new VoiceJoinPacket(),
+      new DebugPacket(),
     )
   }
 

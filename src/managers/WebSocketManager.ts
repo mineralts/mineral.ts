@@ -39,6 +39,9 @@ export default class WebSocketManager extends EventEmitter {
       const data = JSON.parse(JSON.stringify(message)).data
       const payload = this.convert(new Uint8Array(data))
 
+      const debug = this.client.packetManager.packets.get('debug')
+      await debug![0].handle(this.client, payload)
+
       this.heartbeat.watchSession(payload.d?.session_id)
 
       if (payload.op === 10) {
@@ -55,7 +58,6 @@ export default class WebSocketManager extends EventEmitter {
           packet?.handle(this.client, payload.d)
         ))
       )
-
     })
   }
 
