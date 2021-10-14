@@ -1,156 +1,9 @@
-export enum Status {
-  IDLE,
-  ONLINE,
-  NDN,
-  DISCONNECTED,
-}
+import ClientUser from '../api/entities/ClientUser'
+import Guild from '../api/entities/Guild'
+import TextChannel from '../api/entities/TextChannel'
+import VoiceChannel from '../api/entities/VoiceChannel'
 
 export type Snowflake = string
-
-export enum Opcode {
-  DISPATCH_EVENT = 0,
-  HEARTBEAT = 1,
-  IDENTIFY = 2,
-  PRESENCE_UPDATE = 3,
-  VOICE_STATE_UPDATE = 4,
-  RESUME = 6,
-  RECONNECT = 7,
-  REQUEST_GUILD_MEMBER = 8,
-  INVALID_SESSION  = 9	,
-  HELLO = 10,
-  HEARTBEAT_ACK = 11,
-}
-
-export enum ChannelType {
-  GUILD_TEXT = 'GUILD_TEXT',
-  DM = 'DM',
-  GUILD_VOICE = 'GUILD_VOICE',
-  GROUP_DM = 'GROUP_DM',
-  GUILD_CATEGORY = 'GUILD_CATEGORY',
-  GUILD_NEWS = 'GUILD_NEWS',
-  GUILD_STORE = 'GUILD_STORE',
-  GUILD_NEWS_THREAD = 'GUILD_NEWS_THREAD',
-  GUILD_PUBLIC_THREAD = 'GUILD_PUBLIC_THREAD',
-  GUILD_PRIVATE_THREAD = 'GUILD_PRIVATE_THREAD',
-  GUILD_STAGE_VOICE = 'GUILD_STAGE_VOICE',
-  UNKNOWN = 'UNKNOWN',
-}
-
-export enum MessageType {
-  DEFAULT = 'DEFAULT',
-  RECIPIENT_ADD = 'RECIPIENT_ADD',
-  RECIPIENT_REMOVE = 'RECIPIENT_REMOVE',
-  CALL = 'CALL',
-  CHANNEL_NAME_CHANGE = 'CHANNEL_NAME_CHANGE',
-  CHANNEL_ICON_CHANGE = 'CHANNEL_ICON_CHANGE',
-  CHANNEL_PINNED_MESSAGE = 'CHANNEL_PINNED_MESSAGE',
-  GUILD_MEMBER_JOIN = 'GUILD_MEMBER_JOIN',
-  USER_PREMIUM_GUILD_SUBSCRIPTION = 'USER_PREMIUM_GUILD_SUBSCRIPTION',
-  USER_PREMIUM_GUILD_SUBSCRIPTION_TIER_1 = 'USER_PREMIUM_GUILD_SUBSCRIPTION_TIER_1',
-  USER_PREMIUM_GUILD_SUBSCRIPTION_TIER_2 = 'USER_PREMIUM_GUILD_SUBSCRIPTION_TIER_2',
-  USER_PREMIUM_GUILD_SUBSCRIPTION_TIER_3 = 'USER_PREMIUM_GUILD_SUBSCRIPTION_TIER_3',
-  CHANNEL_FOLLOW_ADD = 'CHANNEL_FOLLOW_ADD',
-  GUILD_DISCOVERY_DISQUALIFIED = 'GUILD_DISCOVERY_DISQUALIFIED',
-  GUILD_DISCOVERY_REQUALIFIED = 'GUILD_DISCOVERY_REQUALIFIED',
-  GUILD_DISCOVERY_GRACE_PERIOD_INITIAL_WARNING = 'GUILD_DISCOVERY_GRACE_PERIOD_INITIAL_WARNING',
-  GUILD_DISCOVERY_GRACE_PERIOD_FINAL_WARNING = 'GUILD_DISCOVERY_GRACE_PERIOD_FINAL_WARNING',
-  THREAD_CREATED = 'THREAD_CREATED',
-  REPLY = 'REPLY',
-  APPLICATION_COMMAND = 'APPLICATION_COMMAND',
-  THREAD_STARTER_MESSAGE = 'THREAD_STARTER_MESSAGE',
-  GUILD_INVITE_REMINDER = 'GUILD_INVITE_REMINDER',
-}
-
-export enum PartialType {
-  USER = 'USER',
-  CHANNEL = 'CHANNEL',
-  GUILD_MEMBER = 'GUILD_MEMBER',
-  MESSAGE = 'MESSAGE',
-  REACTION = 'REACTION'
-}
-
-export type NumericChannelInstance = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 10 | 11 | 12| 13
-
-export enum VerificationLevel {
-  NONE,
-  LOW,
-  MEDIUM,
-  HIGH,
-  VERY_HIGH,
-}
-
-export enum explicitContentFilter {
-  DISABLED,
-  MEMBERS_WITHOUT_ROLES,
-  ALL_MEMBERS,
-}
-
-export enum Pattern {
-  EVERYONE_PATTERN = '/@(everyone|here)/g',
-  USERS_PATTERN = '/<@!?(\d{17,19})>/g',
-  ROLES_PATTERN = '/<@&(\d{17,19})>/g,',
-  CHANNELS_PATTERN = '/<#(\d{17,19})>/g'
-}
-
-export enum ComponentType {
-  ACTION_ROW = 1,
-  BUTTON = 2,
-  SELECT_MENU = 3,
-}
-
-export enum ButtonStyle {
-  Primary =	1,
-  Secondary = 2,
-  Success	= 3,
-  Danger = 4,
-}
-
-export type MenuSelect = {
-  customId:	string
-  placeholder?: string
-  minValues?: number
-  maxValues?: number
-  disabled?:	boolean
-}
-
-export type MenuSelectOption = {
-  label: string
-  value: unknown
-  description?: string
-  emoji?: any
-  default?: boolean
-}
-
-export enum InteractionTypes {
-  PING = 1,
-  APPLICATION_COMMAND = 2,
-  MESSAGE_COMPONENT = 3,
-}
-
-export enum InteractionComponentType {
-  ACTION_ROW = 1,
-  BUTTON = 2,
-  SELECT_MENU = 3,
-}
-
-export enum CommandType {
-  CHAT_INPUT = 1,
-  USER = 2,
-  MESSAGE = 3,
-}
-
-export enum ArgumentType {
-  SUB_COMMAND =	1,
-  SUB_COMMAND_GROUP =	2,
-  SELECT_MENU =	3,
-  INTEGER =	4,
-  BOOLEAN =	5,
-  USER =	6,
-  CHANNEL =	7,
-  ROLE =	8,
-  MENTIONABLE =	9,
-  NUMBER =	10,
-}
 
 export enum Intent {
   GUILDS = 1,
@@ -169,3 +22,68 @@ export enum Intent {
   DIRECT_MESSAGE_REACTIONS = 8192,
   DIRECT_MESSAGE_TYPING = 16384,
 }
+
+export default interface ClientOptionContext {
+  shardCount?: 1
+  messageCacheLifetime?: 0
+  messageSweepInterval?: 0
+  invalidRequestWarningInterval?: 0
+  partials: ['MESSAGE', 'CHANNEL', 'REACTION']
+  intents: Intent[],
+  restWsBridgeTimeout?: 5000
+  restRequestTimeout?: 15000
+  restGlobalRateLimit?: 0
+  retryLimit?: 1
+  restTimeOffset?: 500
+  restSweepInterval?: 60
+  failIfNotExists?: true
+  userAgentSuffix?: []
+}
+
+export type ShardingMode = 'process' | 'worker'
+
+export type ShardOption = {
+  totalShards: 'auto' | number,
+  mode: ShardingMode,
+  respawn: boolean,
+  shardArgs: string[],
+  execArgv: any[],
+  token: string,
+}
+
+export enum Opcode {
+  DISPATCH_EVENT = 0,
+  HEARTBEAT = 1,
+  IDENTIFY = 2,
+  PRESENCE_UPDATE = 3,
+  VOICE_STATE_UPDATE = 4,
+  RESUME = 6,
+  RECONNECT = 7,
+  REQUEST_GUILD_MEMBER = 8,
+  INVALID_SESSION  = 9	,
+  HELLO = 10,
+  HEARTBEAT_ACK = 11,
+}
+
+export type Awaited<T> = T | PromiseLike<T>
+
+export interface MineralVein {
+  ready: [client: ClientUser],
+  guildCreate: [guild: Guild]
+}
+
+export enum ChannelType {
+  GUILD_TEXT = 0,
+  DM	= 1,
+  GUILD_VOICE = 2	,
+  GROUP_DM	= 3,
+  GUILD_CATEGORY = 4,
+  GUILD_NEWS = 5,
+  GUILD_STORE = 6,
+  GUILD_NEWS_THREAD	= 10,
+  GUILD_PUBLIC_THREAD = 11,
+  GUILD_PRIVATE_THREAD = 12,
+  GUILD_STAGE_VOICE	= 13,
+}
+
+export type ChannelResolvable = TextChannel | VoiceChannel
