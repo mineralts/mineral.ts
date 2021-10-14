@@ -1,22 +1,46 @@
 import { Snowflake } from '../../types'
+import BaseClient from './BaseClient'
+import Rest from '../../Rest'
 
-export default class User {
+export default class User extends BaseClient {
   constructor (
-    public id: Snowflake,
-    public username: string,
-    public avatar: string | null,
-    public defaultAvatar: string | null,
-    public email: string | null,
-    public flags: number,
-    public isVerified: boolean,
-    public discriminator: string,
-    public hasMfaEnabled: boolean,
-    public premiumSince: Date,
-    public isBot: boolean = false,
+    public readonly id: Snowflake,
+    public readonly username: string,
+    public readonly discriminator: string,
+    public readonly tag: string,
+    public readonly isBot: boolean,
+    public readonly isVerified: boolean,
+    public readonly hasMfaEnabled: boolean,
+    public readonly flags: number,
+    public readonly email: string | null,
+    public readonly avatar: string | null,
+    public readonly banner: string | undefined
   ) {
+    super()
   }
 
-  public _patch (data: any) {
-    this.premiumSince = data.premiumSince
+  public getDefaultAvatarUrl (): string {
+    const cdn = Rest.getInstance().cdn
+    return `${cdn}/embed/avatars/${this.discriminator}.png`
+  }
+
+  public async getAvatarUrl (format = 'webp', size?, dynamic = false): Promise<string | null> {
+    const cdn = Rest.getInstance().cdn
+    if (dynamic) format = this.avatar?.startsWith('a_') ? 'gif' : format
+    return this.avatar
+      ? this.makeImageUrl(`${cdn}/avatars/${this.id}/${this.avatar}`, { format, size })
+      : null
+  }
+
+  public async getBannerUrl (format = 'webp', size?, dynamic = false): Promise<string | null> {
+    const cdn = Rest.getInstance().cdn
+    if (dynamic) format = this.avatar?.startsWith('a_') ? 'gif' : format
+    return this.avatar
+      ? this.makeImageUrl(`${cdn}/banners/${this.id}/${this.banner}`, { format, size })
+      : null
+  }
+
+  protected makeImageUrl (root, { format = 'webp', size = 256 }: { format?: any; size?: any } = {}) {
+    return `${root}.${format}${size ? `?size=${size}` : ''}`;
   }
 }

@@ -1,42 +1,34 @@
+import Packet from '../decorators/Packet'
 import BasePacket from './BasePacket'
-import Client from '../client/Client'
+import MineralClient from '../clients/MineralClient'
+import ClientUser from '../api/entities/ClientUser'
 import User from '../api/entities/User'
-import { Ready } from '../types/Packet'
-import Application from '../api/entities/Application'
-import Global from '../utils/Global'
 
-export default class ReadyPacket implements BasePacket {
-  public packetType: string = 'READY'
-
-  public async handle (client: Client, payload: Ready): Promise<void> {
-    Global.getSharedItem().set('botId', payload.user.id)
-
-    const user: User = new User(
+@Packet('READY')
+export default class ReadyPacket extends BasePacket {
+  public async handle (client: MineralClient, payload: any) {
+    const user = new User(
       payload.user.id,
       payload.user.username,
-      payload.user.avatar,
-      null,
-      payload.user.email,
-      payload.user.flags,
-      payload.user.verified,
       payload.user.discriminator,
-      payload.user.mfa_enabled,
-      payload.user.premium_since,
+      `${payload.user.username}#${payload.user.discriminator}`,
       payload.user.bot,
+      payload.user.verified,
+      payload.user.mfa_enabled,
+      payload.user.flags,
+      payload.user.email,
+      payload.user.avatar,
+      payload.user.banner,
     )
 
-    client.application = new Application(
-      payload?.application.id,
-      payload.application.flags,
-      payload.v,
-    )
-
-    await client.commandManager.init()
-
-    client.emit('ready', {
+    const clientUser = new ClientUser(
       user,
-      guilds: payload.guilds.map((guild) => guild.id),
-      application: client.application,
-    })
+      payload.session_id,
+      payload.presences,
+      [],
+      payload.application
+    )
+
+    client.send('ready', clientUser)
   }
 }

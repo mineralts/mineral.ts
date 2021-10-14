@@ -14,9 +14,11 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true
   },
-  "include": ["src/**/*", "providers/**/*","start/**/*"],
+  "include": [
+    "src/**/*", "providers/**/*","start/**/*"],
   "exclude": [
     "build",
-    "test"
+    "test",
+    "srcold"
   ]
 }
