@@ -1,7 +1,7 @@
 import Collection from '@discordjs/collection'
 import { Intent, Snowflake } from '../types'
 
-export default interface ClientOptions {
+export default interface ClientOption {
   shardCount?: 1
   messageCacheLifetime?: 0
   messageSweepInterval?: 0

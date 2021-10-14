@@ -6,7 +6,7 @@ import Logger from '@leadcodedev/logger'
 import PacketManager from '../managers/PacketManager'
 import ChannelManager from '../managers/ChannelManager'
 import CacheManager from '../managers/CacheManager'
-import ClientOptions from './ClientOptions'
+import ClientOption from './ClientOption'
 import axios from 'axios'
 import RESTManager from '../managers/RESTManager'
 import MemberManager from '../managers/MemberManager'
@@ -34,7 +34,7 @@ export default class Client extends BaseClient {
   // public inviteUrl: string = 'https://discord.gg'
   // public templateUrl = 'https://discord.new'
 
-  constructor (public token: string, public options: ClientOptions) {
+  constructor (public token: string, public options: ClientOption) {
     super(options)
     axios.defaults.baseURL = 'https://discord.com/api'
     axios.defaults.headers.common['Authorization'] =  `Bot ${this.token}`
