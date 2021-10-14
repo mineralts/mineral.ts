@@ -6,7 +6,7 @@
   "author": "leadcodedev <baptiste.parmantier.pro@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development ts-node-dev --respawn --transpile-only --clear --rs -- src/index.ts",
+    "dev": "cross-env NODE_ENV=development esbuild-dev ./src/index.ts --supervise --commands --watch",
     "start": "cross-env NODE_ENV=production node ./build/src/index.js",
     "build": "tsc",
     "lint": "eslint \"{src,test}/**/*.ts\"",
@@ -19,8 +19,9 @@
     "@types/ws": "^7.4.7",
     "axios": "^0.21.1",
     "cross-env": "^7.0.3",
-    "ts-node-dev": "^1.1.8",
+    "esbuild-dev": "^0.8.0",
     "typescript": "^4.3.5",
     "ws": "^8.2.0"
-  }
+  },
+  "devDependencies": {}
 }

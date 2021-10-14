@@ -47,7 +47,6 @@ export default class MineralClient extends EventEmitter {
       large_threshold: 250,
       intents: this.clientOptions.options.intents.reduce((acc: Intent, current: Intent) => acc + current) || 0
     })
-
     await this.socket.socketManager.connect(request)
   }
 

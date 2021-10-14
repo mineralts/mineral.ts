@@ -10,6 +10,7 @@ import GuildMember from '../api/entities/GuildMember'
 import GuildChannelManager from '../api/entities/GuildChannelManager'
 import { ChannelType } from '../types'
 import TextChannel from '../api/entities/TextChannel'
+import GuildMemberRoleManager from '../api/entities/GuildMemberRoleManager'
 
 @Packet('GUILD_CREATE')
 export default class GuildCreatePacket extends BasePacket {
@@ -47,10 +48,9 @@ export default class GuildCreatePacket extends BasePacket {
       return new GuildMember(
         guildMember.user.id,
         user,
-        guildMember.roles.flatMap((id: string) => guildRoleManager.cache.get(id))
+        new GuildMemberRoleManager().register(guildMember.roles.flatMap((id: string) => guildRoleManager.cache.get(id)))
       )
     }))
-
 
     const guild = new Guild(
       payload.id,
