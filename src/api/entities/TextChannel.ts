@@ -1,6 +1,7 @@
 import Channel from './Channel'
 import { ChannelType, Snowflake } from '../../types'
 import Guild from './Guild'
+import { MessageManager } from './MessageManager'
 
 export default class TextChannel extends Channel {
   constructor (
@@ -14,6 +15,7 @@ export default class TextChannel extends Channel {
     public position: number,
     public rateLimitePerUser: number,
     public topic: string,
+    public messages: MessageManager
   ) {
     super(id, ChannelType.GUILD_TEXT)
   }

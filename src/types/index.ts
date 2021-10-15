@@ -2,6 +2,7 @@ import ClientUser from '../api/entities/ClientUser'
 import Guild from '../api/entities/Guild'
 import TextChannel from '../api/entities/TextChannel'
 import VoiceChannel from '../api/entities/VoiceChannel'
+import { Message } from '../api/entities/Message'
 
 export type Snowflake = string
 
@@ -69,7 +70,8 @@ export type Awaited<T> = T | PromiseLike<T>
 
 export interface MineralVein {
   ready: [client: ClientUser],
-  guildCreate: [guild: Guild]
+  guildCreate: [guild: Guild],
+  messageCreate: [message: Message]
 }
 
 export enum ChannelType {

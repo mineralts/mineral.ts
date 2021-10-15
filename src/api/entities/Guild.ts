@@ -10,6 +10,7 @@ import GuildChannelManager from './GuildChannelManager'
 import GuildMember from './GuildMember'
 import Request from '../../sockets/Request'
 import Context from '../../Context'
+import VoiceChannel from './VoiceChannel'
 
 export default class Guild {
   constructor (
@@ -78,5 +79,15 @@ export default class Guild {
     const request = new Request(`/guilds/${this.id}`)
     await request.delete()
     client.cacheManager.guilds.cache.delete(this.id)
+  }
+  public async setAfkChannel (voiceChannel: Snowflake)
+  public async setAfkChannel (voiceChannel: VoiceChannel)
+  public async setAfkChannel (voiceChannel: VoiceChannel | Snowflake) {
+    const request = new Request(`/guilds/${this.id}`)
+    return request.patch({
+      afk_channel_id: voiceChannel instanceof VoiceChannel
+        ? voiceChannel.id
+        :voiceChannel
+    })
   }
 }

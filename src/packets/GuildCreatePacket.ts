@@ -11,6 +11,7 @@ import GuildChannelManager from '../api/entities/GuildChannelManager'
 import { ChannelType } from '../types'
 import TextChannel from '../api/entities/TextChannel'
 import GuildMemberRoleManager from '../api/entities/GuildMemberRoleManager'
+import { MessageManager } from '../api/entities/MessageManager'
 
 @Packet('GUILD_CREATE')
 export default class GuildCreatePacket extends BasePacket {
@@ -114,7 +115,8 @@ export default class GuildCreatePacket extends BasePacket {
           channel.permission_overwrites,
           channel.position,
           channel.rate_limit_per_user,
-          channel.topic
+          channel.topic,
+          new MessageManager()
         )
       }
     }))

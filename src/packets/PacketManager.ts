@@ -2,6 +2,7 @@ import Collection from '@discordjs/collection'
 import BasePacket from '../packets/BasePacket'
 import ReadyPacket from './ReadyPacket'
 import GuildCreatePacket from './GuildCreatePacket'
+import { MessagePacket } from './MessagePacket'
 
 export default class PacketManager {
   public packets: Collection<string, BasePacket[]> = new Collection()
@@ -9,7 +10,8 @@ export default class PacketManager {
   constructor () {
     this.register(
       new ReadyPacket(),
-      new GuildCreatePacket()
+      new GuildCreatePacket(),
+      new MessagePacket(),
     )
   }
 
