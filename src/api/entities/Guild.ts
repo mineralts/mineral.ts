@@ -155,4 +155,12 @@ export default class Guild {
 
     await request.patch({ splash: `data:image/png;base64,${file}` })
   }
+
+  public async setDiscoverySplash (path: string) {
+    const request = new Request(`/guilds/${this.id}`)
+    const filePath = join(process.cwd(), path)
+    const file = await fs.promises.readFile(filePath, 'base64')
+
+    await request.patch({ discovery_splash: `data:image/png;base64,${file}` })
+  }
 }
