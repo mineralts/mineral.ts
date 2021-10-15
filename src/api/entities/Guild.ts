@@ -8,6 +8,7 @@ import GuildRoleManager from './GuildRoleManager'
 import GuildMemberManager from './GuildMemberManager'
 import GuildChannelManager from './GuildChannelManager'
 import GuildMember from './GuildMember'
+import Request from '../../sockets/Request'
 
 export default class Guild {
   constructor (
@@ -30,6 +31,7 @@ export default class Guild {
     public stageInstances: [],
     public guildHashes: GuildHashes,
     public afkChannelId: Snowflake,
+    public publicUpdateChannelId: Snowflake,
     public channels: GuildChannelManager,
     public verificationLevel: number,
     public hasPremiumProgressBarEnabled: boolean,
@@ -55,5 +57,11 @@ export default class Guild {
     public vanityUrlCode: string | null,
     public embeddedActivities: any[],
   ) {
+  }
+
+  public async setName (value: string) {
+    const request = new Request(`/guilds/${this.id}`).patch({
+      name: value,
+    })
   }
 }
