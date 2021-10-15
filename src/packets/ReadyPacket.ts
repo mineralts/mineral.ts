@@ -29,6 +29,8 @@ export default class ReadyPacket extends BasePacket {
       payload.application
     )
 
+    client.clientUser = clientUser
+
     client.send('ready', clientUser)
   }
 }

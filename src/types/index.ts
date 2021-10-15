@@ -5,6 +5,7 @@ import VoiceChannel from '../api/entities/VoiceChannel'
 import { Message } from '../api/entities/Message'
 
 export type Snowflake = string
+export type Milliseconds = number
 
 export enum Intent {
   GUILDS = 1,
@@ -109,4 +110,23 @@ export enum ActivityType {
   'WATCHING',
   'CUSTOM',
   'COMPETING'
+}
+
+export enum VerificationType {
+  NONE,
+  LOW,
+  MEDIUM,
+  HIGH,
+  VERY_HIGH,
+}
+
+export enum NotificationLevel {
+  ALL_MESSAGES,
+  ONLY_MENTIONS
+}
+
+export enum ExplicitContentLevel {
+  DISABLED,
+  MEMBERS_WITHOUT_ROLES,
+  ALL_MEMBERS,
 }

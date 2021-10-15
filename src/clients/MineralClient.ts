@@ -7,6 +7,7 @@ import axios from 'axios'
 import Rest from '../Rest'
 import EventEmitter from 'events'
 import CacheManager from '../caches/CacheManager'
+import Context from '../Context'
 
 export default class MineralClient extends EventEmitter {
   public readonly clientOptions: ClientOption
@@ -47,6 +48,8 @@ export default class MineralClient extends EventEmitter {
       large_threshold: 250,
       intents: this.clientOptions.options.intents.reduce((acc: Intent, current: Intent) => acc + current) || 0
     })
+
+    Context.init(this)
     await this.socket.socketManager.connect(request)
   }
 

@@ -1,7 +1,6 @@
-import { Region, Snowflake } from '../../types'
+import { ExplicitContentLevel, Milliseconds, NotificationLevel, Region, Snowflake } from '../../types'
 import GuildHashes from './GuildHashes'
 import GuildStickerManager from './GuildStickerManager'
-import GuildPresenceManager from './GuildPresenceManager'
 import GuildThreadManager from './GuildThreadManager'
 import GuildEmojiManager from './GuildEmojiManager'
 import GuildRoleManager from './GuildRoleManager'
@@ -11,6 +10,10 @@ import GuildMember from './GuildMember'
 import Request from '../../sockets/Request'
 import Context from '../../Context'
 import VoiceChannel from './VoiceChannel'
+import PresenceManager from './PresenceManager'
+import { VerificationLevel } from '../../../srcold/types'
+import fs from 'fs'
+import { join } from 'path'
 
 export default class Guild {
   constructor (
@@ -41,7 +44,7 @@ export default class Guild {
     public stickers: GuildStickerManager,
     public members: GuildMemberManager,
     public ruleChannelId: Snowflake,
-    public presences: GuildPresenceManager,
+    public presences: PresenceManager,
     public guildScheduledEvents: any[],
     public defaultMessageNotifications: number,
     public MFALevel: number,
@@ -66,7 +69,7 @@ export default class Guild {
     await request.patch({ name: value })
   }
 
-  public async setRegion(region: Region) {
+  public async setRegion(region: keyof typeof Region) {
     const request = new Request(`/guilds/${this.id}`)
     await request.patch({ preferred_locale: region })
   }
@@ -89,5 +92,59 @@ export default class Guild {
         ? voiceChannel.id
         :voiceChannel
     })
+  }
+
+  public async setVerificationLevel (level: keyof typeof VerificationLevel) {
+    const request = new Request(`/guilds/${this.id}`)
+    await request.patch({
+      verification_level: VerificationLevel[level]
+    })
+  }
+
+  public async setNotificationLevel (level: keyof typeof NotificationLevel) {
+    const request = new Request(`/guilds/${this.id}`)
+    await request.patch({
+      default_message_notifications: NotificationLevel[level]
+    })
+  }
+
+  public async setExplicitContentFilter (level: keyof typeof ExplicitContentLevel) {
+    const request = new Request(`/guilds/${this.id}`)
+    await request.patch({
+      explicit_content_filter: ExplicitContentLevel[level]
+    })
+  }
+
+  public async setAfkTimeout (value: Milliseconds) {
+    const request = new Request(`/guilds/${this.id}`)
+    await request.patch({
+      afk_timeout: ExplicitContentLevel[value]
+    })
+  }
+
+  public async setIcon (path: string) {
+    const request = new Request(`/guilds/${this.id}`)
+    const filePath = join(process.cwd(), path)
+    const file = await fs.promises.readFile(filePath, 'base64')
+
+    await request.patch({ icon: `data:image/png;base64,${file}` })
+  }
+
+  public async setOwner (id: Snowflake)
+  public async setOwner (member: GuildMember)
+  public async setOwner (member: GuildMember | Snowflake) {
+    const client = Context.getClient()
+
+    if (this.ownerId === client.clientUser?.user.id) {
+      throw new Error('OWNER_IS_ALREADY_MEMBER')
+    }
+
+    const request = new Request(`/guilds/${this.id}`)
+
+    if (member instanceof GuildMember) {
+      await request.patch({ owner_id: member.id })
+    } else {
+      await request.patch({ owner_id: member })
+    }
   }
 }
