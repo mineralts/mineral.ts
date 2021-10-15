@@ -21,6 +21,14 @@ export default class Request {
     }
   }
 
+  public async patch<P> (payload: P = {} as P): Promise<AxiosResponse<any> | undefined> {
+    try {
+      return await axios.patch(this.endpoint, payload)
+    } catch (err) {
+      console.error(err)
+    }
+  }
+
   public async delete ():  Promise<void>{
     try {
       await axios.delete(this.endpoint)

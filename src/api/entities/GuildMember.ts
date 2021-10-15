@@ -6,7 +6,10 @@ export default class GuildMember {
   constructor (
     public id: Snowflake,
     public user: User,
-    public roles: GuildMemberRoleManager
+    public roles: GuildMemberRoleManager,
+    public isMute: boolean,
+    public isDeaf: boolean,
+    public hoistedRole: null
   ) {
   }
 }

@@ -36,9 +36,9 @@ export default class GuildCreatePacket extends BasePacket {
         guildMember.user.username,
         guildMember.user.discriminator,
         `${guildMember.user.username}#${guildMember.user.discriminator}`,
-        guildMember.user.bot,
-        guildMember.user.verified,
-        guildMember.user.mfa_enabled,
+        guildMember.user.bot === true,
+        guildMember.user.verified === true,
+        guildMember.user.mfa_enabled === true,
         guildMember.user.flags,
         guildMember.user.email,
         guildMember.user.avatar,
@@ -48,7 +48,10 @@ export default class GuildCreatePacket extends BasePacket {
       return new GuildMember(
         guildMember.user.id,
         user,
-        new GuildMemberRoleManager().register(guildMember.roles.flatMap((id: string) => guildRoleManager.cache.get(id)))
+        new GuildMemberRoleManager().register(guildMember.roles.flatMap((id: string) => guildRoleManager.cache.get(id))),
+        payload.mute === true,
+        payload.deaf === true,
+        payload.hoisted_role
       )
     }))
 
@@ -72,13 +75,14 @@ export default class GuildCreatePacket extends BasePacket {
       payload.stage_instances,
       payload.guild_hashes,
       payload.afk_channel_id,
+      payload.public_updates_channel_id,
       new GuildChannelManager(),
       payload.verification_level,
       payload.premium_progress_bar_enabled,
       payload.features,
       payload.stickers,
       guildMembers,
-      payload.rule_channel_id,
+      payload.rules_channel_id,
       payload.presences,
       payload.guild_scheduled_events,
       payload.default_message_notifications,
@@ -114,6 +118,9 @@ export default class GuildCreatePacket extends BasePacket {
         )
       }
     }))
+
+    client.cacheManager.guilds.cache.set(guild.id, guild)
+
     client.send('guildCreate', guild)
   }
 }
