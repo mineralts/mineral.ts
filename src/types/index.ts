@@ -62,7 +62,7 @@ export enum Opcode {
   RESUME = 6,
   RECONNECT = 7,
   REQUEST_GUILD_MEMBER = 8,
-  INVALID_SESSION  = 9,
+  INVALID_SESSION = 9,
   HELLO = 10,
   HEARTBEAT_ACK = 11,
 }
@@ -77,16 +77,16 @@ export interface MineralVein {
 
 export enum ChannelType {
   GUILD_TEXT = 0,
-  DM	= 1,
-  GUILD_VOICE = 2	,
-  GROUP_DM	= 3,
+  DM = 1,
+  GUILD_VOICE = 2,
+  GROUP_DM = 3,
   GUILD_CATEGORY = 4,
   GUILD_NEWS = 5,
   GUILD_STORE = 6,
-  GUILD_NEWS_THREAD	= 10,
+  GUILD_NEWS_THREAD = 10,
   GUILD_PUBLIC_THREAD = 11,
   GUILD_PRIVATE_THREAD = 12,
-  GUILD_STAGE_VOICE	= 13,
+  GUILD_STAGE_VOICE = 13,
 }
 
 export type ChannelResolvable = TextChannel | VoiceChannel
@@ -130,3 +130,27 @@ export enum ExplicitContentLevel {
   MEMBERS_WITHOUT_ROLES,
   ALL_MEMBERS,
 }
+
+export type GuildFeature =
+  | 'ANIMATED_ICON'
+  | 'BANNER'
+  | 'COMMERCE'
+  | 'COMMUNITY'
+  | 'DISCOVERABLE'
+  | 'FEATURABLE'
+  | 'INVITE_SPLASH'
+  | 'MEMBER_VERIFICATION_GATE_ENABLED'
+  | 'MONETIZATION_ENABLED'
+  | 'MORE_STICKERS'
+  | 'NEWS'
+  | 'PARTNERED'
+  | 'PREVIEW_ENABLED'
+  | 'PRIVATE_THREADS'
+  | 'ROLE_ICONS'
+  | 'SEVEN_DAY_THREAD_ARCHIVE'
+  | 'THREE_DAY_THREAD_ARCHIVE'
+  | 'TICKETED_EVENTS_ENABLED'
+  | 'VANITY_URL'
+  | 'VERIFIED'
+  | 'VIP_REGIONS'
+  | 'WELCOME_SCREEN_ENABLED'

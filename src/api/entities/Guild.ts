@@ -1,4 +1,4 @@
-import { ExplicitContentLevel, Milliseconds, NotificationLevel, Region, Snowflake } from '../../types'
+import { ExplicitContentLevel, GuildFeature, Milliseconds, NotificationLevel, Region, Snowflake } from '../../types'
 import GuildHashes from './GuildHashes'
 import GuildStickerManager from './GuildStickerManager'
 import GuildThreadManager from './GuildThreadManager'
@@ -14,6 +14,7 @@ import PresenceManager from './PresenceManager'
 import { VerificationLevel } from '../../../srcold/types'
 import fs from 'fs'
 import { join } from 'path'
+import Logger from '@leadcodedev/logger'
 
 export default class Guild {
   constructor (
@@ -40,7 +41,7 @@ export default class Guild {
     public channels: GuildChannelManager,
     public verificationLevel: number,
     public hasPremiumProgressBarEnabled: boolean,
-    public features: string[],
+    public features: GuildFeature[],
     public stickers: GuildStickerManager,
     public members: GuildMemberManager,
     public ruleChannelId: Snowflake,
@@ -125,6 +126,11 @@ export default class Guild {
   public async setIcon (path: string) {
     const request = new Request(`/guilds/${this.id}`)
     const filePath = join(process.cwd(), path)
+
+    if (!this.features.includes('ANIMATED_ICON') && path.split('.')[1] === 'gif') {
+      Logger.send('error', 'You do not have permission to upload a invitation banner')
+    }
+
     const file = await fs.promises.readFile(filePath, 'base64')
 
     await request.patch({ icon: `data:image/png;base64,${file}` })
@@ -149,6 +155,10 @@ export default class Guild {
   }
 
   public async setSplash (path: string) {
+    if (!this.features.includes('INVITE_SPLASH')) {
+      Logger.send('error', 'You do not have permission to upload a invitation banner')
+    }
+
     const request = new Request(`/guilds/${this.id}`)
     const filePath = join(process.cwd(), path)
     const file = await fs.promises.readFile(filePath, 'base64')
@@ -157,6 +167,22 @@ export default class Guild {
   }
 
   public async setDiscoverySplash (path: string) {
+    if (!this.features.includes('DISCOVERABLE')) {
+      Logger.send('error', 'You do not have permission to upload a discovery banner')
+    }
+
+    const request = new Request(`/guilds/${this.id}`)
+    const filePath = join(process.cwd(), path)
+    const file = await fs.promises.readFile(filePath, 'base64')
+
+    await request.patch({ discovery_splash: `data:image/png;base64,${file}` })
+  }
+
+  public async setBanner (path: string) {
+    if (!this.features.includes('DISCOVERABLE')) {
+      Logger.send('error', 'You do not have permission to upload a banner')
+    }
+
     const request = new Request(`/guilds/${this.id}`)
     const filePath = join(process.cwd(), path)
     const file = await fs.promises.readFile(filePath, 'base64')
