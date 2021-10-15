@@ -9,6 +9,7 @@ import GuildMemberManager from './GuildMemberManager'
 import GuildChannelManager from './GuildChannelManager'
 import GuildMember from './GuildMember'
 import Request from '../../sockets/Request'
+import Context from '../../Context'
 
 export default class Guild {
   constructor (
@@ -67,5 +68,15 @@ export default class Guild {
   public async setRegion(region: Region) {
     const request = new Request(`/guilds/${this.id}`)
     await request.patch({ preferred_locale: region })
+  }
+
+  public async leave () {
+    const client = Context.getClient()
+    if (this.ownerId === client.clientUser?.user.id) {
+      throw new Error('GUILD_OWNER')
+    }
+    const request = new Request(`/guilds/${this.id}`)
+    await request.delete()
+    client.cacheManager.guilds.cache.delete(this.id)
   }
 }
