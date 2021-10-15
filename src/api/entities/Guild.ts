@@ -15,6 +15,7 @@ import { VerificationLevel } from '../../../srcold/types'
 import fs from 'fs'
 import { join } from 'path'
 import Logger from '@leadcodedev/logger'
+import TextChannel from './TextChannel'
 
 export default class Guild {
   constructor (
@@ -188,5 +189,15 @@ export default class Guild {
     const file = await fs.promises.readFile(filePath, 'base64')
 
     await request.patch({ discovery_splash: `data:image/png;base64,${file}` })
+  }
+  public async setSystemChannel (id: Snowflake)
+  public async setSystemChannel (channel: TextChannel)
+  public async setSystemChannel (channel: TextChannel | Snowflake) {
+    const request = new Request(`/guilds/${this.id}`)
+    if (channel instanceof TextChannel) {
+      await request.patch({ system_channel_id: channel.id })
+    } else {
+      await request.patch({ system_channel_id: channel })
+    }
   }
 }
