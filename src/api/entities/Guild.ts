@@ -1,4 +1,4 @@
-import { Snowflake } from '../../types'
+import { Region, Snowflake } from '../../types'
 import GuildHashes from './GuildHashes'
 import GuildStickerManager from './GuildStickerManager'
 import GuildPresenceManager from './GuildPresenceManager'
@@ -60,8 +60,12 @@ export default class Guild {
   }
 
   public async setName (value: string) {
-    const request = new Request(`/guilds/${this.id}`).patch({
-      name: value,
-    })
+    const request = new Request(`/guilds/${this.id}`)
+    await request.patch({ name: value })
+  }
+
+  public async setRegion(region: Region) {
+    const request = new Request(`/guilds/${this.id}`)
+    await request.patch({ preferred_locale: region })
   }
 }

@@ -87,3 +87,15 @@ export enum ChannelType {
 }
 
 export type ChannelResolvable = TextChannel | VoiceChannel
+
+export enum Region {
+  FRANCE = 'fr',
+  ENGLAND = 'en_US',
+  SPAN = 'es-ES',
+  GERMANY = 'de',
+  DANSK = 'da',
+  HRVATSKI = 'hr',
+  ITALIANO = 'it',
+  LITHUANIA = 'lt',
+  HUNGARY = 'hu',
+}
