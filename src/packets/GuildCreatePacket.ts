@@ -8,10 +8,17 @@ import Role from '../api/entities/Role'
 import GuildMemberManager from '../api/entities/GuildMemberManager'
 import GuildMember from '../api/entities/GuildMember'
 import GuildChannelManager from '../api/entities/GuildChannelManager'
-import { ChannelType } from '../types'
+import { ActivityType, ChannelType } from '../types'
 import TextChannel from '../api/entities/TextChannel'
 import GuildMemberRoleManager from '../api/entities/GuildMemberRoleManager'
 import { MessageManager } from '../api/entities/MessageManager'
+import Presence from '../api/entities/Presence'
+import Activity from '../api/entities/Activity'
+import { DateTime } from 'luxon'
+import PresenceManager from '../api/entities/PresenceManager'
+import EmojiManager from '../api/entities/EmojiManager'
+import Emoji from '../api/entities/Emoji'
+import GuildEmojiManager from '../api/entities/GuildEmojiManager'
 
 @Packet('GUILD_CREATE')
 export default class GuildCreatePacket extends BasePacket {
@@ -84,13 +91,31 @@ export default class GuildCreatePacket extends BasePacket {
       payload.stickers,
       guildMembers,
       payload.rules_channel_id,
-      payload.presences,
+      new PresenceManager().register(payload.presences.flatMap((presence: { [K: string]: any }) => {
+        return new Presence(
+          guildMembers.cache.get(presence.user.id)!,
+          presence.status,
+          presence.client_status.web || null,
+          presence.client_status.desktopn || null,
+          presence.client_status.mobile || null,
+          presence.activities.flatMap((activity: { [K: string]: any }) => {
+            return new Activity(
+              activity.id,
+              ActivityType[activity.type as number] as any,
+              activity.state,
+              activity.name,
+              activity.emoji,
+              DateTime.fromMillis(activity.created_at)
+            )
+          })
+        )
+      })),
       payload.guild_scheduled_events,
       payload.default_message_notifications,
       payload.mfa_level,
       payload.threads,
-      payload.max_member_size,
-      payload.emojis,
+      payload.max_members_size,
+      new EmojiManager(),
       payload.preferred_locale,
       payload.owner_id,
       guildMembers.cache.get(payload.owner_id)!,
@@ -102,6 +127,17 @@ export default class GuildCreatePacket extends BasePacket {
       payload.vanity_url_code,
       payload.embedded_activities
     )
+
+    guild.emojis = new GuildEmojiManager().register(payload.emojis.map((emoji: { [K: string]: any }) => {
+      return new Emoji(
+        emoji.id,
+        emoji.name,
+        emoji.managed,
+        emoji.available,
+        emoji.animated,
+        emoji.roles.forEach((emoji: Emoji) => guild.roles.cache.get(emoji.id))
+      )
+    }))
 
     guild.channels = new GuildChannelManager().register(payload.channels.map((channel: { [K: string]: any }) => {
       if (channel.type === ChannelType.GUILD_TEXT) {
@@ -122,6 +158,8 @@ export default class GuildCreatePacket extends BasePacket {
     }))
 
     client.cacheManager.guilds.cache.set(guild.id, guild)
+
+    // console.log('payload', payload)
 
     client.send('guildCreate', guild)
   }

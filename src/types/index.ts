@@ -61,7 +61,7 @@ export enum Opcode {
   RESUME = 6,
   RECONNECT = 7,
   REQUEST_GUILD_MEMBER = 8,
-  INVALID_SESSION  = 9	,
+  INVALID_SESSION  = 9,
   HELLO = 10,
   HEARTBEAT_ACK = 11,
 }
@@ -100,4 +100,13 @@ export enum Region {
   ITALIANO = 'it',
   LITHUANIA = 'lt',
   HUNGARY = 'hu',
+}
+
+export enum ActivityType {
+  'PLAYING',
+  'LISTENING',
+  'STREAMING',
+  'WATCHING',
+  'CUSTOM',
+  'COMPETING'
 }
