@@ -5,7 +5,7 @@ import {
   NotificationLevel,
   Region, RequestOptions,
   Snowflake,
-  SystemChannelFlag, Url
+  SystemChannelFlag,
 } from '../../types'
 import GuildHashes from './GuildHashes'
 import GuildStickerManager from './GuildStickerManager'
@@ -24,7 +24,6 @@ import fs from 'fs'
 import { join } from 'path'
 import Logger from '@leadcodedev/logger'
 import TextChannel from './TextChannel'
-import axios from 'axios'
 
 export default class Guild {
   constructor (
@@ -77,12 +76,20 @@ export default class Guild {
 
   public async setName (value: string, options?: RequestOptions): Promise<void> {
     const request = new Request(`/guilds/${this.id}`)
-    await request.patch({ name: value }, options)
+    const result = await request.patch({ name: value }, options)
+
+    if (result) {
+      this.name = value
+    }
   }
 
   public async setPreferredLocale (region: keyof typeof Region, options?: RequestOptions): Promise<void> {
     const request = new Request(`/guilds/${this.id}`)
-    await request.patch({ preferred_locale: region }, options)
+    const result = await request.patch({ preferred_locale: region }, options)
+
+    if (result) {
+      this.name = region
+    }
   }
 
   public async leave (options?: RequestOptions): Promise<void> {
@@ -90,94 +97,127 @@ export default class Guild {
     if (this.ownerId === client.clientUser?.user.id) {
       throw new Error('GUILD_OWNER')
     }
+
     const request = new Request(`/guilds/${this.id}`)
-    await request.delete(options)
-    client.cacheManager.guilds.cache.delete(this.id)
+    const result = await request.delete(options)
+    if (result) {
+      client.cacheManager.guilds.cache.delete(this.id)
+    }
   }
 
   public async setAfkChannel (voiceChannel: VoiceChannel | Snowflake, options?: RequestOptions): Promise<void> {
+    const value = voiceChannel instanceof VoiceChannel
+      ? voiceChannel.id
+      : voiceChannel
     const request = new Request(`/guilds/${this.id}`)
-    await request.patch({
-      afk_channel_id: voiceChannel instanceof VoiceChannel
-        ? voiceChannel.id
-        : voiceChannel
+
+    const result = await request.patch({
+      afk_channel_id: value
     }, options)
+
+    if (result) {
+      this.afkChannelId = value
+    }
   }
 
   public async setVerificationLevel (level: keyof typeof VerificationLevel, options?: RequestOptions): Promise<void> {
+    const value = VerificationLevel[level]
     const request = new Request(`/guilds/${this.id}`)
-    await request.patch({
-      verification_level: VerificationLevel[level]
-    }, options)
+    const result = await request.patch({ verification_level: value }, options)
+
+    if (result) {
+      this.verificationLevel = value
+    }
   }
 
   public async setNotificationLevel (level: keyof typeof NotificationLevel, options?: RequestOptions): Promise<void> {
+    const value = NotificationLevel[level]
     const request = new Request(`/guilds/${this.id}`)
-    await request.patch({
-      default_message_notifications: NotificationLevel[level]
-    }, options)
+    const result = await request.patch({ default_message_notifications: value }, options)
+
+    if (result) {
+      this.defaultMessageNotifications = value
+    }
   }
 
   public async setExplicitContentFilter (level: keyof typeof ExplicitContentLevel, options?: RequestOptions): Promise<void> {
+    const explicitContentFilter = ExplicitContentLevel[level]
     const request = new Request(`/guilds/${this.id}`)
-    await request.patch({
-      explicit_content_filter: ExplicitContentLevel[level]
-    }, options)
+    const result = await request.patch({ explicit_content_filter: explicitContentFilter }, options)
+
+    if (result) {
+      this.explicitContentFilter = explicitContentFilter
+    }
   }
 
   public async setAfkTimeout (value: Milliseconds, options?: RequestOptions): Promise<void> {
     const request = new Request(`/guilds/${this.id}`)
-    await request.patch({
-      afk_timeout: ExplicitContentLevel[value]
-    }, options)
+    const result = await request.patch({ afk_timeout: value }, options)
+
+    if (result) {
+      this.afkTimeout = value
+    }
   }
 
   private hasFeature(feature: keyof typeof Feature): boolean {
     return this.features.includes(feature)
   }
 
-  public async setIcon (path: LocalPath | Url, options?: RequestOptions): Promise<void> {
+  public async setIcon (path: LocalPath, options?: RequestOptions): Promise<void> {
     const request = new Request(`/guilds/${this.id}`)
     let file: string
 
-    if (path.startsWith('http') || path.startsWith('https')) {
-      if (!this.hasFeature('ANIMATED_ICON') && path.split('.')[1] === 'gif') {
-        Logger.send('error', 'You do not have permission to upload a invitation banner')
-        return
-      }
+    // if (path.startsWith('http') || path.startsWith('https')) {
+    //   if (!this.hasFeature('ANIMATED_ICON') && path.split('.')[1] === 'gif') {
+    //     Logger.send('error', 'You do not have permission to upload a invitation banner')
+    //     return
+    //   }
+    //
+    //   const { data } = await axios(path)
+    //   file = Buffer.from(data, 'base64').toString('base64')
+    // } else {
+    // }
 
-      const { data } = await axios(path)
-      file = Buffer.from(data, 'base64').toString('base64')
-    } else {
-      if (!this.hasFeature('ANIMATED_ICON') && path.split('.')[1] === 'gif') {
-        Logger.send('error', 'You do not have permission to upload a invitation banner')
-      }
-
-      const filePath = join(process.cwd(), path)
-      file = await fs.promises.readFile(filePath, 'base64')
+    if (!this.hasFeature('ANIMATED_ICON') && path.split('.')[1] === 'gif') {
+      Logger.send('error', 'You do not have permission to upload a invitation banner')
     }
 
-      await request.patch({ icon: `data:image/png;base64,${file}` }, options)
+    const filePath = join(process.cwd(), path)
+    file = await fs.promises.readFile(filePath, 'base64')
+
+    const { data } = await request.patch({ icon: `data:image/png;base64,${file}` }, options)
+
+    if (data) {
+      this.icon = data.icon
+    }
   }
 
   public async removeIcon (options?: RequestOptions): Promise<void> {
     const request = new Request(`/guilds/${this.id}`)
-    await request.patch({ icon: null }, options)
+    const { data } =  await request.patch({ icon: null }, options)
+
+    if (data) {
+      this.icon = data.icon
+    }
   }
 
   public async setOwner (member: GuildMember | Snowflake, options?: RequestOptions): Promise<void> {
     const client = Context.getClient()
+    const value = member instanceof GuildMember
+      ? member.id
+      :member
 
     if (this.ownerId === client.clientUser?.user.id) {
       throw new Error('OWNER_IS_ALREADY_MEMBER')
     }
 
     const request = new Request(`/guilds/${this.id}`)
-    await request.patch({
-      owner_id: member instanceof GuildMember
-        ? member.id
-        :member
-    }, options)
+    const result = await request.patch({ owner_id: value }, options)
+
+    if (result) {
+      this.ownerId = value
+      this.owner = this.members.cache.get(value)!
+    }
   }
 
   public async setSplash (path: string, options?: RequestOptions): Promise<void> {
@@ -189,7 +229,11 @@ export default class Guild {
     const filePath = join(process.cwd(), path)
     const file = await fs.promises.readFile(filePath, 'base64')
 
-    await request.patch({ splash: `data:image/png;base64,${file}` }, options)
+    const result = await request.patch({ splash: `data:image/png;base64,${file}` }, options)
+
+    if (result) {
+      this.splash = result.splash
+    }
   }
 
   public async setDiscoverySplash (path: string, options?: RequestOptions): Promise<void> {
@@ -201,7 +245,11 @@ export default class Guild {
     const filePath = join(process.cwd(), path)
     const file = await fs.promises.readFile(filePath, 'base64')
 
-    await request.patch({ discovery_splash: `data:image/png;base64,${file}` }, options)
+    const result = await request.patch({ discovery_splash: `data:image/png;base64,${file}` }, options)
+
+    if (result) {
+      this.splash = result.splash
+    }
   }
 
   public async setBanner (path: string, options?: RequestOptions): Promise<void> {
@@ -213,45 +261,68 @@ export default class Guild {
     const filePath = join(process.cwd(), path)
     const file = await fs.promises.readFile(filePath, 'base64')
 
-    await request.patch({ discovery_splash: `data:image/png;base64,${file}` }, options)
+    const result = await request.patch({ banner: `data:image/png;base64,${file}` }, options)
+
+    if (result) {
+      this.banner = result
+    }
   }
 
   public async setSystemChannel (channel: TextChannel | Snowflake, options?: RequestOptions): Promise<void> {
     const request = new Request(`/guilds/${this.id}`)
-    await request.patch({
-      system_channel_id: channel instanceof TextChannel
-        ? channel.id
-        :channel
-    }, options)
+    const value = channel instanceof TextChannel
+      ? channel.id
+      :channel
+
+    const result = await request.patch({ system_channel_id: value }, options)
+
+    if (result) {
+      this.systemChannelId = result
+    }
   }
 
   public async setSystemChannelFlag (flag: keyof typeof SystemChannelFlag): Promise<void> {
     const request = new Request(`/guilds/${this.id}`)
-    await request.patch({ system_channel_flags: SystemChannelFlag[flag] })
+    const value = SystemChannelFlag[flag]
+    const result = await request.patch({ system_channel_flags: value })
+
+    if (result) {
+      this.systemChannelFlags = value
+    }
   }
 
   public async setRuleChannel (channel: TextChannel | Snowflake, options?: RequestOptions): Promise<void> {
     const request = new Request(`/guilds/${this.id}`)
-    await request.patch({
-      rules_channel_id: channel instanceof TextChannel
-        ? channel.id
-        : channel
-    }, options)
+    const value = channel instanceof TextChannel
+      ? channel.id
+      : channel
+
+    const result = await request.patch({ rules_channel_id: value }, options)
+
+    if (result) {
+      this.ruleChannelId = value
+    }
   }
 
   public async setPublicUpdateChannel (channel: TextChannel | Snowflake, options?: RequestOptions): Promise<void> {
     const request = new Request(`/guilds/${this.id}`)
-    await request.patch({
-      public_updates_channel_id: channel instanceof TextChannel
-        ? channel.id
-        : channel
-    }, options)
+    const value = channel instanceof TextChannel
+      ? channel.id
+      : channel
+
+    const result = await request.patch({ public_updates_channel_id: value }, options)
+
+    if (result) {
+      this.publicUpdateChannelId = value
+    }
   }
 
   public async setDescription (value: string, options?: RequestOptions): Promise<void> {
     const request = new Request(`/guilds/${this.id}`)
-    await request.patch({
-      description: value
-    }, options)
+    const result = await request.patch({ description: value }, options)
+
+    if (result) {
+      this.description = value
+    }
   }
 }

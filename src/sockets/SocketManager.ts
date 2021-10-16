@@ -37,7 +37,7 @@ export default class SocketManager {
       const data = JSON.parse(JSON.stringify(message)).data
       const payload = this.convert(new Uint8Array(data))
 
-      console.log(payload.t)
+      // console.log(payload.t)
 
       // const debug = this.socket.client.packetManager.packets.get('debug')
       // await debug![0].handle(this.socket.client, payload)
@@ -67,7 +67,7 @@ export default class SocketManager {
   protected convert (binary: Uint8Array) {
     let str = ''
     for (let i = 0; i < binary.length; i++) {
-      str += String.fromCharCode(parseInt(String(binary[i])));
+      str += String.fromCharCode(parseInt(String(binary[i])))
     }
     return JSON.parse(str)
   }
