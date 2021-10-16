@@ -38,6 +38,12 @@ export default class MineralClient extends EventEmitter {
       throw new Error('TOKEN_INVALID')
     }
 
+    const intent = this.clientOptions.options.intents
+      ? this.clientOptions.options.intents === 'ALL'
+        ? Intent[this.clientOptions.options.intents]
+        : this.clientOptions.options.intents.reduce((acc: number, current: keyof typeof Intent) => acc + Intent[current], 0)
+      : 0
+
     const request = this.socket.socketManager.request(Opcode.IDENTIFY, {
       ...this.clientOptions,
       token: this.token,
@@ -46,23 +52,23 @@ export default class MineralClient extends EventEmitter {
       },
       compress: false,
       large_threshold: 250,
-      intents: this.clientOptions.options.intents.reduce((acc: Intent, current: Intent) => acc + current) || 0
+      intents: intent
     })
 
     Context.init(this)
     await this.socket.socketManager.connect(request)
   }
 
-  public listen<Gem extends keyof MineralVein>(gem: Gem, listener: (...args: MineralVein[Gem]) => Awaited<void>): this
-  public listen<Gem extends string | symbol>(gem: Exclude<Gem, keyof MineralVein>, listener: (...args: any[]) => Awaited<void>): this {
-    this.on(gem, async (...args) => {
+  public on<Gem extends keyof MineralVein>(gem: Gem, listener: (...args: MineralVein[Gem]) => Awaited<void>): this
+  public on<Gem extends string | symbol>(gem: Exclude<Gem, keyof MineralVein>, listener: (...args: any[]) => Awaited<void>): this {
+    super.on(gem, async (...args) => {
       await listener(...args)
     })
     return this
   }
 
-  public send<Gem extends keyof MineralVein>(gem: Gem, ...args: MineralVein[Gem])
-  public send<Gem extends string | symbol>(gem: Exclude<Gem, keyof MineralVein>, ...args: unknown[]) {
-    this.emit(gem, ...args)
+  public emit<Gem extends keyof MineralVein>(gem: Gem, ...args: MineralVein[Gem])
+  public emit<Gem extends string | symbol>(gem: Exclude<Gem, keyof MineralVein>, ...args: unknown[]) {
+    super.emit(gem, ...args)
   }
 }

@@ -23,6 +23,7 @@ export enum Intent {
   DIRECT_MESSAGES = 4096,
   DIRECT_MESSAGE_REACTIONS = 8192,
   DIRECT_MESSAGE_TYPING = 16384,
+  ALL = 32767,
 }
 
 export default interface ClientOptionContext {
@@ -31,7 +32,7 @@ export default interface ClientOptionContext {
   messageSweepInterval?: 0
   invalidRequestWarningInterval?: 0
   partials: ['MESSAGE', 'CHANNEL', 'REACTION']
-  intents: Intent[],
+  intents?: 'ALL' | Exclude<keyof typeof Intent, 'ALL'>[],
   restWsBridgeTimeout?: 5000
   restRequestTimeout?: 15000
   restGlobalRateLimit?: 0
@@ -154,3 +155,37 @@ export type GuildFeature =
   | 'VERIFIED'
   | 'VIP_REGIONS'
   | 'WELCOME_SCREEN_ENABLED'
+
+export enum SystemChannelFlag {
+  SUPPRESS_JOIN_NOTIFICATIONS	= 1 << 0,
+  SUPPRESS_PREMIUM_SUBSCRIPTIONS =	1 << 1,
+  SUPPRESS_GUILD_REMINDER_NOTIFICATIONS = 1 << 2,
+}
+
+export enum Feature {
+  ANIMATED_ICON,
+  BANNER,
+  COMMERCE,
+  COMMUNITY,
+  DISCOVERABLE,
+  FEATURABLE,
+  INVITE_SPLASH,
+  MEMBER_VERIFICATION_GATE_ENABLED,
+  MONETIZATION_ENABLED,
+  MORE_STICKERS,
+  NEWS,
+  PARTNERED,
+  PREVIEW_ENABLED,
+  PRIVATE_THREADS,
+  ROLE_ICONS,
+  SEVEN_DAY_THREAD_ARCHIVE,
+  THREE_DAY_THREAD_ARCHIVE,
+  TICKETED_EVENTS_ENABLED,
+  VANITY_URL,
+  VERIFIED,
+  VIP_REGIONS,
+  WELCOME_SCREEN_ENABLED,
+}
+
+export type LocalPath = string
+export type Url = string
