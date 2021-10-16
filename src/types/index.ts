@@ -3,6 +3,7 @@ import Guild from '../api/entities/Guild'
 import TextChannel from '../api/entities/TextChannel'
 import VoiceChannel from '../api/entities/VoiceChannel'
 import { Message } from '../api/entities/Message'
+import RateLimit from '../api/entities/RateLimit'
 
 export type Snowflake = string
 export type Milliseconds = number
@@ -73,7 +74,8 @@ export type Awaited<T> = T | PromiseLike<T>
 export interface MineralVein {
   ready: [client: ClientUser],
   guildCreate: [guild: Guild],
-  messageCreate: [message: Message]
+  messageCreate: [message: Message],
+  rateLimit: [rateLimit: RateLimit],
 }
 
 export enum ChannelType {
@@ -189,3 +191,7 @@ export enum Feature {
 
 export type LocalPath = string
 export type Url = string
+
+export type RequestOptions = {
+  retryOnRateLimit: boolean
+}

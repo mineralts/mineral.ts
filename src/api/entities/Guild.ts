@@ -3,7 +3,7 @@ import {
   GuildFeature, LocalPath,
   Milliseconds,
   NotificationLevel,
-  Region,
+  Region, RequestOptions,
   Snowflake,
   SystemChannelFlag, Url
 } from '../../types'
@@ -75,68 +75,68 @@ export default class Guild {
   ) {
   }
 
-  public async setName (value: string): Promise<void> {
+  public async setName (value: string, options?: RequestOptions): Promise<void> {
     const request = new Request(`/guilds/${this.id}`)
-    await request.patch({ name: value })
+    await request.patch({ name: value }, options)
   }
 
-  public async setPreferredLocale (region: keyof typeof Region): Promise<void> {
+  public async setPreferredLocale (region: keyof typeof Region, options?: RequestOptions): Promise<void> {
     const request = new Request(`/guilds/${this.id}`)
-    await request.patch({ preferred_locale: region })
+    await request.patch({ preferred_locale: region }, options)
   }
 
-  public async leave (): Promise<void> {
+  public async leave (options?: RequestOptions): Promise<void> {
     const client = Context.getClient()
     if (this.ownerId === client.clientUser?.user.id) {
       throw new Error('GUILD_OWNER')
     }
     const request = new Request(`/guilds/${this.id}`)
-    await request.delete()
+    await request.delete(options)
     client.cacheManager.guilds.cache.delete(this.id)
   }
 
-  public async setAfkChannel (voiceChannel: VoiceChannel | Snowflake): Promise<void> {
+  public async setAfkChannel (voiceChannel: VoiceChannel | Snowflake, options?: RequestOptions): Promise<void> {
     const request = new Request(`/guilds/${this.id}`)
     await request.patch({
       afk_channel_id: voiceChannel instanceof VoiceChannel
         ? voiceChannel.id
         : voiceChannel
-    })
+    }, options)
   }
 
-  public async setVerificationLevel (level: keyof typeof VerificationLevel): Promise<void> {
+  public async setVerificationLevel (level: keyof typeof VerificationLevel, options?: RequestOptions): Promise<void> {
     const request = new Request(`/guilds/${this.id}`)
     await request.patch({
       verification_level: VerificationLevel[level]
-    })
+    }, options)
   }
 
-  public async setNotificationLevel (level: keyof typeof NotificationLevel): Promise<void> {
+  public async setNotificationLevel (level: keyof typeof NotificationLevel, options?: RequestOptions): Promise<void> {
     const request = new Request(`/guilds/${this.id}`)
     await request.patch({
       default_message_notifications: NotificationLevel[level]
-    })
+    }, options)
   }
 
-  public async setExplicitContentFilter (level: keyof typeof ExplicitContentLevel): Promise<void> {
+  public async setExplicitContentFilter (level: keyof typeof ExplicitContentLevel, options?: RequestOptions): Promise<void> {
     const request = new Request(`/guilds/${this.id}`)
     await request.patch({
       explicit_content_filter: ExplicitContentLevel[level]
-    })
+    }, options)
   }
 
-  public async setAfkTimeout (value: Milliseconds): Promise<void> {
+  public async setAfkTimeout (value: Milliseconds, options?: RequestOptions): Promise<void> {
     const request = new Request(`/guilds/${this.id}`)
     await request.patch({
       afk_timeout: ExplicitContentLevel[value]
-    })
+    }, options)
   }
 
   private hasFeature(feature: keyof typeof Feature): boolean {
     return this.features.includes(feature)
   }
 
-  public async setIcon (path: LocalPath | Url ): Promise<void> {
+  public async setIcon (path: LocalPath | Url, options?: RequestOptions): Promise<void> {
     const request = new Request(`/guilds/${this.id}`)
     let file: string
 
@@ -157,15 +157,15 @@ export default class Guild {
       file = await fs.promises.readFile(filePath, 'base64')
     }
 
-      await request.patch({ icon: `data:image/png;base64,${file}` })
+      await request.patch({ icon: `data:image/png;base64,${file}` }, options)
   }
 
-  public async removeIcon (): Promise<void> {
+  public async removeIcon (options?: RequestOptions): Promise<void> {
     const request = new Request(`/guilds/${this.id}`)
-    await request.patch({ icon: null })
+    await request.patch({ icon: null }, options)
   }
 
-  public async setOwner (member: GuildMember | Snowflake): Promise<void> {
+  public async setOwner (member: GuildMember | Snowflake, options?: RequestOptions): Promise<void> {
     const client = Context.getClient()
 
     if (this.ownerId === client.clientUser?.user.id) {
@@ -177,10 +177,10 @@ export default class Guild {
       owner_id: member instanceof GuildMember
         ? member.id
         :member
-    })
+    }, options)
   }
 
-  public async setSplash (path: string): Promise<void> {
+  public async setSplash (path: string, options?: RequestOptions): Promise<void> {
     if (!this.features.includes('INVITE_SPLASH')) {
       Logger.send('error', 'You do not have permission to upload a invitation banner')
     }
@@ -189,10 +189,10 @@ export default class Guild {
     const filePath = join(process.cwd(), path)
     const file = await fs.promises.readFile(filePath, 'base64')
 
-    await request.patch({ splash: `data:image/png;base64,${file}` })
+    await request.patch({ splash: `data:image/png;base64,${file}` }, options)
   }
 
-  public async setDiscoverySplash (path: string): Promise<void> {
+  public async setDiscoverySplash (path: string, options?: RequestOptions): Promise<void> {
     if (!this.features.includes('DISCOVERABLE')) {
       Logger.send('error', 'You do not have permission to upload a discovery banner')
     }
@@ -201,10 +201,10 @@ export default class Guild {
     const filePath = join(process.cwd(), path)
     const file = await fs.promises.readFile(filePath, 'base64')
 
-    await request.patch({ discovery_splash: `data:image/png;base64,${file}` })
+    await request.patch({ discovery_splash: `data:image/png;base64,${file}` }, options)
   }
 
-  public async setBanner (path: string): Promise<void> {
+  public async setBanner (path: string, options?: RequestOptions): Promise<void> {
     if (!this.features.includes('DISCOVERABLE')) {
       Logger.send('error', 'You do not have permission to upload a banner')
     }
@@ -213,16 +213,16 @@ export default class Guild {
     const filePath = join(process.cwd(), path)
     const file = await fs.promises.readFile(filePath, 'base64')
 
-    await request.patch({ discovery_splash: `data:image/png;base64,${file}` })
+    await request.patch({ discovery_splash: `data:image/png;base64,${file}` }, options)
   }
 
-  public async setSystemChannel (channel: TextChannel | Snowflake): Promise<void> {
+  public async setSystemChannel (channel: TextChannel | Snowflake, options?: RequestOptions): Promise<void> {
     const request = new Request(`/guilds/${this.id}`)
     await request.patch({
       system_channel_id: channel instanceof TextChannel
         ? channel.id
         :channel
-    })
+    }, options)
   }
 
   public async setSystemChannelFlag (flag: keyof typeof SystemChannelFlag): Promise<void> {
@@ -230,28 +230,28 @@ export default class Guild {
     await request.patch({ system_channel_flags: SystemChannelFlag[flag] })
   }
 
-  public async setRuleChannel (channel: TextChannel | Snowflake): Promise<void> {
+  public async setRuleChannel (channel: TextChannel | Snowflake, options?: RequestOptions): Promise<void> {
     const request = new Request(`/guilds/${this.id}`)
     await request.patch({
       rules_channel_id: channel instanceof TextChannel
         ? channel.id
         : channel
-    })
+    }, options)
   }
 
-  public async setPublicUpdateChannel (channel: TextChannel | Snowflake): Promise<void> {
+  public async setPublicUpdateChannel (channel: TextChannel | Snowflake, options?: RequestOptions): Promise<void> {
     const request = new Request(`/guilds/${this.id}`)
     await request.patch({
       public_updates_channel_id: channel instanceof TextChannel
         ? channel.id
         : channel
-    })
+    }, options)
   }
 
-  public async setDescription (value: string): Promise<void> {
+  public async setDescription (value: string, options?: RequestOptions): Promise<void> {
     const request = new Request(`/guilds/${this.id}`)
     await request.patch({
       description: value
-    })
+    }, options)
   }
 }
