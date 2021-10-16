@@ -42,6 +42,6 @@ export class MessagePacket extends BasePacket {
       channel.messages.cache.set(message.id, message)
     }
 
-    client.send('messageCreate', message)
+    client.emit('messageCreate', message)
   }
 }

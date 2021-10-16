@@ -161,6 +161,6 @@ export default class GuildCreatePacket extends BasePacket {
 
     // console.log('payload', payload)
 
-    client.send('guildCreate', guild)
+    client.emit('guildCreate', guild)
   }
 }

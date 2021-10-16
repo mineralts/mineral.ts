@@ -31,6 +31,6 @@ export default class ReadyPacket extends BasePacket {
 
     client.clientUser = clientUser
 
-    client.send('ready', clientUser)
+    client.emit('ready', clientUser)
   }
 }
