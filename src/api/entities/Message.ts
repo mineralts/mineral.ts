@@ -5,6 +5,7 @@ import Guild from './Guild'
 import TextChannel from './TextChannel'
 import { Snowflake } from '../../types'
 import MessageAttachment from './MessageAttachment'
+import Request from '../../sockets/Request'
 
 export class Message {
   constructor (
@@ -12,8 +13,8 @@ export class Message {
     public type: number,
     public flags: string[],
     public isTTS: boolean,
-    public createdAt: DateTime,
-    public updatedAt: DateTime,
+    public createdAt: DateTime | null,
+    public updatedAt: DateTime | null,
     public referencedMessage: Message | null,
     public isPinned: boolean,
     public mentions: MentionResolvable,
@@ -25,5 +26,13 @@ export class Message {
     public components: any[],
     public embeds: any[]
   ) {
+  }
+
+  public async crossPost () {
+    if (this.channel?.type === 'GUILD_NEWS') {
+      console.log(`/channels/${this.channel?.id}/${this.id}/crosspost`)
+      const request = new Request(`/channels/${this.channel?.id}/messages/${this.id}/crosspost`)
+      console.log(await request.post())
+    }
   }
 }

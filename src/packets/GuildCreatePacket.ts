@@ -19,6 +19,7 @@ import PresenceManager from '../api/entities/PresenceManager'
 import EmojiManager from '../api/entities/EmojiManager'
 import Emoji from '../api/entities/Emoji'
 import GuildEmojiManager from '../api/entities/GuildEmojiManager'
+import NewsChannel from '../api/entities/NewsChannel'
 
 @Packet('GUILD_CREATE')
 export default class GuildCreatePacket extends BasePacket {
@@ -142,6 +143,21 @@ export default class GuildCreatePacket extends BasePacket {
     guild.channels = new GuildChannelManager().register(payload.channels.map((channel: { [K: string]: any }) => {
       if (channel.type === ChannelType.GUILD_TEXT) {
         return new TextChannel(
+          channel.id,
+          channel.name,
+          guild.id,
+          guild,
+          channel.last_message_id,
+          channel.parent_id,
+          channel.permission_overwrites,
+          channel.position,
+          channel.rate_limit_per_user,
+          channel.topic,
+          new MessageManager()
+        )
+      }
+      if (channel.type === ChannelType.GUILD_NEWS) {
+        return new NewsChannel(
           channel.id,
           channel.name,
           guild.id,

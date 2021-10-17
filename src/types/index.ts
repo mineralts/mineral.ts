@@ -195,3 +195,8 @@ export type Url = string
 export type RequestOptions = {
   retryOnRateLimit: boolean
 }
+
+export type MessageCollectorOption = {
+  maxMessage?: number
+  duration?: number
+}

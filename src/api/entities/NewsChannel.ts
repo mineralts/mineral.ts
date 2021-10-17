@@ -1,10 +1,9 @@
+import { Snowflake } from '../../types'
 import Channel from './Channel'
-import { MessageCollectorOption, Snowflake } from '../../types'
 import Guild from './Guild'
 import { MessageManager } from './MessageManager'
-import { MessageCollector } from '../components/MessageCollector'
 
-export default class TextChannel extends Channel {
+export default class NewsChannel extends Channel {
   constructor (
     id: Snowflake,
     public name: string,
@@ -18,10 +17,6 @@ export default class TextChannel extends Channel {
     public topic: string,
     public messages: MessageManager
   ) {
-    super(id, 'GUILD_TEXT')
-  }
-
-  public createMessageCollector (options?: MessageCollectorOption) {
-    return new MessageCollector(this, options)
+    super(id, 'GUILD_NEWS')
   }
 }

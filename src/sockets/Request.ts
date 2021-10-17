@@ -9,10 +9,9 @@ export default class Request {
   constructor (private endpoint: string) {
   }
 
-  public async post<P> (payload: P, options?: RequestOptions): Promise<boolean | undefined> {
+  public async post<P> (payload?: P, options?: RequestOptions): Promise<boolean | undefined> {
     try {
-      await axios.post(this.endpoint, payload)
-      return true
+      return axios.post(this.endpoint, payload)
     } catch (err) {
       // console.error(err)
       this.retryOnRateLimit(err, async () => await this.post(payload, options))

@@ -20,8 +20,12 @@ export class MessagePacket extends BasePacket {
       payload.type,
       payload.flags,
       payload.tts,
-      DateTime.fromISO(payload.timestamp),
-      DateTime.fromISO(payload.edited_timestamp),
+      payload.timestamp
+        ? DateTime.fromISO(payload.timestamp)
+        : null,
+      payload.edited_timestamp
+        ? DateTime.fromISO(payload.edited_timestamp)
+        :null,
       channel.messages.cache.get(payload.referenced_message) || null,
       payload.pinned,
       new MentionResolvable(
