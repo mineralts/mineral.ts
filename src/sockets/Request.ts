@@ -9,6 +9,16 @@ export default class Request {
   constructor (private endpoint: string) {
   }
 
+  public async get<P> (options?: RequestOptions): Promise<boolean | undefined> {
+    try {
+      return axios.get(this.endpoint)
+    } catch (err) {
+      // console.error(err)
+      this.retryOnRateLimit(err, async () => await this.get(options))
+      return false
+    }
+  }
+
   public async post<P> (payload?: P, options?: RequestOptions): Promise<boolean | undefined> {
     try {
       return axios.post(this.endpoint, payload)

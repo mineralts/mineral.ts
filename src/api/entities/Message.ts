@@ -6,6 +6,7 @@ import TextChannel from './TextChannel'
 import { RequestOptions, Snowflake, MessageOption } from '../../types'
 import MessageAttachment from './MessageAttachment'
 import Request from '../../sockets/Request'
+import { createMessageFromPayload } from '../../../utils/Builders'
 
 export default class Message {
   constructor (
@@ -62,6 +63,16 @@ export default class Message {
       this.updatedAt = payload.edited_timestamp
         ? DateTime.fromISO(payload.edited_timestamp)
         : null
+    }
+  }
+
+  public async fetch () {
+    const request = new Request(`/channels/${this.channel?.id}/messages/${this.id}`)
+    const payload = await request.get()
+
+    if (payload) {
+      const message = createMessageFromPayload(payload)
+      this.channel?.messages.cache.set(this.id, message)
     }
   }
 }
