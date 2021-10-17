@@ -2,8 +2,9 @@ import ClientUser from '../api/entities/ClientUser'
 import Guild from '../api/entities/Guild'
 import TextChannel from '../api/entities/TextChannel'
 import VoiceChannel from '../api/entities/VoiceChannel'
-import { Message } from '../api/entities/Message'
 import RateLimit from '../api/entities/RateLimit'
+import MessageAttachment from '../api/entities/MessageAttachment'
+import Message from '../api/entities/Message'
 
 export type Snowflake = string
 export type Milliseconds = number
@@ -199,4 +200,11 @@ export type RequestOptions = {
 export type MessageCollectorOption = {
   maxMessage?: number
   duration?: number
+}
+
+export type MessageOption = {
+  content: string
+  attachment: MessageAttachment
+  components: any[]
+  embeds: any[],
 }
