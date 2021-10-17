@@ -42,8 +42,7 @@ export default class Request {
 
   public async delete (options?: RequestOptions):  Promise<boolean> {
     try {
-      await axios.delete(this.endpoint)
-      return true
+      return axios.delete(this.endpoint)
     } catch (err) {
       // console.error(err)
       this.retryOnRateLimit(err, async () => await this.delete(options))
@@ -51,7 +50,7 @@ export default class Request {
     }
   }
 
-  private retryOnRateLimit (err, fn: () => Promise<boolean | undefined | void>, options?: RequestOptions) {
+  protected retryOnRateLimit (err, fn: () => Promise<boolean | undefined | void>, options?: RequestOptions) {
     const error = err.response.data
     if ('retry_after' in error) {
       Logger.send('warn', `${error.message}. Please retry in ${Math.round(error.retry_after / 1000)} seconds.`)

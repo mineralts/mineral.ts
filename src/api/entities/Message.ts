@@ -3,7 +3,7 @@ import { MentionResolvable } from './MentionResolvable'
 import GuildMember from './GuildMember'
 import Guild from './Guild'
 import TextChannel from './TextChannel'
-import { Snowflake } from '../../types'
+import { RequestOptions, Snowflake } from '../../types'
 import MessageAttachment from './MessageAttachment'
 import Request from '../../sockets/Request'
 
@@ -28,11 +28,20 @@ export class Message {
   ) {
   }
 
-  public async crossPost () {
+  public async crossPost (option?: RequestOptions) {
     if (this.channel?.type === 'GUILD_NEWS') {
       console.log(`/channels/${this.channel?.id}/${this.id}/crosspost`)
       const request = new Request(`/channels/${this.channel?.id}/messages/${this.id}/crosspost`)
       console.log(await request.post())
+    }
+  }
+
+  public async delete (options?: RequestOptions) {
+    const request = new Request(`/channels/${this.channel?.id}/messages/${this.id}`)
+    const result = await request.delete()
+
+    if (result) {
+      this.channel?.messages.cache.delete(this.id)
     }
   }
 }
