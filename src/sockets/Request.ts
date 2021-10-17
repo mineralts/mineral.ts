@@ -11,7 +11,8 @@ export default class Request {
 
   public async get<P> (options?: RequestOptions): Promise<boolean | undefined> {
     try {
-      return axios.get(this.endpoint)
+      const { data } = await axios.get(this.endpoint)
+      return data
     } catch (err) {
       // console.error(err)
       this.retryOnRateLimit(err, async () => await this.get(options))
@@ -19,9 +20,10 @@ export default class Request {
     }
   }
 
-  public async post<P> (payload?: P, options?: RequestOptions): Promise<boolean | undefined> {
+  public async post<P> (payload?: P, options?: RequestOptions): Promise<any | undefined> {
     try {
-      return axios.post(this.endpoint, payload)
+      const { data } = await axios.post(this.endpoint, payload)
+      return data
     } catch (err) {
       // console.error(err)
       this.retryOnRateLimit(err, async () => await this.post(payload, options))
@@ -31,8 +33,8 @@ export default class Request {
 
   public async update<P> (payload: P = {} as P, options?: RequestOptions): Promise<boolean | undefined> {
     try {
-      await axios.put(this.endpoint, payload)
-      return true
+      const { data } = await axios.put(this.endpoint, payload)
+      return data
     } catch (err) {
       // console.error(err)
       this.retryOnRateLimit(err, async () => await this.update(payload, options))
@@ -42,7 +44,8 @@ export default class Request {
 
   public async patch<P> (payload: P = {} as P, options?: RequestOptions): Promise<any | undefined> {
     try {
-      return axios.patch(this.endpoint, payload)
+      const { data } = await axios.patch(this.endpoint, payload)
+      return data
     } catch (err) {
       // console.error(err)
       this.retryOnRateLimit(err, async () => await this.patch(payload, options))

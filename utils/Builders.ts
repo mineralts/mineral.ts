@@ -23,7 +23,9 @@ export function createMessageFromPayload (payload) {
     payload.edited_timestamp
       ? DateTime.fromISO(payload.edited_timestamp)
       :null,
-    channel.messages.cache.get(payload.referenced_message) || null,
+    payload.referenced_message
+      ? channel.messages.cache.get(payload.referenced_message)
+      : null,
     payload.pinned,
     new MentionResolvable(
       payload.mention_everyone,

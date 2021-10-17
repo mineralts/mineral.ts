@@ -21,7 +21,7 @@ export default class Message {
     public mentions: MentionResolvable,
     public author: GuildMember,
     public guild: Guild | undefined,
-    public channel: TextChannel | undefined,
+    public channel: TextChannel,
     public content: string,
     public attachment: MessageAttachment,
     public components: any[],
