@@ -3,10 +3,12 @@ import { MentionResolvable } from './MentionResolvable'
 import GuildMember from './GuildMember'
 import Guild from './Guild'
 import TextChannel from './TextChannel'
-import { RequestOptions, Snowflake, MessageOption } from '../../types'
+import { RequestOptions, Snowflake } from '../../types'
 import MessageAttachment from './MessageAttachment'
 import Request from '../../sockets/Request'
 import { createMessageFromPayload } from '../../../utils/Builders'
+import MessageOption from '../interfaces/MessageOption'
+import Emoji from './Emoji'
 
 export default class Message {
   constructor (
@@ -33,13 +35,13 @@ export default class Message {
     if (this.channel?.type === 'GUILD_NEWS') {
       console.log(`/channels/${this.channel?.id}/${this.id}/crosspost`)
       const request = new Request(`/channels/${this.channel?.id}/messages/${this.id}/crosspost`)
-      console.log(await request.post())
+      console.log(await request.post(null, option))
     }
   }
 
   public async delete (options?: RequestOptions) {
     const request = new Request(`/channels/${this.channel?.id}/messages/${this.id}`)
-    const result = await request.delete()
+    const result = await request.delete(options)
 
     if (result) {
       this.channel?.messages.cache.delete(this.id)
@@ -64,6 +66,15 @@ export default class Message {
         ? DateTime.fromISO(payload.edited_timestamp)
         : null
     }
+  }
+
+  public async react (emoji: string | Emoji, option?: RequestOptions) {
+    let encodedEmoji = emoji instanceof Emoji
+      ? encodeURI(`${emoji.label}:${emoji.id}`)
+      : encodeURI(emoji)
+
+    const request = new Request(`/channels/${this.channel?.id}/messages/${this.id}/reactions/${encodedEmoji}/@me`)
+    await request.update(null, option)
   }
 
   public async fetch () {

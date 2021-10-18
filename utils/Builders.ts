@@ -16,7 +16,6 @@ import Button from '../srcold/api/entities/components/Button'
 import Collection from '@discordjs/collection'
 
 export function createMessageFromPayload (payload) {
-  // console.log(payload.components[0])
   const client = Context.getClient()
   const guild = client.cacheManager.guilds.cache.get(payload.guild_id)
   const channel = guild?.channels.cache.get(payload.channel_id) as TextChannel

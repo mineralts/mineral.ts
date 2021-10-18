@@ -7,7 +7,6 @@ import { createMessageFromPayload } from '../../utils/Builders'
 @Packet('MESSAGE_CREATE')
 export class MessagePacket extends BasePacket {
   public async handle(client: MineralClient, payload: any) {
-    console.log(payload)
     const guild = client.cacheManager.guilds.cache.get(payload.guild_id)
     const channel = guild?.channels.cache.get(payload.channel_id) as TextChannel
 
