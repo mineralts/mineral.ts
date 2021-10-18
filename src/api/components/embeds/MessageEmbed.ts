@@ -3,8 +3,8 @@ import EmbedImage from './EmbedImage'
 import EmbedThumbnail from './EmbedThumbnail'
 import EmbedVideo from './EmbedVideo'
 import EmbedFooter from './EmbedFooter'
-import EmbedField from '../interfaces/EmbedField'
-import { resolveColor } from '../../../utils'
+import EmbedField from '../../interfaces/EmbedField'
+import { resolveColor } from '../../../../utils'
 
 export default class MessageEmbed {
   public title: string | undefined

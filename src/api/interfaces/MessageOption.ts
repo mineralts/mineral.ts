@@ -1,4 +1,4 @@
-import MessageEmbed from '../components/MessageEmbed'
+import MessageEmbed from '../components/embeds/MessageEmbed'
 import Row from '../components/Row'
 
 export default interface MessageOption {
