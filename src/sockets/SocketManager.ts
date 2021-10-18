@@ -23,7 +23,7 @@ export default class SocketManager {
       this.websocket?.send(request)
     })
 
-    this.websocket.on('error', (err) => {
+    this.websocket.on('error', (err: Error) => {
       Logger.send('error', err.message)
       this.heartbeat.shutdown()
     })
@@ -33,9 +33,8 @@ export default class SocketManager {
       this.heartbeat.shutdown()
     })
 
-    this.websocket.on('message', async (message) => {
-      const data = JSON.parse(JSON.stringify(message)).data
-      const payload = this.convert(new Uint8Array(data))
+    this.websocket.on('message', async (message: Buffer) => {
+      const payload = JSON.parse(message.toString())
 
       // console.log(payload.t)
 
@@ -44,7 +43,7 @@ export default class SocketManager {
 
       this.heartbeat.watchSession(payload.d?.session_id)
 
-      if (payload.op === 10) {
+      if (payload.op === Opcode.HELLO) {
         this.heartbeat.beat(payload.d.heartbeat_interval)
       }
 
@@ -62,14 +61,6 @@ export default class SocketManager {
         )
       }
     })
-  }
-
-  protected convert (binary: Uint8Array) {
-    let str = ''
-    for (let i = 0; i < binary.length; i++) {
-      str += String.fromCharCode(parseInt(String(binary[i])))
-    }
-    return JSON.parse(str)
   }
 
   public request (code: Opcode, payload): Buffer {
