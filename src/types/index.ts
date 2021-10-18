@@ -32,7 +32,6 @@ export default interface ClientOptionContext {
   messageCacheLifetime?: 0
   messageSweepInterval?: 0
   invalidRequestWarningInterval?: 0
-  partials: ['MESSAGE', 'CHANNEL', 'REACTION']
   intents?: 'ALL' | Exclude<keyof typeof Intent, 'ALL'>[],
   restWsBridgeTimeout?: 5000
   restRequestTimeout?: 15000
@@ -208,8 +207,9 @@ export enum ComponentType {
 }
 
 export enum ButtonStyle {
-  Primary =	1,
-  Secondary = 2,
-  Success	= 3,
-  Danger = 4,
+  PRIMARY =	1,
+  SECONDARY = 2,
+  SUCCESS	= 3,
+  DANGER = 4,
+  LINK = 5,
 }
