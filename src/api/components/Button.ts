@@ -14,7 +14,7 @@ export default class Button {
     props: {
       style: keyof typeof ButtonStyle
       label?: string,
-      emoji?: any,
+      emoji?: string | Emoji,
       customId?: string
       disabled?: boolean
     }
@@ -26,7 +26,7 @@ export default class Button {
     this.disabled = props.disabled
   }
 
-  private parseEmoji (emoji: string | Emoji) {
+  private parseEmoji (emoji?: string | Emoji) {
     if (typeof emoji === 'string') {
       return parseEmoji(emoji)
     }
