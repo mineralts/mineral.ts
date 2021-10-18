@@ -1,4 +1,6 @@
 import { ComponentType, MenuSelect, MenuSelectOption } from '../../../types'
+import Emoji from '../../entities/Emoji'
+import { parseEmoji } from '../../../../utils'
 
 export default class SelectMenu {
   public type: ComponentType = ComponentType.SELECT_MENU
@@ -56,7 +58,22 @@ export default class SelectMenu {
       min_values: this.minValues,
       max_values: this.maxValues,
       placeholder: this.placeholder,
-      disabled: this.placeholder,
+      disabled: this.disabled,
+      options: this.options.map((option: MenuSelectOption) => ({
+        label: option.label,
+        value: option.value,
+        description: option.description,
+        emoji: option.emoji
+          ? this.parseEmoji(option.emoji)
+          : null,
+        default: option.default,
+      })),
+    }
+  }
+
+  protected parseEmoji (emoji: string | Emoji) {
+    if (typeof emoji === 'string') {
+      return parseEmoji(emoji)
     }
   }
 }

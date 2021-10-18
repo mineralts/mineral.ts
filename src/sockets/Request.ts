@@ -26,7 +26,7 @@ export default class Request {
       return data
     } catch (err) {
       // console.error(err)
-      console.log(err.response)
+      console.log(err)
       this.retryOnRateLimit(err, async () => await this.post(payload, options))
       return false
     }
