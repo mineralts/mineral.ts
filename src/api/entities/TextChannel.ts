@@ -7,6 +7,10 @@ import Request from '../../sockets/Request'
 import { createMessageFromPayload } from '../../../utils/Builders'
 import Message from './Message'
 import MessageOption from '../interfaces/MessageOption'
+import Embed from '../../../srcold/api/interfaces/Embed'
+import EmbedRow from '../components/embeds/EmbedRow'
+import Button from '../components/buttons/Button'
+import ButtonLink from '../components/buttons/ButtonLink'
 
 export default class TextChannel extends Channel {
   constructor (
@@ -30,8 +34,15 @@ export default class TextChannel extends Channel {
   }
 
   public async send (messageOption: MessageOption): Promise<Message> {
+    console.log(messageOption.components)
     const request = new Request(`/channels/${this.id}/messages`)
-    const payload = await request.post(messageOption)
+    const payload = await request.post({
+      ...messageOption,
+      components: messageOption.components?.map((row: EmbedRow) => {
+        row.components = row.components.map((component: Button | ButtonLink) => component.toJson())
+        return row
+      })
+    })
 
     const newMessage = createMessageFromPayload({
       ...payload,

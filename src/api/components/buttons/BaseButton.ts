@@ -38,4 +38,14 @@ export default class BaseButton {
       return parseEmoji(emoji)
     }
   }
+
+  protected toJson () {
+    return {
+      type: this.type,
+      style: this.style,
+      label: this.label,
+      emoji: this.emoji,
+      disabled: this.disabled,
+    }
+  }
 }

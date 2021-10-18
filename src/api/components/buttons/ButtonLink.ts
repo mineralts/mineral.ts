@@ -27,5 +27,13 @@ export default class ButtonLink extends BaseButton {
 
   public setUrl (url: string) {
     this.url = url
+    return this
+  }
+
+  public toJson () {
+    return {
+      ...super.toJson(),
+      url: this.url
+    }
   }
 }

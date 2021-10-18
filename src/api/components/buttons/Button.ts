@@ -3,7 +3,7 @@ import Emoji from '../../entities/Emoji'
 import BaseButton from './BaseButton'
 
 export default class Button extends BaseButton {
-  public custom_id?: string
+  public customId?: string
 
   constructor (
     props?: {
@@ -26,7 +26,7 @@ export default class Button extends BaseButton {
     }
 
     if (props?.customId) {
-      this.custom_id = props?.customId
+      this.customId = props?.customId
     }
   }
 
@@ -41,7 +41,7 @@ export default class Button extends BaseButton {
   }
 
   public setCustomId (identifier: string) {
-    this.custom_id = identifier
+    this.customId = identifier
     return this
   }
 
@@ -53,5 +53,12 @@ export default class Button extends BaseButton {
   public setEmoji (emoji: string | Emoji) {
     this.emoji = this.parseEmoji(emoji)
     return this
+  }
+
+  public toJson () {
+    return {
+      ...super.toJson(),
+      custom_id: this.customId
+    }
   }
 }

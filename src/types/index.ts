@@ -4,6 +4,7 @@ import TextChannel from '../api/entities/TextChannel'
 import VoiceChannel from '../api/entities/VoiceChannel'
 import RateLimit from '../api/entities/RateLimit'
 import Message from '../api/entities/Message'
+import Emoji from '../api/entities/Emoji'
 
 export type Snowflake = string
 export type Milliseconds = number
@@ -212,4 +213,20 @@ export enum ButtonStyle {
   SUCCESS	= 3,
   DANGER = 4,
   LINK = 5,
+}
+
+export type MenuSelect = {
+  customId:	string
+  placeholder?: string
+  minValues?: number
+  maxValues?: number
+  disabled?:	boolean
+}
+
+export type MenuSelectOption = {
+  label: string
+  value: unknown
+  description?: string
+  emoji?: string | Emoji
+  default?: boolean
 }
