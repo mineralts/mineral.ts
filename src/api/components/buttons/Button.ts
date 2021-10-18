@@ -1,4 +1,4 @@
-import { ButtonStyle } from '../../../types'
+import { ButtonStyle, Intent } from '../../../types'
 import Emoji from '../../entities/Emoji'
 import BaseButton from './BaseButton'
 
@@ -7,7 +7,7 @@ export default class Button extends BaseButton {
 
   constructor (
     props?: {
-      style: keyof typeof ButtonStyle
+      style: Exclude<keyof typeof ButtonStyle, 'LINK'>
       label?: string,
       emoji?: string | Emoji,
       customId?: string
@@ -30,7 +30,7 @@ export default class Button extends BaseButton {
     }
   }
 
-  public setStyle (style: keyof typeof ButtonStyle) {
+  public setStyle (style: Exclude<keyof typeof ButtonStyle, 'LINK'>) {
     this.style = ButtonStyle[style]
     return this
   }
