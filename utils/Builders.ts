@@ -10,7 +10,7 @@ import EmbedImage from '../srcold/api/entities/EmbedImage'
 import EmbedThumbnail from '../srcold/api/entities/EmbedThumbnail'
 import EmbedFooter from '../srcold/api/entities/EmbedFooter'
 import EmbedAuthor from '../srcold/api/entities/EmbedAuthor'
-import Row from '../src/api/components/Row'
+import EmbedRow from '../src/api/components/embeds/EmbedRow'
 import { ButtonStyle, ComponentType } from '../srcold/types'
 import Button from '../srcold/api/entities/components/Button'
 import Collection from '@discordjs/collection'
@@ -67,7 +67,7 @@ export function createMessageFromPayload (payload) {
 
       function walkComponent (component) {
         if (component.type === ComponentType.ACTION_ROW) {
-          return new Row()
+          return new EmbedRow()
             .addComponents(
               component.components.map((component) => (
                 walkComponent(component)

@@ -1,7 +1,7 @@
-import { ComponentType } from '../../types'
+import { ComponentType } from '../../../types'
 import Logger from '@leadcodedev/logger'
 
-export default class Row {
+export default class EmbedRow {
   public type: ComponentType = ComponentType.ACTION_ROW
   public components: any[] = new Proxy([], {
     set: function(target: any[], property, value) {
