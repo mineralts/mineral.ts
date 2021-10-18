@@ -1,10 +1,10 @@
-import EmbedField from '../interfaces/EmbedField'
-import { resolveColor } from '../../utils'
 import EmbedAuthor from './EmbedAuthor'
 import EmbedImage from './EmbedImage'
 import EmbedThumbnail from './EmbedThumbnail'
+import EmbedVideo from './EmbedVideo'
 import EmbedFooter from './EmbedFooter'
-import { DateTime } from 'luxon'
+import EmbedField from '../interfaces/EmbedField'
+import { resolveColor } from '../../../utils'
 
 export default class MessageEmbed {
   public title: string | undefined
@@ -14,7 +14,8 @@ export default class MessageEmbed {
   public author: EmbedAuthor | undefined
   public image: EmbedImage | undefined
   public thumbnail: EmbedThumbnail | undefined
-  public timestamp: DateTime | undefined
+  public timestamp: Date | undefined
+  public video: EmbedVideo | undefined
   public url: string | undefined
   public footer: EmbedFooter | undefined
 
@@ -38,8 +39,8 @@ export default class MessageEmbed {
     return this
   }
 
-  public setAuthor (options: { name?: string, url?: string | null }) {
-    this.author = new EmbedAuthor(options.name, options.url)
+  public setAuthor (options: { name?: string, url?: string | null, icon_url?: string | null, proxy_icon_url?: string}) {
+    this.author = new EmbedAuthor(options.name, options.url, options.icon_url, options.proxy_icon_url)
     return this
   }
 
@@ -54,7 +55,7 @@ export default class MessageEmbed {
   }
 
   public setTimestamp () {
-    this.timestamp = DateTime.now()
+    this.timestamp = new Date()
     return this
   }
 

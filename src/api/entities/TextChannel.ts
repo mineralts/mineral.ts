@@ -1,11 +1,12 @@
 import Channel from './Channel'
-import { MessageCollectorOption, MessageOption, Snowflake } from '../../types'
+import { MessageCollectorOption, Snowflake } from '../../types'
 import Guild from './Guild'
 import { MessageManager } from './MessageManager'
 import { MessageCollector } from '../components/MessageCollector'
 import Request from '../../sockets/Request'
 import { createMessageFromPayload } from '../../../utils/Builders'
 import Message from './Message'
+import MessageOption from '../interfaces/MessageOption'
 
 export default class TextChannel extends Channel {
   constructor (
@@ -28,15 +29,15 @@ export default class TextChannel extends Channel {
     return new MessageCollector(this, options)
   }
 
-  public async send (message: any): Promise<Message> {
+  public async send (messageOption: MessageOption): Promise<Message> {
     const request = new Request(`/channels/${this.id}/messages`)
-    const payload = await request.post(message)
+    const payload = await request.post(messageOption)
 
     const newMessage = createMessageFromPayload({
       ...payload,
       guild_id: this.guild.id,
     })
-    this.messages.cache.set(message.id, newMessage)
+    this.messages.cache.set(newMessage.id, newMessage)
     return newMessage
   }
 }

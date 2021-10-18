@@ -24,7 +24,7 @@ export default class User extends BaseClient {
     return `${cdn}/embed/avatars/${this.discriminator}.png`
   }
 
-  public async getAvatarUrl (format = 'webp', size?, dynamic = false): Promise<string | null> {
+  public getAvatarUrl (format = 'webp', size?, dynamic = false): string | null {
     const cdn = Rest.getInstance().cdn
     if (dynamic) format = this.avatar?.startsWith('a_') ? 'gif' : format
     return this.avatar

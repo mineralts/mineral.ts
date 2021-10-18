@@ -156,6 +156,7 @@ export default class GuildCreatePacket extends BasePacket {
           new MessageManager()
         )
       }
+
       if (channel.type === ChannelType.GUILD_NEWS) {
         return new NewsChannel(
           channel.id,

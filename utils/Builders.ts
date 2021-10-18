@@ -5,6 +5,11 @@ import { Snowflake } from '../src/types'
 import MessageAttachment from '../src/api/entities/MessageAttachment'
 import TextChannel from '../src/api/entities/TextChannel'
 import Context from '../src/Context'
+import MessageEmbed from '../srcold/api/entities/MessageEmbed'
+import EmbedImage from '../srcold/api/entities/EmbedImage'
+import EmbedThumbnail from '../srcold/api/entities/EmbedThumbnail'
+import EmbedFooter from '../srcold/api/entities/EmbedFooter'
+import EmbedAuthor from '../srcold/api/entities/EmbedAuthor'
 
 export function createMessageFromPayload (payload) {
   const client = Context.getClient()
@@ -38,6 +43,19 @@ export function createMessageFromPayload (payload) {
     payload.content,
     new MessageAttachment(),
     payload.components,
-    payload.embed,
+    payload.embeds.map((embed) => {
+      const messageEmbed = new MessageEmbed()
+      messageEmbed.title = embed.title
+      messageEmbed.description = embed.description
+      messageEmbed.author = new EmbedAuthor(embed.author.name, embed.author.url)
+      messageEmbed.fields = embed.fields.map((field) => ({ name: field.title, value: field.value, inline: field.inline }))
+      messageEmbed.timestamp =  DateTime.fromISO(embed.timestamp)
+      messageEmbed.color = embed.color
+      messageEmbed.url = embed.url
+      messageEmbed.image = new EmbedImage(payload.url, payload.proxy_url)
+      messageEmbed.thumbnail = new EmbedThumbnail(payload.url, payload.proxy_url)
+      messageEmbed.footer = new EmbedFooter(payload.text, payload.icon_url, payload.proxy_image)
+      return messageEmbed
+    }),
   )
 }
