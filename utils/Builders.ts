@@ -10,12 +10,31 @@ import EmbedImage from '../srcold/api/entities/EmbedImage'
 import EmbedThumbnail from '../srcold/api/entities/EmbedThumbnail'
 import EmbedFooter from '../srcold/api/entities/EmbedFooter'
 import EmbedAuthor from '../srcold/api/entities/EmbedAuthor'
+import Row from '../src/api/components/Row'
+import { ButtonStyle, ComponentType } from '../srcold/types'
+import Button from '../srcold/api/entities/components/Button'
+import Collection from '@discordjs/collection'
 
 export function createMessageFromPayload (payload) {
+  // console.log(payload.components[0])
   const client = Context.getClient()
   const guild = client.cacheManager.guilds.cache.get(payload.guild_id)
   const channel = guild?.channels.cache.get(payload.channel_id) as TextChannel
   const author = guild?.members.cache.get(payload.author.id)!
+
+  const mentionChannel: Collection<Snowflake, any> = new Collection()
+  const channelMentions = payload.content.split(' ')
+    .filter((word: string) => word.startsWith('<#'))
+    .map((word: string) => {
+      return word
+        .replace(/<#/g, '')
+        .replace(/>/g, '')
+    })
+
+  channelMentions.forEach((id: Snowflake) => {
+    const channel = guild?.channels.cache.get(id)
+    mentionChannel.set(channel!.id, channel)
+  })
 
   return new Message(
     payload.id,
@@ -36,13 +55,37 @@ export function createMessageFromPayload (payload) {
       payload.mention_everyone,
       payload.mention_roles.map((roleId: Snowflake) => guild?.roles.cache.get(roleId)),
       payload.mentions,
+      mentionChannel,
     ),
     author,
     guild,
     channel,
     payload.content,
     new MessageAttachment(),
-    payload.components,
+    payload.components.map((component) => {
+      return walkComponent(component)
+
+      function walkComponent (component) {
+        if (component.type === ComponentType.ACTION_ROW) {
+          return new Row()
+            .addComponents(
+              component.components.map((component) => (
+                walkComponent(component)
+              ))
+            )
+        }
+
+        if (component.type === ComponentType.BUTTON) {
+          return new Button({
+            style: ButtonStyle[component.style] as unknown as ButtonStyle,
+            customId: component.custom_id,
+            label: component.label || null,
+            emoji: component.emoji?.name || null,
+            disabled: component.disabled || false
+          })
+        }
+      }
+    }),
     payload.embeds.map((embed) => {
       const messageEmbed = new MessageEmbed()
       messageEmbed.title = embed.title

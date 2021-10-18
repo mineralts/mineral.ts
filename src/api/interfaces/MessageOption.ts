@@ -1,8 +1,9 @@
 import MessageEmbed from '../components/MessageEmbed'
+import Row from '../components/Row'
 
 export default interface MessageOption {
-  content?: unknown,
+  content?: string,
   embeds?: MessageEmbed[],
   tts?: boolean,
-  components?: any[]
+  components?: Row[]
 }

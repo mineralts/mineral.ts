@@ -200,3 +200,16 @@ export type MessageCollectorOption = {
   maxMessage?: number
   duration?: number
 }
+
+export enum ComponentType {
+  ACTION_ROW = 1,
+  BUTTON = 2,
+  SELECT_MENU = 3,
+}
+
+export enum ButtonStyle {
+  Primary =	1,
+  Secondary = 2,
+  Success	= 3,
+  Danger = 4,
+}

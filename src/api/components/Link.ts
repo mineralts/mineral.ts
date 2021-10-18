@@ -1,27 +1,24 @@
 import { ButtonStyle, ComponentType } from '../../../types'
-import Emoji from '../Emoji'
 
-export default class Button {
+export default class Link {
   private type: ComponentType = ComponentType.BUTTON
-  private style: ButtonStyle
-  public label?: string
-  public emoji?: string | Emoji
-  public custom_id?: string
+  private style: ButtonStyle = 5
+  public label: string
+  public emoji?: any
+  public url?: string
   public disabled?: boolean
 
   constructor (
     props: {
-      style: ButtonStyle
       label: string,
       emoji?: any,
-      customId?: string
+      url?: string
       disabled?: boolean
     }
   ) {
-    this.style = props.style
     this.label = props.label
     this.emoji = props.emoji
-    this.custom_id = props.customId
+    this.url = props.url
     this.disabled = props.disabled
   }
 }
