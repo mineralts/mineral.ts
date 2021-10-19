@@ -38,7 +38,6 @@ export default class Message {
 
   public async crossPost (option?: RequestOptions) {
     if (this.channel?.type === 'GUILD_NEWS') {
-      console.log(`/channels/${this.channel?.id}/${this.id}/crosspost`)
       const request = new Request(`/channels/${this.channel?.id}/messages/${this.id}/crosspost`)
       console.log(await request.post(null, option))
     }

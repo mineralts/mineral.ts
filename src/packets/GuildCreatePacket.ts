@@ -8,7 +8,7 @@ import Role from '../api/entities/Role'
 import GuildMemberManager from '../api/entities/GuildMemberManager'
 import GuildMember from '../api/entities/GuildMember'
 import GuildChannelManager from '../api/entities/GuildChannelManager'
-import { ActivityType, ChannelType } from '../types'
+import { ActivityType, ChannelType, PresenceStatus } from '../types'
 import TextChannel from '../api/entities/TextChannel'
 import GuildMemberRoleManager from '../api/entities/GuildMemberRoleManager'
 import { MessageManager } from '../api/entities/MessageManager'
@@ -20,6 +20,7 @@ import EmojiManager from '../api/entities/EmojiManager'
 import Emoji from '../api/entities/Emoji'
 import GuildEmojiManager from '../api/entities/GuildEmojiManager'
 import NewsChannel from '../api/entities/NewsChannel'
+import { keyFromEnum } from '../../utils'
 
 @Packet('GUILD_CREATE')
 export default class GuildCreatePacket extends BasePacket {
@@ -95,9 +96,9 @@ export default class GuildCreatePacket extends BasePacket {
       new PresenceManager().register(payload.presences.flatMap((presence: { [K: string]: any }) => {
         return new Presence(
           guildMembers.cache.get(presence.user.id)!,
-          presence.status,
+          keyFromEnum(PresenceStatus, presence.status) as keyof typeof PresenceStatus,
           presence.client_status.web || null,
-          presence.client_status.desktopn || null,
+          presence.client_status.desktop || null,
           presence.client_status.mobile || null,
           presence.activities.flatMap((activity: { [K: string]: any }) => {
             return new Activity(

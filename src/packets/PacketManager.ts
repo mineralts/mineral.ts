@@ -5,6 +5,7 @@ import GuildCreatePacket from './GuildCreatePacket'
 import { MessagePacket } from './MessagePacket'
 import MessageReactionAddPacket from './MessageReactionAddPacket'
 import MessageReactionRemovePacket from './MessageReactionRemovePacket'
+import PresenceUpdatePacket from './PresenceUpdatePacket'
 
 export default class PacketManager {
   public packets: Collection<string, BasePacket[]> = new Collection()
@@ -16,6 +17,7 @@ export default class PacketManager {
       new MessagePacket(),
       new MessageReactionAddPacket(),
       new MessageReactionRemovePacket(),
+      new PresenceUpdatePacket(),
     )
   }
 

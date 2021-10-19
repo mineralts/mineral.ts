@@ -6,6 +6,7 @@ import RateLimit from '../api/entities/RateLimit'
 import Message from '../api/entities/Message'
 import Emoji from '../api/entities/Emoji'
 import Reaction from '../api/entities/Reaction'
+import Presence from '../api/entities/Presence'
 
 export type Snowflake = string
 export type Milliseconds = number
@@ -79,6 +80,7 @@ export interface MineralVein {
   rateLimit: [rateLimit: RateLimit]
   messageReactionAdd: [message: Message, reaction: Reaction]
   messageReactionRemove: [message: Message, reaction: Reaction]
+  presenceUpdate: [before: Presence | undefined, after: Presence]
 }
 
 export enum ChannelType {
@@ -232,4 +234,11 @@ export type MenuSelectOption = {
   description?: string
   emoji?: string | Emoji
   default?: boolean
+}
+
+export enum PresenceStatus {
+  INACTIVE = 'idle',
+  DO_NOT_DISTURB = 'dnd',
+  ONLINE = 'online',
+  OFFLINE = 'offline',
 }
