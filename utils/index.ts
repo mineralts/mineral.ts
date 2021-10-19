@@ -1,5 +1,3 @@
-import { PresenceStatus } from '../src/types'
-
 export function resolveColor(color) {
   if (typeof color === 'string') {
     if (color === 'RANDOM') return Math.floor(Math.random() * (0xffffff + 1))
