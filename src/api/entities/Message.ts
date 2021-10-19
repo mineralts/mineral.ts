@@ -9,8 +9,13 @@ import Request from '../../sockets/Request'
 import { createMessageFromPayload } from '../../../utils/Builders'
 import MessageOption from '../interfaces/MessageOption'
 import Emoji from './Emoji'
+import MessageReactionManager from './MessageReactionManager'
+import Context from '../../Context'
+import { parseEmoji } from '../../../utils'
 
 export default class Message {
+  public reactions: MessageReactionManager = new MessageReactionManager(this)
+
   constructor (
     public id: Snowflake,
     public type: number,
@@ -18,7 +23,7 @@ export default class Message {
     public isTTS: boolean,
     public createdAt: DateTime | null,
     public updatedAt: DateTime | null,
-    public referencedMessage: Message | null,
+    public referencedMessage: Message | null | undefined,
     public isPinned: boolean,
     public mentions: MentionResolvable,
     public author: GuildMember,
@@ -27,7 +32,7 @@ export default class Message {
     public content: string,
     public attachment: MessageAttachment,
     public components: any[],
-    public embeds: any[]
+    public embeds: any[],
   ) {
   }
 
@@ -75,6 +80,15 @@ export default class Message {
 
     const request = new Request(`/channels/${this.channel?.id}/messages/${this.id}/reactions/${encodedEmoji}/@me`)
     await request.update(null, option)
+    const client = Context.getClient()
+
+    let a: Emoji = emoji as Emoji
+    if (typeof emoji === 'string') {
+      const parsedEmoji = parseEmoji(emoji)
+      a = new Emoji(parsedEmoji.id, parsedEmoji.name, false, true, false, [])
+    }
+
+   this.reactions.addReaction(a, client.clientUser!)
   }
 
   public async fetch () {

@@ -7,8 +7,8 @@ export default class Emoji {
     public label: string,
     public isManaged: boolean,
     public isAvailable: boolean,
-    public isAnimated: boolean,
-    public roles: Role[],
+    public isAnimated: boolean = false,
+    public roles: Role[] = [],
   ) {
   }
 }

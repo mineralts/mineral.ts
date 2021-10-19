@@ -45,7 +45,7 @@ export function createMessageFromPayload (payload) {
       : null,
     payload.edited_timestamp
       ? DateTime.fromISO(payload.edited_timestamp)
-      :null,
+      : null,
     payload.referenced_message
       ? channel.messages.cache.get(payload.referenced_message)
       : null,
@@ -54,7 +54,7 @@ export function createMessageFromPayload (payload) {
       payload.mention_everyone,
       payload.mention_roles.map((roleId: Snowflake) => guild?.roles.cache.get(roleId)),
       payload.mentions,
-      mentionChannel,
+      mentionChannel
     ),
     author,
     guild,
@@ -90,14 +90,18 @@ export function createMessageFromPayload (payload) {
       messageEmbed.title = embed.title
       messageEmbed.description = embed.description
       messageEmbed.author = new EmbedAuthor(embed.author.name, embed.author.url)
-      messageEmbed.fields = embed.fields.map((field) => ({ name: field.title, value: field.value, inline: field.inline }))
-      messageEmbed.timestamp =  DateTime.fromISO(embed.timestamp)
+      messageEmbed.fields = embed.fields.map((field) => ({
+        name: field.title,
+        value: field.value,
+        inline: field.inline
+      }))
+      messageEmbed.timestamp = DateTime.fromISO(embed.timestamp)
       messageEmbed.color = embed.color
       messageEmbed.url = embed.url
       messageEmbed.image = new EmbedImage(payload.url, payload.proxy_url)
       messageEmbed.thumbnail = new EmbedThumbnail(payload.url, payload.proxy_url)
       messageEmbed.footer = new EmbedFooter(payload.text, payload.icon_url, payload.proxy_image)
       return messageEmbed
-    }),
+    })
   )
 }

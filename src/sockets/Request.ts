@@ -9,7 +9,7 @@ export default class Request {
   constructor (private endpoint: string) {
   }
 
-  public async get<P> (options?: RequestOptions): Promise<boolean | undefined> {
+  public async get<P> (options?: RequestOptions): Promise<any | undefined> {
     try {
       const { data } = await axios.get(this.endpoint)
       return data

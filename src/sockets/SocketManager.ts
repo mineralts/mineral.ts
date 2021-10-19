@@ -36,7 +36,6 @@ export default class SocketManager {
     this.websocket.on('message', async (message: Buffer) => {
       const payload = JSON.parse(message.toString())
 
-      // console.log(payload.t)
 
       // const debug = this.socket.client.packetManager.packets.get('debug')
       // await debug![0].handle(this.socket.client, payload)
@@ -49,6 +48,7 @@ export default class SocketManager {
 
 
       if (payload.t) {
+        console.log(payload.t)
         const packetEvents = this.socket.client.packetManager.packets.get(payload.t)
         if (!packetEvents) {
           return

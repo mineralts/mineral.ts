@@ -1,7 +1,29 @@
 import Collection from '@discordjs/collection'
-import { Snowflake } from '../../types'
-import { Message } from './Message'
+import { RequestOptions, Snowflake } from '../../types'
+import Message from './Message'
+import Request from '../../sockets/Request'
+import { createMessageFromPayload } from '../../../utils/Builders'
+import TextChannel from './TextChannel'
 
 export class MessageManager {
   public cache: Collection<Snowflake, Message> = new Collection()
+
+  constructor (private channel: TextChannel) {
+  }
+
+  public async fetch (option?: RequestOptions): Promise<MessageManager> {
+    const request = new Request(`/channels/${this.channel.id}/messages`)
+    const payload = await request.get(option)
+
+    payload.forEach((item) => {
+      const message = createMessageFromPayload({
+        ...item,
+        guild_id: this.channel.guild.id
+      })
+
+      this.cache.set(message.id, message)
+    })
+
+    return this
+  }
 }

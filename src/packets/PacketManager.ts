@@ -3,6 +3,8 @@ import BasePacket from '../packets/BasePacket'
 import ReadyPacket from './ReadyPacket'
 import GuildCreatePacket from './GuildCreatePacket'
 import { MessagePacket } from './MessagePacket'
+import MessageReactionAddPacket from './MessageReactionAddPacket'
+import MessageReactionRemovePacket from './MessageReactionRemovePacket'
 
 export default class PacketManager {
   public packets: Collection<string, BasePacket[]> = new Collection()
@@ -12,6 +14,8 @@ export default class PacketManager {
       new ReadyPacket(),
       new GuildCreatePacket(),
       new MessagePacket(),
+      new MessageReactionAddPacket(),
+      new MessageReactionRemovePacket(),
     )
   }
 

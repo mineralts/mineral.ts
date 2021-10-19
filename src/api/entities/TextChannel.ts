@@ -1,5 +1,5 @@
 import Channel from './Channel'
-import { MessageCollectorOption, Snowflake } from '../../types'
+import { MessageCollectorOption, RequestOptions, Snowflake } from '../../types'
 import Guild from './Guild'
 import { MessageManager } from './MessageManager'
 import { MessageCollector } from '../components/MessageCollector'
@@ -7,7 +7,6 @@ import Request from '../../sockets/Request'
 import { createMessageFromPayload } from '../../../utils/Builders'
 import Message from './Message'
 import MessageOption from '../interfaces/MessageOption'
-import Embed from '../../../srcold/api/interfaces/Embed'
 import EmbedRow from '../components/embeds/EmbedRow'
 import Button from '../components/buttons/Button'
 import ButtonLink from '../components/buttons/ButtonLink'
@@ -27,14 +26,14 @@ export default class TextChannel extends Channel {
     public messages: MessageManager
   ) {
     super(id, 'GUILD_TEXT')
+    this.messages = new MessageManager(this)
   }
 
   public createMessageCollector (options?: MessageCollectorOption) {
     return new MessageCollector(this, options)
   }
 
-  public async send (messageOption: MessageOption): Promise<Message> {
-    console.log(messageOption.components)
+  public async send (messageOption: MessageOption, option?: RequestOptions): Promise<Message> {
     const request = new Request(`/channels/${this.id}/messages`)
     const payload = await request.post({
       ...messageOption,
@@ -42,7 +41,7 @@ export default class TextChannel extends Channel {
         row.components = row.components.map((component: Button | ButtonLink) => component.toJson())
         return row
       })
-    })
+    }, option)
 
     const newMessage = createMessageFromPayload({
       ...payload,

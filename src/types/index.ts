@@ -5,6 +5,7 @@ import VoiceChannel from '../api/entities/VoiceChannel'
 import RateLimit from '../api/entities/RateLimit'
 import Message from '../api/entities/Message'
 import Emoji from '../api/entities/Emoji'
+import Reaction from '../api/entities/Reaction'
 
 export type Snowflake = string
 export type Milliseconds = number
@@ -72,10 +73,12 @@ export enum Opcode {
 export type Awaited<T> = T | PromiseLike<T>
 
 export interface MineralVein {
-  ready: [client: ClientUser],
-  guildCreate: [guild: Guild],
-  messageCreate: [message: Message],
-  rateLimit: [rateLimit: RateLimit],
+  ready: [client: ClientUser]
+  guildCreate: [guild: Guild]
+  messageCreate: [message: Message]
+  rateLimit: [rateLimit: RateLimit]
+  messageReactionAdd: [message: Message, reaction: Reaction]
+  messageReactionRemove: [message: Message, reaction: Reaction]
 }
 
 export enum ChannelType {
