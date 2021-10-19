@@ -17,7 +17,7 @@ export default class ButtonLink extends BaseButton {
     else super(ButtonStyle.LINK, undefined, undefined)
 
     if (props?.emoji) {
-      this.emoji = this.parseEmoji(props.emoji)
+      this.emoji = this.parseEmoji(props.emoji) as any
     }
 
     if (props?.url) {

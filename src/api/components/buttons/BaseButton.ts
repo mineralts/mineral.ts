@@ -24,7 +24,7 @@ export default class BaseButton {
   }
 
   public setEmoji (emoji: string | Emoji) {
-    this.emoji = this.parseEmoji(emoji)
+    this.emoji = this.parseEmoji(emoji) as any
     return this
   }
 

@@ -77,6 +77,7 @@ export interface MineralVein {
   ready: [client: ClientUser]
   guildCreate: [guild: Guild]
   messageCreate: [message: Message]
+  messageUpdate: [before: Message | undefined, after: Message]
   rateLimit: [rateLimit: RateLimit]
   messageReactionAdd: [message: Message, reaction: Reaction]
   messageReactionRemove: [message: Message, reaction: Reaction]

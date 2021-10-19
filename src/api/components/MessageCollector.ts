@@ -1,5 +1,5 @@
 import TextChannel from '../entities/TextChannel'
-import { Message } from '../entities/Message'
+import Message from '../entities/Message'
 import Context from '../../Context'
 import { MessageCollectorOption } from '../../types'
 import { EventEmitter } from 'events'
@@ -18,7 +18,7 @@ export class MessageCollector extends EventEmitter {
     super()
   }
 
-  private getInfluer () {
+  protected getInfluer () {
     return influer<{ messages: Message[] }>({ messages: [] })
   }
 

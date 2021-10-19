@@ -6,6 +6,7 @@ import { MessagePacket } from './MessagePacket'
 import MessageReactionAddPacket from './MessageReactionAddPacket'
 import MessageReactionRemovePacket from './MessageReactionRemovePacket'
 import PresenceUpdatePacket from './PresenceUpdatePacket'
+import MessageUpdatePacket from './MessageUpdatePacket'
 
 export default class PacketManager {
   public packets: Collection<string, BasePacket[]> = new Collection()
@@ -18,6 +19,7 @@ export default class PacketManager {
       new MessageReactionAddPacket(),
       new MessageReactionRemovePacket(),
       new PresenceUpdatePacket(),
+      new MessageUpdatePacket(),
     )
   }
 

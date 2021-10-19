@@ -1,4 +1,4 @@
-import { ButtonStyle, Intent } from '../../../types'
+import { ButtonStyle } from '../../../types'
 import Emoji from '../../entities/Emoji'
 import BaseButton from './BaseButton'
 
@@ -18,7 +18,7 @@ export default class Button extends BaseButton {
     else super(ButtonStyle.LINK, undefined, undefined)
 
     if (props?.emoji) {
-      this.emoji = this.parseEmoji(props.emoji)
+      this.emoji = this.parseEmoji(props.emoji) as any
     }
 
     if (props?.style) {
@@ -51,7 +51,7 @@ export default class Button extends BaseButton {
   }
 
   public setEmoji (emoji: string | Emoji) {
-    this.emoji = this.parseEmoji(emoji)
+    this.emoji = this.parseEmoji(emoji) as any
     return this
   }
 

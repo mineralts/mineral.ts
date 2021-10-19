@@ -84,7 +84,7 @@ export default class Message {
     let a: Emoji = emoji as Emoji
     if (typeof emoji === 'string') {
       const parsedEmoji = parseEmoji(emoji)
-      a = new Emoji(parsedEmoji.id, parsedEmoji.name, false, true, false, [])
+      a = new Emoji(parsedEmoji!.id!, parsedEmoji!.name, false, true, false, [])
     }
 
    this.reactions.addReaction(a, client.clientUser!)
