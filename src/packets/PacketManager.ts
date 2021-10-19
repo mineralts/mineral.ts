@@ -7,6 +7,7 @@ import MessageReactionAddPacket from './MessageReactionAddPacket'
 import MessageReactionRemovePacket from './MessageReactionRemovePacket'
 import PresenceUpdatePacket from './PresenceUpdatePacket'
 import MessageUpdatePacket from './MessageUpdatePacket'
+import VoiceJoinPacket from './VoiceJoinPacket'
 
 export default class PacketManager {
   public packets: Collection<string, BasePacket[]> = new Collection()
@@ -20,6 +21,7 @@ export default class PacketManager {
       new MessageReactionRemovePacket(),
       new PresenceUpdatePacket(),
       new MessageUpdatePacket(),
+      new VoiceJoinPacket(),
     )
   }
 
