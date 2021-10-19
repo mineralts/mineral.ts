@@ -15,7 +15,6 @@ import { MessageManager } from '../api/entities/MessageManager'
 import Presence from '../api/entities/Presence'
 import Activity from '../api/entities/Activity'
 import { DateTime } from 'luxon'
-import PresenceManager from '../api/entities/PresenceManager'
 import Emoji from '../api/entities/Emoji'
 import NewsChannel from '../api/entities/NewsChannel'
 import { keyFromEnum } from '../../utils'
@@ -47,11 +46,14 @@ export default class GuildCreatePacket extends BasePacket {
       }
     })
 
+    this.guildMembers.forEach((member: GuildMember) => {
+      member.presence = this.presences.get(member.user.id)
+    })
+
     this.guild.owner = this.guildMembers.get(payload.owner_id)
     this.guild.members.register(this.guildMembers)
     this.guild.channels.register(this.channels)
     this.guild.emojis.register(this.emojis)
-    this.guild.presences.register(this.presences)
     this.guild.roles.register(this.roles)
 
     client.cacheManager.guilds.cache.set(this.guild.id, this.guild)
@@ -139,7 +141,8 @@ export default class GuildCreatePacket extends BasePacket {
           : undefined,
         member.is_pending,
         undefined,
-        DateTime.fromISO(payload.joined_at)
+        DateTime.fromISO(payload.joined_at),
+        undefined
       )
 
       this.guildMembers.set(guildMember.id, guildMember)
@@ -250,7 +253,6 @@ export default class GuildCreatePacket extends BasePacket {
       payload.stickers,
       new GuildMemberManager(),
       payload.rules_channel_id,
-      new PresenceManager(),
       payload.guild_scheduled_events,
       payload.default_message_notifications,
       payload.mfa_level,

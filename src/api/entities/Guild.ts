@@ -18,7 +18,6 @@ import GuildMember from './GuildMember'
 import Request from '../../sockets/Request'
 import Context from '../../Context'
 import VoiceChannel from './VoiceChannel'
-import PresenceManager from './PresenceManager'
 import { VerificationLevel } from '../../../srcold/types'
 import fs from 'fs'
 import { join } from 'path'
@@ -54,7 +53,6 @@ export default class Guild {
     public stickers: GuildStickerManager,
     public members: GuildMemberManager,
     public ruleChannelId: Snowflake,
-    public presences: PresenceManager,
     public guildScheduledEvents: any[],
     public defaultMessageNotifications: number,
     public MFALevel: number,

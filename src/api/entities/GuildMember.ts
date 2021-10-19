@@ -4,6 +4,7 @@ import GuildMemberRoleManager from './GuildMemberRoleManager'
 import VoiceState from './VoiceState'
 import Role from './Role'
 import { DateTime } from 'luxon'
+import Presence from './Presence'
 
 export default class GuildMember {
   constructor (
@@ -15,7 +16,8 @@ export default class GuildMember {
     public premiumSince: DateTime | undefined,
     public isPending: boolean,
     public voice: VoiceState | undefined,
-    public joinedAt: DateTime
+    public joinedAt: DateTime,
+    public presence: Presence | undefined
   ) {
   }
 }
