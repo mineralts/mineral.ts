@@ -4,10 +4,8 @@ import { ChannelResolvable, Snowflake } from '../../types'
 export default class GuildChannelManager {
   public cache: Collection<Snowflake, ChannelResolvable> = new Collection()
 
-  public register (channels: ChannelResolvable[]) {
-    channels.filter(a => a).forEach((channel: ChannelResolvable) => {
-      this.cache.set(channel.id, channel)
-    })
+  public register (channels: Collection<Snowflake, ChannelResolvable>) {
+    this.cache = channels
     return this
   }
 }

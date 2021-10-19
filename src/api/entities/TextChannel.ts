@@ -10,6 +10,7 @@ import MessageOption from '../interfaces/MessageOption'
 import EmbedRow from '../components/embeds/EmbedRow'
 import Button from '../components/buttons/Button'
 import ButtonLink from '../components/buttons/ButtonLink'
+import { CategoryChannel } from './CategoryChannel'
 
 export default class TextChannel extends Channel {
   constructor (
@@ -23,7 +24,8 @@ export default class TextChannel extends Channel {
     public position: number,
     public rateLimitePerUser: number,
     public topic: string,
-    public messages: MessageManager
+    public messages: MessageManager,
+    public parent?: CategoryChannel,
   ) {
     super(id, 'GUILD_TEXT')
     this.messages = new MessageManager(this)

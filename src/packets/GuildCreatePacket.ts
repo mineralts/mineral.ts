@@ -8,7 +8,7 @@ import Role from '../api/entities/Role'
 import GuildMemberManager from '../api/entities/GuildMemberManager'
 import GuildMember from '../api/entities/GuildMember'
 import GuildChannelManager from '../api/entities/GuildChannelManager'
-import { ActivityType, ChannelType, PresenceStatus } from '../types'
+import { ActivityType, ChannelResolvable, ChannelType, PresenceStatus, Snowflake } from '../types'
 import TextChannel from '../api/entities/TextChannel'
 import GuildMemberRoleManager from '../api/entities/GuildMemberRoleManager'
 import { MessageManager } from '../api/entities/MessageManager'
@@ -16,56 +16,213 @@ import Presence from '../api/entities/Presence'
 import Activity from '../api/entities/Activity'
 import { DateTime } from 'luxon'
 import PresenceManager from '../api/entities/PresenceManager'
-import EmojiManager from '../api/entities/EmojiManager'
 import Emoji from '../api/entities/Emoji'
-import GuildEmojiManager from '../api/entities/GuildEmojiManager'
 import NewsChannel from '../api/entities/NewsChannel'
 import { keyFromEnum } from '../../utils'
+import Collection from '@discordjs/collection'
+import GuildEmojiManager from '../api/entities/GuildEmojiManager'
+import VoiceChannel from '../api/entities/VoiceChannel'
+import { CategoryChannel } from '../api/entities/CategoryChannel'
 
 @Packet('GUILD_CREATE')
 export default class GuildCreatePacket extends BasePacket {
+  private guildMembers: Collection<Snowflake, GuildMember> = new Collection()
+  private presences: Collection<Snowflake, Presence> = new Collection()
+  private roles: Collection<Snowflake, Role> = new Collection()
+  private emojis: Collection<Snowflake, Emoji> = new Collection()
+  private channels: Collection<Snowflake, ChannelResolvable> = new Collection()
+  private guild!: Guild
+
   public async handle (client: MineralClient, payload: any) {
-    const guildRoleManager = new GuildRoleManager().register(payload.roles.flatMap((role: { [K: string]: any }) => {
-      return new Role(
-        role.id,
-        role.name,
-        role.unicode_emoji,
-        role.position,
-        role.permissions,
-        role.mentionable,
-        role.managed,
-        role.icon,
-        role.hoist,
-        role.color
-      )
-    }))
+    this.createRoles(payload)
+    this.createGuild(payload)
+    this.createGuidMembers(payload)
+    this.createChannel(payload)
+    this.createEmojis(payload)
+    this.createPresences(payload)
 
-    const guildMembers = new GuildMemberManager().register(payload.members.flatMap((guildMember: { [K: string]: any }) => {
-      const user = new User(
-        guildMember.user.id,
-        guildMember.user.username,
-        guildMember.user.discriminator,
-        `${guildMember.user.username}#${guildMember.user.discriminator}`,
-        guildMember.user.bot === true,
-        guildMember.user.verified === true,
-        guildMember.user.mfa_enabled === true,
-        guildMember.user.flags,
-        guildMember.user.email,
-        guildMember.user.avatar,
-        guildMember.user.banner,
-      )
+    this.channels.forEach((channel: ChannelResolvable) => {
+      if (!(channel instanceof CategoryChannel)) {
+        channel.parent = this.channels.get(channel.parentId)
+      }
+    })
 
-      return new GuildMember(
-        guildMember.user.id,
+    this.guild.owner = this.guildMembers.get(payload.owner_id)
+    this.guild.members.register(this.guildMembers)
+    this.guild.channels.register(this.channels)
+    this.guild.emojis.register(this.emojis)
+    this.guild.presences.register(this.presences)
+    this.guild.roles.register(this.roles)
+
+    client.cacheManager.guilds.cache.set(this.guild.id, this.guild)
+
+    client.emit('guildCreate', this.guild)
+  }
+
+  protected createChannel (payload) {
+    payload.channels.forEach((item: any) => {
+      let channel: any
+      if (item.type === ChannelType.GUILD_TEXT) {
+        channel = new TextChannel(
+          item.id,
+          item.name,
+          this.guild.id,
+          this.guild,
+          item.last_message_id,
+          item.parent_id,
+          item.permission_overwrites,
+          item.position,
+          item.rate_limit_per_user,
+          item.topic,
+          new MessageManager(),
+          undefined
+        )
+      }
+
+      if (item.type === ChannelType.GUILD_NEWS) {
+        channel = new NewsChannel(
+          item.id,
+          item.name,
+          this.guild.id,
+          this.guild,
+          item.last_message_id,
+          item.parent_id,
+          item.permission_overwrites,
+          item.position,
+          item.rate_limit_per_user,
+          item.topic,
+          new MessageManager()
+        )
+      }
+
+      if (item.type === ChannelType.GUILD_VOICE) {
+        channel = new VoiceChannel(
+          item.id,
+          item.name,
+          item.user_limit,
+          item.rtc_region,
+          item.rate_limit_per_user,
+          item.position,
+          item.permission_overwrites,
+          item.parent_id,
+          item.bitrate,
+          undefined,
+        )
+      }
+
+      if (item.type === ChannelType.GUILD_CATEGORY) {
+        channel = new CategoryChannel(
+          item.id,
+          item.name,
+        )
+      }
+
+      if (channel) {
+        this.channels.set(channel.id, channel)
+      }
+    })
+  }
+
+  protected createGuidMembers (payload) {
+    payload.members.forEach((member: any) => {
+      const user = this.createUser(member.user)
+      const guildMember = new GuildMember(
+        member.user.id,
+        member.nick || user.username,
         user,
-        new GuildMemberRoleManager().register(guildMember.roles.flatMap((id: string) => guildRoleManager.cache.get(id))),
-        payload.mute === true,
-        payload.deaf === true,
-        payload.hoisted_role
+        new GuildMemberRoleManager(),
+        member.highest_role
+          ? this.roles.get(member.highest_role)!
+          : null,
+        member.premium_since
+          ? DateTime.fromISO(member.premium_since)
+          : undefined,
+        member.is_pending,
+        undefined,
+        DateTime.fromISO(payload.joined_at)
       )
-    }))
 
-    const guild = new Guild(
+      this.guildMembers.set(guildMember.id, guildMember)
+    })
+  }
+
+  protected createUser (payload) {
+    return new User(
+      payload.id,
+      payload.username,
+      payload.discriminator,
+      `${payload.username}#${payload.discriminator}`,
+      payload.bot === true,
+      payload.verified === true,
+      payload.mfa_enabled === true,
+      payload.public_flags
+      ,
+      payload.email,
+      payload.avatar,
+      payload.banner,
+    )
+  }
+
+  protected createEmojis (payload) {
+    payload.emojis.forEach((item) => {
+      const emoji = new Emoji(
+        item.id,
+        item.name,
+        item.managed,
+        item.available,
+        item.animated,
+        item.roles.map((role: any) => this.roles.get(role.id))
+      )
+      this.emojis.set(emoji.id, emoji)
+    })
+  }
+
+  protected createRoles (payload: any) {
+    payload.roles.forEach((item: any) => {
+      const role = new Role(
+        item.id,
+        item.name,
+        item.unicode_emoji,
+        item.position,
+        item.permissions,
+        item.mentionable,
+        item.managed,
+        item.icon,
+        item.hoist,
+        item.color
+      )
+      this.roles.set(role.id, role)
+    })
+  }
+
+  protected createPresences (payload) {
+    payload.presences.forEach((item: any) => {
+      const presence = new Presence(
+        this.guildMembers.get(item.user.id)!,
+        keyFromEnum(PresenceStatus, item.status) as keyof typeof PresenceStatus,
+        item.client_status.web || null,
+        item.client_status.desktop || null,
+        item.client_status.mobile || null,
+        item.activities.flatMap((activity: any) => this.createActivity(activity))
+      )
+
+      this.presences.set(presence.member.user.id, presence)
+    })
+  }
+
+  protected createActivity (payload) {
+    return new Activity(
+      payload.id,
+      ActivityType[payload.type as number] as any,
+      payload.state,
+      payload.name,
+      payload.emoji,
+      DateTime.fromMillis(payload.created_at)
+    )
+  }
+
+  protected createGuild (payload) {
+    this.guild = new Guild(
       payload.id,
       payload.name,
       payload.icon,
@@ -81,7 +238,7 @@ export default class GuildCreatePacket extends BasePacket {
       payload.application_id,
       payload.nsfw,
       payload.member_count,
-      guildRoleManager,
+      new GuildRoleManager(),
       payload.stage_instances,
       payload.guild_hashes,
       payload.afk_channel_id,
@@ -91,36 +248,18 @@ export default class GuildCreatePacket extends BasePacket {
       payload.premium_progress_bar_enabled,
       payload.features,
       payload.stickers,
-      guildMembers,
+      new GuildMemberManager(),
       payload.rules_channel_id,
-      new PresenceManager().register(payload.presences.flatMap((presence: { [K: string]: any }) => {
-        return new Presence(
-          guildMembers.cache.get(presence.user.id)!,
-          keyFromEnum(PresenceStatus, presence.status) as keyof typeof PresenceStatus,
-          presence.client_status.web || null,
-          presence.client_status.desktop || null,
-          presence.client_status.mobile || null,
-          presence.activities.flatMap((activity: { [K: string]: any }) => {
-            return new Activity(
-              activity.id,
-              ActivityType[activity.type as number] as any,
-              activity.state,
-              activity.name,
-              activity.emoji,
-              DateTime.fromMillis(activity.created_at)
-            )
-          })
-        )
-      })),
+      new PresenceManager(),
       payload.guild_scheduled_events,
       payload.default_message_notifications,
       payload.mfa_level,
       payload.threads,
       payload.max_members_size,
-      new EmojiManager(),
+      new GuildEmojiManager(),
       payload.preferred_locale,
       payload.owner_id,
-      guildMembers.cache.get(payload.owner_id)!,
+      this.guildMembers.get(payload.owner_id),
       payload.max_video_channel_users,
       Object.values(payload.application_command_counts).reduce((a: any, b: any) => a + b) as number,
       payload.application_command_count,
@@ -129,56 +268,5 @@ export default class GuildCreatePacket extends BasePacket {
       payload.vanity_url_code,
       payload.embedded_activities
     )
-
-    guild.emojis = new GuildEmojiManager().register(payload.emojis.map((emoji: { [K: string]: any }) => {
-      return new Emoji(
-        emoji.id,
-        emoji.name,
-        emoji.managed,
-        emoji.available,
-        emoji.animated,
-        emoji.roles.forEach((emoji: Emoji) => guild.roles.cache.get(emoji.id))
-      )
-    }))
-
-    guild.channels = new GuildChannelManager().register(payload.channels.map((channel: { [K: string]: any }) => {
-      if (channel.type === ChannelType.GUILD_TEXT) {
-        return new TextChannel(
-          channel.id,
-          channel.name,
-          guild.id,
-          guild,
-          channel.last_message_id,
-          channel.parent_id,
-          channel.permission_overwrites,
-          channel.position,
-          channel.rate_limit_per_user,
-          channel.topic,
-          new MessageManager()
-        )
-      }
-
-      if (channel.type === ChannelType.GUILD_NEWS) {
-        return new NewsChannel(
-          channel.id,
-          channel.name,
-          guild.id,
-          guild,
-          channel.last_message_id,
-          channel.parent_id,
-          channel.permission_overwrites,
-          channel.position,
-          channel.rate_limit_per_user,
-          channel.topic,
-          new MessageManager()
-        )
-      }
-    }))
-
-    client.cacheManager.guilds.cache.set(guild.id, guild)
-
-    // console.log('payload', payload)
-
-    client.emit('guildCreate', guild)
   }
 }

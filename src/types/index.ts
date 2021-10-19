@@ -7,6 +7,8 @@ import Message from '../api/entities/Message'
 import Emoji from '../api/entities/Emoji'
 import Reaction from '../api/entities/Reaction'
 import Presence from '../api/entities/Presence'
+import GuildMember from '../api/entities/GuildMember'
+import { CategoryChannel } from '../api/entities/CategoryChannel'
 
 export type Snowflake = string
 export type Milliseconds = number
@@ -82,6 +84,7 @@ export interface MineralVein {
   messageReactionAdd: [message: Message, reaction: Reaction]
   messageReactionRemove: [message: Message, reaction: Reaction]
   presenceUpdate: [before: Presence | undefined, after: Presence]
+  voiceJoin: [member: GuildMember]
 }
 
 export enum ChannelType {
@@ -98,7 +101,7 @@ export enum ChannelType {
   GUILD_STAGE_VOICE = 13,
 }
 
-export type ChannelResolvable = TextChannel | VoiceChannel
+export type ChannelResolvable = TextChannel | VoiceChannel | CategoryChannel
 
 export enum Region {
   FRANCE = 'fr',

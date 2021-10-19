@@ -63,7 +63,7 @@ export default class Guild {
     public emojis: GuildEmojiManager,
     public defaultLang: string,
     public ownerId: Snowflake,
-    public owner: GuildMember,
+    public owner: GuildMember | undefined,
     public maxVideoChannelUsers: number,
     public registeredCommandCount: number,
     public applicationCommandCount: number,

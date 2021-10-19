@@ -8,7 +8,7 @@ export default class GuildRoleManager {
   constructor () {
   }
 
-  public register (roles: Role[]) {
+  public register (roles: Collection<Snowflake, Role>) {
     roles.forEach((role: Role) => {
       this.cache.set(role.id, role)
     })
