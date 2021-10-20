@@ -150,6 +150,8 @@ export function createChannelFromPayload (payload) {
     channel = new VoiceChannel(
       payload.id,
       payload.name,
+      payload.guild_id,
+      undefined,
       payload.user_limit,
       payload.rtc_region,
       payload.rate_limit_per_user,
@@ -165,6 +167,8 @@ export function createChannelFromPayload (payload) {
     channel = new CategoryChannel(
       payload.id,
       payload.name,
+      payload.guild_id,
+      undefined
     )
   }
 

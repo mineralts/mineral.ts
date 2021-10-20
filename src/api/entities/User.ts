@@ -2,6 +2,7 @@ import { Snowflake } from '../../types'
 import BaseClient from './BaseClient'
 import Rest from '../../Rest'
 import Presence from './Presence'
+import { DateTime } from 'luxon'
 
 export default class User extends BaseClient {
   constructor (
@@ -10,6 +11,7 @@ export default class User extends BaseClient {
     public readonly discriminator: string,
     public readonly tag: string,
     public readonly isBot: boolean,
+    public readonly premiumSince: DateTime | undefined,
     public readonly isVerified: boolean,
     public readonly hasMfaEnabled: boolean,
     public readonly flags: number,

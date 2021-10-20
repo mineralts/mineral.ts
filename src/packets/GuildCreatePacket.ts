@@ -101,6 +101,8 @@ export default class GuildCreatePacket extends BasePacket {
         channel = new VoiceChannel(
           item.id,
           item.name,
+          this.guild.id,
+          this.guild,
           item.user_limit,
           item.rtc_region,
           item.rate_limit_per_user,
@@ -116,6 +118,8 @@ export default class GuildCreatePacket extends BasePacket {
         channel = new CategoryChannel(
           item.id,
           item.name,
+          this.guild.id,
+          this.guild,
         )
       }
 
@@ -136,9 +140,6 @@ export default class GuildCreatePacket extends BasePacket {
         member.highest_role
           ? this.roles.get(member.highest_role)!
           : null,
-        member.premium_since
-          ? DateTime.fromISO(member.premium_since)
-          : undefined,
         member.is_pending,
         undefined,
         DateTime.fromISO(payload.joined_at),
@@ -155,10 +156,12 @@ export default class GuildCreatePacket extends BasePacket {
       payload.discriminator,
       `${payload.username}#${payload.discriminator}`,
       payload.bot === true,
+      payload.premium_since
+        ? DateTime.fromISO(payload.premium_since)
+        : undefined,
       payload.verified === true,
       payload.mfa_enabled === true,
-      payload.public_flags
-      ,
+      payload.public_flags,
       payload.email,
       payload.avatar,
       payload.banner,

@@ -1,9 +1,13 @@
 import { ChannelType, Snowflake } from '../../../types'
+import Guild from '../Guild'
 
 export default class Channel {
   constructor (
     public id: Snowflake,
     public type: keyof typeof ChannelType,
+    public name: string,
+    public guildId: Snowflake,
+    public guild: Guild | undefined,
   ) {
   }
 

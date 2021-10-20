@@ -28,7 +28,7 @@ export default class BaseTextualChannel extends Channel {
     public messages: MessageManager,
     public parent?: CategoryChannel,
   ) {
-    super(id, type)
+    super(id, type, name, guildId, guild)
   }
 
   public createMessageCollector (options?: MessageCollectorOption) {
@@ -37,19 +37,27 @@ export default class BaseTextualChannel extends Channel {
 
   public async send (messageOption: MessageOption, option?: RequestOptions): Promise<Message> {
     const request = new Request(`/channels/${this.id}/messages`)
+    const components = messageOption.components?.map((row: EmbedRow) => {
+      row.components = row.components.map((component: Button | ButtonLink) => component.toJson())
+      return row
+    })
+
     const payload = await request.post({
       ...messageOption,
-      components: messageOption.components?.map((row: EmbedRow) => {
-        row.components = row.components.map((component: Button | ButtonLink) => component.toJson())
-        return row
-      })
+      components
     }, option)
 
-    const newMessage = createMessageFromPayload({
+    return createMessageFromPayload({
       ...payload,
       guild_id: this.guild.id,
     })
-    this.messages.cache.set(newMessage.id, newMessage)
-    return newMessage
+  }
+
+  public async setParent (category: CategoryChannel | Snowflake, option?: RequestOptions) {
+    const request = new Request(`/channels/${this.id}`)
+    const parentId = category instanceof CategoryChannel
+      ? category.id
+      : category
+    await request.patch({ parent_id: parentId }, option)
   }
 }
