@@ -5,10 +5,15 @@ import Logger from '@leadcodedev/logger'
 import Heartbeat from './Heartbeat'
 import { Opcode } from '../types'
 import { Buffer } from 'buffer'
+import { Observable } from 'rxjs'
+import BasePacket from '../packets/BasePacket'
+import { DateTime } from 'luxon'
 
 export default class SocketManager {
   public websocket!: WebSocket
+  private reactor!: Observable<any>
   private heartbeat: Heartbeat
+  private start: DateTime = DateTime.now()
 
   constructor (public socket: Socket) {
     this.heartbeat = new Heartbeat(this)
@@ -19,33 +24,26 @@ export default class SocketManager {
 
     this.websocket = new WebSocket(`${data.url}/?v=9`)
 
-    this.websocket.on('open', () => {
-      this.websocket?.send(request)
+    this.reactor = new Observable((observer) => {
+      this.websocket.on('message', async (data: Buffer) => {
+        const payload = JSON.parse(data.toString())
+        observer.next(payload)
+      })
     })
 
-    this.websocket.on('error', (err: Error) => {
-      Logger.send('error', err.message)
-      this.heartbeat.shutdown()
-    })
+    this.open(request)
+    this.error()
+    this.close()
+    this.dispatch()
+  }
 
-    this.websocket.on('close', () => {
-      Logger.send('info', 'Closed')
-      this.heartbeat.shutdown()
-    })
-
-    this.websocket.on('message', async (message: Buffer) => {
-      const payload = JSON.parse(message.toString())
-
-
-      // const debug = this.socket.client.packetManager.packets.get('debug')
-      // await debug![0].handle(this.socket.client, payload)
-
+  private dispatch () {
+    this.reactor.subscribe(async (payload: any) => {
       this.heartbeat.watchSession(payload.d?.session_id)
 
       if (payload.op === Opcode.HELLO) {
         this.heartbeat.beat(payload.d.heartbeat_interval)
       }
-
 
       if (payload.t) {
         console.log(payload.t)
@@ -55,11 +53,31 @@ export default class SocketManager {
         }
 
         await Promise.all(
-          packetEvents.map(async (packet) => (
+          packetEvents.map(async (packet: BasePacket) => (
             packet?.handle(this.socket.client, payload.d)
           ))
         )
       }
+    })
+  }
+
+  private open (request: Buffer) {
+    this.websocket.on('open', () => {
+      this.websocket?.send(request)
+    })
+  }
+
+  private error () {
+    this.websocket.on('error', (err: Error) => {
+      Logger.send('error', err.message)
+      this.heartbeat.shutdown()
+    })
+  }
+
+  private close () {
+    this.websocket.on('close', () => {
+      Logger.send('info', 'Closed')
+      this.heartbeat.shutdown()
     })
   }
 
