@@ -1,7 +1,7 @@
 import BasePacket from './BasePacket'
 import MineralClient from '../clients/MineralClient'
 import Packet from '../decorators/Packet'
-import { createChannelFromPayload } from '../../utils/Builders'
+import { createChannelFromPayload } from '../utils/Builders'
 
 @Packet('CHANNEL_UPDATE')
 export default class ChannelUpdatePacket extends BasePacket {
@@ -15,6 +15,5 @@ export default class ChannelUpdatePacket extends BasePacket {
 
     client.emit('channelUpdate', before!, after)
     guild?.channels.cache.set(after.id, after)
-
   }
 }

@@ -1,7 +1,7 @@
 import BasePacket from './BasePacket'
 import MineralClient from '../clients/MineralClient'
 import Packet from '../decorators/Packet'
-import { createChannelFromPayload } from '../../utils/Builders'
+import { createChannelFromPayload } from '../utils/Builders'
 
 @Packet('CHANNEL_CREATE')
 export default class ChannelCreatePacket extends BasePacket {

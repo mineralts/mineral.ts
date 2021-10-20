@@ -5,7 +5,7 @@ import { ActivityType, PresenceStatus } from '../types'
 import Presence from '../api/entities/Presence'
 import Activity from '../api/entities/Activity'
 import { DateTime } from 'luxon'
-import { keyFromEnum } from '../../utils'
+import { keyFromEnum } from '../utils'
 
 @Packet('PRESENCE_UPDATE')
 export default class PresenceUpdatePacket extends BasePacket {

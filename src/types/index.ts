@@ -1,14 +1,14 @@
 import ClientUser from '../api/entities/ClientUser'
 import Guild from '../api/entities/Guild'
-import TextChannel from '../api/entities/TextChannel'
-import VoiceChannel from '../api/entities/VoiceChannel'
+import TextChannel from '../api/entities/channels/TextChannel'
+import VoiceChannel from '../api/entities/channels/VoiceChannel'
 import RateLimit from '../api/entities/RateLimit'
 import Message from '../api/entities/Message'
 import Emoji from '../api/entities/Emoji'
 import Reaction from '../api/entities/Reaction'
 import Presence from '../api/entities/Presence'
 import GuildMember from '../api/entities/GuildMember'
-import { CategoryChannel } from '../api/entities/CategoryChannel'
+import { CategoryChannel } from '../api/entities/channels/CategoryChannel'
 
 export type Snowflake = string
 export type Milliseconds = number

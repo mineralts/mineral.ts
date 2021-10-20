@@ -1,7 +1,7 @@
 import BasePacket from './BasePacket'
 import MineralClient from '../clients/MineralClient'
 import Packet from '../decorators/Packet'
-import TextChannel from '../api/entities/TextChannel'
+import TextChannel from '../api/entities/channels/TextChannel'
 import Reaction from '../api/entities/Reaction'
 
 @Packet('MESSAGE_REACTION_REMOVE')

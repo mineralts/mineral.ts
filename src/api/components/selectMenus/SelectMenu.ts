@@ -1,6 +1,6 @@
 import { ComponentType, MenuSelect, MenuSelectOption } from '../../../types'
 import Emoji from '../../entities/Emoji'
-import { parseEmoji } from '../../../../utils'
+import { parseEmoji } from '../../../utils'
 
 export default class SelectMenu {
   public type: ComponentType = ComponentType.SELECT_MENU

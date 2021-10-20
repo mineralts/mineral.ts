@@ -1,5 +1,5 @@
 import { ButtonStyle, ComponentType } from '../../../types'
-import { parseEmoji } from '../../../../utils'
+import { parseEmoji } from '../../../utils'
 import Emoji from '../../entities/Emoji'
 
 export default class BaseButton {

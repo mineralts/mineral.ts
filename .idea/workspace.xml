@@ -2,14 +2,115 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f56e3984-6480-48ce-85e1-aff0ae5ec9a1" name="Default Changelist" comment=":construction: Work in progress">
-      <change afterPath="$PROJECT_DIR$/src/packets/debugPacket.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/src/Context.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/src/Rest.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/src/api/components/MessageCollector.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/src/api/components/Scheduler.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/src/api/components/buttons/BaseButton.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/src/api/components/buttons/Button.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/src/api/components/buttons/ButtonLink.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/src/api/components/embeds/EmbedAuthor.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/src/api/components/embeds/EmbedFooter.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/src/api/components/embeds/EmbedImage.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/src/api/components/embeds/EmbedRow.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/src/api/components/embeds/EmbedThumbnail.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/src/api/components/embeds/EmbedVideo.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/src/api/components/embeds/MessageEmbed.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/src/api/components/selectMenus/SelectMenu.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/src/api/entities/Activity.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/src/api/entities/BaseClient.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/src/api/entities/ClientPresence.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/src/api/entities/ClientUser.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/src/api/entities/Emoji.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/src/api/entities/EmojiManager.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/src/api/entities/Guild.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/src/api/entities/GuildChannelManager.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/src/api/entities/GuildEmojiManager.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/src/api/entities/GuildHashes.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/src/api/entities/GuildMember.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/src/api/entities/GuildMemberManager.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/src/api/entities/GuildMemberRoleManager.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/src/api/entities/GuildRoleManager.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/src/api/entities/GuildStickerManager.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/src/api/entities/GuildThreadManager.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/src/api/entities/MentionResolvable.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/src/api/entities/Message.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/src/api/entities/MessageAttachment.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/src/api/entities/MessageManager.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/src/api/entities/MessageReactionManager.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/src/api/entities/Presence.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/src/api/entities/RateLimit.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/src/api/entities/Reaction.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/src/api/entities/Role.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/src/api/entities/User.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/src/api/entities/VoiceState.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/src/api/entities/channels/CategoryChannel.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/src/api/entities/channels/Channel.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/src/api/entities/channels/NewsChannel.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/src/api/entities/channels/TextChannel.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/src/api/entities/channels/VoiceChannel.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/src/api/interfaces/EmbedField.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/src/api/interfaces/MessageOption.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/src/caches/CacheManager.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/src/caches/GuildCache.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/src/clients/ClientOption.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/src/clients/MineralClient.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/src/decorators/Packet.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/src/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/src/packets/BasePacket.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/src/packets/ChannelCreatePacket.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/src/packets/ChannelDeletePacket.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/src/packets/ChannelUpdatePacket.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/src/packets/GuildCreatePacket.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/src/packets/MessageDeletePacket.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/src/packets/MessagePacket.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/src/packets/MessageReactionAddPacket.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/src/packets/MessageReactionRemovePacket.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/src/packets/MessageUpdatePacket.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/src/packets/PacketManager.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/src/packets/PresenceUpdatePacket.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/src/packets/ReadyPacket.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/src/packets/VoiceJoinPacket.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/src/sockets/Heartbeat.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/src/sockets/Request.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/src/sockets/Socket.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/src/sockets/SocketManager.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/src/types/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/src/utils/Builders.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/src/utils/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/entities/interactions/CommandInteraction.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/entities/interactions/CommandInteraction.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/components/MessageCollector.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/components/MessageCollector.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/components/buttons/BaseButton.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/components/buttons/BaseButton.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/components/embeds/EmbedAuthor.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/components/embeds/EmbedAuthor.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/components/embeds/MessageEmbed.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/components/embeds/MessageEmbed.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/components/selectMenus/SelectMenu.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/components/selectMenus/SelectMenu.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/entities/CategoryChannel.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/entities/channels/CategoryChannel.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/entities/Channel.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/entities/channels/Channel.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/entities/Guild.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/entities/Guild.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/entities/MentionResolvable.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/entities/MentionResolvable.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/entities/Message.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/entities/Message.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/entities/MessageManager.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/entities/MessageManager.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/entities/NewsChannel.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/entities/channels/NewsChannel.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/entities/TextChannel.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/entities/channels/TextChannel.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/entities/VoiceChannel.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/entities/channels/VoiceChannel.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/entities/VoiceState.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/entities/VoiceState.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/managers/PacketManager.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/managers/PacketManager.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/managers/WebSocketManager.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/managers/WebSocketManager.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/packets/GuildSubscriptionUpPacket.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/packets/GuildSubscriptionUpPacket.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/packets/InteractionPacket.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/packets/InteractionPacket.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/packets/ChannelCreatePacket.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/packets/ChannelCreatePacket.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/packets/ChannelUpdatePacket.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/packets/ChannelUpdatePacket.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/packets/GuildCreatePacket.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/packets/GuildCreatePacket.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/packets/MessageDeletePacket.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/packets/MessageDeletePacket.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/packets/MessagePacket.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/packets/MessagePacket.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/packets/MessageReactionAddPacket.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/packets/MessageReactionAddPacket.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/packets/MessageReactionRemovePacket.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/packets/MessageReactionRemovePacket.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/packets/MessageUpdatePacket.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/packets/MessageUpdatePacket.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/packets/PresenceUpdatePacket.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/packets/PresenceUpdatePacket.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/packets/ReadyPacket.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/packets/ReadyPacket.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/packets/VoiceJoinPacket.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/packets/VoiceJoinPacket.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/packets/VoiceStateUpdatePacket.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/types/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/srcold/types/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/srcold/types/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/Builders.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/Builders.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/index.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,32 +143,33 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File" value="TypeScript&#10;JSON" />
     <property name="dart.analysis.tool.window.visible" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/api/entities/interactions" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/api/entities/channels" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
-    <property name="ts.external.directory.path" value="E:\WindowsData\Bureau\Mineral\core\node_modules\typescript\lib" />
+    <property name="ts.external.directory.path" value="E:\WindowsData\Bureau\Mineral\mineral.ts\node_modules\typescript\lib" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\WindowsData\Bureau\Mineral\mineral.ts\src\api\entities\channels" />
+      <recent name="E:\WindowsData\Bureau\Mineral\mineral.ts\src\packets" />
+      <recent name="E:\WindowsData\Bureau\Mineral\mineral.ts\src\api\components" />
       <recent name="E:\WindowsData\Bureau\Mineral\core\src\api\entities\interactions" />
       <recent name="E:\WindowsData\Bureau\Mineral\core\src\api\entities\arguments" />
-      <recent name="E:\WindowsData\Bureau\Mineral\core\src\packets" />
-      <recent name="E:\WindowsData\Bureau\Mineral\core\src\api\entities" />
-      <recent name="$PROJECT_DIR$/src/api/entities" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="E:\WindowsData\Bureau\Mineral\core\src\api\entities\interactions" />
-      <recent name="E:\WindowsData\Bureau\Mineral\core\src\api\entities\arguments" />
-      <recent name="$PROJECT_DIR$/src/api/interfaces" />
-      <recent name="$PROJECT_DIR$/src/client" />
-      <recent name="$PROJECT_DIR$/src" />
+      <recent name="E:\WindowsData\Bureau\Mineral\mineral.ts\src" />
+      <recent name="E:\WindowsData\Bureau\Mineral\mineral.ts\src\api\entities\channels" />
+      <recent name="E:\WindowsData\Bureau\Mineral\mineral.ts\src\api\components\selectMenus" />
+      <recent name="E:\WindowsData\Bureau\Mineral\mineral.ts\src\api\components\embeds" />
+      <recent name="E:\WindowsData\Bureau\Mineral\mineral.ts\src\api\components\buttons" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -86,6 +188,10 @@
       <workItem from="1630236014502" duration="6231000" />
       <workItem from="1630242302701" duration="64414000" />
       <workItem from="1631733704016" duration="2363000" />
+      <workItem from="1634475998870" duration="15308000" />
+      <workItem from="1634556116956" duration="15143000" />
+      <workItem from="1634576757223" duration="28460000" />
+      <workItem from="1634666304678" duration="19268000" />
     </task>
     <task id="LOCAL-00001" summary=":tada: Initial commit">
       <created>1629665430259</created>
@@ -220,7 +326,217 @@
       <option name="project" value="LOCAL" />
       <updated>1630654843251</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary=":construction: Work in progress">
+      <created>1634395887131</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1634395887131</updated>
+    </task>
+    <task id="LOCAL-00021" summary=":construction: Work in progress">
+      <created>1634396301356</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1634396301356</updated>
+    </task>
+    <task id="LOCAL-00022" summary=":construction: Work in progress">
+      <created>1634498861970</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1634498861970</updated>
+    </task>
+    <task id="LOCAL-00023" summary=":construction: Work in progress">
+      <created>1634499263764</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1634499263764</updated>
+    </task>
+    <task id="LOCAL-00024" summary=":construction: Work in progress">
+      <created>1634501263397</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1634501263397</updated>
+    </task>
+    <task id="LOCAL-00025" summary=":construction: Work in progress">
+      <created>1634502019766</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1634502019766</updated>
+    </task>
+    <task id="LOCAL-00026" summary=":construction: Work in progress">
+      <created>1634569336071</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1634569336071</updated>
+    </task>
+    <task id="LOCAL-00027" summary=":construction: Work in progress">
+      <created>1634573998674</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1634573998674</updated>
+    </task>
+    <task id="LOCAL-00028" summary=":construction: Work in progress">
+      <created>1634574410816</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1634574410816</updated>
+    </task>
+    <task id="LOCAL-00029" summary=":construction: Work in progress">
+      <created>1634574590857</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1634574590857</updated>
+    </task>
+    <task id="LOCAL-00030" summary=":recycle: Refactor Buttons">
+      <created>1634577727230</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1634577727230</updated>
+    </task>
+    <task id="LOCAL-00031" summary=":recycle: Refactor Buttons">
+      <created>1634577843074</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1634577843074</updated>
+    </task>
+    <task id="LOCAL-00032" summary=":recycle: Refactor embeds">
+      <created>1634577895358</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1634577895358</updated>
+    </task>
+    <task id="LOCAL-00033" summary=":recycle: Refactor embeds">
+      <created>1634577927877</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1634577927877</updated>
+    </task>
+    <task id="LOCAL-00034" summary=":recycle: Refactor">
+      <created>1634580408693</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1634580408693</updated>
+    </task>
+    <task id="LOCAL-00035" summary=":construction: Implement select menu">
+      <created>1634593097824</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1634593097824</updated>
+    </task>
+    <task id="LOCAL-00036" summary=":construction: Implement react message">
+      <created>1634594096938</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1634594096938</updated>
+    </task>
+    <task id="LOCAL-00037" summary=":construction: Implement react events">
+      <created>1634641795712</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1634641795712</updated>
+    </task>
+    <task id="LOCAL-00038" summary=":construction: Implement presence update">
+      <created>1634646322347</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1634646322347</updated>
+    </task>
+    <task id="LOCAL-00039" summary=":construction: Implement presence update">
+      <created>1634646332148</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1634646332148</updated>
+    </task>
+    <task id="LOCAL-00040" summary=":construction: Implement message update">
+      <created>1634662120707</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1634662120707</updated>
+    </task>
+    <task id="LOCAL-00041" summary=":recycle: Refactor GuildCreatePacket.ts">
+      <created>1634673367448</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1634673367448</updated>
+    </task>
+    <task id="LOCAL-00042" summary=":construction: Implement VoiceState">
+      <created>1634673391352</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1634673391352</updated>
+    </task>
+    <task id="LOCAL-00043" summary=":construction: Move Presence from Guild to GuildMember">
+      <created>1634676134559</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1634676134559</updated>
+    </task>
+    <task id="LOCAL-00044" summary=":construction: Implement reactive functionality">
+      <created>1634718200086</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1634718200086</updated>
+    </task>
+    <task id="LOCAL-00045" summary=":construction: Move Presence to User">
+      <created>1634718566613</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1634718566613</updated>
+    </task>
+    <task id="LOCAL-00046" summary=":construction: Remove message from Delete event">
+      <created>1634722202179</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1634722202179</updated>
+    </task>
+    <task id="LOCAL-00047" summary=":construction: Work in progress">
+      <created>1634729581035</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1634729581035</updated>
+    </task>
+    <task id="LOCAL-00048" summary=":construction: Work in progress">
+      <created>1634730312646</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1634730312646</updated>
+    </task>
+    <task id="LOCAL-00049" summary=":construction: Work in progress">
+      <created>1634730606603</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1634730606603</updated>
+    </task>
+    <option name="localTasksCounter" value="50" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -239,11 +555,26 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value=":tada: Initial commit" />
     <MESSAGE value=":construction: Create row and buttons components" />
     <MESSAGE value=":construction: Create link components" />
     <MESSAGE value=":construction: Create menu components" />
     <MESSAGE value=":bug: Fix disabled menu" />
+    <MESSAGE value=":recycle: Refactor Buttons" />
+    <MESSAGE value=":recycle: Refactor embeds" />
+    <MESSAGE value=":recycle: Refactor" />
+    <MESSAGE value=":construction: Implement select menu" />
+    <MESSAGE value=":construction: Implement react message" />
+    <MESSAGE value=":construction: Implement react events" />
+    <MESSAGE value=":construction: Implement presence update" />
+    <MESSAGE value=":construction: Implement message update" />
+    <MESSAGE value=":recycle: Refactor GuildCreatePacket.ts" />
+    <MESSAGE value=":construction: Implement VoiceState" />
+    <MESSAGE value=":construction: Move Presence from Guild to GuildMember" />
+    <MESSAGE value=":construction: Implement reactive functionality" />
+    <MESSAGE value=":construction: Move Presence to User" />
+    <MESSAGE value=":construction: Remove message from Delete event" />
     <MESSAGE value=":construction: Work in progress" />
     <option name="LAST_COMMIT_MESSAGE" value=":construction: Work in progress" />
   </component>

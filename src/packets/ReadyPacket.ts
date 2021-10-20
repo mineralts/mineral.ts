@@ -19,6 +19,7 @@ export default class ReadyPacket extends BasePacket {
       payload.user.email,
       payload.user.avatar,
       payload.user.banner,
+      undefined
     )
 
     const clientUser = new ClientUser(

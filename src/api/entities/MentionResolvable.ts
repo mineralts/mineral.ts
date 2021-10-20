@@ -2,7 +2,7 @@ import Collection from '@discordjs/collection'
 import Role from './Role'
 import GuildMember from './GuildMember'
 import { Snowflake } from '../../types'
-import Channel from './Channel'
+import Channel from './channels/Channel'
 
 export class MentionResolvable {
   constructor (

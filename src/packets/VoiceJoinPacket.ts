@@ -1,7 +1,7 @@
 import BasePacket from './BasePacket'
 import MineralClient from '../clients/MineralClient'
 import VoiceState from '../api/entities/VoiceState'
-import VoiceChannel from '../api/entities/VoiceChannel'
+import VoiceChannel from '../api/entities/channels/VoiceChannel'
 
 export default class VoiceJoinPacket extends BasePacket {
   public packetType: string = 'VOICE_STATE_UPDATE'

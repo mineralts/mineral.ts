@@ -1,5 +1,5 @@
 import { Snowflake } from '../../types'
-import VoiceChannel from './VoiceChannel'
+import VoiceChannel from './channels/VoiceChannel'
 
 export default class VoiceState {
   constructor (

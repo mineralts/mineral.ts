@@ -1,4 +1,4 @@
-import TextChannel from '../entities/TextChannel'
+import TextChannel from '../entities/channels/TextChannel'
 import Message from '../entities/Message'
 import Context from '../../Context'
 import { MessageCollectorOption } from '../../types'

@@ -17,12 +17,12 @@ import GuildChannelManager from './GuildChannelManager'
 import GuildMember from './GuildMember'
 import Request from '../../sockets/Request'
 import Context from '../../Context'
-import VoiceChannel from './VoiceChannel'
+import VoiceChannel from './channels/VoiceChannel'
 import { VerificationLevel } from '../../../srcold/types'
 import fs from 'fs'
 import { join } from 'path'
 import Logger from '@leadcodedev/logger'
-import TextChannel from './TextChannel'
+import TextChannel from './channels/TextChannel'
 
 export default class Guild {
   constructor (

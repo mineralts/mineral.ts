@@ -1,8 +1,8 @@
 import BasePacket from './BasePacket'
 import Packet from '../decorators/Packet'
 import MineralClient from '../clients/MineralClient'
-import TextChannel from '../api/entities/TextChannel'
-import { createMessageFromPayload } from '../../utils/Builders'
+import TextChannel from '../api/entities/channels/TextChannel'
+import { createMessageFromPayload } from '../utils/Builders'
 
 @Packet('MESSAGE_CREATE')
 export class MessagePacket extends BasePacket {
