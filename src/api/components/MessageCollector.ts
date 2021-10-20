@@ -1,4 +1,3 @@
-import TextChannel from '../entities/channels/TextChannel'
 import Message from '../entities/Message'
 import Context from '../../Context'
 import { MessageCollectorOption } from '../../types'
@@ -6,13 +5,14 @@ import { EventEmitter } from 'events'
 import { v4 } from 'uuid'
 import Scheduler from './Scheduler'
 import influer from 'influer'
+import BaseTextualChannel from '../entities/channels/BaseTextualChannel'
 
 export class MessageCollector extends EventEmitter {
   private uuid: v4 = new v4()
   private scheduler: Scheduler | undefined
 
   constructor (
-    private channel: TextChannel,
+    private channel: BaseTextualChannel,
     private options?: MessageCollectorOption,
   ) {
     super()

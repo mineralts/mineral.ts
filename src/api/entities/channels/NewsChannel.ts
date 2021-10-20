@@ -1,22 +1,24 @@
 import { Snowflake } from '../../../types'
-import Channel from './Channel'
 import Guild from '../Guild'
 import { MessageManager } from '../MessageManager'
+import BaseTextualChannel from './BaseTextualChannel'
+import { CategoryChannel } from './CategoryChannel'
 
-export default class NewsChannel extends Channel {
+export default class NewsChannel extends BaseTextualChannel {
   constructor (
     id: Snowflake,
-    public name: string,
-    public guildId: Snowflake,
-    public guild: Guild,
-    public lastMessageId: Snowflake,
-    public parentId: Snowflake,
-    public permissionOverwrites: { [K: string]: string }[],
-    public position: number,
-    public rateLimitePerUser: number,
-    public topic: string,
-    public messages: MessageManager
+    name: string,
+    guildId: Snowflake,
+    guild: Guild,
+    lastMessageId: Snowflake,
+    parentId: Snowflake,
+    permissionOverwrites: { [K: string]: string }[],
+    position: number,
+    rateLimitePerUser: number,
+    topic: string,
+    messages: MessageManager,
+    parent?: CategoryChannel
   ) {
-    super(id, 'GUILD_NEWS')
+    super(id, 'GUILD_NEWS', name, guildId, guild, lastMessageId, parentId, permissionOverwrites, position, rateLimitePerUser, topic, messages, parent)
   }
 }
