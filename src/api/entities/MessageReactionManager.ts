@@ -25,7 +25,10 @@ export default class MessageReactionManager {
   }
 
   public async remove (member: Snowflake | GuildMember | ClientUser, option?: RequestOptions) {
-    const snowflake = member instanceof GuildMember || member instanceof ClientUser ? member.user.id : member
+    const snowflake = member instanceof GuildMember || member instanceof ClientUser
+      ? member.user.id
+      : member
+
     const memberReactions = this.cache.get(snowflake)
     if (memberReactions?.length) {
       await Promise.all(

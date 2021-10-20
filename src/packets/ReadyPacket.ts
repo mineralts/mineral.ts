@@ -3,6 +3,7 @@ import BasePacket from './BasePacket'
 import MineralClient from '../clients/MineralClient'
 import ClientUser from '../api/entities/ClientUser'
 import User from '../api/entities/User'
+import { DateTime } from 'luxon'
 
 @Packet('READY')
 export default class ReadyPacket extends BasePacket {
@@ -13,6 +14,7 @@ export default class ReadyPacket extends BasePacket {
       payload.user.discriminator,
       `${payload.user.username}#${payload.user.discriminator}`,
       payload.user.bot,
+      DateTime.fromISO(payload.user.premium_since),
       payload.user.verified,
       payload.user.mfa_enabled,
       payload.user.flags,

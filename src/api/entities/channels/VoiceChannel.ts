@@ -1,6 +1,6 @@
 import Channel from './Channel'
 import { Snowflake } from '../../../types'
-import { CategoryChannel } from './CategoryChannel'
+import CategoryChannel from './CategoryChannel'
 import Guild from '../Guild'
 
 export default class VoiceChannel extends Channel {

@@ -2,7 +2,7 @@ import { Snowflake } from '../../../types'
 import Guild from '../Guild'
 import { MessageManager } from '../MessageManager'
 import BaseTextualChannel from './BaseTextualChannel'
-import { CategoryChannel } from './CategoryChannel'
+import CategoryChannel from './CategoryChannel'
 
 export default class NewsChannel extends BaseTextualChannel {
   constructor (
