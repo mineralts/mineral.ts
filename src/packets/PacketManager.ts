@@ -10,6 +10,7 @@ import MessageUpdatePacket from './MessageUpdatePacket'
 import VoiceJoinPacket from './VoiceJoinPacket'
 import MessageDeletePacket from './MessageDeletePacket'
 import ChannelCreatePacket from './ChannelCreatePacket'
+import ChannelDeletePacket from './ChannelDeletePacket'
 
 export default class PacketManager {
   public packets: Collection<string, BasePacket[]> = new Collection()
@@ -26,6 +27,7 @@ export default class PacketManager {
       new VoiceJoinPacket(),
       new MessageDeletePacket(),
       new ChannelCreatePacket(),
+      new ChannelDeletePacket(),
     )
   }
 
