@@ -1,6 +1,7 @@
 import { Snowflake } from '../../types'
 import BaseClient from './BaseClient'
 import Rest from '../../Rest'
+import Presence from './Presence'
 
 export default class User extends BaseClient {
   constructor (
@@ -14,7 +15,8 @@ export default class User extends BaseClient {
     public readonly flags: number,
     public readonly email: string | null,
     public readonly avatar: string | null,
-    public readonly banner: string | undefined
+    public readonly banner: string | undefined,
+    public presence: Presence | undefined,
   ) {
     super()
   }

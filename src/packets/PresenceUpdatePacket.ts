@@ -31,7 +31,7 @@ export default class PresenceUpdatePacket extends BasePacket {
       ))
     )
 
-    client.emit('presenceUpdate', member.presence, presence)
-    member.presence = presence
+    client.emit('presenceUpdate', member.user.presence, presence)
+    member.user.presence = presence
   }
 }

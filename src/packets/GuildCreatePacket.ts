@@ -47,7 +47,7 @@ export default class GuildCreatePacket extends BasePacket {
     })
 
     this.guildMembers.forEach((member: GuildMember) => {
-      member.presence = this.presences.get(member.user.id)
+      member.user.presence = this.presences.get(member.user.id)
     })
 
     this.guild.owner = this.guildMembers.get(payload.owner_id)
@@ -142,7 +142,6 @@ export default class GuildCreatePacket extends BasePacket {
         member.is_pending,
         undefined,
         DateTime.fromISO(payload.joined_at),
-        undefined
       )
 
       this.guildMembers.set(guildMember.id, guildMember)
@@ -163,6 +162,7 @@ export default class GuildCreatePacket extends BasePacket {
       payload.email,
       payload.avatar,
       payload.banner,
+      undefined,
     )
   }
 
