@@ -1,23 +1,24 @@
-import Message from '../src/api/entities/Message'
+import Message from '../api/entities/Message'
 import { DateTime } from 'luxon'
-import { MentionResolvable } from '../src/api/entities/MentionResolvable'
-import { Snowflake } from '../src/types'
-import MessageAttachment from '../src/api/entities/MessageAttachment'
-import TextChannel from '../src/api/entities/TextChannel'
-import Context from '../src/Context'
-import MessageEmbed from '../srcold/api/entities/MessageEmbed'
-import EmbedImage from '../srcold/api/entities/EmbedImage'
-import EmbedThumbnail from '../srcold/api/entities/EmbedThumbnail'
-import EmbedFooter from '../srcold/api/entities/EmbedFooter'
-import EmbedAuthor from '../srcold/api/entities/EmbedAuthor'
-import EmbedRow from '../src/api/components/embeds/EmbedRow'
-import { ButtonStyle, ChannelType, ComponentType } from '../srcold/types'
-import Button from '../srcold/api/entities/components/Button'
+import { MentionResolvable } from '../api/entities/MentionResolvable'
+import { Snowflake } from '../types'
+import MessageAttachment from '../api/entities/MessageAttachment'
+import Context from '../Context'
+import EmbedRow from '../api/components/embeds/EmbedRow'
+import { ButtonStyle, ChannelType, ComponentType } from '../types'
 import Collection from '@discordjs/collection'
-import { MessageManager } from '../src/api/entities/MessageManager'
-import NewsChannel from '../src/api/entities/NewsChannel'
-import VoiceChannel from '../src/api/entities/VoiceChannel'
-import { CategoryChannel } from '../src/api/entities/CategoryChannel'
+import { MessageManager } from '../api/entities/MessageManager'
+import { CategoryChannel } from '../api/entities/channels/CategoryChannel'
+import TextChannel from '../api/entities/channels/TextChannel'
+import NewsChannel from '../api/entities/channels/NewsChannel'
+import VoiceChannel from '../api/entities/channels/VoiceChannel'
+import EmbedImage from '../api/components/embeds/EmbedImage'
+import EmbedThumbnail from '../api/components/embeds/EmbedThumbnail'
+import EmbedFooter from '../api/components/embeds/EmbedFooter'
+import EmbedAuthor from '../api/components/embeds/EmbedAuthor'
+import MessageEmbed from '../api/components/embeds/MessageEmbed'
+import Button from '../api/components/buttons/Button'
+import { keyFromEnum } from './index'
 
 export function createMessageFromPayload (payload) {
   const client = Context.getClient()
@@ -80,7 +81,7 @@ export function createMessageFromPayload (payload) {
 
         if (component.type === ComponentType.BUTTON) {
           return new Button({
-            style: ButtonStyle[component.style] as unknown as ButtonStyle,
+            style: keyFromEnum(ButtonStyle, component.style) as Exclude<keyof typeof ButtonStyle, 'LINK'>,
             customId: component.custom_id,
             label: component.label || null,
             emoji: component.emoji?.name || null,
@@ -93,7 +94,7 @@ export function createMessageFromPayload (payload) {
       const messageEmbed = new MessageEmbed()
       messageEmbed.title = embed.title
       messageEmbed.description = embed.description
-      messageEmbed.author = new EmbedAuthor(embed.author.name, embed.author.url)
+      messageEmbed.author = new EmbedAuthor(embed.author.name, embed.author.url, embed.author.icon)
       messageEmbed.fields = embed.fields.map((field) => ({
         name: field.title,
         value: field.value,

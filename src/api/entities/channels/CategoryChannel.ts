@@ -1,5 +1,5 @@
 import Channel from './Channel'
-import { Snowflake } from '../../types'
+import { Snowflake } from '../../../types'
 
 export class CategoryChannel extends Channel {
   constructor (

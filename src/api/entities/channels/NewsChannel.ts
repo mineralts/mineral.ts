@@ -1,7 +1,7 @@
-import { Snowflake } from '../../types'
+import { Snowflake } from '../../../types'
 import Channel from './Channel'
-import Guild from './Guild'
-import { MessageManager } from './MessageManager'
+import Guild from '../Guild'
+import { MessageManager } from '../MessageManager'
 
 export default class NewsChannel extends Channel {
   constructor (
