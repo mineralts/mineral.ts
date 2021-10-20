@@ -63,7 +63,7 @@ export default class GuildCreatePacket extends BasePacket {
 
   protected createChannel (payload) {
     payload.channels.forEach((item: any) => {
-      let channel: any
+      let channel!: ChannelResolvable
       if (item.type === ChannelType.GUILD_TEXT) {
         channel = new TextChannel(
           item.id,
