@@ -21,7 +21,7 @@ import { keyFromEnum } from '../utils'
 import Collection from '@discordjs/collection'
 import GuildEmojiManager from '../api/entities/GuildEmojiManager'
 import VoiceChannel from '../api/entities/channels/VoiceChannel'
-import { CategoryChannel } from '../api/entities/channels/CategoryChannel'
+import CategoryChannel from '../api/entities/channels/CategoryChannel'
 
 @Packet('GUILD_CREATE')
 export default class GuildCreatePacket extends BasePacket {

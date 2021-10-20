@@ -10,7 +10,7 @@ import ButtonLink from '../../components/buttons/ButtonLink'
 import { createMessageFromPayload } from '../../../utils/Builders'
 import Guild from '../Guild'
 import { MessageManager } from '../MessageManager'
-import { CategoryChannel } from './CategoryChannel'
+import CategoryChannel from './CategoryChannel'
 
 export default class BaseTextualChannel extends Channel {
   constructor (
@@ -51,13 +51,5 @@ export default class BaseTextualChannel extends Channel {
       ...payload,
       guild_id: this.guild.id,
     })
-  }
-
-  public async setParent (category: CategoryChannel | Snowflake, option?: RequestOptions) {
-    const request = new Request(`/channels/${this.id}`)
-    const parentId = category instanceof CategoryChannel
-      ? category.id
-      : category
-    await request.patch({ parent_id: parentId }, option)
   }
 }

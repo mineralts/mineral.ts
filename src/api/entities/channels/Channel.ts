@@ -1,5 +1,7 @@
-import { ChannelType, Snowflake } from '../../../types'
+import { ChannelType, RequestOptions, Snowflake } from '../../../types'
 import Guild from '../Guild'
+import CategoryChannel from './CategoryChannel'
+import Request from '../../../sockets/Request'
 
 export default class Channel {
   constructor (
@@ -26,5 +28,13 @@ export default class Channel {
 
   public isCategory () {
     return ChannelType[this.type] === ChannelType.GUILD_CATEGORY
+  }
+
+  public async setParent (category: CategoryChannel | Snowflake, option?: RequestOptions) {
+    const request = new Request(`/channels/${this.id}`)
+    const parentId = typeof category === 'string'
+      ? category
+      : category.id
+    await request.patch({ parent_id: parentId }, option)
   }
 }

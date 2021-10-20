@@ -8,7 +8,7 @@ import Emoji from '../api/entities/Emoji'
 import Reaction from '../api/entities/Reaction'
 import Presence from '../api/entities/Presence'
 import GuildMember from '../api/entities/GuildMember'
-import { CategoryChannel } from '../api/entities/channels/CategoryChannel'
+import CategoryChannel from '../api/entities/channels/CategoryChannel'
 
 export type Snowflake = string
 export type Milliseconds = number

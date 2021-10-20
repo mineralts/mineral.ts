@@ -2,7 +2,7 @@ import Channel from './Channel'
 import { Snowflake } from '../../../types'
 import Guild from '../Guild'
 
-export class CategoryChannel extends Channel {
+export default class CategoryChannel extends Channel {
   constructor (
     id: Snowflake,
     name: string,

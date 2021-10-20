@@ -1,7 +1,7 @@
 import { Snowflake } from '../../../types'
 import Guild from '../Guild'
 import { MessageManager } from '../MessageManager'
-import { CategoryChannel } from './CategoryChannel'
+import CategoryChannel from './CategoryChannel'
 import BaseTextualChannel from './BaseTextualChannel'
 
 export default class TextChannel extends BaseTextualChannel {
