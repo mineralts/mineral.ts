@@ -81,6 +81,7 @@ export interface MineralVein {
   messageCreate: [message: Message]
   messageUpdate: [before: Message | undefined, after: Message]
   messageDelete: [message: Message]
+  channelCreate: [channel: ChannelResolvable]
   rateLimit: [rateLimit: RateLimit]
   messageReactionAdd: [message: Message, reaction: Reaction]
   messageReactionRemove: [message: Message, reaction: Reaction]

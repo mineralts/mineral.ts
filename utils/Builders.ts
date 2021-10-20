@@ -11,9 +11,13 @@ import EmbedThumbnail from '../srcold/api/entities/EmbedThumbnail'
 import EmbedFooter from '../srcold/api/entities/EmbedFooter'
 import EmbedAuthor from '../srcold/api/entities/EmbedAuthor'
 import EmbedRow from '../src/api/components/embeds/EmbedRow'
-import { ButtonStyle, ComponentType } from '../srcold/types'
+import { ButtonStyle, ChannelType, ComponentType } from '../srcold/types'
 import Button from '../srcold/api/entities/components/Button'
 import Collection from '@discordjs/collection'
+import { MessageManager } from '../src/api/entities/MessageManager'
+import NewsChannel from '../src/api/entities/NewsChannel'
+import VoiceChannel from '../src/api/entities/VoiceChannel'
+import { CategoryChannel } from '../src/api/entities/CategoryChannel'
 
 export function createMessageFromPayload (payload) {
   const client = Context.getClient()
@@ -104,4 +108,64 @@ export function createMessageFromPayload (payload) {
       return messageEmbed
     })
   )
+}
+
+export function createChannelFromPayload (payload) {
+  let channel: any
+  if (payload.type === ChannelType.GUILD_TEXT) {
+    channel = new TextChannel(
+      payload.id,
+      payload.name,
+      payload.guild_id,
+      undefined as any,
+      payload.last_message_id,
+      payload.parent_id,
+      payload.permission_overwrites,
+      payload.position,
+      payload.rate_limit_per_user,
+      payload.topic,
+      new MessageManager(),
+      undefined
+    )
+  }
+
+  if (payload.type === ChannelType.GUILD_NEWS) {
+    channel = new NewsChannel(
+      payload.id,
+      payload.name,
+      payload.guild_id,
+      undefined as any,
+      payload.last_message_id,
+      payload.parent_id,
+      payload.permission_overwrites,
+      payload.position,
+      payload.rate_limit_per_user,
+      payload.topic,
+      new MessageManager()
+    )
+  }
+
+  if (payload.type === ChannelType.GUILD_VOICE) {
+    channel = new VoiceChannel(
+      payload.id,
+      payload.name,
+      payload.user_limit,
+      payload.rtc_region,
+      payload.rate_limit_per_user,
+      payload.position,
+      payload.permission_overwrites,
+      payload.parent_id,
+      payload.bitrate,
+      undefined,
+    )
+  }
+
+  if (payload.type === ChannelType.GUILD_CATEGORY) {
+    channel = new CategoryChannel(
+      payload.id,
+      payload.name,
+    )
+  }
+
+  return channel
 }
