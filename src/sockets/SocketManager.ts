@@ -13,13 +13,13 @@ export default class SocketManager {
   public websocket!: WebSocket
   private reactor!: Observable<any>
   private heartbeat: Heartbeat
-  private start: DateTime = DateTime.now()
 
   constructor (public socket: Socket) {
     this.heartbeat = new Heartbeat(this)
   }
 
   public async connect (request: Buffer) {
+    console.log(DateTime.now().toMillis())
     const { data } = await axios.get('/v9/gateway/bot')
 
     this.websocket = new WebSocket(`${data.url}/?v=9`)
@@ -42,6 +42,7 @@ export default class SocketManager {
       this.heartbeat.watchSession(payload.d?.session_id)
 
       if (payload.op === Opcode.HELLO) {
+        console.log(DateTime.now().toMillis())
         this.heartbeat.beat(payload.d.heartbeat_interval)
       }
 

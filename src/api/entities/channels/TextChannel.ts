@@ -3,6 +3,7 @@ import Guild from '../Guild'
 import { MessageManager } from '../MessageManager'
 import CategoryChannel from './CategoryChannel'
 import BaseTextualChannel from './BaseTextualChannel'
+import Message from '../Message'
 
 export default class TextChannel extends BaseTextualChannel {
   constructor (
@@ -11,6 +12,7 @@ export default class TextChannel extends BaseTextualChannel {
     guildId: Snowflake,
     guild: Guild,
     lastMessageId: Snowflake,
+    lastMessage: Message | undefined,
     parentId: Snowflake,
     permissionOverwrites: { [K: string]: string }[],
     position: number,
@@ -19,7 +21,7 @@ export default class TextChannel extends BaseTextualChannel {
     messages: MessageManager,
     parent?: CategoryChannel,
   ) {
-    super(id, 'GUILD_TEXT', name, guildId, guild, lastMessageId, parentId, permissionOverwrites, position, rateLimitePerUser, topic, messages, parent)
+    super(id, 'GUILD_TEXT', name, guildId, guild, lastMessageId, lastMessage, parentId, permissionOverwrites, position, rateLimitePerUser, topic, messages, parent)
     this.messages = new MessageManager(this)
   }
 }

@@ -13,6 +13,8 @@ export class MessagePacket extends BasePacket {
     const message = createMessageFromPayload(payload)
 
     if (channel) {
+      channel.lastMessageId = message.id
+      channel.lastMessage = message
       channel.messages.cache.set(message.id, message)
     }
 

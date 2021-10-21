@@ -20,6 +20,7 @@ export default class BaseTextualChannel extends Channel {
     public guildId: Snowflake,
     public guild: Guild,
     public lastMessageId: Snowflake,
+    public lastMessage: Message | undefined,
     public parentId: Snowflake,
     public permissionOverwrites: { [K: string]: string }[],
     public position: number,
