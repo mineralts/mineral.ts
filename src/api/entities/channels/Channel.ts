@@ -37,4 +37,9 @@ export default class Channel {
       : category.id
     await request.patch({ parent_id: parentId }, option)
   }
+
+  public async setName (value: string, option?: RequestOptions) {
+    const request = new Request(`/channels/${this.id}`)
+    await request.patch({ name: value }, option)
+  }
 }

@@ -11,6 +11,7 @@ import { createMessageFromPayload } from '../../../utils/Builders'
 import Guild from '../Guild'
 import { MessageManager } from '../MessageManager'
 import CategoryChannel from './CategoryChannel'
+import Logger from '@leadcodedev/logger'
 
 export default class TextChannelResolvable extends Channel {
   constructor (
@@ -34,6 +35,20 @@ export default class TextChannelResolvable extends Channel {
 
   public createMessageCollector (options?: MessageCollectorOption) {
     return new MessageCollector(this, options)
+  }
+
+  public async setCooldown (value: number, option?: RequestOptions) {
+    if (value < 0 || value > 21600) {
+      Logger.send('error', `${value} cannot be value < 0 or value > 21600`)
+    }
+
+    const request = new Request(`/channels/${this.id}`)
+    await request.patch({ rate_limit_per_user: value }, option)
+  }
+
+  public async setDescription (value: string, option?: RequestOptions) {
+    const request = new Request(`/channels/${this.id}`)
+    await request.patch({ topic: value }, option)
   }
 
   public async send (messageOption: MessageOption, option?: RequestOptions): Promise<Message> {
