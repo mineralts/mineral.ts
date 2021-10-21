@@ -250,3 +250,11 @@ export enum PresenceStatus {
   ONLINE = 'online',
   OFFLINE = 'offline',
 }
+
+export enum VerificationLevel {
+  NONE,
+  LOW,
+  MEDIUM,
+  HIGH,
+  VERY_HIGH,
+}

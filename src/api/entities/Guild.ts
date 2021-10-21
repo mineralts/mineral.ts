@@ -5,7 +5,7 @@ import {
   NotificationLevel,
   Region, RequestOptions,
   Snowflake,
-  SystemChannelFlag,
+  SystemChannelFlag, VerificationLevel
 } from '../../types'
 import GuildHashes from './GuildHashes'
 import GuildStickerManager from './GuildStickerManager'
@@ -18,7 +18,6 @@ import GuildMember from './GuildMember'
 import Request from '../../sockets/Request'
 import Context from '../../Context'
 import VoiceChannel from './channels/VoiceChannel'
-import { VerificationLevel } from '../../../srcold/types'
 import fs from 'fs'
 import { join } from 'path'
 import Logger from '@leadcodedev/logger'
