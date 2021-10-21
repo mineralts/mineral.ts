@@ -15,28 +15,24 @@ export class MessageManager {
     if (id) {
       const request = new Request(`/channels/${this.channel?.id}/messages/${id}`)
       const payload = await request.get(option)
-
-      const message = createMessageFromPayload({
-        ...payload,
-        guild_id: this.channel?.guild.id
-      })
-
-      this.cache.set(message.id, message)
+      this.instantiate(payload)
       return this
     }
 
     const request = new Request(`/channels/${this.channel?.id}/messages`)
     const payload = await request.get(option)
 
-    payload.forEach((item) => {
-      const message = createMessageFromPayload({
-        ...item,
-        guild_id: this.channel?.guild.id
-      })
-
-      this.cache.set(message.id, message)
-    })
+    payload.forEach((item) => this.instantiate(item))
 
     return this
+  }
+
+  private instantiate (payload) {
+    const message = createMessageFromPayload({
+      ...payload,
+      guild_id: this.channel?.guild.id
+    })
+
+    this.cache.set(message.id, message)
   }
 }
