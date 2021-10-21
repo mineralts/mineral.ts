@@ -12,7 +12,7 @@ import Guild from '../Guild'
 import { MessageManager } from '../MessageManager'
 import CategoryChannel from './CategoryChannel'
 
-export default class BaseTextualChannel extends Channel {
+export default class TextChannelResolvable extends Channel {
   constructor (
     id: Snowflake,
     type: keyof typeof ChannelType,

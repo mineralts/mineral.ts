@@ -2,10 +2,10 @@ import { Snowflake } from '../../../types'
 import Guild from '../Guild'
 import { MessageManager } from '../MessageManager'
 import CategoryChannel from './CategoryChannel'
-import BaseTextualChannel from './BaseTextualChannel'
+import TextChannelResolvable from './TextChannelResolvable'
 import Message from '../Message'
 
-export default class TextChannel extends BaseTextualChannel {
+export default class TextChannel extends TextChannelResolvable {
   constructor (
     id: Snowflake,
     name: string,
