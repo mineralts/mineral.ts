@@ -6,9 +6,8 @@
   "author": "leadcodedev <baptiste.parmantier.pro@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development esbuild-dev ./src/index.ts --supervise --commands --watch",
-    "start": "cross-env NODE_ENV=production node ./build/src/index.js",
-    "build": "tsc",
+    "dev": "esbuild-dev ./src/index.ts --supervise --commands --watch",
+    "build": "esbuild ./src/index.ts --bundle --tsconfig=tsconfig.json --platform=node --outfile=build/index.js --minify",
     "lint": "eslint \"{src,test}/**/*.ts\"",
     "lint:fix": "npm run lint -- --fix"
   },
@@ -20,6 +19,7 @@
     "@types/ws": "^7.4.7",
     "axios": "^0.21.1",
     "cross-env": "^7.0.3",
+    "esbuild": "^0.13.8",
     "esbuild-dev": "^0.8.0",
     "influer": "^1.0.3",
     "luxon": "^2.0.2",
