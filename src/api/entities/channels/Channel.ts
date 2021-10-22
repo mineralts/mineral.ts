@@ -42,4 +42,16 @@ export default class Channel {
     const request = new Request(`/channels/${this.id}`)
     await request.patch({ name: value }, option)
   }
+
+  public async delete (option?: RequestOptions) {
+    const communityChannelId = this.guild?.publicUpdateChannelId
+    const rulesChannelId = this.guild?.ruleChannelId
+
+    if (this.id === communityChannelId || this.id === rulesChannelId) {
+      return
+    }
+
+    const request = new Request(`/channels/${this.id}`)
+    await request.delete(option)
+  }
 }

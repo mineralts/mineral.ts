@@ -65,8 +65,12 @@ export default class Request {
   }
 
   protected retryOnRateLimit (err, fn: () => Promise<boolean | undefined | void>, options?: RequestOptions) {
-    const error = err.response.data
-    if ('retry_after' in error) {
+    if (!err.response?.data) {
+      return
+    }
+
+    if ('retry_after' in err.response.data) {
+      const error = err.response.data
       Logger.send('warn', `${error.message}. Please retry in ${Math.round(error.retry_after / 1000)} seconds.`)
 
       const client = Context.getClient()

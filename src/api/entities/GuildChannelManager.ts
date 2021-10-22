@@ -22,12 +22,11 @@ export default class GuildChannelManager {
   public async create (channel: ChannelOptionResolvable) {
     let payload: any
     const request = new Request(`/guilds/${this.guild?.id}/channels`)
-    console.log(channel.options?.parent || channel.options?.parentId)
     const baseChannel = {
       name: channel.name,
       type: ChannelTypeResolvable[channel.type],
       permission_overwrites: channel.permissionOverwrites || [],
-      parent_id: channel.options?.parent || channel.options?.parentId
+      parent_id: channel.options?.parent?.id || channel.options?.parentId
     }
 
     if (channel.type === 'GUILD_TEXT') {
