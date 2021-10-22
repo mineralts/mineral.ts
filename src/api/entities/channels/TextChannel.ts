@@ -1,6 +1,6 @@
 import { Snowflake } from '../../../types'
 import Guild from '../Guild'
-import { MessageManager } from '../MessageManager'
+import MessageManager from '../MessageManager'
 import CategoryChannel from './CategoryChannel'
 import TextChannelResolvable from './TextChannelResolvable'
 import Message from '../Message'
