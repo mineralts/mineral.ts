@@ -1,5 +1,5 @@
 import Channel from './Channel'
-import { ChannelType, MessageCollectorOption, RequestOptions, Snowflake } from '../../../types'
+import { ChannelTypeResolvable, MessageCollectorOption, RequestOptions, Snowflake } from '../../../types'
 import { MessageCollector } from '../../components/MessageCollector'
 import MessageOption from '../../interfaces/MessageOption'
 import Message from '../Message'
@@ -16,7 +16,7 @@ import Logger from '@leadcodedev/logger'
 export default class TextChannelResolvable extends Channel {
   constructor (
     id: Snowflake,
-    type: keyof typeof ChannelType,
+    type: keyof typeof ChannelTypeResolvable,
     public name: string,
     public guildId: Snowflake,
     public guild: Guild,

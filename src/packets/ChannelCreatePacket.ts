@@ -6,7 +6,6 @@ import { createChannelFromPayload } from '../utils/Builders'
 @Packet('CHANNEL_CREATE')
 export default class ChannelCreatePacket extends BasePacket {
   public async handle (client: MineralClient, payload: any) {
-    console.log(payload)
     const guild = client.cacheManager.guilds.cache.get(payload.guild_id)
     const channel = createChannelFromPayload(payload)
 

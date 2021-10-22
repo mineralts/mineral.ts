@@ -8,7 +8,7 @@ import Role from '../api/entities/Role'
 import GuildMemberManager from '../api/entities/GuildMemberManager'
 import GuildMember from '../api/entities/GuildMember'
 import GuildChannelManager from '../api/entities/GuildChannelManager'
-import { ActivityType, ChannelResolvable, ChannelType, PresenceStatus, Snowflake } from '../types'
+import { ActivityType, ChannelResolvable, ChannelTypeResolvable, PresenceStatus, Snowflake } from '../types'
 import TextChannel from '../api/entities/channels/TextChannel'
 import GuildMemberRoleManager from '../api/entities/GuildMemberRoleManager'
 import MessageManager from '../api/entities/MessageManager'
@@ -52,7 +52,7 @@ export default class GuildCreatePacket extends BasePacket {
 
     this.guild.owner = this.guildMembers.get(payload.owner_id)
     this.guild.members.register(this.guildMembers)
-    this.guild.channels.register(this.channels)
+    this.guild.channels = new GuildChannelManager(this.guild).register(this.channels)
     this.guild.emojis.register(this.emojis)
     this.guild.roles.register(this.roles)
 
@@ -64,7 +64,7 @@ export default class GuildCreatePacket extends BasePacket {
   protected createChannel (payload) {
     payload.channels.forEach((item: any) => {
       let channel!: ChannelResolvable
-      if (item.type === ChannelType.GUILD_TEXT) {
+      if (item.type === ChannelTypeResolvable.GUILD_TEXT) {
         channel = new TextChannel(
           item.id,
           item.name,
@@ -82,7 +82,7 @@ export default class GuildCreatePacket extends BasePacket {
         )
       }
 
-      if (item.type === ChannelType.GUILD_NEWS) {
+      if (item.type === ChannelTypeResolvable.GUILD_NEWS) {
         channel = new NewsChannel(
           item.id,
           item.name,
@@ -99,7 +99,7 @@ export default class GuildCreatePacket extends BasePacket {
         )
       }
 
-      if (item.type === ChannelType.GUILD_VOICE) {
+      if (item.type === ChannelTypeResolvable.GUILD_VOICE) {
         channel = new VoiceChannel(
           item.id,
           item.name,
@@ -116,7 +116,7 @@ export default class GuildCreatePacket extends BasePacket {
         )
       }
 
-      if (item.type === ChannelType.GUILD_CATEGORY) {
+      if (item.type === ChannelTypeResolvable.GUILD_CATEGORY) {
         channel = new CategoryChannel(
           item.id,
           item.name,

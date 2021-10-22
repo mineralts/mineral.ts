@@ -91,7 +91,7 @@ export interface MineralVein {
   voiceJoin: [member: GuildMember]
 }
 
-export enum ChannelType {
+export enum ChannelTypeResolvable {
   GUILD_TEXT = 0,
   DM = 1,
   GUILD_VOICE = 2,
@@ -258,3 +258,37 @@ export enum VerificationLevel {
   HIGH,
   VERY_HIGH,
 }
+
+type ChannelNode<Type extends keyof ChannelOptions> = {
+  name: string
+  type: Type
+  permissionOverwrites?: any[]
+  position?: number
+  options?: Type extends keyof ChannelOptions
+    ? ChannelOptions[Type]
+    : never
+}
+
+type ChannelOptions = {
+  GUILD_TEXT: {
+    nsfw?: boolean
+    cooldown?: number
+    topic?: string
+    parentId?: Snowflake
+    parent?: CategoryChannel
+  },
+  GUILD_VOICE: {
+    userLimit?: number
+    bitrate?: number
+    parentId?: Snowflake
+    parent?: CategoryChannel
+  },
+  GUILD_CATEGORY: {
+    parentId?: Snowflake
+    parent?: CategoryChannel
+  }
+}
+
+export type ChannelOptionResolvable = ChannelNode<'GUILD_TEXT'>
+  | ChannelNode<'GUILD_VOICE'>
+  | ChannelNode<'GUILD_CATEGORY'>

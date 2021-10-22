@@ -5,7 +5,7 @@ import { Snowflake } from '../types'
 import MessageAttachment from '../api/entities/MessageAttachment'
 import Context from '../Context'
 import EmbedRow from '../api/components/embeds/EmbedRow'
-import { ButtonStyle, ChannelType, ComponentType } from '../types'
+import { ButtonStyle, ChannelTypeResolvable, ComponentType } from '../types'
 import Collection from '@discordjs/collection'
 import MessageManager from '../api/entities/MessageManager'
 import CategoryChannel from '../api/entities/channels/CategoryChannel'
@@ -113,7 +113,7 @@ export function createMessageFromPayload (payload) {
 
 export function createChannelFromPayload (payload) {
   let channel: any
-  if (payload.type === ChannelType.GUILD_TEXT) {
+  if (payload.type === ChannelTypeResolvable.GUILD_TEXT) {
     channel = new TextChannel(
       payload.id,
       payload.name,
@@ -131,7 +131,7 @@ export function createChannelFromPayload (payload) {
     )
   }
 
-  if (payload.type === ChannelType.GUILD_NEWS) {
+  if (payload.type === ChannelTypeResolvable.GUILD_NEWS) {
     channel = new NewsChannel(
       payload.id,
       payload.name,
@@ -148,7 +148,7 @@ export function createChannelFromPayload (payload) {
     )
   }
 
-  if (payload.type === ChannelType.GUILD_VOICE) {
+  if (payload.type === ChannelTypeResolvable.GUILD_VOICE) {
     channel = new VoiceChannel(
       payload.id,
       payload.name,
@@ -165,7 +165,7 @@ export function createChannelFromPayload (payload) {
     )
   }
 
-  if (payload.type === ChannelType.GUILD_CATEGORY) {
+  if (payload.type === ChannelTypeResolvable.GUILD_CATEGORY) {
     channel = new CategoryChannel(
       payload.id,
       payload.name,
