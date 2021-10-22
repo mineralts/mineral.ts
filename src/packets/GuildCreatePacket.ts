@@ -47,6 +47,7 @@ export default class GuildCreatePacket extends BasePacket {
     })
 
     this.guildMembers.forEach((member: GuildMember) => {
+      member.guild = this.guild
       member.user.presence = this.presences.get(member.user.id)
     })
 
@@ -138,6 +139,7 @@ export default class GuildCreatePacket extends BasePacket {
         member.user.id,
         member.nick || user.username,
         user,
+        undefined as any,
         new GuildMemberRoleManager(),
         member.highest_role
           ? this.roles.get(member.highest_role)!
