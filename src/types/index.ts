@@ -284,8 +284,6 @@ type ChannelOptions = {
     parent?: CategoryChannel
   },
   GUILD_CATEGORY: {
-    parentId?: Snowflake
-    parent?: CategoryChannel
   }
 }
 
