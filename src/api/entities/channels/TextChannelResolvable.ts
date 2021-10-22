@@ -9,7 +9,7 @@ import Button from '../../components/buttons/Button'
 import ButtonLink from '../../components/buttons/ButtonLink'
 import { createMessageFromPayload } from '../../../utils/Builders'
 import Guild from '../Guild'
-import { MessageManager } from '../MessageManager'
+import MessageManager from '../MessageManager'
 import CategoryChannel from './CategoryChannel'
 import Logger from '@leadcodedev/logger'
 

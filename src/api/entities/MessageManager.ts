@@ -5,7 +5,7 @@ import Request from '../../sockets/Request'
 import { createMessageFromPayload } from '../../utils/Builders'
 import TextChannel from './channels/TextChannel'
 
-export class MessageManager {
+export default class MessageManager {
   public cache: Collection<Snowflake, Message> = new Collection()
 
   constructor (private channel?: TextChannel) {
