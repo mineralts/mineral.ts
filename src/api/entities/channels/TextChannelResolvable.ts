@@ -54,7 +54,9 @@ export default class TextChannelResolvable extends Channel {
   public async send (messageOption: MessageOption, option?: RequestOptions): Promise<Message> {
     const request = new Request(`/channels/${this.id}/messages`)
     const components = messageOption.components?.map((row: EmbedRow) => {
-      row.components = row.components.map((component: Button | ButtonLink) => component.toJson())
+      row.components = row.components.map((component: Button | ButtonLink) => {
+        return component.toJson()
+      })
       return row
     })
 
