@@ -22,8 +22,12 @@ import fs from 'fs'
 import { join } from 'path'
 import Logger from '@leadcodedev/logger'
 import TextChannel from './channels/TextChannel'
+import Command from '../components/commands/Command'
+import Collection from '@discordjs/collection'
 
 export default class Guild {
+  public commands: Collection<Snowflake, Command> = new Collection()
+
   constructor (
     public id: Snowflake,
     public name: string,
@@ -67,7 +71,7 @@ export default class Guild {
     public afkTimeout: number,
     public systemChannelId: Snowflake,
     public vanityUrlCode: string | null,
-    public embeddedActivities: any[]
+    public embeddedActivities: any[],
   ) {
   }
 
@@ -321,5 +325,22 @@ export default class Guild {
     if (result) {
       this.description = value
     }
+  }
+
+  public async registerCommands (...commands: Command[]) {
+    const client = Context.getClient()
+    const request = new Request(`/applications/${client.clientUser!.application.id}/guilds/${this.id}/commands`)
+
+    return Promise.all(
+      commands.map(async (command: Command) => {
+        console.log(command.toJson())
+        const payload = await request.post(command.toJson())
+
+        command.id = payload.id
+        command.guild = this
+
+        this.commands.set(command.id!, command)
+      })
+    )
   }
 }

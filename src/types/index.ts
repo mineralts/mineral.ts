@@ -9,6 +9,12 @@ import Reaction from '../api/entities/Reaction'
 import Presence from '../api/entities/Presence'
 import GuildMember from '../api/entities/GuildMember'
 import CategoryChannel from '../api/entities/channels/CategoryChannel'
+import StringArgument from '../api/components/commands/StringArgument'
+import NumberArgument from '../api/components/commands/NumberArgument'
+import ChoiceArgument from '../api/components/commands/ChoiceArgument'
+import Button from '../api/components/buttons/Button'
+import ButtonLink from '../api/components/buttons/ButtonLink'
+import SelectMenu from '../api/components/selectMenus/SelectMenu'
 
 export type Snowflake = string
 export type Milliseconds = number
@@ -283,10 +289,38 @@ type ChannelOptions = {
     parentId?: Snowflake
     parent?: CategoryChannel
   },
-  GUILD_CATEGORY: {
-  }
+  GUILD_CATEGORY: never
 }
 
 export type ChannelOptionResolvable = ChannelNode<'GUILD_TEXT'>
   | ChannelNode<'GUILD_VOICE'>
   | ChannelNode<'GUILD_CATEGORY'>
+
+export enum CommandType {
+  CHAT_INPUT = 1,
+  USER = 2,
+  MESSAGE = 3,
+}
+
+export enum CommandArgumentType {
+  SUB_COMMAND = 1,
+  SUB_COMMAND_GROUP	= 2,
+  STRING	= 3,
+  INTEGER	= 4,
+  BOOLEAN	= 5,
+  USER	= 6,
+  CHANNEL =	7,
+  ROLE =	8,
+  MENTIONABLE	= 9,
+  NUMBER = 10,
+}
+
+export type ChoiceOption = {
+  name: string
+  emoji?: string | undefined
+  value: string | number | GuildMember | ChannelResolvable
+}
+
+export type CommandParamsResolvable = StringArgument | NumberArgument | ChoiceArgument
+
+export type MessageComponentResolvable = Button | ButtonLink | SelectMenu
