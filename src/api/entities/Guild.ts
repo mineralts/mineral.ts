@@ -333,7 +333,6 @@ export default class Guild {
 
     return Promise.all(
       commands.map(async (command: Command) => {
-        console.log(command.toJson())
         const payload = await request.post(command.toJson())
 
         command.id = payload.id

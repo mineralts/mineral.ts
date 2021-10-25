@@ -1,9 +1,16 @@
-import { CommandArgumentType, CommandParamsResolvable, CommandType, Snowflake } from '../../../types'
+import {
+  ChannelTypeResolvable,
+  CommandArgumentType,
+  CommandParamsResolvable,
+  CommandType,
+  Snowflake
+} from '../../../types'
 import Guild from '../../entities/Guild'
 import StringArgument from './StringArgument'
 import NumberArgument from './NumberArgument'
 import ChoiceArgument from './ChoiceArgument'
 import MemberArgument from './MemberArgument'
+import ChannelArgument from './ChannelArgument'
 
 export default class Command {
   public id?: Snowflake
@@ -57,6 +64,13 @@ export default class Command {
     return this
   }
 
+  public addChannelArgument (callback: (argument: ChannelArgument) => void) {
+    const argument = new ChannelArgument()
+    callback(argument)
+    this.arguments.push(argument)
+    return this
+  }
+
   public setDefaultPermission (value: boolean) {
     this.defaultPermission = value
     return this
@@ -73,6 +87,9 @@ export default class Command {
         description: argument.description,
         type: CommandArgumentType[argument.type],
         required: argument.isRequired,
+        channel_types: argument instanceof ChannelArgument
+          ? argument.channelTypes.map((channelType: keyof typeof ChannelTypeResolvable) => ChannelTypeResolvable[channelType])
+          : undefined
       }))
     }
   }
