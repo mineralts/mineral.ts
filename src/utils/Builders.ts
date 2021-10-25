@@ -91,15 +91,20 @@ export function createMessageFromPayload (payload) {
       }
     }),
     payload.embeds.map((embed) => {
+      console.log(embed)
       const messageEmbed = new MessageEmbed()
       messageEmbed.title = embed.title
       messageEmbed.description = embed.description
-      messageEmbed.author = new EmbedAuthor(embed.author.name, embed.author.url, embed.author.icon)
-      messageEmbed.fields = embed.fields.map((field) => ({
-        name: field.title,
-        value: field.value,
-        inline: field.inline
-      }))
+      messageEmbed.author = embed.author
+        ? new EmbedAuthor(embed.author.name, embed.author.url, embed.author.icon)
+        : undefined
+      messageEmbed.fields = embed.fields
+        ? embed.fields.map((field) => ({
+          name: field.title,
+          value: field.value,
+          inline: field.inline
+        }))
+        : []
       messageEmbed.timestamp = DateTime.fromISO(embed.timestamp)
       messageEmbed.color = embed.color
       messageEmbed.url = embed.url
