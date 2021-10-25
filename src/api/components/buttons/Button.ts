@@ -1,6 +1,7 @@
 import { ButtonStyle } from '../../../types'
 import Emoji from '../../entities/Emoji'
 import BaseButton from './BaseButton'
+import Logger from '@leadcodedev/logger'
 
 export default class Button extends BaseButton {
   public customId?: string
@@ -56,6 +57,11 @@ export default class Button extends BaseButton {
   }
 
   public toJson () {
+    if (!this.customId) {
+      Logger.send('error', `${this.label} component has not customId.`)
+      process.exit(0)
+    }
+
     return {
       ...super.toJson(),
       custom_id: this.customId
