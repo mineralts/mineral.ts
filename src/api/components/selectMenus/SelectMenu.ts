@@ -1,6 +1,7 @@
 import { ComponentType, MenuSelect, MenuSelectOption } from '../../../types'
 import Emoji from '../../entities/Emoji'
 import { parseEmoji } from '../../../utils'
+import Logger from '@leadcodedev/logger'
 
 export default class SelectMenu {
   public type: ComponentType = ComponentType.SELECT_MENU
@@ -52,6 +53,11 @@ export default class SelectMenu {
   }
 
   public toJson () {
+    if (!this.customId) {
+      Logger.send('error', `Select menu component has not customId.`)
+      process.exit(0)
+    }
+
     return {
       type: this.type,
       custom_id: this.customId,
