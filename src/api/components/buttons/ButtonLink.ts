@@ -1,6 +1,7 @@
 import { ButtonStyle } from '../../../types'
 import BaseButton from './BaseButton'
 import Emoji from '../../entities/Emoji'
+import Logger from '@leadcodedev/logger'
 
 export default class ButtonLink extends BaseButton {
   public url?: string
@@ -31,6 +32,11 @@ export default class ButtonLink extends BaseButton {
   }
 
   public toJson () {
+    if (!this.url) {
+      Logger.send('error', `${this.label} component has not url.`)
+      process.exit(0)
+    }
+
     return {
       ...super.toJson(),
       url: this.url
