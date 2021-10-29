@@ -2,7 +2,7 @@ import BasePacket from './BasePacket'
 import MineralClient from '../clients/MineralClient'
 import Packet from '../decorators/Packet'
 import { ComponentType, MessageComponentResolvable } from '../types'
-import { createMessageFromPayload } from '../utils/Builders'
+import { createMessageInteractionFromPayload } from '../utils/Builders'
 import ButtonInteraction from '../api/entities/interactions/ButtonInteraction'
 import EmbedRow from '../api/components/embeds/EmbedRow'
 import Button from '../api/components/buttons/Button'
@@ -12,8 +12,9 @@ import SelectMenuInteraction from '../api/entities/interactions/SelectMenuIntera
 @Packet('INTERACTION_CREATE')
 export default class InteractionCreatePacket extends BasePacket {
   public async handle (client: MineralClient, payload: any) {
-    const message = createMessageFromPayload({
-      ...payload.message,
+    console.log('a', payload)
+    const message = createMessageInteractionFromPayload({
+      ...payload,
       guild_id: payload.guild_id,
     })
 
@@ -23,6 +24,7 @@ export default class InteractionCreatePacket extends BasePacket {
 
     if (payload.data.component_type === ComponentType.BUTTON) {
       const interaction = new ButtonInteraction(
+        payload.id,
         payload.version,
         payload.token,
         message,
@@ -36,11 +38,13 @@ export default class InteractionCreatePacket extends BasePacket {
 
     if (payload.data.component_type === ComponentType.SELECT_MENU) {
       const interaction = new SelectMenuInteraction(
+        payload.id,
         payload.version,
         payload.token,
         message,
         member!,
         this.getComponentSelectMenu(message.components, payload.data.custom_id),
+        payload.data.values,
       )
 
       client.emit('interactionSelectMenuCreate', interaction)

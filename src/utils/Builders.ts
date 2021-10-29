@@ -42,7 +42,6 @@ function walkComponent (component) {
   }
 
   if (component.type === ComponentType.SELECT_MENU) {
-    console.log(component)
     return new SelectMenu({
       customId: component.custom_id,
       minValues: component.min_values,
@@ -104,6 +103,82 @@ export function createMessageFromPayload (payload) {
       return walkComponent(component)
     }),
     payload.embeds.map((embed) => {
+      const messageEmbed = new MessageEmbed()
+      messageEmbed.title = embed.title
+      messageEmbed.description = embed.description
+      messageEmbed.author = embed.author
+        ? new EmbedAuthor(embed.author.name, embed.author.url, embed.author.icon)
+        : undefined
+      messageEmbed.fields = embed.fields
+        ? embed.fields.map((field) => ({
+          name: field.title,
+          value: field.value,
+          inline: field.inline
+        }))
+        : []
+      messageEmbed.timestamp = DateTime.fromISO(embed.timestamp)
+      messageEmbed.color = embed.color
+      messageEmbed.url = embed.url
+      messageEmbed.image = new EmbedImage(payload.url, payload.proxy_url)
+      messageEmbed.thumbnail = new EmbedThumbnail(payload.url, payload.proxy_url)
+      messageEmbed.footer = new EmbedFooter(payload.text, payload.icon_url, payload.proxy_image)
+      return messageEmbed
+    })
+  )
+}
+
+export function createMessageInteractionFromPayload (payload) {
+  const client = Context.getClient()
+  const guild = client.cacheManager.guilds.cache.get(payload.guild_id)
+  const channel = guild?.channels.cache.get(payload.channel_id) as TextChannel
+  const author = guild?.members.cache.get(payload.member?.id)!
+
+  const mentionChannel: Collection<Snowflake, any> = new Collection()
+  const channelMentions = payload.message.content
+    ? payload.content.split(' ')
+    .filter((word: string) => word.startsWith('<#'))
+    .map((word: string) => {
+      return word
+        .replace(/<#/g, '')
+        .replace(/>/g, '')
+    })
+    : []
+
+  channelMentions.forEach((id: Snowflake) => {
+    const channel = guild?.channels.cache.get(id)
+    mentionChannel.set(channel!.id, channel)
+  })
+
+  return new Message(
+    payload.message.id,
+    payload.message.type,
+    payload.message.flags,
+    payload.message.tts,
+    payload.message.timestamp
+      ? DateTime.fromISO(payload.message.timestamp)
+      : null,
+    payload.message.edited_timestamp
+      ? DateTime.fromISO(payload.message.edited_timestamp)
+      : null,
+    payload.message.referenced_message
+      ? channel.messages.cache.get(payload.message.referenced_message)
+      : null,
+    payload.message.pinned,
+    new MentionResolvable(
+      payload.message.mention_everyone,
+      payload.message.mention_roles.map((roleId: Snowflake) => guild?.roles.cache.get(roleId)),
+      payload.message.mentions,
+      mentionChannel
+    ),
+    author,
+    guild,
+    channel,
+    payload.content,
+    new MessageAttachment(),
+    payload.message.components.map((component) => {
+      return walkComponent(component)
+    }),
+    payload.message.embeds.map((embed) => {
       const messageEmbed = new MessageEmbed()
       messageEmbed.title = embed.title
       messageEmbed.description = embed.description

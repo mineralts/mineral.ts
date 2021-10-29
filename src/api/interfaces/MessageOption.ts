@@ -8,4 +8,5 @@ export default interface MessageOption {
   tts?: boolean
   components?: EmbedRow[]
   attachment?: MessageAttachment
+  isClientSide?: boolean
 }
