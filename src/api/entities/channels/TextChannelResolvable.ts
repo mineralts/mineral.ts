@@ -1,12 +1,16 @@
 import Channel from './Channel'
-import { ChannelTypeResolvable, MessageCollectorOption, RequestOptions, Snowflake } from '../../../types'
+import {
+  ChannelTypeResolvable,
+  MessageCollectorOption,
+  MessageComponentResolvable,
+  RequestOptions,
+  Snowflake
+} from '../../../types'
 import { MessageCollector } from '../../components/MessageCollector'
 import MessageOption from '../../interfaces/MessageOption'
 import Message from '../Message'
 import Request from '../../../sockets/Request'
 import EmbedRow from '../../components/embeds/EmbedRow'
-import Button from '../../components/buttons/Button'
-import ButtonLink from '../../components/buttons/ButtonLink'
 import { createMessageFromPayload } from '../../../utils/Builders'
 import Guild from '../Guild'
 import MessageManager from '../MessageManager'
@@ -54,9 +58,9 @@ export default class TextChannelResolvable extends Channel {
   public async send (messageOption: MessageOption, option?: RequestOptions): Promise<Message> {
     const request = new Request(`/channels/${this.id}/messages`)
     const components = messageOption.components?.map((row: EmbedRow) => {
-      row.components = row.components.map((component: Button | ButtonLink) => {
+      row.components = row.components.map((component: MessageComponentResolvable) => {
         return component.toJson()
-      })
+      }) as any[]
       return row
     })
 
