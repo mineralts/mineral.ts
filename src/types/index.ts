@@ -15,6 +15,7 @@ import ChoiceArgument from '../api/components/commands/ChoiceArgument'
 import Button from '../api/components/buttons/Button'
 import ButtonLink from '../api/components/buttons/ButtonLink'
 import SelectMenu from '../api/components/selectMenus/SelectMenu'
+import ButtonInteraction from '../api/entities/interactions/ButtonInteraction'
 
 export type Snowflake = string
 export type Milliseconds = number
@@ -95,7 +96,11 @@ export interface MineralVein {
   messageReactionRemove: [message: Message, reaction: Reaction]
   presenceUpdate: [before: Presence | undefined, after: Presence]
   voiceJoin: [member: GuildMember]
+  interactionButtonCreate: [interaction: ButtonInteraction]
+  [key: `interactionButton::${string}`]: [interaction: ButtonInteraction]
 }
+
+export type MineralEvent = `buttonInteraction::${string}`
 
 export enum ChannelTypeResolvable {
   GUILD_TEXT = 0,
@@ -324,3 +329,9 @@ export type ChoiceOption = {
 export type CommandParamsResolvable = StringArgument | NumberArgument | ChoiceArgument
 
 export type MessageComponentResolvable = Button | ButtonLink | SelectMenu
+
+export enum InteractionType {
+  PING = 1,
+  APPLICATION_COMMAND = 2,
+  MESSAGE_COMPONENT = 3,
+}

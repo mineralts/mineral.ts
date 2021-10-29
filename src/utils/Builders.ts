@@ -20,6 +20,27 @@ import MessageEmbed from '../api/components/embeds/MessageEmbed'
 import Button from '../api/components/buttons/Button'
 import { keyFromEnum } from './index'
 
+function walkComponent (component) {
+  if (component.type === ComponentType.ACTION_ROW) {
+    return new EmbedRow()
+      .addComponents(
+        component.components.map((component) => (
+          walkComponent(component)
+        ))
+      )
+  }
+
+  if (component.type === ComponentType.BUTTON) {
+    return new Button({
+      style: keyFromEnum(ButtonStyle, component.style) as Exclude<keyof typeof ButtonStyle, 'LINK'>,
+      customId: component.custom_id,
+      label: component.label || null,
+      emoji: component.emoji?.name || null,
+      disabled: component.disabled || false
+    })
+  }
+}
+
 export function createMessageFromPayload (payload) {
   const client = Context.getClient()
   const guild = client.cacheManager.guilds.cache.get(payload.guild_id)
@@ -68,30 +89,8 @@ export function createMessageFromPayload (payload) {
     new MessageAttachment(),
     payload.components.map((component) => {
       return walkComponent(component)
-
-      function walkComponent (component) {
-        if (component.type === ComponentType.ACTION_ROW) {
-          return new EmbedRow()
-            .addComponents(
-              component.components.map((component) => (
-                walkComponent(component)
-              ))
-            )
-        }
-
-        if (component.type === ComponentType.BUTTON) {
-          return new Button({
-            style: keyFromEnum(ButtonStyle, component.style) as Exclude<keyof typeof ButtonStyle, 'LINK'>,
-            customId: component.custom_id,
-            label: component.label || null,
-            emoji: component.emoji?.name || null,
-            disabled: component.disabled || false
-          })
-        }
-      }
     }),
     payload.embeds.map((embed) => {
-      console.log(embed)
       const messageEmbed = new MessageEmbed()
       messageEmbed.title = embed.title
       messageEmbed.description = embed.description

@@ -1,12 +1,10 @@
-import { ButtonStyle, ComponentType } from '../../../types'
+import { ButtonStyle } from '../../../types'
 import { parseEmoji } from '../../../utils'
 import Emoji from '../../entities/Emoji'
 
 export default class BaseButton {
-  private type: ComponentType = ComponentType.BUTTON
-
   constructor (
-    public style: ButtonStyle,
+    public style: keyof typeof ButtonStyle,
     public label?: string,
     public emoji?: string | Emoji,
     public disabled: boolean = false,
@@ -14,7 +12,7 @@ export default class BaseButton {
   }
 
   public setStyle (style: keyof typeof ButtonStyle) {
-    this.style = ButtonStyle[style]
+    this.style = style
     return this
   }
 
@@ -41,8 +39,7 @@ export default class BaseButton {
 
   protected toJson () {
     return {
-      type: this.type,
-      style: this.style,
+      style: ButtonStyle[this.style],
       label: this.label,
       emoji: this.emoji,
       disabled: this.disabled,

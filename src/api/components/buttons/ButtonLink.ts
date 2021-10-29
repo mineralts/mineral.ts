@@ -1,4 +1,3 @@
-import { ButtonStyle } from '../../../types'
 import BaseButton from './BaseButton'
 import Emoji from '../../entities/Emoji'
 import Logger from '@leadcodedev/logger'
@@ -14,8 +13,8 @@ export default class ButtonLink extends BaseButton {
       disabled?: boolean
     }
   ) {
-    if (props) super(ButtonStyle.LINK, props.label, undefined, props.disabled)
-    else super(ButtonStyle.LINK, undefined, undefined)
+    if (props) super('LINK', props.label, undefined, props.disabled)
+    else super('LINK', undefined, undefined)
 
     if (props?.emoji) {
       this.emoji = this.parseEmoji(props.emoji) as any

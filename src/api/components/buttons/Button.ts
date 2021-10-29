@@ -2,6 +2,7 @@ import { ButtonStyle } from '../../../types'
 import Emoji from '../../entities/Emoji'
 import BaseButton from './BaseButton'
 import Logger from '@leadcodedev/logger'
+import { keyFromEnum } from '../../../utils'
 
 export default class Button extends BaseButton {
   public customId?: string
@@ -15,15 +16,15 @@ export default class Button extends BaseButton {
       disabled?: boolean
     }
   ) {
-    if (props) super(ButtonStyle.LINK, props.label, undefined, props.disabled)
-    else super(ButtonStyle.LINK, undefined, undefined)
+    if (props) super(props.style, props.label, undefined, props.disabled)
+    else super(keyFromEnum(ButtonStyle, undefined) as keyof typeof ButtonStyle, undefined, undefined)
 
     if (props?.emoji) {
       this.emoji = this.parseEmoji(props.emoji) as any
     }
 
     if (props?.style) {
-      this.style = ButtonStyle[props.style]
+      this.style = props.style
     }
 
     if (props?.customId) {
@@ -32,7 +33,7 @@ export default class Button extends BaseButton {
   }
 
   public setStyle (style: Exclude<keyof typeof ButtonStyle, 'LINK'>) {
-    this.style = ButtonStyle[style]
+    this.style = style
     return this
   }
 
