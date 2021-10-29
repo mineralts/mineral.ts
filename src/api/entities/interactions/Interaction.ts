@@ -9,8 +9,8 @@ export default class Interaction {
     public type: keyof typeof InteractionType,
     public token: string,
     public customId: string | undefined,
-    public componentType: keyof typeof ComponentType,
-    public message: Message,
+    public componentType: keyof typeof ComponentType | undefined,
+    public message: Message | undefined,
     public member: GuildMember
   ) {
   }

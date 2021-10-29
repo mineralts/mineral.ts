@@ -12,7 +12,8 @@ import MessageDeletePacket from './MessageDeletePacket'
 import ChannelCreatePacket from './ChannelCreatePacket'
 import ChannelDeletePacket from './ChannelDeletePacket'
 import ChannelUpdatePacket from './ChannelUpdatePacket'
-import InteractionCreatePacket from './InteractionCreatePacket'
+import CommandInteractionCreatePacket from './CommandInteractionCreatePacket'
+import MessageInteractionCreatePacket from './MessageInteractionCreatePacket'
 
 export default class PacketManager {
   public packets: Collection<string, BasePacket[]> = new Collection()
@@ -31,7 +32,8 @@ export default class PacketManager {
       new ChannelCreatePacket(),
       new ChannelDeletePacket(),
       new ChannelUpdatePacket(),
-      new InteractionCreatePacket(),
+      new CommandInteractionCreatePacket(),
+      new MessageInteractionCreatePacket(),
     )
   }
 
