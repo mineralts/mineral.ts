@@ -10,7 +10,7 @@ export default class SelectMenu {
   public maxValues?: number = 1
   public placeholder?: string
   public disabled?: boolean = false
-  public options: MenuSelectOption[] = []
+  public choices: MenuSelectOption[] = []
 
   constructor (options?: MenuSelect) {
     if (options) {
@@ -19,6 +19,7 @@ export default class SelectMenu {
       this.maxValues = options?.maxValues
       this.placeholder = options?.placeholder
       this.disabled = options?.disabled
+      this.choices = options.choices
     }
   }
 
@@ -48,7 +49,7 @@ export default class SelectMenu {
   }
 
   public addOption (option: { label: string, value: unknown, description?: string, emoji?: any, default?: boolean }) {
-    this.options.push(option)
+    this.choices.push(option)
     return this
   }
 
@@ -65,7 +66,7 @@ export default class SelectMenu {
       max_values: this.maxValues,
       placeholder: this.placeholder,
       disabled: this.disabled,
-      options: this.options.map((option: MenuSelectOption) => ({
+      options: this.choices.map((option: MenuSelectOption) => ({
         label: option.label,
         value: option.value,
         description: option.description,

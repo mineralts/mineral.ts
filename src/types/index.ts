@@ -16,6 +16,7 @@ import Button from '../api/components/buttons/Button'
 import ButtonLink from '../api/components/buttons/ButtonLink'
 import SelectMenu from '../api/components/selectMenus/SelectMenu'
 import ButtonInteraction from '../api/entities/interactions/ButtonInteraction'
+import SelectMenuInteraction from '../api/entities/interactions/SelectMenuInteraction'
 
 export type Snowflake = string
 export type Milliseconds = number
@@ -96,8 +97,12 @@ export interface MineralVein {
   messageReactionRemove: [message: Message, reaction: Reaction]
   presenceUpdate: [before: Presence | undefined, after: Presence]
   voiceJoin: [member: GuildMember]
+
   interactionButtonCreate: [interaction: ButtonInteraction]
   [key: `interactionButton::${string}`]: [interaction: ButtonInteraction]
+
+  interactionSelectMenuCreate: [interaction: SelectMenuInteraction]
+  [key: `interactionSelectMenu::${string}`]: [interaction: SelectMenuInteraction]
 }
 
 export type MineralEvent = `buttonInteraction::${string}`
@@ -245,6 +250,7 @@ export type MenuSelect = {
   minValues?: number
   maxValues?: number
   disabled?:	boolean
+  choices: MenuSelectOption[]
 }
 
 export type MenuSelectOption = {

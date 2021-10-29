@@ -19,6 +19,7 @@ import EmbedAuthor from '../api/components/embeds/EmbedAuthor'
 import MessageEmbed from '../api/components/embeds/MessageEmbed'
 import Button from '../api/components/buttons/Button'
 import { keyFromEnum } from './index'
+import SelectMenu from '../api/components/selectMenus/SelectMenu'
 
 function walkComponent (component) {
   if (component.type === ComponentType.ACTION_ROW) {
@@ -37,6 +38,18 @@ function walkComponent (component) {
       label: component.label || null,
       emoji: component.emoji?.name || null,
       disabled: component.disabled || false
+    })
+  }
+
+  if (component.type === ComponentType.SELECT_MENU) {
+    console.log(component)
+    return new SelectMenu({
+      customId: component.custom_id,
+      minValues: component.min_values,
+      maxValues: component.max_values,
+      placeholder: component.placeholder || null,
+      disabled: component.disabled || false,
+      choices: component.options
     })
   }
 }
