@@ -6,7 +6,6 @@ import MessageOption from '../../interfaces/MessageOption'
 import { InteractionType, MessageComponentResolvable, RequestOptions, Snowflake } from '../../../types'
 import Request from '../../../sockets/Request'
 import EmbedRow from '../../components/embeds/EmbedRow'
-import { createMessageInteractionFromPayload } from '../../../utils/Builders'
 
 export default class SelectMenuInteraction extends Interaction {
   constructor (
@@ -25,7 +24,7 @@ export default class SelectMenuInteraction extends Interaction {
     return this.values
   }
 
-  public async reply (messageOption: MessageOption, option?: RequestOptions): Promise<Message | undefined> {
+  public async reply (messageOption: MessageOption, option?: RequestOptions): Promise<void> {
     const request = new Request(`/interactions/${this.id}/${this.token}/callback`)
     const components = messageOption.components?.map((row: EmbedRow) => {
       row.components = row.components.map((component: MessageComponentResolvable) => {
@@ -34,7 +33,7 @@ export default class SelectMenuInteraction extends Interaction {
       return row
     })
 
-    const payload = await request.post({
+    await request.post({
       type: InteractionType.CHANNEL_MESSAGE_WITH_SOURCE,
       data: {
         ...messageOption,
@@ -42,12 +41,5 @@ export default class SelectMenuInteraction extends Interaction {
         flags: messageOption.isClientSide ? 1 << 6 : undefined,
       }
     }, option)
-
-    const message = createMessageInteractionFromPayload({
-      ...payload,
-      guild_id: this.message.channel.guild.id,
-    })
-
-    return !messageOption.isClientSide ? message : undefined
   }
 }

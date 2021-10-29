@@ -12,7 +12,6 @@ import SelectMenuInteraction from '../api/entities/interactions/SelectMenuIntera
 @Packet('INTERACTION_CREATE')
 export default class InteractionCreatePacket extends BasePacket {
   public async handle (client: MineralClient, payload: any) {
-    console.log('a', payload)
     const message = createMessageInteractionFromPayload({
       ...payload,
       guild_id: payload.guild_id,

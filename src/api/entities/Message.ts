@@ -26,7 +26,7 @@ export default class Message {
     public referencedMessage: Message | null | undefined,
     public isPinned: boolean,
     public mentions: MentionResolvable,
-    public author: GuildMember,
+    public author: GuildMember | undefined,
     public guild: Guild | undefined,
     public channel: TextChannel,
     public content: string,
