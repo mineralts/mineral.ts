@@ -28,7 +28,7 @@ export default class InteractionCreatePacket extends BasePacket {
         payload.token,
         message,
         member!,
-        this.getComponentButton(message.components, payload.data.custom_id)[0],
+        this.getComponentButton(message.components, payload.data.custom_id),
       )
 
       client.emit('interactionButtonCreate', interaction)
@@ -55,11 +55,16 @@ export default class InteractionCreatePacket extends BasePacket {
   public getComponentButton (rows: EmbedRow[], customId: string): Button {
     const component = rows.map((row: EmbedRow) => (
       row.components.find((component: MessageComponentResolvable) => {
-        return component instanceof Button
-          ? component.customId === customId
-          : undefined
+        if (!(component instanceof Button)) {
+          return
+        }
+
+        if (component.customId === customId) return component
+        else return undefined
       })
     )).filter(component => component)
+
+    console.log((component as unknown as Button)[0])
 
     return (component as unknown as Button)[0]
   }
@@ -68,7 +73,7 @@ export default class InteractionCreatePacket extends BasePacket {
     const component = rows.map((row: EmbedRow) => (
       row.components.find((component: MessageComponentResolvable) => {
         return component instanceof SelectMenu
-          ? component.customId === customId
+          ? component.customId === customId && component
           : undefined
       })
     )).filter(component => component)

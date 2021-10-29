@@ -14,5 +14,6 @@ export default class ButtonInteraction extends Interaction {
     public component: Button | undefined,
   ) {
     super(id, version, 'MESSAGE_COMPONENT', token, component?.customId, 'BUTTON', message, member)
+    console.log(this.component)
   }
 }
