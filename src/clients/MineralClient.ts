@@ -59,6 +59,7 @@ export default class MineralClient extends EventEmitter {
     await this.socket.socketManager.connect(request)
   }
 
+  // @ts-ignore
   public on<Gem extends keyof MineralVein>(gem: Gem, listener: (...args: MineralVein[Gem]) => Awaited<void>): this
   public on<Gem extends string | symbol>(gem: Exclude<Gem, keyof MineralVein>, listener: (...args: any[]) => Awaited<void>): this {
     super.on(gem, async (...args) => {

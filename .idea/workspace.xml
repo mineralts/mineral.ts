@@ -3,108 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="f56e3984-6480-48ce-85e1-aff0ae5ec9a1" name="Default Changelist" comment=":construction: Work in progress">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/entities/Guild.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/entities/Guild.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/entities/MessageManager.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/entities/MessageManager.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/entities/interactions/ButtonInteraction.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/entities/interactions/ButtonInteraction.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/entities/interactions/CommandInteraction.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/entities/interactions/CommandInteraction.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/clients/MineralClient.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/clients/MineralClient.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sockets/SocketManager.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/sockets/SocketManager.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/types/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcold/api/entities/Application.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcold/api/entities/ApplicationCommand.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcold/api/entities/BaseEntity.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcold/api/entities/CachedRoles.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcold/api/entities/Channel.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcold/api/entities/CommandOption.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcold/api/entities/ComponentRow.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcold/api/entities/EmbedAuthor.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcold/api/entities/EmbedFooter.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcold/api/entities/EmbedImage.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcold/api/entities/EmbedThumbnail.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcold/api/entities/EmbedVideo.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcold/api/entities/Emoji.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcold/api/entities/Guild.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcold/api/entities/GuildBoost.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcold/api/entities/GuildMember.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcold/api/entities/Interaction.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcold/api/entities/Message.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcold/api/entities/MessageEmbed.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcold/api/entities/MessageMentions.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcold/api/entities/Role.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcold/api/entities/RoleTag.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcold/api/entities/SlashCommand.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcold/api/entities/User.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcold/api/entities/arguments/ChannelArgument.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcold/api/entities/arguments/ChoiceArgument.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcold/api/entities/arguments/SubCommand.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcold/api/entities/arguments/SubCommandGroup.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcold/api/entities/arguments/UserArgument.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcold/api/entities/channels/CategoryChannel.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcold/api/entities/channels/NewsChannel.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcold/api/entities/channels/StageChannel.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcold/api/entities/channels/TextChannel.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcold/api/entities/channels/ThreadChannel.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcold/api/entities/channels/VoiceChannel.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcold/api/entities/components/Button.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcold/api/entities/components/Link.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcold/api/entities/components/SelectMenu.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcold/api/entities/interactions/ButtonInteraction.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcold/api/entities/interactions/CommandInteraction.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcold/api/entities/interactions/MenuInteraction.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcold/api/interfaces/Application.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcold/api/interfaces/Cache.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcold/api/interfaces/Channel.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcold/api/interfaces/ChannelResolvable.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcold/api/interfaces/Client.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcold/api/interfaces/Embed.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcold/api/interfaces/EmbedField.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcold/api/interfaces/Guild.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcold/api/interfaces/GuildBoost.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcold/api/interfaces/GuildMember.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcold/api/interfaces/Interaction.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcold/api/interfaces/InteractionMessageOptions.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcold/api/interfaces/Message.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcold/api/interfaces/MessageOption.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcold/api/interfaces/User.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcold/api/interfaces/channels/TextChannel.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcold/client/BaseClient.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcold/client/Client.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcold/client/ClientOption.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcold/client/Heartbeat.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcold/index.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcold/managers/ApplicationCommandManager.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcold/managers/CacheManager.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcold/managers/ChannelManager.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcold/managers/EmojiManager.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcold/managers/MemberManager.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcold/managers/MessageManager.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcold/managers/PacketManager.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcold/managers/RESTManager.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcold/managers/RoleManager.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcold/managers/WebSocketManager.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcold/packets/BasePacket.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcold/packets/GuildBoostAddPacket.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcold/packets/GuildCreatePacket.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcold/packets/GuildMemberAddPacket.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcold/packets/GuildMemberBoostPacket.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcold/packets/GuildMemberUnBoostPacket.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcold/packets/GuildSubscriptionUpPacket.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcold/packets/InteractionPacket.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcold/packets/MessageCreatePacket.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcold/packets/ReadyPacket.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcold/packets/RoleUpdatePacket.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcold/packets/VoiceJoinPacket.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcold/packets/VoiceLeavePacket.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcold/packets/VoiceStateUpdatePacket.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcold/packets/debugPacket.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcold/rest/Cdn.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcold/rest/Request.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcold/rest/User.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcold/types/Packet.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcold/types/index.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcold/utils/Global.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcold/utils/index.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcold/websockets/Request.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/packets/CommandInteractionCreatePacket.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/packets/CommandInteractionCreatePacket.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/packets/MessageInteractionCreatePacket.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/packets/MessageInteractionCreatePacket.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sockets/Request.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/sockets/Request.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -141,22 +46,22 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File" value="JavaScript&#10;TypeScript&#10;JSON" />
+    <property name="com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File" value="JSON&#10;JavaScript&#10;TypeScript" />
     <property name="dart.analysis.tool.window.visible" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/api/entities/channels" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/packets" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.import" />
     <property name="ts.external.directory.path" value="E:\WindowsData\Bureau\Mineral\mineral.ts\node_modules\typescript\lib" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="E:\WindowsData\Bureau\Mineral\mineral.ts\src\api\entities\channels" />
       <recent name="E:\WindowsData\Bureau\Mineral\mineral.ts\src\packets" />
+      <recent name="E:\WindowsData\Bureau\Mineral\mineral.ts\src\api\entities\interactions" />
+      <recent name="E:\WindowsData\Bureau\Mineral\mineral.ts\src\api\components\commands" />
+      <recent name="E:\WindowsData\Bureau\Mineral\mineral.ts\src\api\entities\channels" />
       <recent name="E:\WindowsData\Bureau\Mineral\mineral.ts\src\api\components" />
-      <recent name="E:\WindowsData\Bureau\Mineral\core\src\api\entities\interactions" />
-      <recent name="E:\WindowsData\Bureau\Mineral\core\src\api\entities\arguments" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\WindowsData\Bureau\Mineral\mineral.ts\src" />
@@ -185,252 +90,11 @@
       <workItem from="1634475998870" duration="15308000" />
       <workItem from="1634556116956" duration="15143000" />
       <workItem from="1634576757223" duration="28460000" />
-      <workItem from="1634666304678" duration="35192000" />
-    </task>
-    <task id="LOCAL-00008" summary=":construction: Work in progress">
-      <created>1630238849871</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1630238849871</updated>
-    </task>
-    <task id="LOCAL-00009" summary=":construction: Work in progress">
-      <created>1630242999466</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1630242999466</updated>
-    </task>
-    <task id="LOCAL-00010" summary=":construction: Work in progress">
-      <created>1630244972836</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1630244972836</updated>
-    </task>
-    <task id="LOCAL-00011" summary=":construction: Work in progress">
-      <created>1630268863748</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1630268863748</updated>
-    </task>
-    <task id="LOCAL-00012" summary=":construction: Work in progress">
-      <created>1630333665860</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1630333665860</updated>
-    </task>
-    <task id="LOCAL-00013" summary=":construction: Work in progress">
-      <created>1630333936512</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1630333936512</updated>
-    </task>
-    <task id="LOCAL-00014" summary=":construction: Work in progress">
-      <created>1630336084050</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1630336084050</updated>
-    </task>
-    <task id="LOCAL-00015" summary=":construction: Work in progress">
-      <created>1630358117978</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1630358117978</updated>
-    </task>
-    <task id="LOCAL-00016" summary=":construction: Work in progress">
-      <created>1630358222215</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1630358222215</updated>
-    </task>
-    <task id="LOCAL-00017" summary=":construction: Work in progress">
-      <created>1630582895204</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1630582895204</updated>
-    </task>
-    <task id="LOCAL-00018" summary=":construction: Work in progress">
-      <created>1630605653927</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1630605653927</updated>
-    </task>
-    <task id="LOCAL-00019" summary=":construction: Work in progress">
-      <created>1630654843251</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1630654843251</updated>
-    </task>
-    <task id="LOCAL-00020" summary=":construction: Work in progress">
-      <created>1634395887131</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1634395887131</updated>
-    </task>
-    <task id="LOCAL-00021" summary=":construction: Work in progress">
-      <created>1634396301356</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1634396301356</updated>
-    </task>
-    <task id="LOCAL-00022" summary=":construction: Work in progress">
-      <created>1634498861970</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1634498861970</updated>
-    </task>
-    <task id="LOCAL-00023" summary=":construction: Work in progress">
-      <created>1634499263764</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1634499263764</updated>
-    </task>
-    <task id="LOCAL-00024" summary=":construction: Work in progress">
-      <created>1634501263397</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1634501263397</updated>
-    </task>
-    <task id="LOCAL-00025" summary=":construction: Work in progress">
-      <created>1634502019766</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1634502019766</updated>
-    </task>
-    <task id="LOCAL-00026" summary=":construction: Work in progress">
-      <created>1634569336071</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1634569336071</updated>
-    </task>
-    <task id="LOCAL-00027" summary=":construction: Work in progress">
-      <created>1634573998674</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1634573998674</updated>
-    </task>
-    <task id="LOCAL-00028" summary=":construction: Work in progress">
-      <created>1634574410816</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1634574410816</updated>
-    </task>
-    <task id="LOCAL-00029" summary=":construction: Work in progress">
-      <created>1634574590857</created>
-      <option name="number" value="00029" />
-      <option name="presentableId" value="LOCAL-00029" />
-      <option name="project" value="LOCAL" />
-      <updated>1634574590857</updated>
-    </task>
-    <task id="LOCAL-00030" summary=":recycle: Refactor Buttons">
-      <created>1634577727230</created>
-      <option name="number" value="00030" />
-      <option name="presentableId" value="LOCAL-00030" />
-      <option name="project" value="LOCAL" />
-      <updated>1634577727230</updated>
-    </task>
-    <task id="LOCAL-00031" summary=":recycle: Refactor Buttons">
-      <created>1634577843074</created>
-      <option name="number" value="00031" />
-      <option name="presentableId" value="LOCAL-00031" />
-      <option name="project" value="LOCAL" />
-      <updated>1634577843074</updated>
-    </task>
-    <task id="LOCAL-00032" summary=":recycle: Refactor embeds">
-      <created>1634577895358</created>
-      <option name="number" value="00032" />
-      <option name="presentableId" value="LOCAL-00032" />
-      <option name="project" value="LOCAL" />
-      <updated>1634577895358</updated>
-    </task>
-    <task id="LOCAL-00033" summary=":recycle: Refactor embeds">
-      <created>1634577927877</created>
-      <option name="number" value="00033" />
-      <option name="presentableId" value="LOCAL-00033" />
-      <option name="project" value="LOCAL" />
-      <updated>1634577927877</updated>
-    </task>
-    <task id="LOCAL-00034" summary=":recycle: Refactor">
-      <created>1634580408693</created>
-      <option name="number" value="00034" />
-      <option name="presentableId" value="LOCAL-00034" />
-      <option name="project" value="LOCAL" />
-      <updated>1634580408693</updated>
-    </task>
-    <task id="LOCAL-00035" summary=":construction: Implement select menu">
-      <created>1634593097824</created>
-      <option name="number" value="00035" />
-      <option name="presentableId" value="LOCAL-00035" />
-      <option name="project" value="LOCAL" />
-      <updated>1634593097824</updated>
-    </task>
-    <task id="LOCAL-00036" summary=":construction: Implement react message">
-      <created>1634594096938</created>
-      <option name="number" value="00036" />
-      <option name="presentableId" value="LOCAL-00036" />
-      <option name="project" value="LOCAL" />
-      <updated>1634594096938</updated>
-    </task>
-    <task id="LOCAL-00037" summary=":construction: Implement react events">
-      <created>1634641795712</created>
-      <option name="number" value="00037" />
-      <option name="presentableId" value="LOCAL-00037" />
-      <option name="project" value="LOCAL" />
-      <updated>1634641795712</updated>
-    </task>
-    <task id="LOCAL-00038" summary=":construction: Implement presence update">
-      <created>1634646322347</created>
-      <option name="number" value="00038" />
-      <option name="presentableId" value="LOCAL-00038" />
-      <option name="project" value="LOCAL" />
-      <updated>1634646322347</updated>
-    </task>
-    <task id="LOCAL-00039" summary=":construction: Implement presence update">
-      <created>1634646332148</created>
-      <option name="number" value="00039" />
-      <option name="presentableId" value="LOCAL-00039" />
-      <option name="project" value="LOCAL" />
-      <updated>1634646332148</updated>
-    </task>
-    <task id="LOCAL-00040" summary=":construction: Implement message update">
-      <created>1634662120707</created>
-      <option name="number" value="00040" />
-      <option name="presentableId" value="LOCAL-00040" />
-      <option name="project" value="LOCAL" />
-      <updated>1634662120707</updated>
-    </task>
-    <task id="LOCAL-00041" summary=":recycle: Refactor GuildCreatePacket.ts">
-      <created>1634673367448</created>
-      <option name="number" value="00041" />
-      <option name="presentableId" value="LOCAL-00041" />
-      <option name="project" value="LOCAL" />
-      <updated>1634673367448</updated>
-    </task>
-    <task id="LOCAL-00042" summary=":construction: Implement VoiceState">
-      <created>1634673391352</created>
-      <option name="number" value="00042" />
-      <option name="presentableId" value="LOCAL-00042" />
-      <option name="project" value="LOCAL" />
-      <updated>1634673391352</updated>
+      <workItem from="1634666304678" duration="79494000" />
+      <workItem from="1635197602423" duration="13021000" />
+      <workItem from="1635524182301" duration="21848000" />
+      <workItem from="1636316523513" duration="142000" />
+      <workItem from="1636316707015" duration="74000" />
     </task>
     <task id="LOCAL-00043" summary=":construction: Move Presence from Guild to GuildMember">
       <created>1634676134559</created>
@@ -530,7 +194,252 @@
       <option name="project" value="LOCAL" />
       <updated>1634763599424</updated>
     </task>
-    <option name="localTasksCounter" value="57" />
+    <task id="LOCAL-00057" summary=":recycle: Remove old src">
+      <created>1634818554448</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1634818554448</updated>
+    </task>
+    <task id="LOCAL-00058" summary=":construction: Work in progress">
+      <created>1634818569018</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1634818569018</updated>
+    </task>
+    <task id="LOCAL-00059" summary=":construction: Work in progress">
+      <created>1634818600866</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1634818600866</updated>
+    </task>
+    <task id="LOCAL-00060" summary=":construction: Work in progress">
+      <created>1634818749923</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1634818749923</updated>
+    </task>
+    <task id="LOCAL-00061" summary=":construction: Work in progress">
+      <created>1634820129022</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1634820129022</updated>
+    </task>
+    <task id="LOCAL-00062" summary=":construction: Work in progress">
+      <created>1634820191548</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1634820191548</updated>
+    </task>
+    <task id="LOCAL-00063" summary=":construction: Work in progress">
+      <created>1634846196765</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1634846196765</updated>
+    </task>
+    <task id="LOCAL-00064" summary=":construction: Work in progress">
+      <created>1634846355357</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1634846355357</updated>
+    </task>
+    <task id="LOCAL-00065" summary=":construction: Work in progress">
+      <created>1634884247104</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1634884247104</updated>
+    </task>
+    <task id="LOCAL-00066" summary=":construction: Work in progress">
+      <created>1634884272869</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1634884272869</updated>
+    </task>
+    <task id="LOCAL-00067" summary=":construction: Work in progress">
+      <created>1634889443143</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1634889443143</updated>
+    </task>
+    <task id="LOCAL-00068" summary=":construction: Work in progress">
+      <created>1634933498764</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1634933498766</updated>
+    </task>
+    <task id="LOCAL-00069" summary=":construction: Work in progress">
+      <created>1634935609719</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1634935609720</updated>
+    </task>
+    <task id="LOCAL-00070" summary=":construction: Work in progress">
+      <created>1634935930067</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL-00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1634935930067</updated>
+    </task>
+    <task id="LOCAL-00071" summary=":construction: Work in progress">
+      <created>1635171983087</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1635171983087</updated>
+    </task>
+    <task id="LOCAL-00072" summary=":construction: Work in progress">
+      <created>1635172063853</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1635172063853</updated>
+    </task>
+    <task id="LOCAL-00073" summary=":construction: Work in progress">
+      <created>1635172070590</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1635172070590</updated>
+    </task>
+    <task id="LOCAL-00074" summary=":construction: Work in progress">
+      <created>1635172076192</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1635172076192</updated>
+    </task>
+    <task id="LOCAL-00075" summary=":construction: Work in progress">
+      <created>1635172080160</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1635172080160</updated>
+    </task>
+    <task id="LOCAL-00076" summary=":construction: Work in progress">
+      <created>1635172092510</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1635172092510</updated>
+    </task>
+    <task id="LOCAL-00077" summary=":construction: Work in progress">
+      <created>1635172102339</created>
+      <option name="number" value="00077" />
+      <option name="presentableId" value="LOCAL-00077" />
+      <option name="project" value="LOCAL" />
+      <updated>1635172102339</updated>
+    </task>
+    <task id="LOCAL-00078" summary=":construction: Work in progress">
+      <created>1635172108444</created>
+      <option name="number" value="00078" />
+      <option name="presentableId" value="LOCAL-00078" />
+      <option name="project" value="LOCAL" />
+      <updated>1635172108444</updated>
+    </task>
+    <task id="LOCAL-00079" summary=":construction: Work in progress">
+      <created>1635172113487</created>
+      <option name="number" value="00079" />
+      <option name="presentableId" value="LOCAL-00079" />
+      <option name="project" value="LOCAL" />
+      <updated>1635172113487</updated>
+    </task>
+    <task id="LOCAL-00080" summary=":construction: Work in progress">
+      <created>1635172117781</created>
+      <option name="number" value="00080" />
+      <option name="presentableId" value="LOCAL-00080" />
+      <option name="project" value="LOCAL" />
+      <updated>1635172117781</updated>
+    </task>
+    <task id="LOCAL-00081" summary=":construction: Work in progress">
+      <created>1635172121673</created>
+      <option name="number" value="00081" />
+      <option name="presentableId" value="LOCAL-00081" />
+      <option name="project" value="LOCAL" />
+      <updated>1635172121674</updated>
+    </task>
+    <task id="LOCAL-00082" summary=":construction: Work in progress">
+      <created>1635172125301</created>
+      <option name="number" value="00082" />
+      <option name="presentableId" value="LOCAL-00082" />
+      <option name="project" value="LOCAL" />
+      <updated>1635172125301</updated>
+    </task>
+    <task id="LOCAL-00083" summary=":construction: Work in progress">
+      <created>1635172128824</created>
+      <option name="number" value="00083" />
+      <option name="presentableId" value="LOCAL-00083" />
+      <option name="project" value="LOCAL" />
+      <updated>1635172128824</updated>
+    </task>
+    <task id="LOCAL-00084" summary=":construction: Work in progress">
+      <created>1635197925983</created>
+      <option name="number" value="00084" />
+      <option name="presentableId" value="LOCAL-00084" />
+      <option name="project" value="LOCAL" />
+      <updated>1635197925984</updated>
+    </task>
+    <task id="LOCAL-00085" summary=":construction: Work in progress">
+      <created>1635524956372</created>
+      <option name="number" value="00085" />
+      <option name="presentableId" value="LOCAL-00085" />
+      <option name="project" value="LOCAL" />
+      <updated>1635524956372</updated>
+    </task>
+    <task id="LOCAL-00086" summary=":construction: Work in progress">
+      <created>1635525000818</created>
+      <option name="number" value="00086" />
+      <option name="presentableId" value="LOCAL-00086" />
+      <option name="project" value="LOCAL" />
+      <updated>1635525000818</updated>
+    </task>
+    <task id="LOCAL-00087" summary=":construction: Work in progress">
+      <created>1635526802330</created>
+      <option name="number" value="00087" />
+      <option name="presentableId" value="LOCAL-00087" />
+      <option name="project" value="LOCAL" />
+      <updated>1635526802330</updated>
+    </task>
+    <task id="LOCAL-00088" summary=":construction: Work in progress">
+      <created>1635535491226</created>
+      <option name="number" value="00088" />
+      <option name="presentableId" value="LOCAL-00088" />
+      <option name="project" value="LOCAL" />
+      <updated>1635535491226</updated>
+    </task>
+    <task id="LOCAL-00089" summary=":construction: Work in progress">
+      <created>1635538003328</created>
+      <option name="number" value="00089" />
+      <option name="presentableId" value="LOCAL-00089" />
+      <option name="project" value="LOCAL" />
+      <updated>1635538003328</updated>
+    </task>
+    <task id="LOCAL-00090" summary=":construction: Work in progress">
+      <created>1635540029863</created>
+      <option name="number" value="00090" />
+      <option name="presentableId" value="LOCAL-00090" />
+      <option name="project" value="LOCAL" />
+      <updated>1635540029863</updated>
+    </task>
+    <task id="LOCAL-00091" summary=":construction: Work in progress">
+      <created>1635542924963</created>
+      <option name="number" value="00091" />
+      <option name="presentableId" value="LOCAL-00091" />
+      <option name="project" value="LOCAL" />
+      <updated>1635542924964</updated>
+    </task>
+    <option name="localTasksCounter" value="92" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -570,6 +479,7 @@
     <MESSAGE value=":construction: Move Presence to User" />
     <MESSAGE value=":construction: Remove message from Delete event" />
     <MESSAGE value=":recycle: Move channels" />
+    <MESSAGE value=":recycle: Remove old src" />
     <MESSAGE value=":construction: Work in progress" />
     <option name="LAST_COMMIT_MESSAGE" value=":construction: Work in progress" />
   </component>

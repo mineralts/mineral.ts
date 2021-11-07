@@ -21,13 +21,14 @@ export default class CommandInteractionCreatePacket extends BasePacket {
     console.log(payload)
 
     const commandInteraction = new CommandInteraction(
-      payload.data.id,
+      payload.id,
       payload.version,
       payload.token,
       member!,
       channel as TextChannelResolvable,
       payload.data.name,
-      payload.data.options || []
+      payload.data.options || [],
+      payload.application_id,
     )
 
     client.emit('interactionCommandCreate', commandInteraction)

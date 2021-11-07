@@ -14,7 +14,7 @@ export default class Request {
       const { data } = await axios.get(this.endpoint)
       return data
     } catch (err) {
-      // console.error(err)
+      // console.error(err.response)
       this.retryOnRateLimit(err, async () => await this.get(options))
       return false
     }
@@ -25,8 +25,7 @@ export default class Request {
       const { data } = await axios.post(this.endpoint, payload)
       return data
     } catch (err) {
-      // console.error(err)
-      console.log(err)
+      // console.error(err.response)
       this.retryOnRateLimit(err, async () => await this.post(payload, options))
       return false
     }

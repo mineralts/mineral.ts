@@ -22,6 +22,7 @@ export default class MessageInteractionCreatePacket extends BasePacket {
     })
 
     message.channel.messages.cache.set(message.id, message)
+
     const member = message.channel.guild.members.cache.get(payload.member.user.id)
 
     if (payload.data.component_type === ComponentType.BUTTON) {
