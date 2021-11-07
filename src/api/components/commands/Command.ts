@@ -11,6 +11,7 @@ import NumberArgument from './NumberArgument'
 import ChoiceArgument from './ChoiceArgument'
 import MemberArgument from './MemberArgument'
 import ChannelArgument from './ChannelArgument'
+import SubCommandArgument from './SubCommandArgument'
 
 export default class Command {
   public id?: Snowflake
@@ -18,7 +19,7 @@ export default class Command {
   public name?: string
   public description?: string
   public defaultPermission: boolean = true
-  public arguments: CommandParamsResolvable[] = []
+  public arguments: (CommandParamsResolvable | SubCommandArgument)[] = []
   public guild?: Guild
 
   public setType (type: keyof typeof CommandType) {
@@ -33,6 +34,13 @@ export default class Command {
 
   public setDescription (value: string) {
     this.description = value
+    return this
+  }
+
+  public createSubCommand (callback: (command: SubCommandArgument) => void) {
+    const argument = new SubCommandArgument()
+    callback(argument)
+    this.arguments.push(argument)
     return this
   }
 
@@ -81,16 +89,37 @@ export default class Command {
       type: CommandType[this.type!],
       name: this.name,
       description: this.description,
-      options: this.arguments.map((argument: CommandParamsResolvable) => ({
-        ...argument,
-        name: argument.name,
-        description: argument.description,
-        type: CommandArgumentType[argument.type],
-        required: argument.isRequired,
-        channel_types: argument instanceof ChannelArgument
-          ? argument.channelTypes.map((channelType: keyof typeof ChannelTypeResolvable) => ChannelTypeResolvable[channelType])
-          : undefined
-      }))
+      options: this.arguments.map((argument: CommandParamsResolvable | SubCommandArgument) => {
+        if (argument instanceof SubCommandArgument) {
+          return {
+            name: argument.name,
+            description: argument.description,
+            type: CommandArgumentType[argument.type],
+            options: argument.arguments.map((argument: CommandParamsResolvable) => {
+              return {
+                ...argument,
+                name: argument.name,
+                description: argument.description,
+                type: CommandArgumentType[argument.type!],
+                required: argument.isRequired,
+                channel_types: argument instanceof ChannelArgument
+                  ? argument.channelTypes.map((channelType: keyof typeof ChannelTypeResolvable) => ChannelTypeResolvable[channelType])
+                  : undefined
+              }
+            })
+          }
+        }
+        return {
+          ...argument,
+          name: argument.name,
+          description: argument.description,
+          type: CommandArgumentType[argument.type!],
+          required: argument.isRequired,
+          channel_types: argument instanceof ChannelArgument
+            ? argument.channelTypes.map((channelType: keyof typeof ChannelTypeResolvable) => ChannelTypeResolvable[channelType])
+            : undefined
+        }
+      })
     }
   }
 }
