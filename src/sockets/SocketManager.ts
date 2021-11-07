@@ -7,7 +7,6 @@ import { Opcode } from '../types'
 import { Buffer } from 'buffer'
 import { Observable } from 'rxjs'
 import BasePacket from '../packets/BasePacket'
-import { DateTime } from 'luxon'
 
 export default class SocketManager {
   public websocket!: WebSocket
@@ -19,7 +18,6 @@ export default class SocketManager {
   }
 
   public async connect (request: Buffer) {
-    console.log(DateTime.now().toMillis())
     const { data } = await axios.get('/v9/gateway/bot')
 
     this.websocket = new WebSocket(`${data.url}/?v=9`)
@@ -42,7 +40,6 @@ export default class SocketManager {
       this.heartbeat.watchSession(payload.d?.session_id)
 
       if (payload.op === Opcode.HELLO) {
-        console.log(DateTime.now().toMillis())
         this.heartbeat.beat(payload.d.heartbeat_interval)
       }
 

@@ -1,5 +1,4 @@
-import { ChannelResolvable, ChoiceOption, CommandArgumentType } from '../../../types'
-import GuildMember from '../../entities/GuildMember'
+import { ChoiceOption, CommandArgumentType } from '../../../types'
 
 export default class ChoiceArgument {
   public name!: string
@@ -8,7 +7,7 @@ export default class ChoiceArgument {
   public type!: Exclude<keyof typeof CommandArgumentType, ['INTEGER']>
   public choices: ChoiceOption[] = []
 
-  public setType (type: Exclude<keyof typeof CommandArgumentType, ['INTEGER']>) {
+  public setType (type: Exclude<keyof typeof CommandArgumentType, ['INTEGER', 'SUB_COMMAND', 'SUB_COMMAND_GROUP', 'USER', 'CHANNEL', 'MENTIONABLE']>) {
     this.type = type
     return this
   }
@@ -28,7 +27,7 @@ export default class ChoiceArgument {
     return this
   }
 
-  public addOption (name: string, value: string | number | GuildMember | ChannelResolvable) {
+  public addOption (name: string, value: string | number | boolean) {
     this.choices.push({ name, value })
     return this
   }

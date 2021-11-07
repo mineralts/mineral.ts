@@ -18,7 +18,6 @@ export default class CommandInteractionCreatePacket extends BasePacket {
     const guild = client.cacheManager.guilds.cache.get(payload.guild_id)
     const channel = guild?.channels.cache.get(payload.channel_id)
     const member = guild?.members.cache.get(payload.member.user.id)
-    console.log(payload)
 
     const commandInteraction = new CommandInteraction(
       payload.id,
@@ -49,8 +48,6 @@ export default class CommandInteractionCreatePacket extends BasePacket {
         else return undefined
       })
     )).filter(component => component)
-
-    console.log((component as unknown as Button)[0])
 
     return (component as unknown as Button)[0]
   }

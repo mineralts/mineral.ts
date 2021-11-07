@@ -330,7 +330,7 @@ export enum CommandArgumentType {
 export type ChoiceOption = {
   name: string
   emoji?: string | undefined
-  value: string | number | GuildMember | ChannelResolvable
+  value: string | number | boolean
 }
 
 export type CommandParamsResolvable = StringArgument | NumberArgument | ChoiceArgument

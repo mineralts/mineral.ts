@@ -1,5 +1,6 @@
 import Interaction from './Interaction'
 import {
+  ChannelResolvable,
   CommandParamsResolvable,
   InteractionType,
   MessageComponentResolvable,
@@ -53,5 +54,30 @@ export default class CommandInteraction extends Interaction {
         flags: messageOption.isClientSide ? 1 << 6 : undefined,
       }
     }, option)
+  }
+
+  public getChannel (name: string): ChannelResolvable | undefined {
+    const channel = this.params.find((param: CommandParamsResolvable) => param.name == name) as unknown as { value: Snowflake }
+    return this.channel.guild.channels.cache.get(channel?.value)
+  }
+
+  public getMember (name: string): GuildMember | undefined {
+    const channel = this.params.find((param: CommandParamsResolvable) => param.name == name) as unknown as { value: Snowflake }
+    return this.channel.guild.members.cache.get(channel?.value)
+  }
+
+  public getString (name: string): string | undefined {
+    const stringValue = this.params.find((param: CommandParamsResolvable) => param.name == name) as unknown as { value: string }
+    return stringValue.value
+  }
+
+  public getNumber (name: string): number | undefined {
+    const stringValue = this.params.find((param: CommandParamsResolvable) => param.name == name) as unknown as { value: number }
+    return stringValue.value
+  }
+
+  public getChoices<T> (name: string): T | undefined {
+    const choice = this.params.find((param: CommandParamsResolvable) => param.name == name) as unknown as { value: T }
+    return choice.value
   }
 }
