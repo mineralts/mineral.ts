@@ -127,11 +127,11 @@ export type ChannelResolvable = TextChannel | VoiceChannel | CategoryChannel
 export enum Region {
   FRANCE = 'fr',
   ENGLAND = 'en_US',
-  SPAN = 'es-ES',
+  SPAIN = 'es-ES',
   GERMANY = 'de',
-  DANSK = 'da',
-  HRVATSKI = 'hr',
-  ITALIANO = 'it',
+  DENMARK = 'da',
+  CROATIA = 'hr',
+  ITALY = 'it',
   LITHUANIA = 'lt',
   HUNGARY = 'hu',
 }
