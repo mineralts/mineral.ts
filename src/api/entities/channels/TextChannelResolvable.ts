@@ -29,7 +29,7 @@ export default class TextChannelResolvable extends Channel {
     public parentId: Snowflake,
     public permissionOverwrites: { [K: string]: string }[],
     public position: number,
-    public rateLimitePerUser: number,
+    public rateLimitPerUser: number,
     public topic: string,
     public messages: MessageManager,
     public parent?: CategoryChannel,
@@ -53,6 +53,11 @@ export default class TextChannelResolvable extends Channel {
   public async setDescription (value: string, option?: RequestOptions) {
     const request = new Request(`/channels/${this.id}`)
     await request.patch({ topic: value }, option)
+  }
+
+  public async setNSFW(bool: boolean) {
+    const request = new Request(`/channels/${this.id}`)
+    await request.patch({ nsfw: bool })
   }
 
   public async send (messageOption: MessageOption, option?: RequestOptions): Promise<Message> {
