@@ -99,6 +99,8 @@ export interface MineralVein {
   presenceUpdate: [before: Presence | undefined, after: Presence]
   voiceJoin: [member: GuildMember]
   interactionButtonCreate: [interaction: ButtonInteraction]
+  memberBoostGuild: [member: GuildMember]
+  memberUnboostGuild: [member: GuildMember]
   [key: `interactionButton::${string}`]: [interaction: ButtonInteraction]
   interactionSelectMenuCreate: [interaction: SelectMenuInteraction]
   [key: `interactionSelectMenu::${string}`]: [interaction: SelectMenuInteraction]
