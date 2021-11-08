@@ -30,7 +30,7 @@ export default class User extends BaseClient {
 
   public getAvatarUrl (format = 'webp', size?, dynamic = false): string | null {
     const cdn = Rest.getInstance().cdn
-    if (dynamic) format = this.avatar?.startsWith('a_') ? 'gif' : format
+    format = dynamic && this.avatar?.startsWith('a_') ? 'gif' : format
     return this.avatar
       ? this.makeImageUrl(`${cdn}/avatars/${this.id}/${this.avatar}`, { format, size })
       : null
