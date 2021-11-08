@@ -55,6 +55,12 @@ export default class TextChannelResolvable extends Channel {
     await request.patch({ topic: value }, option)
   }
 
+  public async setNFSW(value: boolean) {
+    const request = new Request(`/channels/${this.id}`)
+
+    await request.patch({nsfw: value})
+  }
+
   public async send (messageOption: MessageOption, option?: RequestOptions): Promise<Message> {
     const request = new Request(`/channels/${this.id}/messages`)
     const components = messageOption.components?.map((row: EmbedRow) => {
