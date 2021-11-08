@@ -1,4 +1,4 @@
-import { ChannelTypeResolvable, RequestOptions, Snowflake } from '../../../types'
+import {ChannelTypeResolvable, RequestOptions, Snowflake} from '../../../types'
 import Guild from '../Guild'
 import CategoryChannel from './CategoryChannel'
 import Request from '../../../sockets/Request'
@@ -43,6 +43,12 @@ export default class Channel {
     await request.patch({ name: value }, option)
   }
 
+
+  public async setTopic(value: string) {
+    const request = new Request(`/channels/${this.id}`)
+
+    await request.patch({topic: value})
+  }
   public async delete (option?: RequestOptions) {
     const communityChannelId = this.guild?.publicUpdateChannelId
     const rulesChannelId = this.guild?.ruleChannelId
