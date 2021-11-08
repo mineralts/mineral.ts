@@ -16,11 +16,11 @@ export default class NewsChannel extends TextChannelResolvable {
     parentId: Snowflake,
     permissionOverwrites: { [K: string]: string }[],
     position: number,
-    rateLimitePerUser: number,
+    rateLimitPerUser: number,
     topic: string,
     messages: MessageManager,
     parent?: CategoryChannel
   ) {
-    super(id, 'GUILD_NEWS', name, guildId, guild, lastMessageId, lastMessage, parentId, permissionOverwrites, position, rateLimitePerUser, topic, messages, parent)
+    super(id, 'GUILD_NEWS', name, guildId, guild, lastMessageId, lastMessage, parentId, permissionOverwrites, position, rateLimitPerUser, topic, messages, parent)
   }
 }

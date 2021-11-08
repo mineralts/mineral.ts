@@ -16,12 +16,12 @@ export default class TextChannel extends TextChannelResolvable {
     parentId: Snowflake,
     permissionOverwrites: { [K: string]: string }[],
     position: number,
-    rateLimitePerUser: number,
+    rateLimitPerUser: number,
     topic: string,
     messages: MessageManager,
     parent?: CategoryChannel,
   ) {
-    super(id, 'GUILD_TEXT', name, guildId, guild, lastMessageId, lastMessage, parentId, permissionOverwrites, position, rateLimitePerUser, topic, messages, parent)
+    super(id, 'GUILD_TEXT', name, guildId, guild, lastMessageId, lastMessage, parentId, permissionOverwrites, position, rateLimitPerUser, topic, messages, parent)
     this.messages = new MessageManager(this)
   }
 }
