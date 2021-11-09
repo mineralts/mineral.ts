@@ -6,7 +6,7 @@ export default class GuildMemberUnboostGuildPacket extends BasePacket {
 
   public async handle (client: Client, payload: any) {
     const guild = client.cacheManager.guilds.cache.get(payload.guild_id)
-    const member = guild!.members.cache.get(payload.guild_id)!
+    const member = guild!.members.cache.get(payload.user.id)!
 
     if (!payload.premium_since) {
       return
