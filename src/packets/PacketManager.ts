@@ -14,6 +14,8 @@ import ChannelDeletePacket from './ChannelDeletePacket'
 import ChannelUpdatePacket from './ChannelUpdatePacket'
 import CommandInteractionCreatePacket from './CommandInteractionCreatePacket'
 import MessageInteractionCreatePacket from './MessageInteractionCreatePacket'
+import GuildMemberBoostPacket from "./GuildMemberBoostPacket";
+import GuildMemberUnboostGuildPacket from "./GuildMemberUnboostGuildPacket";
 
 export default class PacketManager {
   public packets: Collection<string, BasePacket[]> = new Collection()
@@ -34,6 +36,8 @@ export default class PacketManager {
       new ChannelUpdatePacket(),
       new CommandInteractionCreatePacket(),
       new MessageInteractionCreatePacket(),
+      new GuildMemberBoostPacket(),
+      new GuildMemberUnboostGuildPacket()
     )
   }
 
