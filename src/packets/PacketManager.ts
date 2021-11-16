@@ -18,6 +18,7 @@ import GuildMemberBoostPacket from "./GuildMemberBoostPacket";
 import GuildMemberUnboostGuildPacket from "./GuildMemberUnboostGuildPacket";
 import RulesAcceptPacket from './RulesAcceptPacket'
 import MemberJoinPacket from './MemberJoinPacket'
+import MemberLeavePacket from './MemberLeavePacket'
 
 export default class PacketManager {
   public packets: Collection<string, BasePacket[]> = new Collection()
@@ -26,6 +27,7 @@ export default class PacketManager {
     this.register(
       new ReadyPacket(),
       new MemberJoinPacket(),
+      new MemberLeavePacket(),
       new GuildCreatePacket(),
       new MessagePacket(),
       new MessageReactionAddPacket(),
