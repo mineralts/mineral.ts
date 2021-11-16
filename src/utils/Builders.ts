@@ -20,6 +20,9 @@ import MessageEmbed from '../api/components/embeds/MessageEmbed'
 import Button from '../api/components/buttons/Button'
 import { keyFromEnum } from './index'
 import SelectMenu from '../api/components/selectMenus/SelectMenu'
+import GuildMember from '../api/entities/GuildMember'
+import GuildMemberRoleManager from '../api/entities/GuildMemberRoleManager'
+import User from '../api/entities/User'
 
 function walkComponent (component) {
   if (component.type === ComponentType.ACTION_ROW) {
@@ -267,4 +270,41 @@ export function createChannelFromPayload (payload) {
   }
 
   return channel
+}
+
+export function createUser (payload) {
+  return new User(
+    payload.user.id,
+    payload.user.username,
+    payload.user.discriminator,
+    `${payload.user.username}#${payload.user.discriminator}`,
+    payload.bot === true,
+    payload.premium_since
+      ? DateTime.fromISO(payload.premium_since)
+      : undefined,
+    payload.verified === true,
+    payload.mfa_enabled === true,
+    payload.user.public_flags,
+    payload.user.email,
+    payload.avatar,
+    payload.banner,
+    undefined,
+  )
+}
+
+export function createGuildMember (guild, payload) {
+  const user = createUser(payload)
+  return new GuildMember(
+    payload.user.id,
+    payload.nick || user.username,
+    user,
+    undefined as any,
+    new GuildMemberRoleManager(),
+    payload.highest_role
+      ? guild.roles.get(payload.highest_role)!
+      : null,
+    payload.is_pending,
+    undefined,
+    DateTime.fromISO(payload.joined_at),
+  )
 }

@@ -107,6 +107,7 @@ export interface MineralVein {
   interactionCommandCreate: [interaction: CommandInteraction]
   [key: `interactionCommand::${string}`]: [interaction: CommandInteraction]
   rulesAccept: [member: GuildMember]
+  guildMemberJoin: [member: GuildMember]
 }
 
 export type MineralEvent = `buttonInteraction::${string}`
