@@ -26,15 +26,15 @@ export default class TextChannelResolvable extends Channel {
     public guild: Guild,
     public lastMessageId: Snowflake,
     public lastMessage: Message | undefined,
-    public parentId: Snowflake,
+    parentId: Snowflake,
     public permissionOverwrites: { [K: string]: string }[],
     public position: number,
     public rateLimitPerUser: number,
     public topic: string,
     public messages: MessageManager,
-    public parent?: CategoryChannel,
+    parent?: CategoryChannel,
   ) {
-    super(id, type, name, guildId, guild)
+    super(id, type, name, guildId, guild, parentId, parent)
   }
 
   public createMessageCollector (options?: MessageCollectorOption) {

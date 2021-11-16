@@ -10,6 +10,8 @@ export default class Channel {
     public name: string,
     public guildId: Snowflake,
     public guild: Guild | undefined,
+    public parentId: Snowflake | undefined,
+    public parent?: CategoryChannel,
   ) {
   }
 

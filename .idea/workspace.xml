@@ -2,14 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f56e3984-6480-48ce-85e1-aff0ae5ec9a1" name="Default Changelist" comment=":construction: Work in progress">
+      <change afterPath="$PROJECT_DIR$/src/packets/RulesAcceptPacket.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/entities/interactions/ButtonInteraction.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/entities/interactions/ButtonInteraction.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/entities/interactions/CommandInteraction.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/entities/interactions/CommandInteraction.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/clients/MineralClient.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/clients/MineralClient.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/entities/channels/CategoryChannel.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/entities/channels/CategoryChannel.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/entities/channels/Channel.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/entities/channels/Channel.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/entities/channels/TextChannelResolvable.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/entities/channels/TextChannelResolvable.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/packets/CommandInteractionCreatePacket.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/packets/CommandInteractionCreatePacket.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/packets/MessageInteractionCreatePacket.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/packets/MessageInteractionCreatePacket.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sockets/Request.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/sockets/Request.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/packets/GuildCreatePacket.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/packets/GuildCreatePacket.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/packets/GuildMemberBoostPacket.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/packets/GuildMemberBoostPacket.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/packets/GuildMemberUnboostGuildPacket.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/packets/GuildMemberUnboostGuildPacket.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/packets/PacketManager.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/packets/PacketManager.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/types/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/Builders.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/Builders.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,6 +33,9 @@
       <filtered-out-file-type name="TAG" />
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
+  </component>
+  <component name="MacroExpansionManager">
+    <option name="directoryName" value="ctusq8nf" />
   </component>
   <component name="ProblemsViewState">
     <option name="selectedIndex" value="3" />
@@ -94,42 +101,8 @@
       <workItem from="1635197602423" duration="13021000" />
       <workItem from="1635524182301" duration="21848000" />
       <workItem from="1636316523513" duration="142000" />
-      <workItem from="1636316707015" duration="74000" />
-    </task>
-    <task id="LOCAL-00043" summary=":construction: Move Presence from Guild to GuildMember">
-      <created>1634676134559</created>
-      <option name="number" value="00043" />
-      <option name="presentableId" value="LOCAL-00043" />
-      <option name="project" value="LOCAL" />
-      <updated>1634676134559</updated>
-    </task>
-    <task id="LOCAL-00044" summary=":construction: Implement reactive functionality">
-      <created>1634718200086</created>
-      <option name="number" value="00044" />
-      <option name="presentableId" value="LOCAL-00044" />
-      <option name="project" value="LOCAL" />
-      <updated>1634718200086</updated>
-    </task>
-    <task id="LOCAL-00045" summary=":construction: Move Presence to User">
-      <created>1634718566613</created>
-      <option name="number" value="00045" />
-      <option name="presentableId" value="LOCAL-00045" />
-      <option name="project" value="LOCAL" />
-      <updated>1634718566613</updated>
-    </task>
-    <task id="LOCAL-00046" summary=":construction: Remove message from Delete event">
-      <created>1634722202179</created>
-      <option name="number" value="00046" />
-      <option name="presentableId" value="LOCAL-00046" />
-      <option name="project" value="LOCAL" />
-      <updated>1634722202179</updated>
-    </task>
-    <task id="LOCAL-00047" summary=":construction: Work in progress">
-      <created>1634729581035</created>
-      <option name="number" value="00047" />
-      <option name="presentableId" value="LOCAL-00047" />
-      <option name="project" value="LOCAL" />
-      <updated>1634729581035</updated>
+      <workItem from="1636316707015" duration="8711000" />
+      <workItem from="1637050418905" duration="4020000" />
     </task>
     <task id="LOCAL-00048" summary=":construction: Work in progress">
       <created>1634730312646</created>
@@ -439,7 +412,42 @@
       <option name="project" value="LOCAL" />
       <updated>1635542924964</updated>
     </task>
-    <option name="localTasksCounter" value="92" />
+    <task id="LOCAL-00092" summary=":construction: Work in progress">
+      <created>1636316785723</created>
+      <option name="number" value="00092" />
+      <option name="presentableId" value="LOCAL-00092" />
+      <option name="project" value="LOCAL" />
+      <updated>1636316785723</updated>
+    </task>
+    <task id="LOCAL-00093" summary=":construction: Work in progress">
+      <created>1636321381261</created>
+      <option name="number" value="00093" />
+      <option name="presentableId" value="LOCAL-00093" />
+      <option name="project" value="LOCAL" />
+      <updated>1636321381261</updated>
+    </task>
+    <task id="LOCAL-00094" summary=":construction: Work in progress">
+      <created>1636324520010</created>
+      <option name="number" value="00094" />
+      <option name="presentableId" value="LOCAL-00094" />
+      <option name="project" value="LOCAL" />
+      <updated>1636324520010</updated>
+    </task>
+    <task id="LOCAL-00095" summary=":construction: Work in progress">
+      <created>1636324631585</created>
+      <option name="number" value="00095" />
+      <option name="presentableId" value="LOCAL-00095" />
+      <option name="project" value="LOCAL" />
+      <updated>1636324631585</updated>
+    </task>
+    <task id="LOCAL-00096" summary=":construction: Work in progress">
+      <created>1636374557250</created>
+      <option name="number" value="00096" />
+      <option name="presentableId" value="LOCAL-00096" />
+      <option name="project" value="LOCAL" />
+      <updated>1636374557250</updated>
+    </task>
+    <option name="localTasksCounter" value="97" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

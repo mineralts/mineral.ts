@@ -42,7 +42,7 @@ export default class GuildCreatePacket extends BasePacket {
 
     this.channels.forEach((channel: ChannelResolvable) => {
       if (!(channel instanceof CategoryChannel)) {
-        channel.parent = this.channels.get(channel.parentId)
+        channel.parent = this.channels.get(channel.parentId!)
       }
     })
 

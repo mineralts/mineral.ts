@@ -106,6 +106,7 @@ export interface MineralVein {
   [key: `interactionSelectMenu::${string}`]: [interaction: SelectMenuInteraction]
   interactionCommandCreate: [interaction: CommandInteraction]
   [key: `interactionCommand::${string}`]: [interaction: CommandInteraction]
+  rulesAccept: [member: GuildMember]
 }
 
 export type MineralEvent = `buttonInteraction::${string}`

@@ -262,7 +262,7 @@ export function createChannelFromPayload (payload) {
       payload.id,
       payload.name,
       payload.guild_id,
-      undefined
+      undefined,
     )
   }
 

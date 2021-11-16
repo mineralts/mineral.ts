@@ -16,6 +16,7 @@ import CommandInteractionCreatePacket from './CommandInteractionCreatePacket'
 import MessageInteractionCreatePacket from './MessageInteractionCreatePacket'
 import GuildMemberBoostPacket from "./GuildMemberBoostPacket";
 import GuildMemberUnboostGuildPacket from "./GuildMemberUnboostGuildPacket";
+import RulesAcceptPacket from './RulesAcceptPacket'
 
 export default class PacketManager {
   public packets: Collection<string, BasePacket[]> = new Collection()
@@ -37,7 +38,8 @@ export default class PacketManager {
       new CommandInteractionCreatePacket(),
       new MessageInteractionCreatePacket(),
       new GuildMemberBoostPacket(),
-      new GuildMemberUnboostGuildPacket()
+      new GuildMemberUnboostGuildPacket(),
+      new RulesAcceptPacket(),
     )
   }
 
