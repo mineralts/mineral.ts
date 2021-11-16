@@ -14,8 +14,8 @@ import ChannelDeletePacket from './ChannelDeletePacket'
 import ChannelUpdatePacket from './ChannelUpdatePacket'
 import CommandInteractionCreatePacket from './CommandInteractionCreatePacket'
 import MessageInteractionCreatePacket from './MessageInteractionCreatePacket'
-import GuildMemberBoostPacket from "./GuildMemberBoostPacket";
-import GuildMemberUnboostGuildPacket from "./GuildMemberUnboostGuildPacket";
+import MemberBoostAdd from "./MemberBoostAdd";
+import MemberBoostRemoveTs from "./MemberBoostRemove.ts";
 import RulesAcceptPacket from './RulesAcceptPacket'
 import MemberJoinPacket from './MemberJoinPacket'
 import MemberLeavePacket from './MemberLeavePacket'
@@ -41,8 +41,8 @@ export default class PacketManager {
       new ChannelUpdatePacket(),
       new CommandInteractionCreatePacket(),
       new MessageInteractionCreatePacket(),
-      new GuildMemberBoostPacket(),
-      new GuildMemberUnboostGuildPacket(),
+      new MemberBoostAdd(),
+      new MemberBoostRemoveTs(),
       new RulesAcceptPacket(),
     )
   }

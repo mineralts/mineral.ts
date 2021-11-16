@@ -3,7 +3,7 @@ import Client from "../clients/MineralClient";
 import Packet from '../decorators/Packet'
 
 @Packet('GUILD_UPDATE')
-export default class GuildMemberUnboostGuildPacket extends BasePacket {
+export default class MemberBoostAdd extends BasePacket {
   public async handle (client: Client, payload: any) {
     if (!payload.user) {
       return
@@ -16,6 +16,6 @@ export default class GuildMemberUnboostGuildPacket extends BasePacket {
       return
     }
 
-    client.emit('memberBoostRemove', member)
+    client.emit('memberBoostAdd', member)
   }
 }
