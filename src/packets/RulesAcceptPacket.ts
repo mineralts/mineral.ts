@@ -14,8 +14,7 @@ export default class RulesAcceptPacket extends BasePacket {
 
     if (member.isPending !== payload.pending) {
       member.isPending = false
+      client.emit('rulesAccept', member)
     }
-
-    client.emit('rulesAccept', member)
   }
 }
