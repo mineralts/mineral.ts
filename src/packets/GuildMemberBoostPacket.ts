@@ -16,6 +16,6 @@ export default class GuildMemberBoostPacket extends BasePacket {
       return
     }
 
-    client.emit('memberBoostGuild', member)
+    client.emit('memberBoostAdd', member)
   }
 }

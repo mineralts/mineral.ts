@@ -16,6 +16,6 @@ export default class GuildMemberUnboostGuildPacket extends BasePacket {
       return
     }
 
-    client.emit('memberUnBoostGuild', member)
+    client.emit('memberBoostRemove', member)
   }
 }
