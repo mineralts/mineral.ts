@@ -170,6 +170,11 @@ export enum ExplicitContentLevel {
   ALL_MEMBERS,
 }
 
+export enum BehaviorsExpiration {
+  REMOVE_ROLE,
+  KICK
+}
+
 export type GuildFeature =
   | 'ANIMATED_ICON'
   | 'BANNER'
