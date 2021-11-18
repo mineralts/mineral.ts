@@ -18,6 +18,7 @@ import SelectMenu from '../api/components/selectMenus/SelectMenu'
 import ButtonInteraction from '../api/entities/interactions/ButtonInteraction'
 import SelectMenuInteraction from '../api/entities/interactions/SelectMenuInteraction'
 import CommandInteraction from '../api/entities/interactions/CommandInteraction'
+import Invite from '../api/entities/Invite'
 
 export type Snowflake = string
 export type Milliseconds = number
@@ -107,7 +108,7 @@ export interface MineralVein {
   interactionCommandCreate: [interaction: CommandInteraction]
   [key: `interactionCommand::${string}`]: [interaction: CommandInteraction]
   rulesAccept: [member: GuildMember]
-  guildMemberJoin: [member: GuildMember]
+  guildMemberJoin: [member: GuildMember, invitation?: Invite]
   guildMemberLeave: [member: GuildMember]
 }
 
