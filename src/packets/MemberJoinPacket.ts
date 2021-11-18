@@ -11,6 +11,7 @@ export default class MemberJoinPacket extends BasePacket {
     const guild = client.cacheManager.guilds.cache.get(payload.guild_id)
     const member = createGuildMember(guild, payload)
 
+    member.guild = guild!
     guild?.members.cache.set(member.id, member)
 
     const request = new Request(`/guilds/${guild!.id}/invites`)
