@@ -24,6 +24,7 @@ import Logger from '@leadcodedev/logger'
 import TextChannel from './channels/TextChannel'
 import Command from '../components/commands/Command'
 import Collection from '@discordjs/collection'
+import Invite from './Invite'
 
 export default class Guild {
   public commands: Collection<Snowflake, Command> = new Collection()
@@ -72,6 +73,8 @@ export default class Guild {
     public systemChannelId: Snowflake,
     public vanityUrlCode: string | null,
     public embeddedActivities: any[],
+    public hasProgressBarEnabled: boolean,
+    public invites: Collection<string, Invite>,
   ) {
   }
 

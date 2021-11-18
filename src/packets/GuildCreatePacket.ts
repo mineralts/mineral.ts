@@ -22,6 +22,8 @@ import Collection from '@discordjs/collection'
 import GuildEmojiManager from '../api/entities/GuildEmojiManager'
 import VoiceChannel from '../api/entities/channels/VoiceChannel'
 import CategoryChannel from '../api/entities/channels/CategoryChannel'
+import Request from '../sockets/Request'
+import Invite from '../api/entities/Invite'
 
 @Packet('GUILD_CREATE')
 export default class GuildCreatePacket extends BasePacket {
@@ -40,6 +42,7 @@ export default class GuildCreatePacket extends BasePacket {
     this.createEmojis(payload)
     this.createPresences(payload)
 
+
     this.channels.forEach((channel: ChannelResolvable) => {
       if (!(channel instanceof CategoryChannel)) {
         channel.parent = this.channels.get(channel.parentId!)
@@ -56,6 +59,22 @@ export default class GuildCreatePacket extends BasePacket {
     this.guild.channels = new GuildChannelManager(this.guild).register(this.channels)
     this.guild.emojis.register(this.emojis)
     this.guild.roles.register(this.roles)
+
+    const request = new Request(`/guilds/${this.guild.id}/invites`)
+    const invites = await request.get()
+
+    invites.forEach((item) => {
+      this.guild.invites.set(item.code, new Invite(
+        this.guild.members.cache.get(item.inviter.id)!,
+        this.guild.channels.cache.get(item.channel.id)!,
+        item.code,
+        item.uses,
+        item.max_uses,
+        item.temporary,
+        DateTime.now().plus(item.max_age * 1000),
+        DateTime.fromISO(item.created_at),
+      ))
+    })
 
     client.cacheManager.guilds.cache.set(this.guild.id, this.guild)
 
@@ -275,7 +294,9 @@ export default class GuildCreatePacket extends BasePacket {
       payload.afk_timeout,
       payload.system_channel_id,
       payload.vanity_url_code,
-      payload.embedded_activities
+      payload.embedded_activities,
+      payload.premium_progress_bar_enabled,
+      new Collection(),
     )
   }
 }
