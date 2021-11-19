@@ -1,8 +1,8 @@
 import { Snowflake, BehaviorsExpiration } from '../../types'
 import User from './User'
-import Account from './Account'
+import IntegrationAccount from './IntegrationAccount'
 import { DateTime } from 'luxon'
-import Application from './Application'
+import IntegrationApplication from './IntegrationApplication'
 
 export default class Integration {
   constructor (
@@ -16,11 +16,11 @@ export default class Integration {
     public expire_behavior: BehaviorsExpiration | undefined,
     public expire_grace_period: number | undefined,
     public user: User | undefined,
-    public account: Account,
+    public account: IntegrationAccount,
     public synced_at: DateTime,
     public subscriber_count: number | undefined,
     public isRevoked: boolean | undefined,
-    public application: Application,
+    public application: IntegrationApplication | undefined,
 
   ) {
   }
