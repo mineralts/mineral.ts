@@ -7,7 +7,7 @@ export default class ThreadMetadata {
     public auto_archive_duration: number,
     public archive_timestamp: DateTime,
     public isLocked: boolean,
-    public isInvitable: boolean | undefined,
+    public isInvitable: boolean,
   ) {
   }
 }
