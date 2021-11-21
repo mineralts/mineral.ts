@@ -69,6 +69,11 @@ export default class TextChannelResolvable extends Channel {
       return row
     })
 
+    if (!messageOption.content?.length && !messageOption.embeds?.length) {
+      Logger.send('error', 'Cannot send an empty message')
+      process.exit(1)
+    }
+
     const payload = await request.post({
       ...messageOption,
       components

@@ -62,6 +62,7 @@ export function createMessageFromPayload (payload) {
   const channel = guild?.channels.cache.get(payload.channel_id) as TextChannel
   const author = guild?.members.cache.get(payload.author.id)!
 
+
   const mentionChannel: Collection<Snowflake, any> = new Collection()
   const channelMentions = payload.content.split(' ')
     .filter((word: string) => word.startsWith('<#'))
@@ -137,8 +138,9 @@ export function createMessageInteractionFromPayload (payload) {
   const author = guild?.members.cache.get(payload.member?.id)!
 
   const mentionChannel: Collection<Snowflake, any> = new Collection()
+
   const channelMentions = payload.message.content
-    ? payload.content.split(' ')
+    ? payload.message.content.split(' ')
     .filter((word: string) => word.startsWith('<#'))
     .map((word: string) => {
       return word

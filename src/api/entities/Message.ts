@@ -58,6 +58,10 @@ export default class Message {
     })
   }
 
+  public async reload () {
+    await this.edit(this)
+  }
+
   public async react (emoji: string | Emoji, option?: RequestOptions) {
     let encodedEmoji = emoji instanceof Emoji
       ? encodeURI(`${emoji.label}:${emoji.id}`)
