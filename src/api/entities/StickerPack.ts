@@ -6,10 +6,10 @@ export default class StickerPack {
     public id: Snowflake,
     public stickers: Sticker[],
     public name: string,
-    public sku_id: Snowflake,
-    public cover_sticker_id: Snowflake,
+    public skuId: Snowflake,
+    public coverStickerId: Snowflake,
     public description: string,
-    public banner_asset_id: Snowflake,
+    public bannerAssetId: Snowflake,
 
   ) {
   }

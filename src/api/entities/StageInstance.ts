@@ -3,11 +3,11 @@ import { Snowflake } from '../../types'
 export default class StageInstance {
   constructor (
     public id: Snowflake,
-    public guild_id: Snowflake,
-    public channel_id: Snowflake,
+    public guildId: Snowflake,
+    public channelId: Snowflake,
     public topic: string,
-    public privacy_level: number,
-    public isDiscoverable_disabled: boolean,
+    public privacyLevel: number,
+    public isDiscoverableDisabled: boolean,
   ) {
   }
 }

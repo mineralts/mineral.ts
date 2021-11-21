@@ -8,8 +8,8 @@ export default class Connection {
     public isRevoked: boolean,
     public integrations: Integration[],
     public isVerified: boolean,
-    public IsFriend_sync: boolean,
-    public isShow_activity: boolean,
+    public IsFriendSync: boolean,
+    public isShowActivity: boolean,
     public visibility: number,
   ) {
   }

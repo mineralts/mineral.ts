@@ -4,8 +4,8 @@ import { Snowflake } from "../../types"
 export default class ThreadMember {
   constructor (
     public id: Snowflake,
-    public user_id: Snowflake,
-    public join_timestamp: DateTime,
+    public userId: Snowflake,
+    public joinTimestamp: DateTime,
     public flags: number,
   ) {
   }

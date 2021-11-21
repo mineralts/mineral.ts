@@ -128,6 +128,11 @@ export enum ChannelTypeResolvable {
   GUILD_STAGE_VOICE = 13,
 }
 
+export enum OverwriteType {
+  ROLE = 0,
+  MEMBER = 1,
+}
+
 export type ChannelResolvable = TextChannel | VoiceChannel | CategoryChannel
 
 export enum Region {
