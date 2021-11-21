@@ -2,7 +2,7 @@ import Collection from '@discordjs/collection'
 import BasePacket from '../packets/BasePacket'
 import ReadyPacket from './ReadyPacket'
 import GuildCreatePacket from './GuildCreatePacket'
-import { MessagePacket } from './MessagePacket'
+import { MessageCreatePacket } from './MessageCreatePacket'
 import MessageReactionAddPacket from './MessageReactionAddPacket'
 import MessageReactionRemovePacket from './MessageReactionRemovePacket'
 import PresenceUpdatePacket from './PresenceUpdatePacket'
@@ -29,7 +29,7 @@ export default class PacketManager {
       new MemberJoinPacket(),
       new MemberLeavePacket(),
       new GuildCreatePacket(),
-      new MessagePacket(),
+      new MessageCreatePacket(),
       new MessageReactionAddPacket(),
       new MessageReactionRemovePacket(),
       new PresenceUpdatePacket(),
