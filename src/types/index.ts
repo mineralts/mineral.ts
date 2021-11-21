@@ -128,6 +128,11 @@ export enum ChannelTypeResolvable {
   GUILD_STAGE_VOICE = 13,
 }
 
+export enum OverwriteType {
+  ROLE = 0,
+  MEMBER = 1,
+}
+
 export type ChannelResolvable = TextChannel | VoiceChannel | CategoryChannel
 
 export enum Region {
@@ -168,6 +173,11 @@ export enum ExplicitContentLevel {
   DISABLED,
   MEMBERS_WITHOUT_ROLES,
   ALL_MEMBERS,
+}
+
+export enum BehaviorsExpiration {
+  REMOVE_ROLE,
+  KICK
 }
 
 export type GuildFeature =
