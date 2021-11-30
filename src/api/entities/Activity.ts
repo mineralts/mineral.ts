@@ -1,5 +1,5 @@
 import { DateTime } from 'luxon'
-import { ActivityType, Snowflake } from '../../types'
+import { ActivityAssets, ActivityTimestamps, ActivityType, Snowflake } from '../../types'
 import Emoji from './Emoji'
 
 export default class Activity {
@@ -9,15 +9,10 @@ export default class Activity {
     public description: string,
     public name: string,
     public emoji: Emoji | null,
-    public timestamps: { start: DateTime | undefined, end: DateTime | undefined },
+    public timestamps: ActivityTimestamps,
     public state: string | undefined,
     public detail: string | undefined,
-    public assets: {
-      smallText: string | undefined,
-      smallImage: string | undefined,
-      largeText: string | undefined,
-      largeImage: string | undefined,
-    },
+    public assets: ActivityAssets,
     public buttons: string[],
     public syncId: string | undefined,
     public sessionId: string | undefined,

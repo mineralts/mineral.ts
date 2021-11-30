@@ -35,12 +35,8 @@ export default class PresenceUpdatePacket extends BasePacket {
         : null
 
       const timestamps = {
-        start: activity.timestamps?.start
-          ? DateTime.fromMillis(activity.timestamps.start)
-          : undefined,
-        end: activity.timestamps?.end
-          ? DateTime.fromMillis(activity.timestamps.end)
-          : undefined
+        start: activity.timestamps?.start ? DateTime.fromMillis(activity.timestamps.start) : undefined,
+        end: activity.timestamps?.end ? DateTime.fromMillis(activity.timestamps.end) : undefined
       }
 
       return new Activity(

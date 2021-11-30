@@ -19,6 +19,7 @@ import ButtonInteraction from '../api/entities/interactions/ButtonInteraction'
 import SelectMenuInteraction from '../api/entities/interactions/SelectMenuInteraction'
 import CommandInteraction from '../api/entities/interactions/CommandInteraction'
 import Invite from '../api/entities/Invite'
+import { DateTime } from 'luxon'
 
 export type Snowflake = string
 export type Milliseconds = number
@@ -368,3 +369,12 @@ export enum InteractionType {
   UPDATE_MESSAGE =	7,
   APPLICATION_COMMAND_AUTOCOMPLETE_RESULT = 8,
 }
+
+export type ActivityAssets = {
+  smallText: string | undefined,
+  smallImage: string | undefined,
+  largeText: string | undefined,
+  largeImage: string | undefined,
+}
+
+export type ActivityTimestamps = { start: DateTime | undefined, end: DateTime | undefined }
