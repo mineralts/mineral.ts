@@ -20,48 +20,50 @@ export default class PresenceUpdatePacket extends BasePacket {
       keyFromEnum(PresenceStatus, payload.client_status.web) as keyof typeof PresenceStatus || null,
       keyFromEnum(PresenceStatus, payload.client_status.desktop) as keyof typeof PresenceStatus || null,
       keyFromEnum(PresenceStatus, payload.client_status.mobile) as keyof typeof PresenceStatus || null,
-      payload.activities.map((activity: any) => (
-        new Activity(
-          activity.id,
-          ActivityType[activity.type as number] as any,
-          activity.state,
-          activity.name,
-          activity.emoki
-            ? new Emoji(
-              activity.emoji.id,
-              activity.emoji.name,
-              false,
-              false,
-              activity.emoji.animated,
-            )
-          : null,
-          {
-            start: activity.timestamps?.start
-              ? DateTime.fromMillis(activity.timestamps.start)
-              : undefined,
-            end: activity.timestamps?.end
-              ? DateTime.fromMillis(activity.timestamps.end)
-              : undefined
-          },
-          activity.state,
-          activity.detail,
-          {
-            smallText: activity.assets?.small_text,
-            smallImage: activity.assets?.small_image,
-            largeText: activity.assets?.large_text,
-            largeImage: activity.assets?.large_image,
-          },
-          activity.buttons,
-          activity.sync_id,
-          activity.session_id,
-          DateTime.fromMillis(activity.created_at),
-          activity.application_id,
-        )
-      ))
+      []
     )
 
-    presence.activities.forEach((activity: Activity) => {
-      console.log('presence', activity)
+    presence.activities = payload.activities.map((activity: any) => {
+      const emoji = activity.emoji
+        ? new Emoji(
+          activity.emoji.id,
+          activity.emoji.name,
+          false,
+          false,
+          activity.emoji.animated,
+        )
+        : null
+
+      const timestamps = {
+        start: activity.timestamps?.start
+          ? DateTime.fromMillis(activity.timestamps.start)
+          : undefined,
+        end: activity.timestamps?.end
+          ? DateTime.fromMillis(activity.timestamps.end)
+          : undefined
+      }
+
+      return new Activity(
+        activity.id,
+        ActivityType[activity.type as number] as any,
+        activity.state,
+        activity.name,
+        emoji,
+        timestamps,
+        activity.state,
+        activity.detail,
+        {
+          smallText: activity.assets?.small_text,
+          smallImage: activity.assets?.small_image,
+          largeText: activity.assets?.large_text,
+          largeImage: activity.assets?.large_image,
+        },
+        activity.buttons,
+        activity.sync_id,
+        activity.session_id,
+        DateTime.fromMillis(activity.created_at),
+        activity.application_id,
+      )
     })
 
     client.emit('presenceUpdate', member.user.presence, presence)
