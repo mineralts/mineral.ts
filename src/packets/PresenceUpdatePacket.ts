@@ -14,16 +14,7 @@ export default class PresenceUpdatePacket extends BasePacket {
     const guild = client.cacheManager.guilds.cache.get(payload.guild_id)
     const member = guild?.members.cache.get(payload.user.id)!
 
-    const presence = new Presence(
-      member,
-      keyFromEnum(PresenceStatus, payload.status) as keyof typeof PresenceStatus,
-      keyFromEnum(PresenceStatus, payload.client_status.web) as keyof typeof PresenceStatus || null,
-      keyFromEnum(PresenceStatus, payload.client_status.desktop) as keyof typeof PresenceStatus || null,
-      keyFromEnum(PresenceStatus, payload.client_status.mobile) as keyof typeof PresenceStatus || null,
-      []
-    )
-
-    presence.activities = payload.activities.map((activity: any) => {
+    const activities = payload.activities.map((activity: any) => {
       const emoji = new Emoji(
         activity.emoji?.id,
         activity.emoji?.name,
@@ -59,6 +50,15 @@ export default class PresenceUpdatePacket extends BasePacket {
         activity.application_id,
       )
     })
+
+    const presence = new Presence(
+      member,
+      keyFromEnum(PresenceStatus, payload.status) as keyof typeof PresenceStatus,
+      keyFromEnum(PresenceStatus, payload.client_status.web) as keyof typeof PresenceStatus || null,
+      keyFromEnum(PresenceStatus, payload.client_status.desktop) as keyof typeof PresenceStatus || null,
+      keyFromEnum(PresenceStatus, payload.client_status.mobile) as keyof typeof PresenceStatus || null,
+      activities
+    )
 
     client.emit('presenceUpdate', member.user.presence, presence)
     member.user.presence = presence
