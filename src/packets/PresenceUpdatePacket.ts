@@ -31,7 +31,7 @@ export default class PresenceUpdatePacket extends BasePacket {
       return new Activity(
         activity.id,
         ActivityType[activity.type as number] as any,
-        activity.state,
+        activity.description,
         activity.name,
         activity.emoji ? emoji : undefined,
         timestamps,

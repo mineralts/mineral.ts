@@ -151,8 +151,8 @@ export enum Region {
 
 export enum ActivityType {
   'PLAYING',
-  'LISTENING',
   'STREAMING',
+  'LISTENING',
   'WATCHING',
   'CUSTOM',
   'COMPETING'
@@ -378,3 +378,15 @@ export type ActivityAssets = {
 }
 
 export type ActivityTimestamps = { start: DateTime | undefined, end: DateTime | undefined }
+
+export type ActivityOption = {
+  name: string
+  type:Exclude<keyof typeof ActivityType, 'CUSTOM'>
+  url?: string
+}
+
+export type PresenceData = {
+  status?: keyof typeof PresenceStatus,
+  afk?: boolean,
+  activities?: ActivityOption[]
+}

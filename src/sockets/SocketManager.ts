@@ -50,7 +50,7 @@ export default class SocketManager {
       }
 
       if (payload.t) {
-        console.log(payload.t)
+        Logger.send('info', `Received event from discord API : ${payload.t}`)
         const packetEvents = this.socket.client.packetManager.packets.get(payload.t)
         if (!packetEvents) {
           return

@@ -240,13 +240,39 @@ export default class GuildCreatePacket extends BasePacket {
   }
 
   protected createActivity (payload) {
+    const emoji = new Emoji(
+      payload.emoji?.id,
+      payload.emoji?.name,
+      false,
+      false,
+      payload.emoji?.animated,
+    )
+
+    const timestamps = {
+      start: payload.timestamps?.start ? DateTime.fromMillis(payload.timestamps.start) : undefined,
+      end: payload.timestamps?.end ? DateTime.fromMillis(payload.timestamps.end) : undefined
+    }
+
     return new Activity(
       payload.id,
       ActivityType[payload.type as number] as any,
-      payload.state,
+      payload.description,
       payload.name,
-      payload.emoji,
-      DateTime.fromMillis(payload.created_at)
+      payload.emoji ? emoji : undefined,
+      timestamps,
+      payload.state,
+      payload.detail,
+      {
+        smallText: payload.assets?.small_text,
+        smallImage: payload.assets?.small_image,
+        largeText: payload.assets?.large_text,
+        largeImage: payload.assets?.large_image,
+      },
+      payload.buttons,
+      payload.sync_id,
+      payload.session_id,
+      DateTime.fromMillis(payload.created_at),
+      payload.application_id,
     )
   }
 
