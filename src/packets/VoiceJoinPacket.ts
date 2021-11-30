@@ -2,10 +2,10 @@ import BasePacket from './BasePacket'
 import MineralClient from '../clients/MineralClient'
 import VoiceState from '../api/entities/VoiceState'
 import VoiceChannel from '../api/entities/channels/VoiceChannel'
+import Packet from '../decorators/Packet'
 
+@Packet('VOICE_STATE_UPDATE')
 export default class VoiceJoinPacket extends BasePacket {
-  public packetType: string = 'VOICE_STATE_UPDATE'
-
   public async handle (client: MineralClient, payload: any): Promise<void> {
     if (!payload.channel_id) {
       return
