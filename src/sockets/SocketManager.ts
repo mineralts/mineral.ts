@@ -7,6 +7,7 @@ import { Opcode } from '../types'
 import { Buffer } from 'buffer'
 import { Observable } from 'rxjs'
 import BasePacket from '../packets/BasePacket'
+import RateLimitError from '../reporters/errors/RateLimitError'
 
 export default class SocketManager {
   public websocket!: WebSocket
@@ -18,21 +19,26 @@ export default class SocketManager {
   }
 
   public async connect (request: Buffer) {
-    const { data } = await axios.get('/v9/gateway/bot')
+    try {
+      const { data } = await axios.get('/v9/gateway/bot')
+      this.websocket = new WebSocket(`${data.url}/?v=9`)
 
-    this.websocket = new WebSocket(`${data.url}/?v=9`)
-
-    this.reactor = new Observable((observer) => {
-      this.websocket.on('message', async (data: Buffer) => {
-        const payload = JSON.parse(data.toString())
-        observer.next(payload)
+      this.reactor = new Observable((observer) => {
+        this.websocket.on('message', async (data: Buffer) => {
+          const payload = JSON.parse(data.toString())
+          observer.next(payload)
+        })
       })
-    })
 
-    this.open(request)
-    this.error()
-    this.close()
-    this.dispatch()
+      this.open(request)
+      this.error()
+      this.close()
+      this.dispatch()
+    } catch (err: any) {
+      if (err.response.status === 429) {
+        new RateLimitError(err.response.data.message, err.response.data.retry_after)
+      }
+    }
   }
 
   private dispatch () {

@@ -1,9 +1,10 @@
 import axios from 'axios'
-import Logger from '@leadcodedev/logger'
 import { RequestOptions } from '../types'
 import RateLimit from '../api/entities/RateLimit'
 import { DateTime } from 'luxon'
 import Context from '../Context'
+import HttpRequestError from '../reporters/errors/HttpRequestError'
+import RateLimitError from '../reporters/errors/RateLimitError'
 
 export default class Request {
   constructor (private endpoint: string) {
@@ -13,8 +14,11 @@ export default class Request {
     try {
       const { data } = await axios.get(this.endpoint)
       return data
-    } catch (err) {
-      // console.error(err.response)
+    } catch (err: any) {
+      if (err.response?.data?.message) {
+        new HttpRequestError(err.response.data.message)
+      }
+
       this.retryOnRateLimit(err, async () => await this.get(options))
       return false
     }
@@ -24,8 +28,11 @@ export default class Request {
     try {
       const { data } = await axios.post(this.endpoint, payload)
       return data
-    } catch (err) {
-      // console.error(err.response)
+    } catch (err: any) {
+      if (err.response?.data?.message) {
+        new HttpRequestError(err.response.data.message)
+      }
+
       this.retryOnRateLimit(err, async () => await this.post(payload, options))
       return false
     }
@@ -35,8 +42,11 @@ export default class Request {
     try {
       const { data } = await axios.put(this.endpoint, payload)
       return data
-    } catch (err) {
-      // console.error(err)
+    } catch (err: any) {
+      if (err.response?.data?.message) {
+        new HttpRequestError(err.response.data.message)
+      }
+
       this.retryOnRateLimit(err, async () => await this.update(payload, options))
       return false
     }
@@ -46,8 +56,11 @@ export default class Request {
     try {
       const { data } = await axios.patch(this.endpoint, payload)
       return data
-    } catch (err) {
-      // console.error(err)
+    } catch (err: any) {
+      if (err.response?.data?.message) {
+        new HttpRequestError(err.response.data.message)
+      }
+
       this.retryOnRateLimit(err, async () => await this.patch(payload, options))
       return false
     }
@@ -70,7 +83,7 @@ export default class Request {
 
     if ('retry_after' in err.response.data) {
       const error = err.response.data
-      Logger.send('warn', `${error.message}. Please retry in ${Math.round(error.retry_after / 1000)} seconds.`)
+      new RateLimitError(error.message, error.retry_after)
 
       const client = Context.getClient()
       client.emit('rateLimit', new RateLimit(
@@ -83,6 +96,5 @@ export default class Request {
         setTimeout(fn, error.retry_after + 1)
       }
     }
-
   }
 }

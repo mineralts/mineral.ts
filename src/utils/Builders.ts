@@ -60,8 +60,8 @@ export function createMessageFromPayload (payload) {
   const client = Context.getClient()
   const guild = client.cacheManager.guilds.cache.get(payload.guild_id)
   const channel = guild?.channels.cache.get(payload.channel_id) as TextChannel
-  const author = guild?.members.cache.get(payload.author.id)!
 
+  const author = guild?.members.cache.get(payload.author.id)!
 
   const mentionChannel: Collection<Snowflake, any> = new Collection()
   const channelMentions = payload.content.split(' ')

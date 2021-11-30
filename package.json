@@ -21,7 +21,6 @@
     "cross-env": "^7.0.3",
     "esbuild": "^0.13.8",
     "esbuild-dev": "^0.8.0",
-    "influer": "^1.0.3",
     "luxon": "^2.0.2",
     "rxjs": "^7.4.0",
     "typescript": "^4.4.4",

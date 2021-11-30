@@ -1,12 +1,10 @@
 import Channel from './Channel'
 import {
   ChannelTypeResolvable,
-  MessageCollectorOption,
   MessageComponentResolvable,
   RequestOptions,
   Snowflake
 } from '../../../types'
-import { MessageCollector } from '../../components/MessageCollector'
 import MessageOption from '../../interfaces/MessageOption'
 import Message from '../Message'
 import Request from '../../../sockets/Request'
@@ -16,6 +14,7 @@ import Guild from '../Guild'
 import MessageManager from '../MessageManager'
 import CategoryChannel from './CategoryChannel'
 import Logger from '@leadcodedev/logger'
+import InvalidBody from '../../../reporters/errors/InvalidBody'
 
 export default class TextChannelResolvable extends Channel {
   constructor (
@@ -35,10 +34,6 @@ export default class TextChannelResolvable extends Channel {
     parent?: CategoryChannel,
   ) {
     super(id, type, name, guildId, guild, parentId, parent)
-  }
-
-  public createMessageCollector (options?: MessageCollectorOption) {
-    return new MessageCollector(this, options)
   }
 
   public async setCooldown (value: number, option?: RequestOptions) {
@@ -64,14 +59,13 @@ export default class TextChannelResolvable extends Channel {
     const request = new Request(`/channels/${this.id}/messages`)
     const components = messageOption.components?.map((row: EmbedRow) => {
       row.components = row.components.map((component: MessageComponentResolvable) => {
-        return component.toJson()
-      }) as any[]
+        return component.toJson() as unknown as MessageComponentResolvable
+      })
       return row
     })
 
     if (!messageOption.content?.length && !messageOption.embeds?.length) {
-      Logger.send('error', 'Cannot send an empty message')
-      process.exit(1)
+      new InvalidBody()
     }
 
     const payload = await request.post({
