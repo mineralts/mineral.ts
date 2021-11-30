@@ -3,8 +3,11 @@ import Guild from './Guild'
 import Command from '../components/commands/Command'
 import Request from '../../sockets/Request'
 import Presence from './Presence'
-import { Snowflake } from '../../types'
+import { ActivityOption, ActivityType, Opcode, PresenceData, PresenceStatus, Snowflake } from '../../types'
 import Collection from '../../Collection'
+import Context from '../../Context'
+import { DateTime } from 'luxon'
+import Logger from '@leadcodedev/logger'
 
 export default class ClientUser {
   constructor (
@@ -15,6 +18,24 @@ export default class ClientUser {
     public readonly application: { id: string, flags: number },
     public commands: Collection<Snowflake, Command> = new Collection()
   ) {
+  }
+
+  public async setPresence (presence: PresenceData) {
+    const socketManager = Context.getClient().socket.socketManager
+    const request = socketManager.request(Opcode.PRESENCE_UPDATE, {
+      since: presence.status === 'DO_NOT_DISTURB' ? DateTime.now().toMillis() : null,
+      status: presence.status || null,
+      afk: presence.afk !== undefined ? presence.afk : null,
+      activities: presence.activities?.length ? presence.activities.map((activity: ActivityOption) => {
+        if (activity.type === 'STREAMING' && !activity.url) {
+          Logger.send('warn', 'Please define a URL to stream to display the presence')
+        }
+
+        return { ...activity, type: ActivityType[activity.type] }
+      }) : []
+    })
+
+    socketManager.websocket.send(request)
   }
 
   public async registerCommands (...commands: Command[]) {
