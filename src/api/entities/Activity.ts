@@ -8,7 +8,7 @@ export default class Activity {
     public type: keyof ActivityType,
     public description: string,
     public name: string,
-    public emoji: Emoji | null,
+    public emoji: Emoji | undefined,
     public timestamps: ActivityTimestamps,
     public state: string | undefined,
     public detail: string | undefined,

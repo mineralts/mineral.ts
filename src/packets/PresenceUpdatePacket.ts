@@ -24,15 +24,13 @@ export default class PresenceUpdatePacket extends BasePacket {
     )
 
     presence.activities = payload.activities.map((activity: any) => {
-      const emoji = activity.emoji
-        ? new Emoji(
-          activity.emoji.id,
-          activity.emoji.name,
-          false,
-          false,
-          activity.emoji.animated,
-        )
-        : null
+      const emoji = new Emoji(
+        activity.emoji?.id,
+        activity.emoji?.name,
+        false,
+        false,
+        activity.emoji?.animated,
+      )
 
       const timestamps = {
         start: activity.timestamps?.start ? DateTime.fromMillis(activity.timestamps.start) : undefined,
@@ -44,7 +42,7 @@ export default class PresenceUpdatePacket extends BasePacket {
         ActivityType[activity.type as number] as any,
         activity.state,
         activity.name,
-        emoji,
+        activity.emoji ? emoji : undefined,
         timestamps,
         activity.state,
         activity.detail,
