@@ -23,8 +23,8 @@ import { join } from 'path'
 import Logger from '@leadcodedev/logger'
 import TextChannel from './channels/TextChannel'
 import Command from '../components/commands/Command'
-import Collection from '@discordjs/collection'
 import Invite from './Invite'
+import Collection from '../../Collection'
 
 export default class Guild {
   public commands: Collection<Snowflake, Command> = new Collection()

@@ -12,7 +12,6 @@
     "lint:fix": "npm run lint -- --fix"
   },
   "dependencies": {
-    "@discordjs/collection": "^0.2.1",
     "@leadcodedev/logger": "^1.0.0",
     "@types/luxon": "^2.0.5",
     "@types/node": "^16.11.6",

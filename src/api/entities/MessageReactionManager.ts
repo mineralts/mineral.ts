@@ -1,4 +1,3 @@
-import Collection from '@discordjs/collection'
 import { RequestOptions, Snowflake } from '../../types'
 import Reaction from './Reaction'
 import Emoji from './Emoji'
@@ -6,6 +5,7 @@ import GuildMember from './GuildMember'
 import ClientUser from './ClientUser'
 import Request from '../../sockets/Request'
 import Message from './Message'
+import Collection from '../../Collection'
 
 export default class MessageReactionManager {
   public readonly cache: Collection<Snowflake, Reaction[]> = new Collection()

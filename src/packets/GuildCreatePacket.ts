@@ -18,12 +18,12 @@ import { DateTime } from 'luxon'
 import Emoji from '../api/entities/Emoji'
 import NewsChannel from '../api/entities/channels/NewsChannel'
 import { keyFromEnum } from '../utils'
-import Collection from '@discordjs/collection'
 import GuildEmojiManager from '../api/entities/GuildEmojiManager'
 import VoiceChannel from '../api/entities/channels/VoiceChannel'
 import CategoryChannel from '../api/entities/channels/CategoryChannel'
 import Request from '../sockets/Request'
 import Invite from '../api/entities/Invite'
+import Collection from '../Collection'
 
 @Packet('GUILD_CREATE')
 export default class GuildCreatePacket extends BasePacket {

@@ -1,4 +1,3 @@
-import Collection from '@discordjs/collection'
 import {
   ChannelOptionResolvable,
   ChannelResolvable,
@@ -7,6 +6,7 @@ import {
 } from '../../types'
 import Request from '../../sockets/Request'
 import Guild from './Guild'
+import Collection from '../../Collection'
 
 export default class GuildChannelManager {
   public cache: Collection<Snowflake, ChannelResolvable> = new Collection()

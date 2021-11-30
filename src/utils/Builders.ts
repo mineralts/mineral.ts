@@ -6,7 +6,6 @@ import MessageAttachment from '../api/entities/MessageAttachment'
 import Context from '../Context'
 import EmbedRow from '../api/components/embeds/EmbedRow'
 import { ButtonStyle, ChannelTypeResolvable, ComponentType } from '../types'
-import Collection from '@discordjs/collection'
 import MessageManager from '../api/entities/MessageManager'
 import CategoryChannel from '../api/entities/channels/CategoryChannel'
 import TextChannel from '../api/entities/channels/TextChannel'
@@ -23,6 +22,7 @@ import SelectMenu from '../api/components/selectMenus/SelectMenu'
 import GuildMember from '../api/entities/GuildMember'
 import GuildMemberRoleManager from '../api/entities/GuildMemberRoleManager'
 import User from '../api/entities/User'
+import Collection from '../Collection'
 
 function walkComponent (component) {
   if (component.type === ComponentType.ACTION_ROW) {

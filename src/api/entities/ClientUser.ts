@@ -3,8 +3,8 @@ import Guild from './Guild'
 import Command from '../components/commands/Command'
 import Request from '../../sockets/Request'
 import Presence from './Presence'
-import Collection from '@discordjs/collection'
 import { Snowflake } from '../../types'
+import Collection from '../../Collection'
 
 export default class ClientUser {
   constructor (

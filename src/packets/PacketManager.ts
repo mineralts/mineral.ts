@@ -1,4 +1,3 @@
-import Collection from '@discordjs/collection'
 import BasePacket from '../packets/BasePacket'
 import ReadyPacket from './ReadyPacket'
 import GuildCreatePacket from './GuildCreatePacket'
@@ -20,6 +19,7 @@ import MemberJoinPacket from './MemberJoinPacket'
 import MemberLeavePacket from './MemberLeavePacket'
 import MemberBoostRemove from './MemberBoostRemove'
 import VoiceLeavePacket from './VoiceLeavePacket'
+import Collection from '../Collection'
 
 export default class PacketManager {
   public packets: Collection<string, BasePacket[]> = new Collection()

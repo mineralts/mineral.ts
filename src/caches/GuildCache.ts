@@ -1,7 +1,7 @@
-import Collection from '@discordjs/collection'
 import { Snowflake } from '../types'
 import Guild from '../api/entities/Guild'
 import CacheManager from './CacheManager'
+import Collection from '../Collection'
 
 export default class GuildCache {
   public cache: Collection<Snowflake, Guild> = new Collection()

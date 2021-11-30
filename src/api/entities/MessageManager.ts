@@ -1,9 +1,9 @@
-import Collection from '@discordjs/collection'
 import { RequestOptions, Snowflake } from '../../types'
 import Message from './Message'
 import Request from '../../sockets/Request'
 import { createMessageFromPayload } from '../../utils/Builders'
 import TextChannel from './channels/TextChannel'
+import Collection from '../../Collection'
 
 export default class MessageManager {
   public cache: Collection<Snowflake, Message> = new Collection()
