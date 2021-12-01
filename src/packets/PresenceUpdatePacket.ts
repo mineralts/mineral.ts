@@ -60,7 +60,7 @@ export default class PresenceUpdatePacket extends BasePacket {
       activities
     )
 
-    client.emit('presenceUpdate', member.user.presence, presence)
+    client.emit('presenceUpdate', member.user?.presence, presence)
     member.user.presence = presence
   }
 }

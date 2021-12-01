@@ -9,6 +9,7 @@ export default class TextChannel extends TextChannelResolvable {
   constructor (
     id: Snowflake,
     name: string,
+    description: string | undefined,
     guildId: Snowflake,
     guild: Guild,
     lastMessageId: Snowflake,
@@ -19,9 +20,10 @@ export default class TextChannel extends TextChannelResolvable {
     rateLimitePerUser: number,
     topic: string,
     messages: MessageManager,
+    isNsfw: boolean,
     parent?: CategoryChannel,
   ) {
-    super(id, 'GUILD_TEXT', name, guildId, guild, lastMessageId, lastMessage, parentId, permissionOverwrites, position, rateLimitePerUser, topic, messages, parent)
+    super(id, 'GUILD_TEXT', name, description, guildId, guild, lastMessageId, lastMessage, parentId, permissionOverwrites, position, rateLimitePerUser, topic, messages, isNsfw, parent)
     this.messages = new MessageManager(this)
   }
 }

@@ -211,9 +211,11 @@ export function createMessageInteractionFromPayload (payload) {
 export function createChannelFromPayload (payload) {
   let channel: any
   if (payload.type === ChannelTypeResolvable.GUILD_TEXT) {
+    console.log('position', payload.name, payload.position)
     channel = new TextChannel(
       payload.id,
       payload.name,
+      payload.description,
       payload.guild_id,
       undefined as any,
       payload.last_message_id,
@@ -224,6 +226,7 @@ export function createChannelFromPayload (payload) {
       payload.rate_limit_per_user,
       payload.topic,
       new MessageManager(),
+      payload.nsfw,
       undefined
     )
   }

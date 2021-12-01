@@ -20,9 +20,10 @@ export default class TextChannelResolvable extends Channel {
   constructor (
     id: Snowflake,
     type: keyof typeof ChannelTypeResolvable,
-    public name: string,
-    public guildId: Snowflake,
-    public guild: Guild,
+    name: string,
+    public description: string | undefined,
+    guildId: Snowflake,
+    guild: Guild,
     public lastMessageId: Snowflake,
     public lastMessage: Message | undefined,
     parentId: Snowflake,
@@ -31,6 +32,7 @@ export default class TextChannelResolvable extends Channel {
     public rateLimitPerUser: number,
     public topic: string,
     public messages: MessageManager,
+    public isNsfw: boolean,
     parent?: CategoryChannel,
   ) {
     super(id, type, name, guildId, guild, parentId, parent)
@@ -48,11 +50,19 @@ export default class TextChannelResolvable extends Channel {
   public async setDescription (value: string, option?: RequestOptions) {
     const request = new Request(`/channels/${this.id}`)
     await request.patch({ topic: value }, option)
+    this.description = value
   }
 
   public async setNSFW(bool: boolean) {
     const request = new Request(`/channels/${this.id}`)
     await request.patch({ nsfw: bool })
+    this.isNsfw = bool
+  }
+
+  public async setPosition (position: number) {
+    const request = new Request(`/channels/${this.id}`)
+    await request.patch({ position })
+    this.position = position
   }
 
   public async send (messageOption: MessageOption, option?: RequestOptions): Promise<Message> {
@@ -75,7 +85,7 @@ export default class TextChannelResolvable extends Channel {
 
     return createMessageFromPayload({
       ...payload,
-      guild_id: this.guild.id,
+      guild_id: this.guild!.id,
     })
   }
 }
