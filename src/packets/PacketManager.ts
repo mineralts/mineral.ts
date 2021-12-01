@@ -20,6 +20,7 @@ import MemberLeavePacket from './MemberLeavePacket'
 import MemberBoostRemove from './MemberBoostRemove'
 import VoiceLeavePacket from './VoiceLeavePacket'
 import Collection from '../Collection'
+import InviteCreatePacket from './InviteCreatePacket';
 import TypingStartPacket from './TypingStartPacket'
 
 export default class PacketManager {
@@ -47,6 +48,7 @@ export default class PacketManager {
       new MemberBoostAdd(),
       new MemberBoostRemove(),
       new RulesAcceptPacket(),
+      new InviteCreatePacket(),
       new TypingStartPacket(),
     )
   }
