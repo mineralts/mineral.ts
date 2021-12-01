@@ -19,11 +19,11 @@ export default class Message {
   constructor (
     public id: Snowflake,
     public type: number,
-    public flags: string[],
-    public isTTS: boolean,
-    public createdAt: DateTime | null,
-    public updatedAt: DateTime | null,
-    public referencedMessage: Message | null | undefined,
+    public readonly flags: string[],
+    public readonly isTTS: boolean,
+    public readonly createdAt: DateTime | null,
+    public readonly updatedAt: DateTime | null,
+    public readonly referencedMessage: Message | null | undefined,
     public isPinned: boolean,
     public mentions: MentionResolvable,
     public author: GuildMember | undefined,
@@ -40,6 +40,20 @@ export default class Message {
     if (this.channel?.type === 'GUILD_NEWS') {
       const request = new Request(`/channels/${this.channel?.id}/messages/${this.id}/crosspost`)
       console.log(await request.post(null, option))
+    }
+  }
+
+  public async pin (option?: RequestOptions) {
+    if (!this.isPinned) {
+      const request = new Request(`/channels/${this.channel?.id}/pins/${this.id}`)
+      await request.update({}, option)
+    }
+  }
+
+  public async unPin (option?: RequestOptions) {
+    if (!this.isPinned) {
+      const request = new Request(`/channels/${this.channel?.id}/pins/${this.id}`)
+      await request.delete(option)
     }
   }
 
