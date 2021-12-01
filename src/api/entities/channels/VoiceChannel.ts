@@ -1,5 +1,5 @@
 import Channel from './Channel'
-import { RTC_REGION, Snowflake } from '../../../types'
+import { RTC_REGION, Snowflake, VIDEO_QUALITY } from '../../../types'
 import CategoryChannel from './CategoryChannel'
 import Guild from '../Guild'
 import Request from '../../../sockets/Request'
@@ -18,6 +18,7 @@ export default class VoiceChannel extends Channel {
     public permission: any[],
     parentId: Snowflake,
     public bitrate: number,
+    public videoQuality: keyof typeof VIDEO_QUALITY,
     parent?: CategoryChannel,
   ) {
     super(id, 'GUILD_VOICE', name, guildId, guild, parentId, position, parent)
@@ -43,5 +44,11 @@ export default class VoiceChannel extends Channel {
     const request = new Request(`/channels/${this.id}`)
     await request.patch({ user_limit: value === 'UNLIMITED' ? 0 : value })
     this.maxUser = value === 'UNLIMITED' ? 0 : value
+  }
+
+  public async setVideoQuality (quality: keyof typeof VIDEO_QUALITY) {
+    const request = new Request(`/channels/${this.id}`)
+    await request.patch({ video_quality_mode: VIDEO_QUALITY[quality] })
+    this.videoQuality = quality
   }
 }

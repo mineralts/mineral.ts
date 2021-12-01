@@ -166,6 +166,11 @@ export enum RTC_REGION {
   AUTO = 'null'
 }
 
+export enum VIDEO_QUALITY {
+  AUTO = 1,
+  FULL = 2
+}
+
 export enum ActivityType {
   'PLAYING',
   'STREAMING',

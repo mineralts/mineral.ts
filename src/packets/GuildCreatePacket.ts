@@ -8,7 +8,15 @@ import Role from '../api/entities/Role'
 import GuildMemberManager from '../api/entities/GuildMemberManager'
 import GuildMember from '../api/entities/GuildMember'
 import GuildChannelManager from '../api/entities/GuildChannelManager'
-import { ActivityType, ChannelResolvable, ChannelTypeResolvable, PresenceStatus, Region, Snowflake } from '../types'
+import {
+  ActivityType,
+  ChannelResolvable,
+  ChannelTypeResolvable,
+  PresenceStatus,
+  Region,
+  RTC_REGION,
+  Snowflake, VIDEO_QUALITY
+} from '../types'
 import TextChannel from '../api/entities/channels/TextChannel'
 import GuildMemberRoleManager from '../api/entities/GuildMemberRoleManager'
 import MessageManager from '../api/entities/MessageManager'
@@ -127,12 +135,13 @@ export default class GuildCreatePacket extends BasePacket {
           this.guild.id,
           this.guild,
           item.user_limit,
-          item.rtc_region,
+          keyFromEnum(RTC_REGION, payload.rtc_region) as keyof typeof RTC_REGION,
           item.rate_limit_per_user,
           item.position,
           item.permission_overwrites,
           item.parent_id,
           item.bitrate,
+          keyFromEnum(VIDEO_QUALITY, payload.video_quality_mode) as keyof typeof VIDEO_QUALITY,
           undefined,
         )
       }
