@@ -112,6 +112,7 @@ export interface MineralVein {
   rulesAccept: [member: GuildMember]
   guildMemberJoin: [member: GuildMember, invitation?: Invite]
   guildMemberLeave: [member: GuildMember]
+  inviteCreate: [invite: Invite]
 }
 
 export type MineralEvent = `buttonInteraction::${string}`
