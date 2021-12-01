@@ -32,6 +32,7 @@ import CategoryChannel from '../api/entities/channels/CategoryChannel'
 import Request from '../sockets/Request'
 import Invite from '../api/entities/Invite'
 import Collection from '../Collection'
+import VoiceState from '../api/entities/VoiceState'
 
 @Packet('GUILD_CREATE')
 export default class GuildCreatePacket extends BasePacket {
@@ -176,6 +177,18 @@ export default class GuildCreatePacket extends BasePacket {
         member.is_pending,
         undefined,
         DateTime.fromISO(payload.joined_at),
+      )
+
+      guildMember.voice = new VoiceState(
+        guildMember,
+        undefined as any,
+        undefined as any,
+        undefined as any,
+        member.mute,
+        member.deaf,
+        undefined as any,
+        undefined as any,
+        this.guild,
       )
 
       this.guildMembers.set(guildMember.id, guildMember)
