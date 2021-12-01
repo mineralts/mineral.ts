@@ -16,6 +16,7 @@ export default class VoiceJoinPacket extends BasePacket {
     const member = guild?.members.cache.get(payload.member.user.id)
 
     const voiceState = new VoiceState(
+      member!,
       payload.session_id,
       payload.suppress,
       payload.self_video,
@@ -23,6 +24,7 @@ export default class VoiceJoinPacket extends BasePacket {
       payload.self_deaf,
       payload.channel_id,
       voiceChannel,
+      guild!,
     )
 
     if (member) {

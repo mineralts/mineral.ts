@@ -1,9 +1,8 @@
 import User from './User'
-import Guild from './Guild'
 import Command from '../components/commands/Command'
 import Request from '../../sockets/Request'
 import Presence from './Presence'
-import { ActivityOption, ActivityType, Opcode, PresenceData, PresenceStatus, Snowflake } from '../../types'
+import { ActivityOption, ActivityType, Opcode, PresenceData, Snowflake } from '../../types'
 import Collection from '../../Collection'
 import Context from '../../Context'
 import { DateTime } from 'luxon'
@@ -14,7 +13,6 @@ export default class ClientUser {
     public readonly user: User,
     public readonly sessionId: string,
     public readonly presences: Presence[],
-    public readonly guilds: Guild[],
     public readonly application: { id: string, flags: number },
     public commands: Collection<Snowflake, Command> = new Collection()
   ) {
