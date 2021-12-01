@@ -2,6 +2,8 @@ import Channel from './Channel'
 import { Snowflake } from '../../../types'
 import CategoryChannel from './CategoryChannel'
 import Guild from '../Guild'
+import Request from '../../../sockets/Request'
+import Logger from '@leadcodedev/logger'
 
 export default class VoiceChannel extends Channel {
   constructor (
@@ -12,12 +14,22 @@ export default class VoiceChannel extends Channel {
     public userLimit: number,
     public region: null,
     public rateLimitPerUser: number,
-    public position: number,
+    position: number,
     public permission: any[],
-    public parentId: Snowflake,
+    parentId: Snowflake,
     public bitrate: number,
-    public parent?: CategoryChannel,
+    parent?: CategoryChannel,
   ) {
-    super(id, 'GUILD_VOICE', name, guildId, guild)
+    super(id, 'GUILD_VOICE', name, guildId, guild, parentId, position, parent)
+  }
+
+  public async setBitrate (value: number) {
+    const request = new Request(`/channels/${this.id}`)
+    if (value >= 8000 && value <= 96000) {
+      await request.patch({ bitrate: value })
+      this.bitrate = value
+    } else {
+      Logger.send('error', 'Please define your bitrate between 8000 and 96000')
+    }
   }
 }
