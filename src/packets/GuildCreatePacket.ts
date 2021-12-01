@@ -175,7 +175,7 @@ export default class GuildCreatePacket extends BasePacket {
           ? this.roles.get(member.highest_role)!
           : null,
         member.is_pending,
-        undefined,
+        undefined as any,
         DateTime.fromISO(payload.joined_at),
       )
 

@@ -16,7 +16,7 @@ export default class GuildMember {
     public roles: GuildMemberRoleManager,
     public highestRole: Role | null,
     public isPending: boolean,
-    public voice: VoiceState | undefined,
+    public voice: VoiceState,
     public joinedAt: DateTime,
   ) {
   }
