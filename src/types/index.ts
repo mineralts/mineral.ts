@@ -20,6 +20,7 @@ import SelectMenuInteraction from '../api/entities/interactions/SelectMenuIntera
 import CommandInteraction from '../api/entities/interactions/CommandInteraction'
 import Invite from '../api/entities/Invite'
 import { DateTime } from 'luxon'
+import TextChannelResolvable from '../api/entities/channels/TextChannelResolvable'
 
 export type Snowflake = string
 export type Milliseconds = number
@@ -112,6 +113,7 @@ export interface MineralVein {
   rulesAccept: [member: GuildMember]
   guildMemberJoin: [member: GuildMember, invitation?: Invite]
   guildMemberLeave: [member: GuildMember]
+  typingStart: [member: GuildMember, channel: TextChannelResolvable]
 }
 
 export type MineralEvent = `buttonInteraction::${string}`

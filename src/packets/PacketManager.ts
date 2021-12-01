@@ -20,6 +20,7 @@ import MemberLeavePacket from './MemberLeavePacket'
 import MemberBoostRemove from './MemberBoostRemove'
 import VoiceLeavePacket from './VoiceLeavePacket'
 import Collection from '../Collection'
+import TypingStartPacket from './TypingStartPacket'
 
 export default class PacketManager {
   public packets: Collection<string, BasePacket[]> = new Collection()
@@ -46,6 +47,7 @@ export default class PacketManager {
       new MemberBoostAdd(),
       new MemberBoostRemove(),
       new RulesAcceptPacket(),
+      new TypingStartPacket(),
     )
   }
 
