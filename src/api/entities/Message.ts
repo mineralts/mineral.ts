@@ -12,6 +12,7 @@ import Emoji from './Emoji'
 import MessageReactionManager from './MessageReactionManager'
 import Context from '../../Context'
 import { parseEmoji } from '../../utils'
+import MessageEmbed from '../components/embeds/MessageEmbed'
 
 export default class Message {
   public reactions: MessageReactionManager = new MessageReactionManager(this)
@@ -25,14 +26,14 @@ export default class Message {
     public readonly updatedAt: DateTime | null,
     public readonly referencedMessage: Message | null | undefined,
     public isPinned: boolean,
-    public mentions: MentionResolvable,
-    public author: GuildMember | undefined,
-    public guild: Guild | undefined,
-    public channel: TextChannel,
-    public content: string,
-    public attachment: MessageAttachment,
-    public components: any[],
-    public embeds: any[],
+    public readonly mentions: MentionResolvable,
+    public readonly author: GuildMember | undefined,
+    public readonly guild: Guild | undefined,
+    public readonly channel: TextChannel,
+    public readonly content: string,
+    public readonly attachment: MessageAttachment,
+    public readonly components: any[],
+    public readonly embeds: MessageEmbed[],
   ) {
   }
 
