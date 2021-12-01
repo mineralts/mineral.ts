@@ -8,7 +8,7 @@ import Role from '../api/entities/Role'
 import GuildMemberManager from '../api/entities/GuildMemberManager'
 import GuildMember from '../api/entities/GuildMember'
 import GuildChannelManager from '../api/entities/GuildChannelManager'
-import { ActivityType, ChannelResolvable, ChannelTypeResolvable, PresenceStatus, Snowflake } from '../types'
+import { ActivityType, ChannelResolvable, ChannelTypeResolvable, PresenceStatus, Region, Snowflake } from '../types'
 import TextChannel from '../api/entities/channels/TextChannel'
 import GuildMemberRoleManager from '../api/entities/GuildMemberRoleManager'
 import MessageManager from '../api/entities/MessageManager'
@@ -288,7 +288,7 @@ export default class GuildCreatePacket extends BasePacket {
       payload.premium_subscription_count,
       payload.system_channel_flags,
       payload.explicit_content_filter,
-      payload.region,
+      keyFromEnum(Region, payload.region) as keyof typeof Region,
       payload.lazy,
       payload.application_id,
       payload.nsfw,

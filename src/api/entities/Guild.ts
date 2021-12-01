@@ -36,13 +36,13 @@ export default class Guild {
     public banner: string | null,
     public splash: string | null,
     public description: string | null,
-    public premiumTier: number,
-    public premiumSubscriptionCount: number,
+    public readonly premiumTier: number,
+    public readonly premiumSubscriptionCount: number,
     public systemChannelFlags: number,
     public explicitContentFilter: number,
-    public region: string,
-    public isLazy: boolean,
-    public applicationId: string | null,
+    public region: keyof typeof Region,
+    public readonly isLazy: boolean,
+    public readonly applicationId: string | null,
     public isNSFW: boolean,
     public memberCount: number,
     public roles: GuildRoleManager,
@@ -58,7 +58,7 @@ export default class Guild {
     public members: GuildMemberManager,
     public ruleChannelId: Snowflake,
     public guildScheduledEvents: any[],
-    public defaultMessageNotifications: number,
+    public defaultMessageNotifications: keyof typeof NotificationLevel,
     public MFALevel: number,
     public threads: GuildThreadManager,
     public maxMemberSize: number,
@@ -89,11 +89,8 @@ export default class Guild {
 
   public async setPreferredLocale (region: keyof typeof Region, options?: RequestOptions): Promise<void> {
     const request = new Request(`/guilds/${this.id}`)
-    const result = await request.patch({ preferred_locale: region }, options)
-
-    if (result) {
-      this.name = region
-    }
+    await request.patch({ preferred_locale: region }, options)
+    this.region = region
   }
 
   public async leave (options?: RequestOptions): Promise<void> {
@@ -135,12 +132,11 @@ export default class Guild {
   }
 
   public async setNotificationLevel (level: keyof typeof NotificationLevel, options?: RequestOptions): Promise<void> {
-    const value = NotificationLevel[level]
     const request = new Request(`/guilds/${this.id}`)
-    const result = await request.patch({ default_message_notifications: value }, options)
+    const result = await request.patch({ default_message_notifications: NotificationLevel[level] }, options)
 
     if (result) {
-      this.defaultMessageNotifications = value
+      this.defaultMessageNotifications = level
     }
   }
 
