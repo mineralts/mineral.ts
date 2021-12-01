@@ -149,6 +149,23 @@ export enum Region {
   HUNGARY = 'hu',
 }
 
+export enum RTC_REGION {
+  US_WEST = 'us-west',
+  US_EAST = 'us-east',
+  US_CENTRAL = 'us-central',
+  US_SOUTH = 'us-south',
+  SINGAPORE = 'singapore',
+  SOUTH_AFRICA = 'southafrica',
+  SYDNEY = 'sydney',
+  ROTTERDAM = 'rotterdam',
+  BRAZIL = 'brazil',
+  HONG_KONG = 'hongkong',
+  RUSSIA = 'russia',
+  JAPAN = 'japan',
+  INDIA = 'india',
+  AUTO = 'null'
+}
+
 export enum ActivityType {
   'PLAYING',
   'STREAMING',

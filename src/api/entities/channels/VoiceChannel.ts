@@ -1,5 +1,5 @@
 import Channel from './Channel'
-import { Snowflake } from '../../../types'
+import { RTC_REGION, Snowflake } from '../../../types'
 import CategoryChannel from './CategoryChannel'
 import Guild from '../Guild'
 import Request from '../../../sockets/Request'
@@ -31,5 +31,10 @@ export default class VoiceChannel extends Channel {
     } else {
       Logger.send('error', 'Please define your bitrate between 8000 and 96000')
     }
+  }
+
+  public async setRtcRegion (region: keyof typeof RTC_REGION) {
+    const request = new Request(`/channels/${this.id}`)
+    await request.patch({ rtc_region: region !== 'AUTO' ? RTC_REGION[region] : null })
   }
 }
