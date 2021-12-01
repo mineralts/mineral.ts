@@ -9,7 +9,7 @@ export default class Channel {
     public type: keyof typeof ChannelTypeResolvable,
     public name: string,
     public guildId: Snowflake,
-    public guild: Guild | undefined,
+    public guild: Guild,
     public parentId: Snowflake | undefined,
     public position: number,
     public parent?: CategoryChannel,
@@ -57,10 +57,7 @@ export default class Channel {
   }
 
   public async delete (option?: RequestOptions) {
-    const communityChannelId = this.guild?.publicUpdateChannelId
-    const rulesChannelId = this.guild?.ruleChannelId
-
-    if (this.id === communityChannelId || this.id === rulesChannelId) {
+    if (this.id === this.guild?.publicUpdateChannelId || this.id === this.guild?.ruleChannelId) {
       return
     }
 
