@@ -12,7 +12,7 @@ export default class VoiceChannel extends Channel {
     guildId: Snowflake,
     guild: Guild | undefined,
     public userLimit: number,
-    public region: null,
+    public region: keyof typeof RTC_REGION,
     public rateLimitPerUser: number,
     position: number,
     public permission: any[],
@@ -36,5 +36,6 @@ export default class VoiceChannel extends Channel {
   public async setRtcRegion (region: keyof typeof RTC_REGION) {
     const request = new Request(`/channels/${this.id}`)
     await request.patch({ rtc_region: region !== 'AUTO' ? RTC_REGION[region] : null })
+    this.region = region
   }
 }

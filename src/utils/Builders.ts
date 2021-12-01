@@ -1,7 +1,7 @@
 import Message from '../api/entities/Message'
 import { DateTime } from 'luxon'
 import { MentionResolvable } from '../api/entities/MentionResolvable'
-import { Snowflake } from '../types'
+import { RTC_REGION, Snowflake } from '../types'
 import MessageAttachment from '../api/entities/MessageAttachment'
 import Context from '../Context'
 import EmbedRow from '../api/components/embeds/EmbedRow'
@@ -253,7 +253,7 @@ export function createChannelFromPayload (payload) {
       payload.guild_id,
       undefined,
       payload.user_limit,
-      payload.rtc_region,
+      keyFromEnum(RTC_REGION, payload.rtc_region) as keyof typeof RTC_REGION,
       payload.rate_limit_per_user,
       payload.position,
       payload.permission_overwrites,
