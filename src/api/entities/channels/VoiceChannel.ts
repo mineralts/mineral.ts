@@ -11,7 +11,7 @@ export default class VoiceChannel extends Channel {
     name: string,
     guildId: Snowflake,
     guild: Guild | undefined,
-    public userLimit: number,
+    public maxUser: number,
     public region: keyof typeof RTC_REGION,
     public rateLimitPerUser: number,
     position: number,
@@ -37,5 +37,11 @@ export default class VoiceChannel extends Channel {
     const request = new Request(`/channels/${this.id}`)
     await request.patch({ rtc_region: region !== 'AUTO' ? RTC_REGION[region] : null })
     this.region = region
+  }
+
+  public async setMaxUser (value: number | 'UNLIMITED') {
+    const request = new Request(`/channels/${this.id}`)
+    await request.patch({ user_limit: value === 'UNLIMITED' ? 0 : value })
+    this.maxUser = value === 'UNLIMITED' ? 0 : value
   }
 }
