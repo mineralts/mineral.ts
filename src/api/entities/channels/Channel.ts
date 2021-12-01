@@ -11,6 +11,7 @@ export default class Channel {
     public guildId: Snowflake,
     public guild: Guild | undefined,
     public parentId: Snowflake | undefined,
+    public position: number,
     public parent?: CategoryChannel,
   ) {
   }
@@ -38,11 +39,21 @@ export default class Channel {
       ? category
       : category.id
     await request.patch({ parent_id: parentId }, option)
+
+    this.parentId = parentId
+    this.parent = this.guild?.channels.cache.get(parentId)
   }
 
   public async setName (value: string, option?: RequestOptions) {
     const request = new Request(`/channels/${this.id}`)
     await request.patch({ name: value }, option)
+    this.name = value
+  }
+
+  public async setPosition (position: number) {
+    const request = new Request(`/channels/${this.id}`)
+    await request.patch({ position })
+    this.position = position
   }
 
   public async delete (option?: RequestOptions) {

@@ -4,6 +4,7 @@ import MessageManager from '../MessageManager'
 import CategoryChannel from './CategoryChannel'
 import TextChannelResolvable from './TextChannelResolvable'
 import Message from '../Message'
+import { DateTime } from 'luxon'
 
 export default class TextChannel extends TextChannelResolvable {
   constructor (
@@ -17,13 +18,12 @@ export default class TextChannel extends TextChannelResolvable {
     parentId: Snowflake,
     permissionOverwrites: { [K: string]: string }[],
     position: number,
-    rateLimitePerUser: number,
-    topic: string,
+    cooldown: DateTime,
     messages: MessageManager,
     isNsfw: boolean,
     parent?: CategoryChannel,
   ) {
-    super(id, 'GUILD_TEXT', name, description, guildId, guild, lastMessageId, lastMessage, parentId, permissionOverwrites, position, rateLimitePerUser, topic, messages, isNsfw, parent)
+    super(id, 'GUILD_TEXT', name, description, guildId, guild, lastMessageId, lastMessage, parentId, permissionOverwrites, position, cooldown, messages, isNsfw, parent)
     this.messages = new MessageManager(this)
   }
 }

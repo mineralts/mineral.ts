@@ -1,7 +1,7 @@
 import Channel from './Channel'
 import {
   ChannelTypeResolvable,
-  MessageComponentResolvable,
+  MessageComponentResolvable, Milliseconds,
   RequestOptions,
   Snowflake
 } from '../../../types'
@@ -15,6 +15,7 @@ import MessageManager from '../MessageManager'
 import CategoryChannel from './CategoryChannel'
 import Logger from '@leadcodedev/logger'
 import InvalidBody from '../../../reporters/errors/InvalidBody'
+import { DateTime } from 'luxon'
 
 export default class TextChannelResolvable extends Channel {
   constructor (
@@ -28,23 +29,23 @@ export default class TextChannelResolvable extends Channel {
     public lastMessage: Message | undefined,
     parentId: Snowflake,
     public permissionOverwrites: { [K: string]: string }[],
-    public position: number,
-    public rateLimitPerUser: number,
-    public topic: string,
+    position: number,
+    public cooldown: DateTime,
     public messages: MessageManager,
     public isNsfw: boolean,
     parent?: CategoryChannel,
   ) {
-    super(id, type, name, guildId, guild, parentId, parent)
+    super(id, type, name, guildId, guild, parentId, position, parent)
   }
 
-  public async setCooldown (value: number, option?: RequestOptions) {
+  public async setCooldown (value: Milliseconds, option?: RequestOptions) {
     if (value < 0 || value > 21600) {
       Logger.send('error', `${value} cannot be value < 0 or value > 21600`)
     }
 
     const request = new Request(`/channels/${this.id}`)
     await request.patch({ rate_limit_per_user: value }, option)
+    this.cooldown = DateTime.fromMillis(value)
   }
 
   public async setDescription (value: string, option?: RequestOptions) {
@@ -57,12 +58,6 @@ export default class TextChannelResolvable extends Channel {
     const request = new Request(`/channels/${this.id}`)
     await request.patch({ nsfw: bool })
     this.isNsfw = bool
-  }
-
-  public async setPosition (position: number) {
-    const request = new Request(`/channels/${this.id}`)
-    await request.patch({ position })
-    this.position = position
   }
 
   public async send (messageOption: MessageOption, option?: RequestOptions): Promise<Message> {

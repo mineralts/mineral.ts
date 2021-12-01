@@ -83,13 +83,12 @@ export default class GuildCreatePacket extends BasePacket {
 
   protected createChannel (payload) {
     payload.channels.forEach((item: any) => {
-      console.log(item.name, item.position)
       let channel!: ChannelResolvable
       if (item.type === ChannelTypeResolvable.GUILD_TEXT) {
         channel = new TextChannel(
           item.id,
           item.name,
-          item.description,
+          item.topic,
           this.guild.id,
           this.guild,
           item.last_message_id,
@@ -98,7 +97,6 @@ export default class GuildCreatePacket extends BasePacket {
           item.permission_overwrites,
           item.position,
           item.rate_limit_per_user,
-          item.topic,
           new MessageManager(),
           item.nsfw,
           undefined
