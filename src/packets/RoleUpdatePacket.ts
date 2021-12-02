@@ -7,7 +7,7 @@ import {createRoleFromPayload} from '../utils/Builders';
 export default class RoleUpdatePacket extends BasePacket {
   public async handle (client: MineralClient, payload: any) {
     const guild = client.cacheManager.guilds.cache.get(payload.guild_id!)
-    const role = guild?.roles.cache.get(payload.role.id)
+    const role = guild.roles.cache.get(payload.role.id)
 
     const after = createRoleFromPayload(payload)
     client.emit('roleUpdate', role!, after)
