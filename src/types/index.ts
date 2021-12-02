@@ -117,6 +117,7 @@ export interface MineralVein {
   inviteCreate: [invite: Invite]
   roleCreate: [role: Role]
   roleDelete: [role: Role]
+  roleUpdate: [before: Role | undefined, after: Role]
   typingStart: [member: GuildMember, channel: TextChannelResolvable]
 }
 

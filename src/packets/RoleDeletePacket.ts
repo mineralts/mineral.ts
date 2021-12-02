@@ -6,7 +6,7 @@ import Packet from '../decorators/Packet'
 export default class RoleDeletePacket extends BasePacket {
   public async  handle (client: MineralClient, payload: any)  {
     const guild = client.cacheManager.guilds.cache.get(payload.guild_id)
-    const role = guild?.roles.cache.get(payload.role.id)
+    const role = guild?.roles.cache.get(payload.role_id)
 
     if (!role) {
       return

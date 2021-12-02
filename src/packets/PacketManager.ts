@@ -24,6 +24,7 @@ import InviteCreatePacket from './InviteCreatePacket';
 import TypingStartPacket from './TypingStartPacket'
 import RoleCreatePacket from './RoleCreatePacket';
 import RoleDeletePacket from './RoleDeletePacket';
+import RoleUpdatePacket from './RoleUpdatePacket';
 
 export default class PacketManager {
   public packets: Collection<string, BasePacket[]> = new Collection()
@@ -53,6 +54,7 @@ export default class PacketManager {
       new InviteCreatePacket(),
       new TypingStartPacket(),
       new RoleCreatePacket(),
+      new RoleUpdatePacket(),
       new RoleDeletePacket(),
     )
   }
