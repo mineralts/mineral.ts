@@ -22,7 +22,7 @@ export default class InviteCreatePacket extends BasePacket {
       DateTime.fromISO(payload.created_at)
     )
 
-    guild?.invites.set(invite.code, invite)
+    guild?.invites.cache.set(payload.code, invite)
 
     client.emit('inviteCreate', invite)
   }

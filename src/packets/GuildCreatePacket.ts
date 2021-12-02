@@ -33,6 +33,7 @@ import Request from '../sockets/Request'
 import Invite from '../api/entities/Invite'
 import Collection from '../Collection'
 import VoiceState from '../api/entities/VoiceState'
+import InviteManager from '../api/entities/InviteManager'
 
 @Packet('GUILD_CREATE')
 export default class GuildCreatePacket extends BasePacket {
@@ -73,7 +74,7 @@ export default class GuildCreatePacket extends BasePacket {
     const invites = await request.get()
 
     invites.forEach((item) => {
-      this.guild.invites.set(item.code, new Invite(
+      this.guild.invites.cache.set(item.code, new Invite(
         this.guild.members.cache.get(item.inviter.id)!,
         this.guild.channels.cache.get(item.channel.id)!,
         item.code,
@@ -241,7 +242,8 @@ export default class GuildCreatePacket extends BasePacket {
         item.managed,
         item.icon,
         item.hoist,
-        item.color
+        item.color,
+        item.guild,
       )
       this.roles.set(role.id, role)
     })
@@ -345,7 +347,7 @@ export default class GuildCreatePacket extends BasePacket {
       payload.vanity_url_code,
       payload.embedded_activities,
       payload.premium_progress_bar_enabled,
-      new Collection(),
+      new InviteManager(),
     )
   }
 }

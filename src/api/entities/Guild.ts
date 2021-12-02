@@ -23,8 +23,8 @@ import { join } from 'path'
 import Logger from '@leadcodedev/logger'
 import TextChannel from './channels/TextChannel'
 import Command from '../components/commands/Command'
-import Invite from './Invite'
 import Collection from '../../Collection'
+import InviteManager from './InviteManager'
 
 export default class Guild {
   public commands: Collection<Snowflake, Command> = new Collection()
@@ -74,7 +74,7 @@ export default class Guild {
     public vanityUrlCode: string | null,
     public embeddedActivities: any[],
     public hasProgressBarEnabled: boolean,
-    public invites: Collection<string, Invite>,
+    public invites: InviteManager,
   ) {
   }
 
