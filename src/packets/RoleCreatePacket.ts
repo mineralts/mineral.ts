@@ -1,7 +1,7 @@
 import Packet from '../decorators/Packet'
 import MineralClient from '../clients/MineralClient'
 import BasePacket from './BasePacket'
-import Role from '../api/entities/Role';
+import Role from '../api/entities/Role'
 
 @Packet('GUILD_ROLE_CREATE')
 export default class RoleCreatePacket extends BasePacket {
@@ -20,6 +20,8 @@ export default class RoleCreatePacket extends BasePacket {
       payload.role.hoist,
       payload.role.color,
     )
+
+    guild?.roles.cache.set(role.id, role)
 
     client.emit('roleCreate', role)
   }
