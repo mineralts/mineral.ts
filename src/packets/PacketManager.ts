@@ -13,7 +13,7 @@ import ChannelDeletePacket from './ChannelDeletePacket'
 import ChannelUpdatePacket from './ChannelUpdatePacket'
 import CommandInteractionCreatePacket from './CommandInteractionCreatePacket'
 import MessageInteractionCreatePacket from './MessageInteractionCreatePacket'
-import MemberBoostAdd from "./MemberBoostAdd";
+import MemberBoostAdd from './MemberBoostAdd'
 import RulesAcceptPacket from './RulesAcceptPacket'
 import MemberJoinPacket from './MemberJoinPacket'
 import MemberLeavePacket from './MemberLeavePacket'

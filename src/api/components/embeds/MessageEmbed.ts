@@ -10,7 +10,7 @@ import { DateTime } from 'luxon'
 export default class MessageEmbed {
   public title: string | undefined
   public description: string | undefined
-  public color: number = 0
+  public color = 0
   public fields: EmbedField[] = []
   public author: EmbedAuthor | undefined
   public image: EmbedImage | undefined
@@ -20,10 +20,10 @@ export default class MessageEmbed {
   public url: string | undefined
   public footer: EmbedFooter | undefined
 
-   public setTitle (value: string) {
-     this.title = value
-     return this
-   }
+  public setTitle (value: string) {
+    this.title = value
+    return this
+  }
 
   public setDescription (value: string) {
     this.description = value
@@ -35,7 +35,7 @@ export default class MessageEmbed {
     return this
   }
 
-  public addField (name: string, value: string, inline: boolean = false) {
+  public addField (name: string, value: string, inline = false) {
     this.fields.push({ name, value, inline })
     return this
   }

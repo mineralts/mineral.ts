@@ -1,5 +1,5 @@
-import { DateTime } from "luxon"
-import { Snowflake } from "../../types"
+import { DateTime } from 'luxon'
+import { Snowflake } from '../../types'
 
 export default class ThreadMember {
   constructor (

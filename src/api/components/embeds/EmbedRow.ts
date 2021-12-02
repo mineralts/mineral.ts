@@ -9,7 +9,7 @@ export default class EmbedRow {
         Logger.send('error', `A row can contain a maximum of 5 components, ${target.length}.`)
         process.exit()
       }
-      target[property] = value;
+      target[property] = value
       return true
     }
   })

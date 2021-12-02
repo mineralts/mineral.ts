@@ -10,7 +10,7 @@ export function resolveColor(color) {
   if (color < 0 || color > 0xffffff) throw new RangeError('COLOR_RANGE')
   else if (Number.isNaN(color)) throw new TypeError('COLOR_CONVERT')
 
-  return color;
+  return color
 }
 
 enum Color {
@@ -47,10 +47,10 @@ enum Color {
 }
 
 export function parseEmoji(text: string) {
-  if (text.includes('%')) text = decodeURIComponent(text);
-  if (!text.includes(':')) return { name: text, id: null };
-  const match = text.match(/<?(?:(a):)?(\w{2,32}):(\d{17,19})?>?/);
-  return match && { animated: Boolean(match[1]), name: match[2], id: match[3] ?? null };
+  if (text.includes('%')) text = decodeURIComponent(text)
+  if (!text.includes(':')) return { name: text, id: null }
+  const match = text.match(/<?(?:(a):)?(\w{2,32}):(\d{17,19})?>?/)
+  return match && { animated: Boolean(match[1]), name: match[2], id: match[3] ?? null }
 }
 
 export function keyFromEnum<Enum> (entryEnum: Enum, payload: any) {

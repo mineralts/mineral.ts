@@ -165,8 +165,6 @@ export default class Guild {
 
   public async setIcon (path: LocalPath, options?: RequestOptions): Promise<void> {
     const request = new Request(`/guilds/${this.id}`)
-    let file: string
-
     // if (path.startsWith('http') || path.startsWith('https')) {
     //   if (!this.hasFeature('ANIMATED_ICON') && path.split('.')[1] === 'gif') {
     //     Logger.send('error', 'You do not have permission to upload a invitation banner')
@@ -183,7 +181,7 @@ export default class Guild {
     }
 
     const filePath = join(process.cwd(), path)
-    file = await fs.promises.readFile(filePath, 'base64')
+    const file = await fs.promises.readFile(filePath, 'base64')
 
     const { data } = await request.patch({ icon: `data:image/png;base64,${file}` }, options)
 

@@ -10,7 +10,7 @@ export default class Request {
   constructor (private endpoint: string) {
   }
 
-  public async get<P> (options?: RequestOptions): Promise<any | undefined> {
+  public async get (options?: RequestOptions): Promise<any | undefined> {
     try {
       const { data } = await axios.get(this.endpoint)
       return data
@@ -24,7 +24,7 @@ export default class Request {
     }
   }
 
-  public async post<P> (payload?: P, options?: RequestOptions): Promise<any | undefined> {
+  public async post (payload?: object, options?: RequestOptions): Promise<any | undefined> {
     try {
       const { data } = await axios.post(this.endpoint, payload)
       return data
@@ -38,7 +38,7 @@ export default class Request {
     }
   }
 
-  public async update<P> (payload: P = {} as P, options?: RequestOptions): Promise<boolean | undefined> {
+  public async update (payload: object, options?: RequestOptions): Promise<boolean | undefined> {
     try {
       const { data } = await axios.put(this.endpoint, payload)
       return data
@@ -52,7 +52,7 @@ export default class Request {
     }
   }
 
-  public async patch<P> (payload: P = {} as P, options?: RequestOptions): Promise<any | undefined> {
+  public async patch (payload: object, options?: RequestOptions): Promise<any | undefined> {
     try {
       const { data } = await axios.patch(this.endpoint, payload)
       return data

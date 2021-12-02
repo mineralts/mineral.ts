@@ -3,7 +3,7 @@ import { ChoiceOption, CommandArgumentType } from '../../../types'
 export default class ChoiceArgument {
   public name!: string
   public description!: string
-  public isRequired: boolean = false
+  public isRequired = false
   public type!: Exclude<keyof typeof CommandArgumentType, ['INTEGER']>
   public choices: ChoiceOption[] = []
 

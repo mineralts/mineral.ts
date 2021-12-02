@@ -18,7 +18,7 @@ export default class Command {
   public type?: keyof typeof CommandType
   public name?: string
   public description?: string
-  public defaultPermission: boolean = true
+  public defaultPermission = true
   public arguments: (CommandParamsResolvable | SubCommandArgument)[] = []
   public guild?: Guild
 

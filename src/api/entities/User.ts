@@ -45,6 +45,6 @@ export default class User extends BaseClient {
   }
 
   protected makeImageUrl (root, { format = 'webp', size = 256 }: { format?: any; size?: any } = {}) {
-    return `${root}.${format}${size ? `?size=${size}` : ''}`;
+    return `${root}.${format}${size ? `?size=${size}` : ''}`
   }
 }

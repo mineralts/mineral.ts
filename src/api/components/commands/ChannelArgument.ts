@@ -3,7 +3,7 @@ import { ChannelTypeResolvable, CommandArgumentType } from '../../../types'
 export default class ChannelArgument {
   public name!: string
   public description!: string
-  public isRequired: boolean = false
+  public isRequired = false
   public channelTypes: (keyof typeof ChannelTypeResolvable)[] = []
   public readonly type: keyof typeof CommandArgumentType = 'CHANNEL'
 

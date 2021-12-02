@@ -10,7 +10,7 @@ export default class SubCommandArgument {
   public name!: string
   public description!: string
   public arguments: CommandParamsResolvable[] = []
-  public defaultPermission: boolean = true
+  public defaultPermission = true
 
   public setName (name: string) {
     this.name = name.toLowerCase()

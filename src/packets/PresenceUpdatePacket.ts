@@ -12,7 +12,7 @@ import Emoji from '../api/entities/Emoji'
 export default class PresenceUpdatePacket extends BasePacket {
   public async handle (client: MineralClient, payload: any) {
     const guild = client.cacheManager.guilds.cache.get(payload.guild_id)
-    const member = guild?.members.cache.get(payload.user.id)!
+    const member = guild!.members.cache.get(payload.user.id)!
 
     const activities = payload.activities.map((activity: any) => {
       const emoji = new Emoji(

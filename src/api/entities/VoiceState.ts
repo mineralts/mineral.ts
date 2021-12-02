@@ -19,10 +19,10 @@ export default class VoiceState {
   }
 
   public async setMute(value: boolean) {
-      const request = new Request(`/guilds/${this.guild.id}/members/${this.member.id}`)
-      await request.patch({ mute: value })
+    const request = new Request(`/guilds/${this.guild.id}/members/${this.member.id}`)
+    await request.patch({ mute: value })
 
-      this.isMute = value
+    this.isMute = value
   }
 
   public async setDeaf(value: boolean) {

@@ -1,5 +1,5 @@
-import BasePacket from "./BasePacket";
-import Client from "../clients/MineralClient";
+import BasePacket from './BasePacket'
+import Client from '../clients/MineralClient'
 import Packet from '../decorators/Packet'
 
 @Packet('GUILD_UPDATE')

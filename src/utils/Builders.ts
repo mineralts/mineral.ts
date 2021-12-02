@@ -23,6 +23,7 @@ import GuildMember from '../api/entities/GuildMember'
 import GuildMemberRoleManager from '../api/entities/GuildMemberRoleManager'
 import User from '../api/entities/User'
 import Collection from '../Collection'
+import VoiceState from '../api/entities/VoiceState'
 
 function walkComponent (component) {
   if (component.type === ComponentType.ACTION_ROW) {
@@ -58,10 +59,10 @@ function walkComponent (component) {
 
 export function createMessageFromPayload (payload) {
   const client = Context.getClient()
-  const guild = client.cacheManager.guilds.cache.get(payload.guild_id)
-  const channel = guild?.channels.cache.get(payload.channel_id) as TextChannel
+  const guild = client.cacheManager.guilds.cache.get(payload.guild_id)!
+  const channel = guild.channels.cache.get(payload.channel_id) as TextChannel
 
-  const author = guild?.members.cache.get(payload.author.id)!
+  const author = guild.members.cache.get(payload.author.id)!
 
   const mentionChannel: Collection<Snowflake, any> = new Collection()
   const channelMentions = payload.content.split(' ')
@@ -133,20 +134,20 @@ export function createMessageFromPayload (payload) {
 
 export function createMessageInteractionFromPayload (payload) {
   const client = Context.getClient()
-  const guild = client.cacheManager.guilds.cache.get(payload.guild_id)
-  const channel = guild?.channels.cache.get(payload.channel_id) as TextChannel
-  const author = guild?.members.cache.get(payload.member?.id)!
+  const guild = client.cacheManager.guilds.cache.get(payload.guild_id)!
+  const channel = guild.channels.cache.get(payload.channel_id) as TextChannel
+  const author = guild.members.cache.get(payload.member?.id)!
 
   const mentionChannel: Collection<Snowflake, any> = new Collection()
 
   const channelMentions = payload.message.content
     ? payload.message.content.split(' ')
-    .filter((word: string) => word.startsWith('<#'))
-    .map((word: string) => {
-      return word
-        .replace(/<#/g, '')
-        .replace(/>/g, '')
-    })
+      .filter((word: string) => word.startsWith('<#'))
+      .map((word: string) => {
+        return word
+          .replace(/<#/g, '')
+          .replace(/>/g, '')
+      })
     : []
 
   channelMentions.forEach((id: Snowflake) => {
@@ -298,7 +299,7 @@ export function createUser (payload) {
 
 export function createGuildMember (guild, payload) {
   const user = createUser(payload)
-  return new GuildMember(
+  const guildMember = new GuildMember(
     payload.user.id,
     payload.nick || user.username,
     user,
@@ -308,7 +309,19 @@ export function createGuildMember (guild, payload) {
       ? guild.roles.get(payload.highest_role)!
       : null,
     payload.is_pending,
-    undefined,
+    undefined as any,
     DateTime.fromISO(payload.joined_at),
+  )
+
+  guildMember.voice = new VoiceState(
+    guildMember,
+    undefined as any,
+    undefined as any,
+    undefined as any,
+    payload.mute,
+    payload.deaf,
+    undefined as any,
+    undefined as any,
+    guild,
   )
 }

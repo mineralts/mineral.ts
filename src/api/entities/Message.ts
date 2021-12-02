@@ -78,7 +78,7 @@ export default class Message {
   }
 
   public async react (emoji: string | Emoji, option?: RequestOptions) {
-    let encodedEmoji = emoji instanceof Emoji
+    const encodedEmoji = emoji instanceof Emoji
       ? encodeURI(`${emoji.label}:${emoji.id}`)
       : encodeURI(emoji)
 
@@ -92,7 +92,7 @@ export default class Message {
       a = new Emoji(parsedEmoji!.id!, parsedEmoji!.name, false, true, false, [])
     }
 
-   this.reactions.addReaction(a, client.clientUser!)
+    this.reactions.addReaction(a, client.clientUser!)
   }
 
   public async fetch () {

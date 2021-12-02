@@ -1,6 +1,6 @@
 export default class Scheduler {
   private scheduler: any
-  public ended: boolean = false
+  public ended = false
 
   constructor (private value: number) {
   }

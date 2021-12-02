@@ -3,7 +3,7 @@ import { CommandArgumentType } from '../../../types'
 export default class MemberArgument {
   public name!: string
   public description!: string
-  public isRequired: boolean = false
+  public isRequired = false
   public readonly type: keyof typeof CommandArgumentType = 'USER'
 
   public setName (value: string) {

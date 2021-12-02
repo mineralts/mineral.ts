@@ -55,7 +55,7 @@ export default class SelectMenu {
 
   public toJson () {
     if (!this.customId) {
-      Logger.send('error', `Select menu component has not customId.`)
+      Logger.send('error', 'Select menu component has not customId.')
       process.exit(0)
     }
 
