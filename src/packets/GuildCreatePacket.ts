@@ -33,7 +33,7 @@ import Request from '../sockets/Request'
 import Invite from '../api/entities/Invite'
 import Collection from '../Collection'
 import VoiceState from '../api/entities/VoiceState'
-import InviteManager from '../api/entities/InviteManager';
+import InviteManager from '../api/entities/InviteManager'
 
 @Packet('GUILD_CREATE')
 export default class GuildCreatePacket extends BasePacket {

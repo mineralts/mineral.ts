@@ -25,7 +25,7 @@ import TypingStartPacket from './TypingStartPacket'
 import RoleCreatePacket from './RoleCreatePacket'
 import RoleDeletePacket from './RoleDeletePacket'
 import RoleUpdatePacket from './RoleUpdatePacket'
-import {InviteDeletePacket} from './InviteDeletePacket';
+import {InviteDeletePacket} from './InviteDeletePacket'
 
 export default class PacketManager {
   public packets: Collection<string, BasePacket[]> = new Collection()

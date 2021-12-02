@@ -1,6 +1,6 @@
 import Packet from '../decorators/Packet'
-import BasePacket from './BasePacket';
-import MineralClient from '../clients/MineralClient';
+import BasePacket from './BasePacket'
+import MineralClient from '../clients/MineralClient'
 
 @Packet('INVITE_DELETE')
 export class InviteDeletePacket extends BasePacket {
