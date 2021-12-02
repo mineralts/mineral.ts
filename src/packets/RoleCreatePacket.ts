@@ -19,6 +19,7 @@ export default class RoleCreatePacket extends BasePacket {
       payload.role.icon,
       payload.role.hoist,
       payload.role.color,
+      payload.guild_id
     )
 
     guild?.roles.cache.set(role.id, role)

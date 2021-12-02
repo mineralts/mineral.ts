@@ -1,4 +1,5 @@
 import { Snowflake } from '../../types'
+import Guild from './Guild';
 
 export default class Role {
   constructor (
@@ -11,7 +12,8 @@ export default class Role {
     public managed: boolean,
     public icon: any,
     public hoist: boolean,
-    public color: number
+    public color: number,
+    public guild: Guild
   ) {
   }
 }

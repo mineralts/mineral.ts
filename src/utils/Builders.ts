@@ -339,5 +339,6 @@ export function createRoleFromPayload (payload) {
     payload.role.icon,
     payload.role.hoist,
     payload.role.color,
+    payload.guild_id
   )
 }
