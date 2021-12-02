@@ -1,5 +1,5 @@
 import { Snowflake } from '../../types'
-import Guild from './Guild';
+import Guild from './Guild'
 
 export default class Role {
   constructor (

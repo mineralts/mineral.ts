@@ -38,10 +38,10 @@
   dependencies:
     luxon "^2.0.1"
 
-"@nas-service/eslint-config@^1.0.3":
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/@nas-service/eslint-config/-/eslint-config-1.0.3.tgz#4ef10412dfca65e1792c2118dac16c28b01cb6e0"
-  integrity sha512-TyqQusGoTp45wIPJw5aioXM3gISWIYnsWReM4VkYfO8pFjDLcNiTlBEdBnQzCM6u1gIDjxXM4sq5TkjNR2zoUw==
+"@nas-service/eslint-config@1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@nas-service/eslint-config/-/eslint-config-1.1.0.tgz#02a5fe23fbf790aee99229d6575fe5935aa876c6"
+  integrity sha512-jBLl6e2RLDr9DvlPyDN3m6wEwHORQUC91WoGn3b7oXk/VMbCTJpLVvwwIujHqhYaKOZVCh1f7zDefQQGCzeKog==
   dependencies:
     "@types/node" "^16.11.6"
     "@typescript-eslint/eslint-plugin" "^5.5.0"

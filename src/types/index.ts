@@ -21,7 +21,7 @@ import CommandInteraction from '../api/entities/interactions/CommandInteraction'
 import Invite from '../api/entities/Invite'
 import { DateTime } from 'luxon'
 import TextChannelResolvable from '../api/entities/channels/TextChannelResolvable'
-import Role from '../api/entities/Role';
+import Role from '../api/entities/Role'
 
 export type Snowflake = string
 export type Milliseconds = number

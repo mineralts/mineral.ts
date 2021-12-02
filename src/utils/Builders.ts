@@ -24,7 +24,7 @@ import GuildMemberRoleManager from '../api/entities/GuildMemberRoleManager'
 import User from '../api/entities/User'
 import Collection from '../Collection'
 import VoiceState from '../api/entities/VoiceState'
-import Role from '../api/entities/Role';
+import Role from '../api/entities/Role'
 
 function walkComponent (component) {
   if (component.type === ComponentType.ACTION_ROW) {
