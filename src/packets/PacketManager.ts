@@ -20,7 +20,7 @@ import MemberLeavePacket from './MemberLeavePacket'
 import MemberBoostRemove from './MemberBoostRemove'
 import VoiceLeavePacket from './VoiceLeavePacket'
 import Collection from '../Collection'
-import InviteCreatePacket from './InviteCreatePacket';
+import InviteCreatePacket from './InviteCreatePacket'
 import TypingStartPacket from './TypingStartPacket'
 import RoleCreatePacket from './RoleCreatePacket';
 import RoleDeletePacket from './RoleDeletePacket';
