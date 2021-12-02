@@ -22,6 +22,7 @@ import VoiceLeavePacket from './VoiceLeavePacket'
 import Collection from '../Collection'
 import InviteCreatePacket from './InviteCreatePacket';
 import TypingStartPacket from './TypingStartPacket'
+import RoleCreatePacket from './RoleCreatePacket';
 
 export default class PacketManager {
   public packets: Collection<string, BasePacket[]> = new Collection()
@@ -50,6 +51,7 @@ export default class PacketManager {
       new RulesAcceptPacket(),
       new InviteCreatePacket(),
       new TypingStartPacket(),
+      new RoleCreatePacket()
     )
   }
 
