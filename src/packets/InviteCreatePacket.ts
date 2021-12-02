@@ -2,7 +2,7 @@ import Packet from '../decorators/Packet'
 import BasePacket from './BasePacket'
 import MineralClient from '../clients/MineralClient'
 import Invite from '../api/entities/Invite'
-import { DateTim e} from 'luxon'
+import { DateTime } from 'luxon'
 
 @Packet('INVITE_CREATE')
 export default class InviteCreatePacket extends BasePacket {
