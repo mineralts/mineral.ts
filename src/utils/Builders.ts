@@ -24,6 +24,7 @@ import GuildMemberRoleManager from '../api/entities/GuildMemberRoleManager'
 import User from '../api/entities/User'
 import Collection from '../Collection'
 import VoiceState from '../api/entities/VoiceState'
+import Role from '../api/entities/Role';
 
 function walkComponent (component) {
   if (component.type === ComponentType.ACTION_ROW) {
@@ -323,5 +324,21 @@ export function createGuildMember (guild, payload) {
     undefined as any,
     undefined as any,
     guild,
+  )
+}
+
+export function createRoleFromPayload (payload) {
+  return new Role(
+    payload.role.id,
+    payload.role.name,
+    payload.role.unicode_emoji,
+    payload.role.position,
+    payload.role.permissions,
+    payload.role.mentionable,
+    payload.role.managed,
+    payload.role.icon,
+    payload.role.hoist,
+    payload.role.color,
+    payload.guild_id
   )
 }
