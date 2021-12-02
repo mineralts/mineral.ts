@@ -79,8 +79,9 @@ export default class SocketManager {
   }
 
   private close () {
-    this.websocket.on('close', () => {
+    this.websocket.on('close', (a, b) => {
       Logger.send('info', 'Closed')
+      console.log(a, b.toString())
       this.heartbeat.shutdown()
     })
   }
