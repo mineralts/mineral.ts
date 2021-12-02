@@ -115,6 +115,7 @@ export interface MineralVein {
   guildMemberJoin: [member: GuildMember, invitation?: Invite]
   guildMemberLeave: [member: GuildMember]
   inviteCreate: [invite: Invite]
+  inviteDelete: [invite: Invite]
   roleCreate: [role: Role]
   roleDelete: [role: Role]
   roleUpdate: [before: Role, after: Role]
