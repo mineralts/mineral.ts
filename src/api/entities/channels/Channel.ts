@@ -1,4 +1,4 @@
-import {ChannelTypeResolvable, RequestOptions, Snowflake} from '../../../types'
+import { ChannelTypeResolvable, RequestOptions, Snowflake } from '../../../types'
 import Guild from '../Guild'
 import CategoryChannel from './CategoryChannel'
 import Request from '../../../sockets/Request'
