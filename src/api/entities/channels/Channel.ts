@@ -1,4 +1,4 @@
-import { ChannelTypeResolvable, RequestOptions, Snowflake } from '../../../types'
+import {ChannelTypeResolvable, RequestOptions, Snowflake} from '../../../types'
 import Guild from '../Guild'
 import CategoryChannel from './CategoryChannel'
 import Request from '../../../sockets/Request'
@@ -31,6 +31,10 @@ export default class Channel {
 
   public isCategory () {
     return ChannelTypeResolvable[this.type] === ChannelTypeResolvable.GUILD_CATEGORY
+  }
+
+  public isStage () {
+    return ChannelTypeResolvable[this.type] === ChannelTypeResolvable.GUILD_STAGE_VOICE
   }
 
   public async setParent (category: CategoryChannel | Snowflake, option?: RequestOptions) {

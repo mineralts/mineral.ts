@@ -22,6 +22,7 @@ import Invite from '../api/entities/Invite'
 import { DateTime } from 'luxon'
 import TextChannelResolvable from '../api/entities/channels/TextChannelResolvable'
 import Role from '../api/entities/Role'
+import StageChannel from '../api/entities/channels/StageChannel';
 
 export type Snowflake = string
 export type Milliseconds = number
@@ -143,7 +144,7 @@ export enum OverwriteType {
   MEMBER = 1,
 }
 
-export type ChannelResolvable = TextChannel | VoiceChannel | CategoryChannel
+export type ChannelResolvable = TextChannel | VoiceChannel | CategoryChannel | StageChannel
 
 export enum Region {
   FRANCE = 'fr',
@@ -349,12 +350,19 @@ type ChannelOptions = {
     parentId?: Snowflake
     parent?: CategoryChannel
   },
-  GUILD_CATEGORY: never
+  GUILD_CATEGORY: never,
+  GUILD_STAGE_VOICE: {
+    userLimit?: number
+    bitrate?: number
+    parentId?: Snowflake
+    parent?: CategoryChannel
+  },
 }
 
 export type ChannelOptionResolvable = ChannelNode<'GUILD_TEXT'>
   | ChannelNode<'GUILD_VOICE'>
   | ChannelNode<'GUILD_CATEGORY'>
+  | ChannelNode<'GUILD_STAGE_VOICE'>
 
 export enum CommandType {
   CHAT_INPUT = 1,

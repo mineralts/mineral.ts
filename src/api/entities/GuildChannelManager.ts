@@ -1,9 +1,4 @@
-import {
-  ChannelOptionResolvable,
-  ChannelResolvable,
-  ChannelTypeResolvable,
-  Snowflake,
-} from '../../types'
+import {ChannelOptionResolvable, ChannelResolvable, ChannelTypeResolvable, Snowflake} from '../../types'
 import Request from '../../sockets/Request'
 import Guild from './Guild'
 import Collection from '../../Collection'
@@ -21,7 +16,7 @@ export default class GuildChannelManager {
 
   public async create (channel: ChannelOptionResolvable) {
     let payload: any
-    const request = new Request(`/guilds/${this.guild?.id}/channels`)
+    const request = new Request(`/guilds/${ this.guild?.id }/channels`)
     const baseChannel = {
       name: channel.name,
       type: ChannelTypeResolvable[channel.type],
@@ -42,13 +37,21 @@ export default class GuildChannelManager {
       payload = await request.post({
         ...baseChannel,
         user_limit: channel.options?.userLimit || 0,
-        bitrate: channel.options?.bitrate || 64000,
+        bitrate: channel.options?.bitrate || 64000
       })
     }
 
     if (channel.type === 'GUILD_CATEGORY') {
       payload = await request.post({
+        ...baseChannel
+      })
+    }
+
+    if (channel.type === 'GUILD_STAGE_VOICE') {
+      payload = await request.post({
         ...baseChannel,
+        user_limit: channel.options?.userLimit || 0,
+        bitrate: channel.options?.bitrate || 64000
       })
     }
 

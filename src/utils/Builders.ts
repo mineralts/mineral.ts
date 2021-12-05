@@ -1,11 +1,10 @@
 import Message from '../api/entities/Message'
-import { DateTime } from 'luxon'
-import { MentionResolvable } from '../api/entities/MentionResolvable'
-import { RTC_REGION, Snowflake, VIDEO_QUALITY } from '../types'
+import {DateTime} from 'luxon'
+import {MentionResolvable} from '../api/entities/MentionResolvable'
+import {ButtonStyle, ChannelTypeResolvable, ComponentType, RTC_REGION, Snowflake, VIDEO_QUALITY} from '../types'
 import MessageAttachment from '../api/entities/MessageAttachment'
 import Context from '../Context'
 import EmbedRow from '../api/components/embeds/EmbedRow'
-import { ButtonStyle, ChannelTypeResolvable, ComponentType } from '../types'
 import MessageManager from '../api/entities/MessageManager'
 import CategoryChannel from '../api/entities/channels/CategoryChannel'
 import TextChannel from '../api/entities/channels/TextChannel'
@@ -17,7 +16,7 @@ import EmbedFooter from '../api/components/embeds/EmbedFooter'
 import EmbedAuthor from '../api/components/embeds/EmbedAuthor'
 import MessageEmbed from '../api/components/embeds/MessageEmbed'
 import Button from '../api/components/buttons/Button'
-import { keyFromEnum } from './index'
+import {keyFromEnum} from './index'
 import SelectMenu from '../api/components/selectMenus/SelectMenu'
 import GuildMember from '../api/entities/GuildMember'
 import GuildMemberRoleManager from '../api/entities/GuildMemberRoleManager'
@@ -25,6 +24,7 @@ import User from '../api/entities/User'
 import Collection from '../Collection'
 import VoiceState from '../api/entities/VoiceState'
 import Role from '../api/entities/Role'
+import StageChannel from '../api/entities/channels/StageChannel';
 
 function walkComponent (component) {
   if (component.type === ComponentType.ACTION_ROW) {
@@ -211,6 +211,7 @@ export function createMessageInteractionFromPayload (payload) {
 }
 
 export function createChannelFromPayload (payload) {
+  console.log(payload)
   let channel: any
   if (payload.type === ChannelTypeResolvable.GUILD_TEXT) {
     channel = new TextChannel(
@@ -262,16 +263,36 @@ export function createChannelFromPayload (payload) {
       payload.parent_id,
       payload.bitrate,
       keyFromEnum(VIDEO_QUALITY, payload.video_quality_mode) as keyof typeof VIDEO_QUALITY,
-      undefined,
+      undefined
     )
   }
 
   if (payload.type === ChannelTypeResolvable.GUILD_CATEGORY) {
     channel = new CategoryChannel(
       payload.id,
+      payload.position,
       payload.name,
       payload.guild_id,
+      undefined
+    )
+  }
+
+  if (payload.type === ChannelTypeResolvable.GUILD_STAGE_VOICE) {
+    channel = new StageChannel(
+      payload.id,
+      payload.name,
+      payload.topic,
+      payload.guild_id,
       undefined,
+      payload.user_limit,
+      keyFromEnum(RTC_REGION, payload.rtc_region) as keyof typeof RTC_REGION,
+      payload.rate_limit_per_user,
+      payload.position,
+      payload.permission_overwrites,
+      payload.parent_id,
+      payload.bitrate,
+      keyFromEnum(VIDEO_QUALITY, payload.video_quality_mode) as keyof typeof VIDEO_QUALITY,
+      undefined
     )
   }
 
@@ -283,7 +304,7 @@ export function createUser (payload) {
     payload.user.id,
     payload.user.username,
     payload.user.discriminator,
-    `${payload.user.username}#${payload.user.discriminator}`,
+    `${ payload.user.username }#${ payload.user.discriminator }`,
     payload.bot === true,
     payload.premium_since
       ? DateTime.fromISO(payload.premium_since)
@@ -294,7 +315,7 @@ export function createUser (payload) {
     payload.user.email,
     payload.avatar,
     payload.banner,
-    undefined,
+    undefined
   )
 }
 
@@ -311,7 +332,7 @@ export function createGuildMember (guild, payload) {
       : null,
     payload.is_pending,
     undefined as any,
-    DateTime.fromISO(payload.joined_at),
+    DateTime.fromISO(payload.joined_at)
   )
 
   guildMember.voice = new VoiceState(
@@ -323,7 +344,7 @@ export function createGuildMember (guild, payload) {
     payload.deaf,
     undefined as any,
     undefined as any,
-    guild,
+    guild
   )
 }
 
