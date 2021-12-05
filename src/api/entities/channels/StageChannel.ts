@@ -1,4 +1,4 @@
-import {RTC_REGION, Snowflake} from '../../../types'
+import { RTC_REGION, Snowflake } from '../../../types'
 import Guild from '../Guild'
 import CategoryChannel from './CategoryChannel'
 import Channel from './Channel'
