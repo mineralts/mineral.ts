@@ -22,7 +22,7 @@ import Invite from '../api/entities/Invite'
 import { DateTime } from 'luxon'
 import TextChannelResolvable from '../api/entities/channels/TextChannelResolvable'
 import Role from '../api/entities/Role'
-import StageChannel from '../api/entities/channels/StageChannel';
+import StageChannel from '../api/entities/channels/StageChannel'
 
 export type Snowflake = string
 export type Milliseconds = number

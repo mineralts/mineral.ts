@@ -10,7 +10,7 @@ export default class VoiceChannel extends Channel {
     id: Snowflake,
     name: string,
     guildId: Snowflake,
-    guild: Guild,
+    guild: Guild | undefined,
     public maxUser: number,
     public region: keyof typeof RTC_REGION,
     public rateLimitPerUser: number,

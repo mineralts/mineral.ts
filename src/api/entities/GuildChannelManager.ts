@@ -1,4 +1,9 @@
-import {ChannelOptionResolvable, ChannelResolvable, ChannelTypeResolvable, Snowflake} from '../../types'
+import {
+  ChannelOptionResolvable,
+  ChannelResolvable,
+  ChannelTypeResolvable,
+  Snowflake
+} from '../../types'
 import Request from '../../sockets/Request'
 import Guild from './Guild'
 import Collection from '../../Collection'

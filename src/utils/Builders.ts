@@ -24,7 +24,7 @@ import User from '../api/entities/User'
 import Collection from '../Collection'
 import VoiceState from '../api/entities/VoiceState'
 import Role from '../api/entities/Role'
-import StageChannel from '../api/entities/channels/StageChannel';
+import StageChannel from '../api/entities/channels/StageChannel'
 
 function walkComponent (component) {
   if (component.type === ComponentType.ACTION_ROW) {
@@ -291,7 +291,6 @@ export function createChannelFromPayload (payload) {
       payload.permission_overwrites,
       payload.parent_id,
       payload.bitrate,
-      keyFromEnum(VIDEO_QUALITY, payload.video_quality_mode) as keyof typeof VIDEO_QUALITY,
       undefined
     )
   }
