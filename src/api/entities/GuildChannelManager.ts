@@ -21,7 +21,7 @@ export default class GuildChannelManager {
 
   public async create (channel: ChannelOptionResolvable) {
     let payload: any
-    const request = new Request(`/guilds/${ this.guild?.id }/channels`)
+    const request = new Request(`/guilds/${this.guild?.id}/channels`)
     const baseChannel = {
       name: channel.name,
       type: ChannelTypeResolvable[channel.type],
