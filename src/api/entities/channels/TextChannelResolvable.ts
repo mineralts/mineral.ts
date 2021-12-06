@@ -30,7 +30,7 @@ export default class TextChannelResolvable extends Channel {
     parentId: Snowflake,
     public permissionOverwrites: { [K: string]: string }[],
     position: number,
-    public cooldown: DateTime,
+    public cooldown: DateTime | undefined,
     public messages: MessageManager,
     public isNsfw: boolean,
     parent?: CategoryChannel,

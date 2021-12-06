@@ -21,6 +21,6 @@ export default class NewsChannel extends TextChannelResolvable {
     messages: MessageManager,
     parent?: CategoryChannel
   ) {
-    super(id, 'GUILD_NEWS', name, guildId, guild, lastMessageId, lastMessage, parentId, permissionOverwrites, position, rateLimitePerUser, topic, messages, parent)
+    super(id, 'GUILD_NEWS', name, undefined, guildId, guild, lastMessageId, lastMessage, parentId, permissionOverwrites, position, undefined, messages, false, parent)
   }
 }

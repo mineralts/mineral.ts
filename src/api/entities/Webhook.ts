@@ -1,22 +1,22 @@
-import { Snowflake } from '../../types'
+import { Snowflake, WebhookType } from '../../types'
 import User from './User'
 import Guild from './Guild'
 import Channel from './channels/Channel'
 
-export default class VoiceState {
-  constructor (
+export default class Webhook {
+  constructor(
     public id: Snowflake,
-    public type: number,
-    public guildId: Snowflake | undefined,
-    public channelId: Snowflake | undefined,
+    public type: keyof typeof WebhookType,
+    public guildId: Snowflake,
+    public channelId: Snowflake,
     public user: User,
-    public name: string | undefined,
-    public avatar: string | undefined,
+    public name: string,
+    public avatar: string,
     public token: string,
-    public applicationId: Snowflake | undefined,
+    public application_id: Snowflake,
     public sourceGuild: Guild,
     public sourceChannel: Channel,
-    public url: string,
+    public url: string
   ) {
   }
 }

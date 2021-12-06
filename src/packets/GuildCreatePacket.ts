@@ -34,6 +34,7 @@ import Invite from '../api/entities/Invite'
 import Collection from '../Collection'
 import VoiceState from '../api/entities/VoiceState'
 import InviteManager from '../api/entities/InviteManager'
+import StageChannel from '../api/entities/channels/StageChannel'
 
 @Packet('GUILD_CREATE')
 export default class GuildCreatePacket extends BasePacket {
@@ -151,6 +152,7 @@ export default class GuildCreatePacket extends BasePacket {
       if (item.type === ChannelTypeResolvable.GUILD_CATEGORY) {
         channel = new CategoryChannel(
           item.id,
+          item.position,
           item.name,
           this.guild.id,
           this.guild,

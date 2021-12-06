@@ -10,6 +10,6 @@ export default class CategoryChannel extends Channel {
     guildId: Snowflake,
     guild: Guild | undefined,
   ) {
-    super(id, 'GUILD_CATEGORY', name, guildId, guild, undefined, position)
+    super(id, 'GUILD_CATEGORY', name, guildId, guild!, undefined, position)
   }
 }

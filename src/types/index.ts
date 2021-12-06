@@ -107,11 +107,17 @@ export interface MineralVein {
   memberBoostAdd: [member: GuildMember]
   memberBoostRemove: [member: GuildMember]
   interactionButtonCreate: [interaction: ButtonInteraction]
+
   [key: `interactionButton::${string}`]: [interaction: ButtonInteraction]
+
   interactionSelectMenuCreate: [interaction: SelectMenuInteraction]
+
   [key: `interactionSelectMenu::${string}`]: [interaction: SelectMenuInteraction]
+
   interactionCommandCreate: [interaction: CommandInteraction]
+
   [key: `interactionCommand::${string}`]: [interaction: CommandInteraction]
+
   rulesAccept: [member: GuildMember]
   guildMemberJoin: [member: GuildMember, invitation?: Invite]
   guildMemberLeave: [member: GuildMember]
@@ -238,8 +244,8 @@ export type GuildFeature =
   | 'WELCOME_SCREEN_ENABLED'
 
 export enum SystemChannelFlag {
-  SUPPRESS_JOIN_NOTIFICATIONS	= 1 << 0,
-  SUPPRESS_PREMIUM_SUBSCRIPTIONS =	1 << 1,
+  SUPPRESS_JOIN_NOTIFICATIONS = 1 << 0,
+  SUPPRESS_PREMIUM_SUBSCRIPTIONS = 1 << 1,
   SUPPRESS_GUILD_REMINDER_NOTIFICATIONS = 1 << 2,
 }
 
@@ -287,19 +293,19 @@ export enum ComponentType {
 }
 
 export enum ButtonStyle {
-  PRIMARY =	1,
+  PRIMARY = 1,
   SECONDARY = 2,
-  SUCCESS	= 3,
+  SUCCESS = 3,
   DANGER = 4,
   LINK = 5,
 }
 
 export type MenuSelect = {
-  customId:	string
+  customId: string
   placeholder?: string
   minValues?: number
   maxValues?: number
-  disabled?:	boolean
+  disabled?: boolean
   choices: MenuSelectOption[]
 }
 
@@ -372,14 +378,14 @@ export enum CommandType {
 
 export enum CommandArgumentType {
   SUB_COMMAND = 1,
-  SUB_COMMAND_GROUP	= 2,
-  STRING	= 3,
-  INTEGER	= 4,
-  BOOLEAN	= 5,
-  USER	= 6,
-  CHANNEL =	7,
-  ROLE =	8,
-  MENTIONABLE	= 9,
+  SUB_COMMAND_GROUP = 2,
+  STRING = 3,
+  INTEGER = 4,
+  BOOLEAN = 5,
+  USER = 6,
+  CHANNEL = 7,
+  ROLE = 8,
+  MENTIONABLE = 9,
   NUMBER = 10,
 }
 
@@ -401,10 +407,10 @@ export enum InteractionType {
 
 export enum InteractionType {
   PONG = 1,
-  CHANNEL_MESSAGE_WITH_SOURCE =	4,
+  CHANNEL_MESSAGE_WITH_SOURCE = 4,
   DEFERRED_CHANNEL_MESSAGE_WITH_SOURCE = 5,
   DEFERRED_UPDATE_MESSAGE = 6,
-  UPDATE_MESSAGE =	7,
+  UPDATE_MESSAGE = 7,
   APPLICATION_COMMAND_AUTOCOMPLETE_RESULT = 8,
 }
 
@@ -419,7 +425,7 @@ export type ActivityTimestamps = { start: DateTime | undefined, end: DateTime | 
 
 export type ActivityOption = {
   name: string
-  type:Exclude<keyof typeof ActivityType, 'CUSTOM'>
+  type: Exclude<keyof typeof ActivityType, 'CUSTOM'>
   url?: string
 }
 
@@ -427,4 +433,10 @@ export type PresenceData = {
   status?: keyof typeof PresenceStatus,
   afk?: boolean,
   activities?: ActivityOption[]
+}
+
+export enum WebhookType {
+  INCOMMING = 1,
+  FOLLOWER = 2,
+  APPLICATION = 3
 }

@@ -7,7 +7,7 @@ export default class StageChannel extends Channel {
   constructor (
     id: Snowflake,
     name: string,
-    topic: string | undefined,
+    topic: string | null,
     guildId: Snowflake,
     guild: Guild | undefined,
     public maxUser: number,
@@ -19,6 +19,6 @@ export default class StageChannel extends Channel {
     public bitrate: number,
     parent?: CategoryChannel
   ) {
-    super(id, 'GUILD_STAGE_VOICE', name, guildId, guild, parentId, position, parent)
+    super(id, 'GUILD_STAGE_VOICE', name, guildId, guild!, parentId, position, parent)
   }
 }
