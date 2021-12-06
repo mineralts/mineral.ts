@@ -211,7 +211,6 @@ export function createMessageInteractionFromPayload (payload) {
 }
 
 export function createChannelFromPayload (payload) {
-  console.log(payload)
   let channel: any
   if (payload.type === ChannelTypeResolvable.GUILD_TEXT) {
     channel = new TextChannel(
