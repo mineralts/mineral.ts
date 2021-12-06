@@ -302,7 +302,7 @@ export function createUser (payload) {
     payload.user.id,
     payload.user.username,
     payload.user.discriminator,
-    `${ payload.user.username }#${ payload.user.discriminator }`,
+    `${payload.user.username}#${payload.user.discriminator}`,
     payload.bot === true,
     payload.premium_since
       ? DateTime.fromISO(payload.premium_since)
