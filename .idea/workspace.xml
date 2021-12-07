@@ -1,19 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f56e3984-6480-48ce-85e1-aff0ae5ec9a1" name="Default Changelist" comment=":construction: Work in progress">
-      <change afterPath="$PROJECT_DIR$/src/packets/RulesAcceptPacket.ts" afterDir="false" />
+    <list default="true" id="f56e3984-6480-48ce-85e1-aff0ae5ec9a1" name="Default Changelist" comment=":art: Update eslint">
+      <change afterPath="$PROJECT_DIR$/src/builders/GuildBuilder.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/entities/channels/CategoryChannel.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/entities/channels/CategoryChannel.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/entities/channels/Channel.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/entities/channels/Channel.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/entities/channels/TextChannelResolvable.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/entities/channels/TextChannelResolvable.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/packets/GuildCreatePacket.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/packets/GuildCreatePacket.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/packets/GuildMemberBoostPacket.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/packets/GuildMemberBoostPacket.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/packets/GuildMemberUnboostGuildPacket.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/packets/GuildMemberUnboostGuildPacket.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/packets/PacketManager.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/packets/PacketManager.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/types/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/Builders.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/Builders.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,29 +45,34 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File" value="JSON&#10;JavaScript&#10;TypeScript" />
+    <property name="com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File" value="TypeScript&#10;JSON&#10;JavaScript" />
     <property name="dart.analysis.tool.window.visible" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/packets" />
+    <property name="js.linters.configure.manually.selectedeslint" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/reporters/errors" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.standard" value="true" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.standard" value="" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="editor.preferences.import" />
+    <property name="settings.editor.selected.configurable" value="settings.javascript.linters.eslint" />
     <property name="ts.external.directory.path" value="E:\WindowsData\Bureau\Mineral\mineral.ts\node_modules\typescript\lib" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\WindowsData\Bureau\Mineral\mineral.ts\src\reporters\errors" />
       <recent name="E:\WindowsData\Bureau\Mineral\mineral.ts\src\packets" />
       <recent name="E:\WindowsData\Bureau\Mineral\mineral.ts\src\api\entities\interactions" />
       <recent name="E:\WindowsData\Bureau\Mineral\mineral.ts\src\api\components\commands" />
       <recent name="E:\WindowsData\Bureau\Mineral\mineral.ts\src\api\entities\channels" />
-      <recent name="E:\WindowsData\Bureau\Mineral\mineral.ts\src\api\components" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\WindowsData\Bureau\Mineral\mineral.ts\src\reporters" />
+      <recent name="E:\WindowsData\Bureau\Mineral\mineral.ts\src\errors" />
       <recent name="E:\WindowsData\Bureau\Mineral\mineral.ts\src" />
       <recent name="E:\WindowsData\Bureau\Mineral\mineral.ts\src\api\entities\channels" />
       <recent name="E:\WindowsData\Bureau\Mineral\mineral.ts\src\api\components\selectMenus" />
-      <recent name="E:\WindowsData\Bureau\Mineral\mineral.ts\src\api\components\embeds" />
-      <recent name="E:\WindowsData\Bureau\Mineral\mineral.ts\src\api\components\buttons" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -102,280 +99,13 @@
       <workItem from="1635524182301" duration="21848000" />
       <workItem from="1636316523513" duration="142000" />
       <workItem from="1636316707015" duration="8711000" />
-      <workItem from="1637050418905" duration="4020000" />
-    </task>
-    <task id="LOCAL-00048" summary=":construction: Work in progress">
-      <created>1634730312646</created>
-      <option name="number" value="00048" />
-      <option name="presentableId" value="LOCAL-00048" />
-      <option name="project" value="LOCAL" />
-      <updated>1634730312646</updated>
-    </task>
-    <task id="LOCAL-00049" summary=":construction: Work in progress">
-      <created>1634730606603</created>
-      <option name="number" value="00049" />
-      <option name="presentableId" value="LOCAL-00049" />
-      <option name="project" value="LOCAL" />
-      <updated>1634730606603</updated>
-    </task>
-    <task id="LOCAL-00050" summary=":recycle: Move channels">
-      <created>1634732703736</created>
-      <option name="number" value="00050" />
-      <option name="presentableId" value="LOCAL-00050" />
-      <option name="project" value="LOCAL" />
-      <updated>1634732703737</updated>
-    </task>
-    <task id="LOCAL-00051" summary=":construction: Work in progress">
-      <created>1634732744481</created>
-      <option name="number" value="00051" />
-      <option name="presentableId" value="LOCAL-00051" />
-      <option name="project" value="LOCAL" />
-      <updated>1634732744481</updated>
-    </task>
-    <task id="LOCAL-00052" summary=":construction: Work in progress">
-      <created>1634733421415</created>
-      <option name="number" value="00052" />
-      <option name="presentableId" value="LOCAL-00052" />
-      <option name="project" value="LOCAL" />
-      <updated>1634733421415</updated>
-    </task>
-    <task id="LOCAL-00053" summary=":construction: Work in progress">
-      <created>1634735427996</created>
-      <option name="number" value="00053" />
-      <option name="presentableId" value="LOCAL-00053" />
-      <option name="project" value="LOCAL" />
-      <updated>1634735427996</updated>
-    </task>
-    <task id="LOCAL-00054" summary=":construction: Work in progress">
-      <created>1634735619675</created>
-      <option name="number" value="00054" />
-      <option name="presentableId" value="LOCAL-00054" />
-      <option name="project" value="LOCAL" />
-      <updated>1634735619675</updated>
-    </task>
-    <task id="LOCAL-00055" summary=":construction: Work in progress">
-      <created>1634763553275</created>
-      <option name="number" value="00055" />
-      <option name="presentableId" value="LOCAL-00055" />
-      <option name="project" value="LOCAL" />
-      <updated>1634763553279</updated>
-    </task>
-    <task id="LOCAL-00056" summary=":construction: Work in progress">
-      <created>1634763599424</created>
-      <option name="number" value="00056" />
-      <option name="presentableId" value="LOCAL-00056" />
-      <option name="project" value="LOCAL" />
-      <updated>1634763599424</updated>
-    </task>
-    <task id="LOCAL-00057" summary=":recycle: Remove old src">
-      <created>1634818554448</created>
-      <option name="number" value="00057" />
-      <option name="presentableId" value="LOCAL-00057" />
-      <option name="project" value="LOCAL" />
-      <updated>1634818554448</updated>
-    </task>
-    <task id="LOCAL-00058" summary=":construction: Work in progress">
-      <created>1634818569018</created>
-      <option name="number" value="00058" />
-      <option name="presentableId" value="LOCAL-00058" />
-      <option name="project" value="LOCAL" />
-      <updated>1634818569018</updated>
-    </task>
-    <task id="LOCAL-00059" summary=":construction: Work in progress">
-      <created>1634818600866</created>
-      <option name="number" value="00059" />
-      <option name="presentableId" value="LOCAL-00059" />
-      <option name="project" value="LOCAL" />
-      <updated>1634818600866</updated>
-    </task>
-    <task id="LOCAL-00060" summary=":construction: Work in progress">
-      <created>1634818749923</created>
-      <option name="number" value="00060" />
-      <option name="presentableId" value="LOCAL-00060" />
-      <option name="project" value="LOCAL" />
-      <updated>1634818749923</updated>
-    </task>
-    <task id="LOCAL-00061" summary=":construction: Work in progress">
-      <created>1634820129022</created>
-      <option name="number" value="00061" />
-      <option name="presentableId" value="LOCAL-00061" />
-      <option name="project" value="LOCAL" />
-      <updated>1634820129022</updated>
-    </task>
-    <task id="LOCAL-00062" summary=":construction: Work in progress">
-      <created>1634820191548</created>
-      <option name="number" value="00062" />
-      <option name="presentableId" value="LOCAL-00062" />
-      <option name="project" value="LOCAL" />
-      <updated>1634820191548</updated>
-    </task>
-    <task id="LOCAL-00063" summary=":construction: Work in progress">
-      <created>1634846196765</created>
-      <option name="number" value="00063" />
-      <option name="presentableId" value="LOCAL-00063" />
-      <option name="project" value="LOCAL" />
-      <updated>1634846196765</updated>
-    </task>
-    <task id="LOCAL-00064" summary=":construction: Work in progress">
-      <created>1634846355357</created>
-      <option name="number" value="00064" />
-      <option name="presentableId" value="LOCAL-00064" />
-      <option name="project" value="LOCAL" />
-      <updated>1634846355357</updated>
-    </task>
-    <task id="LOCAL-00065" summary=":construction: Work in progress">
-      <created>1634884247104</created>
-      <option name="number" value="00065" />
-      <option name="presentableId" value="LOCAL-00065" />
-      <option name="project" value="LOCAL" />
-      <updated>1634884247104</updated>
-    </task>
-    <task id="LOCAL-00066" summary=":construction: Work in progress">
-      <created>1634884272869</created>
-      <option name="number" value="00066" />
-      <option name="presentableId" value="LOCAL-00066" />
-      <option name="project" value="LOCAL" />
-      <updated>1634884272869</updated>
-    </task>
-    <task id="LOCAL-00067" summary=":construction: Work in progress">
-      <created>1634889443143</created>
-      <option name="number" value="00067" />
-      <option name="presentableId" value="LOCAL-00067" />
-      <option name="project" value="LOCAL" />
-      <updated>1634889443143</updated>
-    </task>
-    <task id="LOCAL-00068" summary=":construction: Work in progress">
-      <created>1634933498764</created>
-      <option name="number" value="00068" />
-      <option name="presentableId" value="LOCAL-00068" />
-      <option name="project" value="LOCAL" />
-      <updated>1634933498766</updated>
-    </task>
-    <task id="LOCAL-00069" summary=":construction: Work in progress">
-      <created>1634935609719</created>
-      <option name="number" value="00069" />
-      <option name="presentableId" value="LOCAL-00069" />
-      <option name="project" value="LOCAL" />
-      <updated>1634935609720</updated>
-    </task>
-    <task id="LOCAL-00070" summary=":construction: Work in progress">
-      <created>1634935930067</created>
-      <option name="number" value="00070" />
-      <option name="presentableId" value="LOCAL-00070" />
-      <option name="project" value="LOCAL" />
-      <updated>1634935930067</updated>
-    </task>
-    <task id="LOCAL-00071" summary=":construction: Work in progress">
-      <created>1635171983087</created>
-      <option name="number" value="00071" />
-      <option name="presentableId" value="LOCAL-00071" />
-      <option name="project" value="LOCAL" />
-      <updated>1635171983087</updated>
-    </task>
-    <task id="LOCAL-00072" summary=":construction: Work in progress">
-      <created>1635172063853</created>
-      <option name="number" value="00072" />
-      <option name="presentableId" value="LOCAL-00072" />
-      <option name="project" value="LOCAL" />
-      <updated>1635172063853</updated>
-    </task>
-    <task id="LOCAL-00073" summary=":construction: Work in progress">
-      <created>1635172070590</created>
-      <option name="number" value="00073" />
-      <option name="presentableId" value="LOCAL-00073" />
-      <option name="project" value="LOCAL" />
-      <updated>1635172070590</updated>
-    </task>
-    <task id="LOCAL-00074" summary=":construction: Work in progress">
-      <created>1635172076192</created>
-      <option name="number" value="00074" />
-      <option name="presentableId" value="LOCAL-00074" />
-      <option name="project" value="LOCAL" />
-      <updated>1635172076192</updated>
-    </task>
-    <task id="LOCAL-00075" summary=":construction: Work in progress">
-      <created>1635172080160</created>
-      <option name="number" value="00075" />
-      <option name="presentableId" value="LOCAL-00075" />
-      <option name="project" value="LOCAL" />
-      <updated>1635172080160</updated>
-    </task>
-    <task id="LOCAL-00076" summary=":construction: Work in progress">
-      <created>1635172092510</created>
-      <option name="number" value="00076" />
-      <option name="presentableId" value="LOCAL-00076" />
-      <option name="project" value="LOCAL" />
-      <updated>1635172092510</updated>
-    </task>
-    <task id="LOCAL-00077" summary=":construction: Work in progress">
-      <created>1635172102339</created>
-      <option name="number" value="00077" />
-      <option name="presentableId" value="LOCAL-00077" />
-      <option name="project" value="LOCAL" />
-      <updated>1635172102339</updated>
-    </task>
-    <task id="LOCAL-00078" summary=":construction: Work in progress">
-      <created>1635172108444</created>
-      <option name="number" value="00078" />
-      <option name="presentableId" value="LOCAL-00078" />
-      <option name="project" value="LOCAL" />
-      <updated>1635172108444</updated>
-    </task>
-    <task id="LOCAL-00079" summary=":construction: Work in progress">
-      <created>1635172113487</created>
-      <option name="number" value="00079" />
-      <option name="presentableId" value="LOCAL-00079" />
-      <option name="project" value="LOCAL" />
-      <updated>1635172113487</updated>
-    </task>
-    <task id="LOCAL-00080" summary=":construction: Work in progress">
-      <created>1635172117781</created>
-      <option name="number" value="00080" />
-      <option name="presentableId" value="LOCAL-00080" />
-      <option name="project" value="LOCAL" />
-      <updated>1635172117781</updated>
-    </task>
-    <task id="LOCAL-00081" summary=":construction: Work in progress">
-      <created>1635172121673</created>
-      <option name="number" value="00081" />
-      <option name="presentableId" value="LOCAL-00081" />
-      <option name="project" value="LOCAL" />
-      <updated>1635172121674</updated>
-    </task>
-    <task id="LOCAL-00082" summary=":construction: Work in progress">
-      <created>1635172125301</created>
-      <option name="number" value="00082" />
-      <option name="presentableId" value="LOCAL-00082" />
-      <option name="project" value="LOCAL" />
-      <updated>1635172125301</updated>
-    </task>
-    <task id="LOCAL-00083" summary=":construction: Work in progress">
-      <created>1635172128824</created>
-      <option name="number" value="00083" />
-      <option name="presentableId" value="LOCAL-00083" />
-      <option name="project" value="LOCAL" />
-      <updated>1635172128824</updated>
-    </task>
-    <task id="LOCAL-00084" summary=":construction: Work in progress">
-      <created>1635197925983</created>
-      <option name="number" value="00084" />
-      <option name="presentableId" value="LOCAL-00084" />
-      <option name="project" value="LOCAL" />
-      <updated>1635197925984</updated>
-    </task>
-    <task id="LOCAL-00085" summary=":construction: Work in progress">
-      <created>1635524956372</created>
-      <option name="number" value="00085" />
-      <option name="presentableId" value="LOCAL-00085" />
-      <option name="project" value="LOCAL" />
-      <updated>1635524956372</updated>
-    </task>
-    <task id="LOCAL-00086" summary=":construction: Work in progress">
-      <created>1635525000818</created>
-      <option name="number" value="00086" />
-      <option name="presentableId" value="LOCAL-00086" />
-      <option name="project" value="LOCAL" />
-      <updated>1635525000818</updated>
+      <workItem from="1637050418905" duration="22716000" />
+      <workItem from="1637947979354" duration="28309000" />
+      <workItem from="1638371929896" duration="23413000" />
+      <workItem from="1638430064432" duration="400000" />
+      <workItem from="1638430842257" duration="337000" />
+      <workItem from="1638431185427" duration="8180000" />
+      <workItem from="1638904365263" duration="49000" />
     </task>
     <task id="LOCAL-00087" summary=":construction: Work in progress">
       <created>1635526802330</created>
@@ -447,7 +177,280 @@
       <option name="project" value="LOCAL" />
       <updated>1636374557250</updated>
     </task>
-    <option name="localTasksCounter" value="97" />
+    <task id="LOCAL-00097" summary=":construction: Work in progress">
+      <created>1637056001288</created>
+      <option name="number" value="00097" />
+      <option name="presentableId" value="LOCAL-00097" />
+      <option name="project" value="LOCAL" />
+      <updated>1637056001288</updated>
+    </task>
+    <task id="LOCAL-00098" summary=":construction: Work in progress">
+      <created>1637057152455</created>
+      <option name="number" value="00098" />
+      <option name="presentableId" value="LOCAL-00098" />
+      <option name="project" value="LOCAL" />
+      <updated>1637057152456</updated>
+    </task>
+    <task id="LOCAL-00099" summary=":construction: Work in progress">
+      <created>1637057439646</created>
+      <option name="number" value="00099" />
+      <option name="presentableId" value="LOCAL-00099" />
+      <option name="project" value="LOCAL" />
+      <updated>1637057439646</updated>
+    </task>
+    <task id="LOCAL-00100" summary=":construction: Work in progress">
+      <created>1637057587866</created>
+      <option name="number" value="00100" />
+      <option name="presentableId" value="LOCAL-00100" />
+      <option name="project" value="LOCAL" />
+      <updated>1637057587866</updated>
+    </task>
+    <task id="LOCAL-00101" summary=":construction: Work in progress">
+      <created>1637067199240</created>
+      <option name="number" value="00101" />
+      <option name="presentableId" value="LOCAL-00101" />
+      <option name="project" value="LOCAL" />
+      <updated>1637067199241</updated>
+    </task>
+    <task id="LOCAL-00102" summary=":construction: Work in progress">
+      <created>1637067359240</created>
+      <option name="number" value="00102" />
+      <option name="presentableId" value="LOCAL-00102" />
+      <option name="project" value="LOCAL" />
+      <updated>1637067359240</updated>
+    </task>
+    <task id="LOCAL-00103" summary=":construction: Work in progress">
+      <created>1637269417446</created>
+      <option name="number" value="00103" />
+      <option name="presentableId" value="LOCAL-00103" />
+      <option name="project" value="LOCAL" />
+      <updated>1637269417446</updated>
+    </task>
+    <task id="LOCAL-00104" summary=":construction: Work in progress">
+      <created>1637270506536</created>
+      <option name="number" value="00104" />
+      <option name="presentableId" value="LOCAL-00104" />
+      <option name="project" value="LOCAL" />
+      <updated>1637270506536</updated>
+    </task>
+    <task id="LOCAL-00105" summary=":construction: Work in progress">
+      <created>1637271895975</created>
+      <option name="number" value="00105" />
+      <option name="presentableId" value="LOCAL-00105" />
+      <option name="project" value="LOCAL" />
+      <updated>1637271895976</updated>
+    </task>
+    <task id="LOCAL-00106" summary=":construction: Work in progress">
+      <created>1637526100586</created>
+      <option name="number" value="00106" />
+      <option name="presentableId" value="LOCAL-00106" />
+      <option name="project" value="LOCAL" />
+      <updated>1637526100586</updated>
+    </task>
+    <task id="LOCAL-00107" summary=":construction: Work in progress">
+      <created>1637526140151</created>
+      <option name="number" value="00107" />
+      <option name="presentableId" value="LOCAL-00107" />
+      <option name="project" value="LOCAL" />
+      <updated>1637526140151</updated>
+    </task>
+    <task id="LOCAL-00108" summary=":construction: Work in progress">
+      <created>1638291711259</created>
+      <option name="number" value="00108" />
+      <option name="presentableId" value="LOCAL-00108" />
+      <option name="project" value="LOCAL" />
+      <updated>1638291711259</updated>
+    </task>
+    <task id="LOCAL-00109" summary=":construction: Work in progress">
+      <created>1638299685082</created>
+      <option name="number" value="00109" />
+      <option name="presentableId" value="LOCAL-00109" />
+      <option name="project" value="LOCAL" />
+      <updated>1638299685082</updated>
+    </task>
+    <task id="LOCAL-00110" summary=":construction: Work in progress">
+      <created>1638302492694</created>
+      <option name="number" value="00110" />
+      <option name="presentableId" value="LOCAL-00110" />
+      <option name="project" value="LOCAL" />
+      <updated>1638302492694</updated>
+    </task>
+    <task id="LOCAL-00111" summary=":construction: Work in progress">
+      <created>1638308120644</created>
+      <option name="number" value="00111" />
+      <option name="presentableId" value="LOCAL-00111" />
+      <option name="project" value="LOCAL" />
+      <updated>1638308120644</updated>
+    </task>
+    <task id="LOCAL-00112" summary=":construction: Work in progress">
+      <created>1638308488172</created>
+      <option name="number" value="00112" />
+      <option name="presentableId" value="LOCAL-00112" />
+      <option name="project" value="LOCAL" />
+      <updated>1638308488172</updated>
+    </task>
+    <task id="LOCAL-00113" summary=":construction: Work in progress">
+      <created>1638308679540</created>
+      <option name="number" value="00113" />
+      <option name="presentableId" value="LOCAL-00113" />
+      <option name="project" value="LOCAL" />
+      <updated>1638308679540</updated>
+    </task>
+    <task id="LOCAL-00114" summary=":construction: Work in progress">
+      <created>1638308851105</created>
+      <option name="number" value="00114" />
+      <option name="presentableId" value="LOCAL-00114" />
+      <option name="project" value="LOCAL" />
+      <updated>1638308851105</updated>
+    </task>
+    <task id="LOCAL-00115" summary=":construction: Work in progress">
+      <created>1638308976444</created>
+      <option name="number" value="00115" />
+      <option name="presentableId" value="LOCAL-00115" />
+      <option name="project" value="LOCAL" />
+      <updated>1638308976444</updated>
+    </task>
+    <task id="LOCAL-00116" summary=":construction: Work in progress">
+      <created>1638316269948</created>
+      <option name="number" value="00116" />
+      <option name="presentableId" value="LOCAL-00116" />
+      <option name="project" value="LOCAL" />
+      <updated>1638316269948</updated>
+    </task>
+    <task id="LOCAL-00117" summary=":construction: Work in progress">
+      <created>1638316397464</created>
+      <option name="number" value="00117" />
+      <option name="presentableId" value="LOCAL-00117" />
+      <option name="project" value="LOCAL" />
+      <updated>1638316397464</updated>
+    </task>
+    <task id="LOCAL-00118" summary=":construction: Work in progress">
+      <created>1638379324660</created>
+      <option name="number" value="00118" />
+      <option name="presentableId" value="LOCAL-00118" />
+      <option name="project" value="LOCAL" />
+      <updated>1638379324661</updated>
+    </task>
+    <task id="LOCAL-00119" summary=":construction: Work in progress">
+      <created>1638380681200</created>
+      <option name="number" value="00119" />
+      <option name="presentableId" value="LOCAL-00119" />
+      <option name="project" value="LOCAL" />
+      <updated>1638380681200</updated>
+    </task>
+    <task id="LOCAL-00120" summary=":construction: Work in progress">
+      <created>1638381343381</created>
+      <option name="number" value="00120" />
+      <option name="presentableId" value="LOCAL-00120" />
+      <option name="project" value="LOCAL" />
+      <updated>1638381343381</updated>
+    </task>
+    <task id="LOCAL-00121" summary=":construction: Work in progress">
+      <created>1638381598818</created>
+      <option name="number" value="00121" />
+      <option name="presentableId" value="LOCAL-00121" />
+      <option name="project" value="LOCAL" />
+      <updated>1638381598818</updated>
+    </task>
+    <task id="LOCAL-00122" summary=":construction: Work in progress">
+      <created>1638382246930</created>
+      <option name="number" value="00122" />
+      <option name="presentableId" value="LOCAL-00122" />
+      <option name="project" value="LOCAL" />
+      <updated>1638382246930</updated>
+    </task>
+    <task id="LOCAL-00123" summary=":construction: Work in progress">
+      <created>1638382370122</created>
+      <option name="number" value="00123" />
+      <option name="presentableId" value="LOCAL-00123" />
+      <option name="project" value="LOCAL" />
+      <updated>1638382370122</updated>
+    </task>
+    <task id="LOCAL-00124" summary=":construction: Work in progress">
+      <created>1638382620877</created>
+      <option name="number" value="00124" />
+      <option name="presentableId" value="LOCAL-00124" />
+      <option name="project" value="LOCAL" />
+      <updated>1638382620877</updated>
+    </task>
+    <task id="LOCAL-00125" summary=":construction: Work in progress">
+      <created>1638383288227</created>
+      <option name="number" value="00125" />
+      <option name="presentableId" value="LOCAL-00125" />
+      <option name="project" value="LOCAL" />
+      <updated>1638383288227</updated>
+    </task>
+    <task id="LOCAL-00126" summary=":construction: Work in progress">
+      <created>1638391450144</created>
+      <option name="number" value="00126" />
+      <option name="presentableId" value="LOCAL-00126" />
+      <option name="project" value="LOCAL" />
+      <updated>1638391450144</updated>
+    </task>
+    <task id="LOCAL-00127" summary=":construction: Work in progress">
+      <created>1638391698783</created>
+      <option name="number" value="00127" />
+      <option name="presentableId" value="LOCAL-00127" />
+      <option name="project" value="LOCAL" />
+      <updated>1638391698783</updated>
+    </task>
+    <task id="LOCAL-00128" summary=":construction: Work in progress">
+      <created>1638392504669</created>
+      <option name="number" value="00128" />
+      <option name="presentableId" value="LOCAL-00128" />
+      <option name="project" value="LOCAL" />
+      <updated>1638392504669</updated>
+    </task>
+    <task id="LOCAL-00129" summary=":construction: Work in progress">
+      <created>1638397135337</created>
+      <option name="number" value="00129" />
+      <option name="presentableId" value="LOCAL-00129" />
+      <option name="project" value="LOCAL" />
+      <updated>1638397135337</updated>
+    </task>
+    <task id="LOCAL-00130" summary=":construction: Work in progress">
+      <created>1638397395686</created>
+      <option name="number" value="00130" />
+      <option name="presentableId" value="LOCAL-00130" />
+      <option name="project" value="LOCAL" />
+      <updated>1638397395686</updated>
+    </task>
+    <task id="LOCAL-00131" summary=":construction: Work in progress">
+      <created>1638398413579</created>
+      <option name="number" value="00131" />
+      <option name="presentableId" value="LOCAL-00131" />
+      <option name="project" value="LOCAL" />
+      <updated>1638398413579</updated>
+    </task>
+    <task id="LOCAL-00132" summary=":construction: Work in progress">
+      <created>1638398886993</created>
+      <option name="number" value="00132" />
+      <option name="presentableId" value="LOCAL-00132" />
+      <option name="project" value="LOCAL" />
+      <updated>1638398886993</updated>
+    </task>
+    <task id="LOCAL-00133" summary=":art: Setup and reformat with eslint">
+      <created>1638406939818</created>
+      <option name="number" value="00133" />
+      <option name="presentableId" value="LOCAL-00133" />
+      <option name="project" value="LOCAL" />
+      <updated>1638406939818</updated>
+    </task>
+    <task id="LOCAL-00134" summary=":art: Setup and reformat with eslint">
+      <created>1638431212672</created>
+      <option name="number" value="00134" />
+      <option name="presentableId" value="LOCAL-00134" />
+      <option name="project" value="LOCAL" />
+      <updated>1638431212672</updated>
+    </task>
+    <task id="LOCAL-00135" summary=":art: Update eslint">
+      <created>1638437437654</created>
+      <option name="number" value="00135" />
+      <option name="presentableId" value="LOCAL-00135" />
+      <option name="project" value="LOCAL" />
+      <updated>1638437437654</updated>
+    </task>
+    <option name="localTasksCounter" value="136" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -489,7 +492,9 @@
     <MESSAGE value=":recycle: Move channels" />
     <MESSAGE value=":recycle: Remove old src" />
     <MESSAGE value=":construction: Work in progress" />
-    <option name="LAST_COMMIT_MESSAGE" value=":construction: Work in progress" />
+    <MESSAGE value=":art: Setup and reformat with eslint" />
+    <MESSAGE value=":art: Update eslint" />
+    <option name="LAST_COMMIT_MESSAGE" value=":art: Update eslint" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

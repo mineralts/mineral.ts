@@ -34,6 +34,7 @@ import Invite from '../api/entities/Invite'
 import Collection from '../Collection'
 import VoiceState from '../api/entities/VoiceState'
 import InviteManager from '../api/entities/InviteManager'
+import GuildBuilder from '../builders/GuildBuilder'
 
 @Packet('GUILD_CREATE')
 export default class GuildCreatePacket extends BasePacket {
@@ -46,7 +47,9 @@ export default class GuildCreatePacket extends BasePacket {
 
   public async handle (client: MineralClient, payload: any) {
     this.createRoles(payload)
-    this.createGuild(payload)
+
+    this.guild = new GuildBuilder(client, payload).build(this.guildMembers)
+
     this.createGuidMembers(payload)
     this.createChannel(payload)
     this.createEmojis(payload)
