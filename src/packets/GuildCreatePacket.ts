@@ -154,6 +154,7 @@ export default class GuildCreatePacket extends BasePacket {
       if (item.type === ChannelTypeResolvable.GUILD_CATEGORY) {
         channel = new CategoryChannel(
           item.id,
+          item.position,
           item.name,
           this.guild.id,
           this.guild,

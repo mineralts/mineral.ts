@@ -9,7 +9,7 @@ export default class Channel {
     public type: keyof typeof ChannelTypeResolvable,
     public name: string,
     public guildId: Snowflake,
-    public guild: Guild,
+    public guild: Guild | undefined,
     public parentId: Snowflake | undefined,
     public position: number,
     public parent?: CategoryChannel,
