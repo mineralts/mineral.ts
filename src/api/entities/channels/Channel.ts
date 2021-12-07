@@ -33,6 +33,10 @@ export default class Channel {
     return ChannelTypeResolvable[this.type] === ChannelTypeResolvable.GUILD_CATEGORY
   }
 
+  public isStage () {
+    return ChannelTypeResolvable[this.type] === ChannelTypeResolvable.GUILD_STAGE_VOICE
+  }
+
   public async setParent (category: CategoryChannel | Snowflake, option?: RequestOptions) {
     const request = new Request(`/channels/${this.id}`)
     const parentId = typeof category === 'string'
